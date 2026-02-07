@@ -1,0 +1,1 @@
+export { ContactSimple } from "./ContactSimple";

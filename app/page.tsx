@@ -1,11 +1,11 @@
-import { siteConfig } from "@/config/site";
-import { SectionRenderer } from "@/components/SectionRenderer";
+import { demoConfig } from "@/config/demo";
+import { SectionRenderer } from "@/components/sections/SectionRenderer";
 
 export default function Home() {
   return (
     <main>
-      {siteConfig.sections.map((section) => (
-        <SectionRenderer key={section.id} section={section} />
+      {demoConfig.sections.map((section, index) => (
+        <SectionRenderer key={index} section={section} />
       ))}
     </main>
   );
