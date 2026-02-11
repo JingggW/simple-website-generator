@@ -81,6 +81,7 @@ export const WebsiteConfigSchema = z.object({
 });
 
 export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;
+export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;
 export type ServicesSection = z.infer<typeof ServicesSchema>;
 export type ContactSection = z.infer<typeof ContactSchema>;

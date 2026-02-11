@@ -6,15 +6,15 @@ type ServicesProps = ServicesSection["props"];
 
 export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
   return (
-    <section className="py-24 bg-white px-4" id="services">
+    <section className="py-24 bg-background px-4" id="services">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             {title}
           </h2>
           {description && (
-            <p className="mt-4 text-lg text-gray-500">{description}</p>
+            <p className="mt-4 text-lg text-secondary">{description}</p>
           )}
         </div>
 
@@ -26,27 +26,31 @@ export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
 
             return (
               <div key={index} className="pt-6">
-                <div className="flow-root rounded-2xl bg-gray-50 px-6 pb-8 h-full hover:shadow-md transition-shadow duration-300">
+                {/* Card Background: bg-gray-50 -> bg-secondary/5 
+                   This gives the card a very subtle tint of the secondary brand color 
+                */}
+                <div className="flow-root rounded-2xl bg-secondary/5 px-6 pb-8 h-full hover:shadow-md transition-shadow duration-300">
                   <div className="-mt-6">
                     <div>
-                      <span className="inline-flex items-center justify-center rounded-xl bg-blue-600 p-3 shadow-lg">
-                        {/* 2. Safety Check: Only render if the icon exists in your map */}
+                      {/* Icon Background: bg-blue-600 -> bg-primary */}
+                      <span className="inline-flex items-center justify-center rounded-xl bg-primary p-3 shadow-lg">
+                        {/* 2. Safety Check */}
                         {IconComponent ? (
                           <IconComponent
-                            className="h-6 w-6 text-white"
+                            // Icon Color: text-white -> text-background (for contrast on primary)
+                            className="h-6 w-6 text-background"
                             aria-hidden="true"
                           />
                         ) : (
-                          // Fallback if LLM picked a weird icon name
-                          <div className="h-6 w-6 bg-white/20" />
+                          <div className="h-6 w-6 bg-background/20" />
                         )}
                       </span>
                     </div>
 
-                    <h3 className="mt-8 text-xl font-semibold tracking-tight text-gray-900">
+                    <h3 className="mt-8 text-xl font-semibold tracking-tight text-foreground">
                       {item.title}
                     </h3>
-                    <p className="mt-5 text-base leading-7 text-gray-600">
+                    <p className="mt-5 text-base leading-7 text-secondary">
                       {item.description}
                     </p>
                   </div>

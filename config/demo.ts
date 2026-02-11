@@ -9,10 +9,10 @@ export const demoConfig: WebsiteConfig = {
   theme: {
     mode: "light",
     colors: {
-      primary: "#2563EB", // Blue-600
-      secondary: "#1E293B", // Slate-800
-      background: "#FFFFFF",
-      text: "#0F172A",
+      primary: "#059669", // Emerald-600
+      secondary: "#D97706", // Amber-600
+      background: "#FAFAF9", // Stone-50
+      text: "#1C1917", // Stone-900
     },
     fontStyle: "sans",
     borderRadius: "md",
