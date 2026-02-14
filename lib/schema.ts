@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+// --- Theme Schemas ---
+
 export const ThemeSchema = z.object({
   mode: z.enum(["light", "dark", "auto"]).default("light"),
   colors: z.object({
@@ -41,7 +43,7 @@ export const ServicesSchema = z.object({
         icon: z.string().describe("Name of the icon from lucide-react"),
         title: z.string(),
         description: z.string(),
-      })
+      }),
     ),
   }),
 });
@@ -67,20 +69,6 @@ export const ContentSchema = z.object({
   }),
 });
 
-export const WebsiteConfigSchema = z.object({
-  siteName: z.string(),
-  meta: z.object({
-    title: z.string(),
-    description: z.string(),
-    keywords: z.array(z.string()).optional(),
-  }),
-  theme: ThemeSchema,
-  sections: z.array(
-    z.union([HeroSchema, ServicesSchema, ContactSchema, ContentSchema])
-  ),
-});
-
-export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;
 export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;
 export type ServicesSection = z.infer<typeof ServicesSchema>;
@@ -91,3 +79,48 @@ export type AnySection =
   | ServicesSection
   | ContactSection
   | ContentSection;
+
+// --- Navigation Schemas ---
+export const LinkSchema = z.object({
+  type: z.literal("link"),
+  label: z.string().describe("Text to display for the link (eg About)"),
+  href: z.string().default("#").describe("URL path (eg /about)"),
+});
+
+export const DropdownSchema = z.object({
+  type: z.literal("dropdown"),
+  label: z.string().describe("Dropdown text (eg Services)"),
+  items: z.array(LinkSchema).describe("Links inside the dropdown"),
+});
+
+export const NavItemSchema = z.discriminatedUnion("type", [
+  LinkSchema,
+  DropdownSchema,
+]);
+
+export const HeaderSchema = z.object({
+  title: z.string().default("Brand").describe("Site title or logo text"),
+  links: z
+    .array(NavItemSchema)
+    .default([])
+    .describe("Navigation items in the header"),
+  cta: LinkSchema.optional().describe(
+    "Optional 'sign up' or 'contact us' link in the header",
+  ),
+});
+
+// --- Overall Website Scheme ---
+export const WebsiteConfigSchema = z.object({
+  header: HeaderSchema,
+  theme: ThemeSchema,
+  sections: z.array(
+    z.discriminatedUnion("type", [
+      HeroSchema,
+      ServicesSchema,
+      ContactSchema,
+      ContentSchema,
+    ]),
+  ),
+});
+
+export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;

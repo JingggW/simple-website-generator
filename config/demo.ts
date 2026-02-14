@@ -1,10 +1,31 @@
 import { WebsiteConfig } from "@/lib/schema";
 
 export const demoConfig: WebsiteConfig = {
-  siteName: "Urban Plumbers",
-  meta: {
-    title: "Urban Plumbers - Fast & Reliable",
-    description: "The #1 plumbing service in Melbourne.",
+  header: {
+    title: "Urban Plumbers",
+    links: [
+      { type: "link", label: "Home", href: "/" },
+      { type: "link", label: "About", href: "/about" },
+      {
+        type: "dropdown",
+        label: "Services",
+        items: [
+          {
+            type: "link",
+            label: "Emergency Repairs",
+            href: "/services/emergency",
+          },
+          { type: "link", label: "Maintenance", href: "/services/maintenance" },
+          {
+            type: "link",
+            label: "Installations",
+            href: "/services/installations",
+          },
+        ],
+      },
+      { type: "link", label: "Contact", href: "/contact" },
+    ],
+    cta: { type: "link", label: "Book Now", href: "/book" },
   },
   theme: {
     mode: "light",
