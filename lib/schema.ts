@@ -109,9 +109,39 @@ export const HeaderSchema = z.object({
   ),
 });
 
+// --- Footer Schema ---
+export const FooterColumnSchema = z.object({
+  title: z.string(),
+  links: z.array(LinkSchema),
+});
+
+export const FooterSchema = z.object({
+  brand: z.object({
+    title: z.string().default("Brand"),
+    description: z.string().optional(),
+  }),
+  columns: z.array(FooterColumnSchema).default([]),
+  social: z
+    .array(
+      z.object({
+        platform: z.enum([
+          "twitter",
+          "github",
+          "linkedin",
+          "facebook",
+          "instagram",
+        ]),
+        url: z.string().url(),
+      }),
+    )
+    .optional(),
+  copyright: z.string().default("© 2026 Company Name. All rights reserved."),
+});
+
 // --- Overall Website Scheme ---
 export const WebsiteConfigSchema = z.object({
   header: HeaderSchema,
+  footer: FooterSchema,
   theme: ThemeSchema,
   sections: z.array(
     z.discriminatedUnion("type", [

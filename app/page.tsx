@@ -2,6 +2,7 @@ import { demoConfig } from "@/config/demo";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/NavBar";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
           <SectionRenderer key={index} section={section} />
         ))}
       </main>
+      <Footer config={demoConfig.footer} />
     </ThemeProvider>
   );
 }

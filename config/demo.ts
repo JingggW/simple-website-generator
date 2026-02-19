@@ -101,4 +101,31 @@ export const demoConfig: WebsiteConfig = {
       },
     },
   ],
+  footer: {
+    brand: {
+      title: "PropSite",
+      description: "Building the future of websites, one JSON at a time.",
+    },
+    copyright: "© 2026 PropSite Engine. Built with Next.js.",
+    columns: [
+      {
+        title: "Product",
+        links: [
+          { type: "link", label: "Features", href: "/features" },
+          { type: "link", label: "Pricing", href: "/pricing" },
+        ],
+      },
+      {
+        title: "Company",
+        links: [
+          { type: "link", label: "About", href: "/about" },
+          { type: "link", label: "Careers", href: "/careers" },
+        ],
+      },
+    ],
+    social: [
+      { platform: "twitter", url: "https://twitter.com" },
+      { platform: "github", url: "https://github.com" },
+    ],
+  },
 };
