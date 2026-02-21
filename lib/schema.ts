@@ -69,17 +69,6 @@ export const ContentSchema = z.object({
   }),
 });
 
-export type Theme = z.infer<typeof ThemeSchema>;
-export type HeroSection = z.infer<typeof HeroSchema>;
-export type ServicesSection = z.infer<typeof ServicesSchema>;
-export type ContactSection = z.infer<typeof ContactSchema>;
-export type ContentSection = z.infer<typeof ContentSchema>;
-export type AnySection =
-  | HeroSection
-  | ServicesSection
-  | ContactSection
-  | ContentSection;
-
 // --- Navigation Schemas ---
 export const LinkSchema = z.object({
   type: z.literal("link"),
@@ -138,7 +127,25 @@ export const FooterSchema = z.object({
   copyright: z.string().default("© 2026 Company Name. All rights reserved."),
 });
 
-// --- Overall Website Scheme ---
+// --- Testimonial Schema ---
+export const TestimonialSchema = z.object({
+  quote: z.string().describe("The testimonial text"),
+  author: z.string().describe("Name of the person giving the testimonial"),
+  role: z.string().optional().describe("Their role or company"),
+  avatar: z.string().optional().describe("URL or filename of avatar image"),
+});
+
+export const TestimonialsSectionSchema = z.object({
+  type: z.literal("testimonials"),
+  variant: z.enum(["carousel", "grid"]).default("grid"),
+  props: z.object({
+    title: z.string().default("What Our Clients Say"),
+    subtitles: z.string().optional(),
+    items: z.array(TestimonialSchema),
+  }),
+});
+
+// --- Overall Website Schema ---
 export const WebsiteConfigSchema = z.object({
   header: HeaderSchema,
   footer: FooterSchema,
@@ -149,8 +156,22 @@ export const WebsiteConfigSchema = z.object({
       ServicesSchema,
       ContactSchema,
       ContentSchema,
+      TestimonialsSectionSchema,
     ]),
   ),
 });
+
+export type Theme = z.infer<typeof ThemeSchema>;
+export type HeroSection = z.infer<typeof HeroSchema>;
+export type ServicesSection = z.infer<typeof ServicesSchema>;
+export type ContactSection = z.infer<typeof ContactSchema>;
+export type ContentSection = z.infer<typeof ContentSchema>;
+export type TestimonialsSection = z.infer<typeof TestimonialsSectionSchema>;
+export type AnySection =
+  | HeroSection
+  | ServicesSection
+  | ContactSection
+  | ContentSection
+  | TestimonialsSection;
 
 export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;

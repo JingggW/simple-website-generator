@@ -1,0 +1,1 @@
+export { TestimonialsGrid } from "./TestimonialsGrid";

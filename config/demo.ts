@@ -100,6 +100,33 @@ export const demoConfig: WebsiteConfig = {
         address: "123 High Street\nPoint Cook, VIC 3030",
       },
     },
+    // 3. TESTIMONIALS SECTION (Grid Variant)
+    {
+      type: "testimonials",
+      variant: "grid",
+      props: {
+        title: "Trusted by Locals",
+        subtitles:
+          "We've helped over 500 homeowners in Point Cook and surrounding suburbs.",
+        items: [
+          {
+            quote: "Came out at 2am when my pipe burst. Absolute lifesavers!",
+            author: "Sarah Jenkins",
+            role: "Homeowner",
+          },
+          {
+            quote: "Professional, clean, and honest pricing. Highly recommend.",
+            author: "Mike T.",
+            role: "Local Business Owner",
+          },
+          {
+            quote:
+              "Fixed the hot water system that two other plumbers couldn't figure out.",
+            author: "Davina L.",
+          },
+        ],
+      },
+    },
   ],
   footer: {
     brand: {

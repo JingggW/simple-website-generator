@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Facebook, Github, Instagram, Linkedin, Twitter } from "lucide-react";
 import { WebsiteConfig } from "@/lib/schema";
 
-type FootProps = {
+type FooterProps = {
   config: WebsiteConfig["footer"];
 };
 
@@ -16,7 +16,7 @@ const SocialIconMap = {
   instagram: Instagram,
 };
 
-export const Footer = ({ config }: FootProps) => {
+export const Footer = ({ config }: FooterProps) => {
   return (
     <footer className="w-full border-t border-secondary/20 bg-background py-12 text-sm">
       <div className="container mx-auto px-4">
