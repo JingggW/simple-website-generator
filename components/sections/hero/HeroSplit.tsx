@@ -1,13 +1,9 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import { HeroSection } from "@/lib/schema";
 
-interface HeroSplitProps {
-  headline: string;
-  subheadline?: string;
-  ctaText: string;
-  imageName?: string;
-}
+type HeroSplitProps = HeroSection["props"];
 
 export const HeroSplit = ({
   headline,

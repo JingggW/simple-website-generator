@@ -6,6 +6,7 @@ import { ServicesGrid } from "@/components/sections/services";
 import { ContentSimple } from "@/components/sections/content";
 import { ContactSimple } from "@/components/sections/contact";
 import { TestimonialsGrid } from "@/components/sections/testimonials";
+import { BlockSection } from "@/components/sections/blocks";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   hero: {
@@ -24,6 +25,11 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   },
   testimonials: {
     grid: TestimonialsGrid,
+  },
+  blocks: {
+    prose: BlockSection,
+    wide: BlockSection,
+    full: BlockSection,
   },
 };
 

@@ -145,11 +145,45 @@ export const TestimonialsSectionSchema = z.object({
   }),
 });
 
+// --- Block Section Schema (Atomic) ---
+export const BlockSchema = z.discriminatedUnion("type", [
+  z.object({
+    type: z.literal("heading"),
+    text: z.string(),
+    level: z.enum(["h1", "h2", "h3"]).default("h2"),
+  }),
+  z.object({
+    type: z.literal("text"),
+    content: z.string(),
+  }),
+  z.object({
+    type: z.literal("image"),
+    src: z.string(),
+    alt: z.string().optional(),
+    caption: z.string().optional(),
+  }),
+  z.object({
+    type: z.literal("button"),
+    label: z.string(),
+    href: z.string(),
+    variant: z.enum(["primary", "secondary", "outline"]).default("primary"),
+  }),
+]);
+
+export const BlockSectionSchema = z.object({
+  type: z.literal("blocks"),
+  variant: z.enum(["prose", "wide", "full"]).default("prose"),
+  props: z.object({
+    blocks: z.array(BlockSchema),
+  }),
+});
+
 // --- Overall Website Schema ---
-export const WebsiteConfigSchema = z.object({
-  header: HeaderSchema,
-  footer: FooterSchema,
-  theme: ThemeSchema,
+export const PageSchema = z.object({
+  seo: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+  }),
   sections: z.array(
     z.discriminatedUnion("type", [
       HeroSchema,
@@ -157,8 +191,16 @@ export const WebsiteConfigSchema = z.object({
       ContactSchema,
       ContentSchema,
       TestimonialsSectionSchema,
+      BlockSectionSchema,
     ]),
   ),
+});
+
+export const WebsiteConfigSchema = z.object({
+  header: HeaderSchema,
+  footer: FooterSchema,
+  theme: ThemeSchema,
+  pages: z.record(z.string(), PageSchema).describe("Map of path to page config"),
 });
 
 export type Theme = z.infer<typeof ThemeSchema>;
@@ -167,11 +209,14 @@ export type ServicesSection = z.infer<typeof ServicesSchema>;
 export type ContactSection = z.infer<typeof ContactSchema>;
 export type ContentSection = z.infer<typeof ContentSchema>;
 export type TestimonialsSection = z.infer<typeof TestimonialsSectionSchema>;
+export type BlockSection = z.infer<typeof BlockSectionSchema>;
 export type AnySection =
   | HeroSection
   | ServicesSection
   | ContactSection
   | ContentSection
-  | TestimonialsSection;
+  | TestimonialsSection
+  | BlockSection;
 
+export type PageConfig = z.infer<typeof PageSchema>;
 export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;
