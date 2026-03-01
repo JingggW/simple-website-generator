@@ -4,9 +4,6 @@ import { callLLM } from "../llmClient";
 
 /**
  * PAGE GENERATOR ENGINE
- * 
- * Orchestrates: 
- * UI/UX Designer -> Content Strategist -> Page Assembler
  */
 
 function getSystemContext(): { schema: string; iconMap: string } {
@@ -28,28 +25,32 @@ function sanitizeFileName(name: string): string {
   return name.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
 }
 
-async function generate_single_page(description: string, businessName: string, targetPath: string = "/") {
+export async function generate_single_page(
+  description: string, 
+  businessName: string, 
+  targetPath: string = "/",
+  useImageGen: boolean = false
+) {
   console.log(`🚀 Orchestrating Page Generation for: ${businessName} (${targetPath})`);
+  console.log(`🖼️  Image Generation: ${useImageGen ? "Enabled" : "Disabled"}`);
   
   const system = getSystemContext();
 
   try {
     /**
-     * STAGE 1: UI/UX DESIGN (Visual Identity)
+     * STAGE 1: UI/UX DESIGN
      */
     console.log("🎨 Stage 1: Running UI/UX Designer...");
     const uiPrompt = loadPrompt("ui-ux-designer");
     const designBrief = await callLLM(`
 ### USER BUSINESS DESCRIPTION
 ${description}
-
 ### TASK: UI/UX DESIGN
 ${uiPrompt}
     `, "You are a senior UI/UX designer. Output a concise visual brand identity brief.");
-    console.log("   -> Design Brief Generated.");
 
     /**
-     * STAGE 2: CONTENT STRATEGY (Copy & Structure)
+     * STAGE 2: CONTENT STRATEGY
      */
     console.log("✍️  Stage 2: Running Content Strategist...");
     const contentPrompt = loadPrompt("content-strategist");
@@ -57,52 +58,51 @@ ${uiPrompt}
 ### INPUTS
 Business: ${description}
 Page Path: ${targetPath}
-Design Vibe: 
-${designBrief}
-
+Design Vibe: ${designBrief}
 ### TASK: CONTENT STRATEGY
 ${contentPrompt}
-    `, "You are a senior content strategist. Output a detailed page blueprint including sections and all copy.");
-    console.log("   -> Content Blueprint Generated.");
+    `, "You are a senior content strategist. Output a detailed page blueprint.");
 
     /**
-     * STAGE 3: CODE ASSEMBLY (Final JSON)
+     * STAGE 3: OPTIONAL IMAGE INSERTION
      */
-    console.log("🛠️  Stage 3: Running Page Assembler...");
+    let finalBlueprint = contentBlueprint;
+    if (useImageGen) {
+      console.log("📸 Stage 3: Running Image Inserter...");
+      const imagePrompt = loadPrompt("image-inserter");
+      // For PoC, we provide a static list of available placeholder assets
+      const availableAssets = ["hero-plumber.webp", "salon-interior.jpg", "cafe-front.jpg", "team-working.jpg"];
+      
+      finalBlueprint = await callLLM(`
+### INPUTS
+Text Blueprint: ${contentBlueprint}
+Available Assets: ${availableAssets.join(", ")}
+### TASK: IMAGE INSERTION
+${imagePrompt}
+      `, "You are a visual editor. Insert image filenames into the blueprint where they make sense.");
+    } else {
+      console.log("⏭️  Stage 3: Skipping Image Inserter.");
+    }
+
+    /**
+     * STAGE 4: CODE ASSEMBLY
+     */
+    console.log("🛠️  Stage 4: Running Page Assembler...");
     const assemblerPrompt = loadPrompt("page-assembler")
       .replace("{{SCHEMA}}", system.schema)
       .replace("{{ICON_MAP}}", system.iconMap);
 
     const finalJson = await callLLM(`
 ### INPUTS
-Design Brief: 
-${designBrief}
-
-Content Strategy:
-${contentBlueprint}
-
+Target Path: ${targetPath}
+Design Brief: ${designBrief}
+Content Strategy (Enhanced): ${finalBlueprint}
 ### TASK: PAGE ASSEMBLY
 ${assemblerPrompt}
-    `, "You are a senior frontend developer. Output ONLY the valid JSON object. No other text.");
-    console.log("   -> Final JSON Assembly Complete.");
+    `, "You are a senior frontend developer. Output ONLY the valid JSON object.");
 
-    // Parse to ensure it's valid JSON
     const rawJson = finalJson.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(rawJson);
-    
-    // Save to Output Folder
-    const outputDir = path.join(process.cwd(), "generated", sanitizeFileName(businessName));
-    if (!fs.existsSync(outputDir)) {
-      fs.mkdirSync(outputDir, { recursive: true });
-    }
-
-    const fileName = targetPath === "/" ? "home.json" : `${sanitizeFileName(targetPath)}.json`;
-    const outputPath = path.join(outputDir, fileName);
-    
-    fs.writeFileSync(outputPath, JSON.stringify(parsed, null, 2));
-    
-    console.log(`\n✅ Generation Complete!`);
-    console.log(`📂 Saved to: ${outputPath}`);
     
     return parsed;
 
@@ -110,11 +110,4 @@ ${assemblerPrompt}
     console.error("\n❌ Pipeline Failed:", error);
     throw error;
   }
-}
-
-// Example Usage
-if (require.main === module) {
-  const sampleName = "Azure Waves Hair Salon";
-  const sampleDescription = "A high-end hair salon in Miami called 'Azure Waves'. Focus on luxury and coastal vibes.";
-  generate_single_page(sampleDescription, sampleName, "/about");
 }

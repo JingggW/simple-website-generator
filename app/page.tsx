@@ -1,26 +1,28 @@
-import { demoConfig } from "@/config/demo";
+import { siteConfig } from "@/config/site";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { Navbar } from "@/components/layout/NavBar";
+import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { notFound } from "next/navigation";
 
 export default function Home() {
-  const page = demoConfig.pages["/"];
+  const page = siteConfig.pages["/"];
 
   if (!page) {
     notFound();
   }
 
   return (
-    <ThemeProvider theme={demoConfig.theme}>
-      <Navbar config={demoConfig.header} />
+    <ThemeProvider theme={siteConfig.theme}>
+      <Navbar config={siteConfig.header} />
       <main>
-        {page.sections.map((section, index) => (
-          <SectionRenderer key={index} section={section} />
-        ))}
+        {page.sectionOrder.map((sectionId) => {
+          const section = page.sections[sectionId];
+          if (!section) return null;
+          return <SectionRenderer key={sectionId} section={section} />;
+        })}
       </main>
-      <Footer config={demoConfig.footer} />
+      <Footer config={siteConfig.footer} />
     </ThemeProvider>
   );
 }

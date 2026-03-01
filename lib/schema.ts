@@ -184,7 +184,9 @@ export const PageSchema = z.object({
     title: z.string(),
     description: z.string().optional(),
   }),
-  sections: z.array(
+  sectionOrder: z.array(z.string()).describe("Ordered list of section IDs"),
+  sections: z.record(
+    z.string(),
     z.discriminatedUnion("type", [
       HeroSchema,
       ServicesSchema,
@@ -192,8 +194,8 @@ export const PageSchema = z.object({
       ContentSchema,
       TestimonialsSectionSchema,
       BlockSectionSchema,
-    ]),
-  ),
+    ])
+  ).describe("Dictionary of sections keyed by ID"),
 });
 
 export const WebsiteConfigSchema = z.object({

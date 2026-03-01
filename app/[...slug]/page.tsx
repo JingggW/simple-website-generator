@@ -1,43 +1,47 @@
-import { demoConfig } from "@/config/demo";
+import { siteConfig } from "@/config/site";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
-import { Navbar } from "@/components/layout/NavBar";
+import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { notFound } from "next/navigation";
 
-interface PageProps {
-  params: Promise<{
-    slug: string[];
-  }>;
-}
-
-export default async function DynamicPage({ params }: PageProps) {
-  const { slug } = await params;
-  const path = `/${slug.join("/")}`;
-  const page = demoConfig.pages[path];
+// Next.js 15+ Catch-all Pattern
+export default async function DynamicPage(props: {
+  params: Promise<{ slug: string[] }>;
+}) {
+  const params = await props.params;
+  const slugArray = params.slug;
+  
+  // Reconstruct the full path (e.g. ["services", "emergency"] -> "/services/emergency")
+  const path = `/${slugArray.join("/")}`;
+  
+  const page = siteConfig.pages[path];
 
   if (!page) {
     notFound();
   }
 
   return (
-    <ThemeProvider theme={demoConfig.theme}>
-      <Navbar config={demoConfig.header} />
+    <ThemeProvider theme={siteConfig.theme}>
+      <Navbar config={siteConfig.header} />
       <main>
-        {page.sections.map((section, index) => (
-          <SectionRenderer key={index} section={section} />
-        ))}
+        {page.sectionOrder.map((sectionId) => {
+          const section = page.sections[sectionId];
+          if (!section) return null;
+          return <SectionRenderer key={sectionId} section={section} />;
+        })}
       </main>
-      <Footer config={demoConfig.footer} />
+      <Footer config={siteConfig.footer} />
     </ThemeProvider>
   );
 }
 
 // Generate static params for all pages in the config
 export async function generateStaticParams() {
-  return Object.keys(demoConfig.pages)
+  return Object.keys(siteConfig.pages)
     .filter((path) => path !== "/")
     .map((path) => ({
+      // Next.js expects an array for catch-all params
       slug: path.split("/").filter(Boolean),
     }));
 }
