@@ -23,11 +23,11 @@ You MUST NOT output a flat array of sections. Instead, follow this structure:
 {{SCHEMA}}
 
 ### CRITICAL RULES (Common Mistakes to Avoid):
-- **Section Type**: Use `type: "blocks"` for atomic sections. DO NOT use "BlockSection" or "block".
-- **Block Structure**: A block object (e.g., "text", "heading") must ONLY contain the fields defined in `BlockSchema`. 
-  - DO NOT add a `props: {}` object inside a block. 
-  - DO NOT add `target` or `className` to blocks.
-- **Section Order**: Ensure every key in `sections` is present in the `sectionOrder` array.
+- **Dictionary Wrapping**: Every section must be a key-value pair inside the `sections` object.
+- **Section Type**: Use `type: "blocks"` for atomic content. DO NOT use "heading", "text", or "button" as a top-level section type. They MUST be items inside the `props.blocks` array of a `type: "blocks"` section.
+- **Props Requirement**: Every section MUST have its fields wrapped in a `props` object (e.g., `{ "type": "hero", "variant": "simple", "props": { "headline": "..." } }`).
+- **Block Structure**: A block object (e.g., "text", "heading") must ONLY contain the fields defined in `BlockSchema`.
+  - DO NOT add a `props: {}` object inside an individual block.
 
 4. **Hybrid Logic**:
    - If the page path is "/", you MUST use the **Molecular Schemas** (Hero, Services, Contact, Testimonials).

@@ -1,8 +1,8 @@
 import fs from "fs";
 import path from "path";
 import { callLLM } from "../llmClient";
-import { inject_node_to_config } from "./inject_node";
-import { sync_blueprint_to_file } from "../utils/blueprint";
+import { inject_node_to_config } from "../storage/node_injector";
+import { sync_blueprint_to_file } from "../storage/structure_sync";
 
 /**
  * NODE GENERATOR (Surgical)

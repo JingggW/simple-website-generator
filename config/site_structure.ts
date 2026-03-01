@@ -10,8 +10,8 @@ export interface SiteStructure {
 }
 
 export const siteStructure: SiteStructure = {
-  "/": ["hero_home", "services_home", "contact_home"],
-  "/about": ["story", "philosophy", "team", "services", "visit"],
+      "/": ["hero_main","services_grid","testimonials_section","contact_section"],
+      "/about": ["brand_story","philosophy","meet_team","our_values","local_commitment","call_to_action"],
   "/services/emergency": [
     "hero_main",
     "services_grid",
@@ -19,4 +19,6 @@ export const siteStructure: SiteStructure = {
     "testimonials_grid",
     "philosophy",
   ],
+  "/services": ["hero_main","services_grid_01","services_basic_grooming","services_spa_packages","services_specialty","testimonials","contact"],
+  "/contact": ["h1_heading","intro_section","contact_details","what_to_expect","contact_form","map_section","reassurance_cta","footer_note"],
 };

@@ -1,0 +1,11 @@
+{
+  "mode": "light",
+  "colors": {
+    "primary": "#1D4ED8",
+    "secondary": "#6B7280",
+    "background": "#FFFFFF",
+    "text": "#111827"
+  },
+  "fontStyle": "sans",
+  "borderRadius": "md"
+}
