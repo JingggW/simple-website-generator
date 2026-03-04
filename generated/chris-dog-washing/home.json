@@ -1,79 +1,8 @@
 {
   "seo": {
-    "title": "Premium Dog Grooming in Point Cook | Luxury Pet Care Melbourne",
-    "description": "Experience elegant, professional dog grooming in Point Cook. Trust our expert team to give your pet a fresh, stylish look. Book online today!"
+    "title": "Default",
+    "description": "Default description"
   },
-  "sectionOrder": [
-    "hero_main",
-    "services_grid",
-    "testimonials_section",
-    "contact_section"
-  ],
-  "sections": {
-    "hero_main": {
-      "type": "hero",
-      "variant": "simple",
-      "props": {
-        "headline": "Elegant Grooming for Your Beloved Companion",
-        "subheadline": "Premium dog grooming and washing services in Point Cook, Melbourne. Trusted by local pet owners since [Year].",
-        "ctaText": "Book a Grooming Session",
-        "ctaLink": "/book",
-        "imageName": "hero-dog-grooming.jpg"
-      }
-    },
-    "services_grid": {
-      "type": "services",
-      "variant": "grid",
-      "props": {
-        "title": "Our Premium Services",
-        "description": "Tailored grooming solutions for every dog, every need.",
-        "items": [
-          {
-            "icon": "Wrench",
-            "title": "Luxury Bath",
-            "description": "A thorough, spa-like bath using premium, pet-safe products. Ideal for removing dirt, allergens, and odors while leaving your dog’s coat silky and shiny."
-          },
-          {
-            "icon": "Droplets",
-            "title": "Stylish Trimming",
-            "description": "Precise grooming for a polished look. From breed-specific cuts to creative styles, our team ensures your dog’s fur is trimmed to perfection."
-          },
-          {
-            "icon": "Flame",
-            "title": "Wellness Check",
-            "description": "Combined with grooming, our technicians perform a quick health check to spot any issues early. A proactive approach to your pet’s well-being."
-          }
-        ]
-      }
-    },
-    "testimonials_section": {
-      "type": "testimonials",
-      "variant": "grid",
-      "props": {
-        "title": "What Our Clients Say",
-        "subtitles": "Hear from happy pet owners in Point Cook and Melbourne.",
-        "items": [
-          {
-            "quote": "My dog comes home looking like a million dollars! The team is professional and gentle.",
-            "author": "Sarah M., Point Cook"
-          },
-          {
-            "quote": "Excellent service! My anxious dog felt calm during the grooming. Highly recommend.",
-            "author": "James T., Melbourne"
-          }
-        ]
-      }
-    },
-    "contact_section": {
-      "type": "contact",
-      "variant": "simple",
-      "props": {
-        "title": "Get in Touch",
-        "description": "Book your appointment or ask a question today.",
-        "email": "contact@example.com",
-        "phone": "(03) 1234 5678",
-        "address": "Point Cook, Melbourne"
-      }
-    }
-  }
+  "sectionOrder": [],
+  "sections": {}
 }

@@ -33,12 +33,11 @@ export const HeroSplit = ({
             </button>
           </div>
 
-          {/* Image Column */}
           <div className="flex-1 w-full">
             {imageName ? (
               <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-xl">
                 <Image
-                  src={`/${imageName}`}
+                  src={imageName.startsWith('http') ? imageName : `/${imageName.replace(/^\//, '')}`}
                   alt={headline}
                   fill
                   className="object-cover"

@@ -1,17 +1,17 @@
 import fs from "fs";
 import path from "path";
 import { callLLM } from "../llmClient";
+import { validate_and_repair } from "../repair/schema_fixer";
+import { PageSchema } from "../../lib/schema";
+import { getSchemaSection } from "../storage/schema_utils";
 
 /**
  * PAGE GENERATOR ENGINE
  */
 
-function getSystemContext(): { schema: string; iconMap: string } {
-  const schemaPath = path.join(process.cwd(), "lib/schema.ts");
+function getSystemContext(): { iconMap: string } {
   const iconMapPath = path.join(process.cwd(), "components/ui/IconMap.tsx");
-  
   return {
-    schema: fs.readFileSync(schemaPath, "utf-8"),
     iconMap: fs.readFileSync(iconMapPath, "utf-8"),
   };
 }
@@ -21,18 +21,13 @@ function loadPrompt(name: string): string {
   return fs.readFileSync(promptPath, "utf-8");
 }
 
-function sanitizeFileName(name: string): string {
-  return name.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
-}
-
 export async function generate_single_page(
   description: string, 
   businessName: string, 
   targetPath: string = "/",
   useImageGen: boolean = false
 ) {
-  console.log(`🚀 Orchestrating Page Generation for: ${businessName} (${targetPath})`);
-  console.log(`🖼️  Image Generation: ${useImageGen ? "Enabled" : "Disabled"}`);
+  console.log(`🚀 Orchestrating Page Generation: ${targetPath}`);
   
   const system = getSystemContext();
 
@@ -40,19 +35,17 @@ export async function generate_single_page(
     /**
      * STAGE 1: UI/UX DESIGN
      */
-    console.log("🎨 Stage 1: Running UI/UX Designer...");
     const uiPrompt = loadPrompt("ui-ux-designer");
     const designBrief = await callLLM(`
 ### USER BUSINESS DESCRIPTION
 ${description}
 ### TASK: UI/UX DESIGN
 ${uiPrompt}
-    `, "You are a senior UI/UX designer. Output a concise visual brand identity brief.");
+    `, "You are a senior UI/UX designer.");
 
     /**
      * STAGE 2: CONTENT STRATEGY
      */
-    console.log("✍️  Stage 2: Running Content Strategist...");
     const contentPrompt = loadPrompt("content-strategist");
     const contentBlueprint = await callLLM(`
 ### INPUTS
@@ -61,38 +54,38 @@ Page Path: ${targetPath}
 Design Vibe: ${designBrief}
 ### TASK: CONTENT STRATEGY
 ${contentPrompt}
-    `, "You are a senior content strategist. Output a detailed page blueprint.");
+    `, "You are a senior content strategist.");
 
     /**
      * STAGE 3: OPTIONAL IMAGE INSERTION
      */
     let finalBlueprint = contentBlueprint;
     if (useImageGen) {
-      console.log("📸 Stage 3: Running Image Inserter...");
       const imagePrompt = loadPrompt("image-inserter");
-      // For PoC, we provide a static list of available placeholder assets
-      const availableAssets = ["hero-plumber.webp", "salon-interior.jpg", "cafe-front.jpg", "team-working.jpg"];
-      
       finalBlueprint = await callLLM(`
 ### INPUTS
 Text Blueprint: ${contentBlueprint}
-Available Assets: ${availableAssets.join(", ")}
+Available Assets: ["hero-plumber.webp", "salon-interior.jpg", "cafe-front.jpg"]
 ### TASK: IMAGE INSERTION
 ${imagePrompt}
-      `, "You are a visual editor. Insert image filenames into the blueprint where they make sense.");
-    } else {
-      console.log("⏭️  Stage 3: Skipping Image Inserter.");
+      `, "You are a visual editor.");
     }
 
     /**
      * STAGE 4: CODE ASSEMBLY
      */
-    console.log("🛠️  Stage 4: Running Page Assembler...");
+    console.log("🛠️  Stage 4: Page Assembler...");
+    
+    // SURGICAL EXTRACTION: Get all Section schemas + Block schema + Website schema
+    const schema = getSchemaSection([
+      "HERO", "SERVICES", "CONTACT", "CONTENT", "TESTIMONIALS", "BLOCKS", "WEBSITE"
+    ]);
+
     const assemblerPrompt = loadPrompt("page-assembler")
-      .replace("{{SCHEMA}}", system.schema)
+      .replace("{{SCHEMA}}", schema)
       .replace("{{ICON_MAP}}", system.iconMap);
 
-    const finalJson = await callLLM(`
+    const finalJsonRaw = await callLLM(`
 ### INPUTS
 Target Path: ${targetPath}
 Design Brief: ${designBrief}
@@ -101,13 +94,18 @@ Content Strategy (Enhanced): ${finalBlueprint}
 ${assemblerPrompt}
     `, "You are a senior frontend developer. Output ONLY the valid JSON object.");
 
-    const rawJson = finalJson.replace(/```json|```/g, "").trim();
+    const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(rawJson);
     
-    return parsed;
+    // --- SELF-HEALING GUARD ---
+    return await validate_and_repair(
+      parsed, 
+      PageSchema, 
+      `Page: ${targetPath}`
+    );
 
   } catch (error) {
-    console.error("\n❌ Pipeline Failed:", error);
+    console.error("\n❌ Page Generation Pipeline Failed:", error);
     throw error;
   }
 }

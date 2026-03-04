@@ -1,7 +1,6 @@
 import { z } from "zod";
 
-// --- Theme Schemas ---
-
+// --- START THEME ---
 export const ThemeSchema = z.object({
   mode: z.enum(["light", "dark", "auto"]).default("light"),
   colors: z.object({
@@ -13,25 +12,23 @@ export const ThemeSchema = z.object({
   fontStyle: z.enum(["sans", "serif", "mono"]).default("sans"),
   borderRadius: z.enum(["none", "sm", "md", "full"]).default("md"),
 });
+// --- END THEME ---
 
+// --- START HERO ---
 export const HeroSchema = z.object({
   type: z.literal("hero"),
-  variant: z.enum(["simple", "split"]).describe("Visual design of the hero"), // Can add more variations
+  variant: z.enum(["simple", "split"]).describe("Visual design of the hero"),
   props: z.object({
     headline: z.string(),
     subheadline: z.string().optional(),
     ctaText: z.string().default("Get Started"),
-    ctaLink: z
-      .string()
-      .optional()
-      .describe("URL for the call-to-action button"),
-    imageName: z
-      .string()
-      .optional()
-      .describe("Name of the image file in /public/"),
+    ctaLink: z.string().optional(),
+    imageName: z.string().optional(),
   }),
 });
+// --- END HERO ---
 
+// --- START SERVICES ---
 export const ServicesSchema = z.object({
   type: z.literal("services"),
   variant: z.enum(["grid", "list"]).describe("Layout style for services"),
@@ -47,10 +44,12 @@ export const ServicesSchema = z.object({
     ),
   }),
 });
+// --- END SERVICES ---
 
+// --- START CONTACT ---
 export const ContactSchema = z.object({
   type: z.literal("contact"),
-  variant: z.enum(["simple"]).describe("Design style for contact section"),
+  variant: z.enum(["simple"]),
   props: z.object({
     title: z.string(),
     description: z.string().optional(),
@@ -59,27 +58,30 @@ export const ContactSchema = z.object({
     address: z.string().optional(),
   }),
 });
+// --- END CONTACT ---
 
+// --- START CONTENT ---
 export const ContentSchema = z.object({
   type: z.literal("content"),
-  variant: z.enum(["simple"]).describe("Design style for content section"),
+  variant: z.enum(["simple"]),
   props: z.object({
     title: z.string(),
     body: z.string(),
   }),
 });
+// --- END CONTENT ---
 
-// --- Navigation Schemas ---
+// --- START NAV ---
 export const LinkSchema = z.object({
   type: z.literal("link"),
-  label: z.string().describe("Text to display for the link (eg About)"),
-  href: z.string().default("#").describe("URL path (eg /about)"),
+  label: z.string(),
+  href: z.string().default("#"),
 });
 
 export const DropdownSchema = z.object({
   type: z.literal("dropdown"),
-  label: z.string().describe("Dropdown text (eg Services)"),
-  items: z.array(LinkSchema).describe("Links inside the dropdown"),
+  label: z.string(),
+  items: z.array(LinkSchema),
 });
 
 export const NavItemSchema = z.discriminatedUnion("type", [
@@ -88,17 +90,13 @@ export const NavItemSchema = z.discriminatedUnion("type", [
 ]);
 
 export const HeaderSchema = z.object({
-  title: z.string().default("Brand").describe("Site title or logo text"),
-  links: z
-    .array(NavItemSchema)
-    .default([])
-    .describe("Navigation items in the header"),
-  cta: LinkSchema.optional().describe(
-    "Optional 'sign up' or 'contact us' link in the header",
-  ),
+  title: z.string().default("Brand"),
+  links: z.array(NavItemSchema).default([]),
+  cta: LinkSchema.optional(),
 });
+// --- END NAV ---
 
-// --- Footer Schema ---
+// --- START FOOTER ---
 export const FooterColumnSchema = z.object({
   title: z.string(),
   links: z.array(LinkSchema),
@@ -110,29 +108,22 @@ export const FooterSchema = z.object({
     description: z.string().optional(),
   }),
   columns: z.array(FooterColumnSchema).default([]),
-  social: z
-    .array(
-      z.object({
-        platform: z.enum([
-          "twitter",
-          "github",
-          "linkedin",
-          "facebook",
-          "instagram",
-        ]),
-        url: z.string().url(),
-      }),
-    )
-    .optional(),
+  social: z.array(
+    z.object({
+      platform: z.enum(["twitter", "github", "linkedin", "facebook", "instagram"]),
+      url: z.string().url(),
+    }),
+  ).optional(),
   copyright: z.string().default("© 2026 Company Name. All rights reserved."),
 });
+// --- END FOOTER ---
 
-// --- Testimonial Schema ---
+// --- START TESTIMONIALS ---
 export const TestimonialSchema = z.object({
-  quote: z.string().describe("The testimonial text"),
-  author: z.string().describe("Name of the person giving the testimonial"),
-  role: z.string().optional().describe("Their role or company"),
-  avatar: z.string().optional().describe("URL or filename of avatar image"),
+  quote: z.string(),
+  author: z.string(),
+  role: z.string().optional(),
+  avatar: z.string().optional(),
 });
 
 export const TestimonialsSectionSchema = z.object({
@@ -144,8 +135,9 @@ export const TestimonialsSectionSchema = z.object({
     items: z.array(TestimonialSchema),
   }),
 });
+// --- END TESTIMONIALS ---
 
-// --- Block Section Schema (Atomic) ---
+// --- START BLOCKS ---
 export const BlockSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("heading"),
@@ -177,14 +169,15 @@ export const BlockSectionSchema = z.object({
     blocks: z.array(BlockSchema),
   }),
 });
+// --- END BLOCKS ---
 
-// --- Overall Website Schema ---
+// --- START WEBSITE ---
 export const PageSchema = z.object({
   seo: z.object({
     title: z.string(),
     description: z.string().optional(),
   }),
-  sectionOrder: z.array(z.string()).describe("Ordered list of section IDs"),
+  sectionOrder: z.array(z.string()),
   sections: z.record(
     z.string(),
     z.discriminatedUnion("type", [
@@ -195,15 +188,16 @@ export const PageSchema = z.object({
       TestimonialsSectionSchema,
       BlockSectionSchema,
     ])
-  ).describe("Dictionary of sections keyed by ID"),
+  ),
 });
 
 export const WebsiteConfigSchema = z.object({
   header: HeaderSchema,
   footer: FooterSchema,
   theme: ThemeSchema,
-  pages: z.record(z.string(), PageSchema).describe("Map of path to page config"),
+  pages: z.record(z.string(), PageSchema),
 });
+// --- END WEBSITE ---
 
 export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;

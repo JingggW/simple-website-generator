@@ -7,121 +7,137 @@ import { generate_sitemap } from "./generators/site_architect";
 import { generate_theme } from "./generators/theme_designer";
 import { generate_navigation } from "./generators/nav_designer";
 import { generate_single_page } from "./generators/page_generator";
-import { generate_and_inject_node } from "./generators/node_generator";
+import { generate_node } from "./generators/node_generator";
 
-// Storage
-import { inject_page_to_config } from "./storage/page_injector";
-import { inject_node_to_config } from "./storage/node_injector";
-import { sync_blueprint_to_file } from "./storage/structure_sync";
+// Types
+import { WebsiteConfig } from "../lib/schema";
 
 /**
- * PROPSITE ENGINE: ORCHESTRATOR (Mission Control)
+ * PROPSITE ENGINE: ORCHESTRATOR
  */
-
 export class PropSiteEngine {
-  /**
-   * FULL WEBSITE GENERATOR
-   */
-  async generateFullWebsite(businessName: string, description: string) {
-    console.log(`\n🏗️  Starting Full Site Construction: ${businessName}`);
+  private config: WebsiteConfig;
+  private configPath = path.join(process.cwd(), "config/site.ts");
+  private structurePath = path.join(process.cwd(), "config/site_structure.ts");
 
-    // 1. Blueprint Phase
-    const sitemap = await generate_sitemap(description);
-    const theme = await generate_theme(description);
-    const navigation = await generate_navigation(description, sitemap);
-
-    // 2. Storage: Initialize (Save Global Data)
-    this.saveGlobalConfig(businessName, theme, navigation.header, navigation.footer);
-
-    // 3. Production Loop
-    for (const pagePath of sitemap) {
-      await this.createFullPage(businessName, description, pagePath);
-    }
-
-    console.log(`\n🎉 FULL WEBSITE CONSTRUCTED!`);
+  constructor() {
+    this.config = this.loadConfigFromDisk();
   }
 
-  /**
-   * Saves raw AI-generated JSON to the 'generated/' folder for debugging/history.
-   */
-  private saveToGeneratedFolder(businessName: string, pathSegment: string, data: any) {
+  private loadConfigFromDisk(): WebsiteConfig {
+    if (!fs.existsSync(this.configPath)) {
+      return { theme: {} as any, header: {} as any, footer: {} as any, pages: {} };
+    }
+    const content = fs.readFileSync(this.configPath, "utf-8");
+    const jsonMatch = content.match(/siteConfig: WebsiteConfig = ([\s\S]*?);/);
+    if (!jsonMatch) return { theme: {} as any, header: {} as any, footer: {} as any, pages: {} };
+    
+    try {
+      const cleanJson = jsonMatch[1].trim();
+      return eval(`(${cleanJson})`);
+    } catch (e) {
+      console.error("❌ Failed to parse existing site.ts.");
+      return { theme: {} as any, header: {} as any, footer: {} as any, pages: {} };
+    }
+  }
+
+  private persist(businessName: string = "default") {
+    const siteContent = `import { WebsiteConfig } from "@/lib/schema";
+
+export const siteConfig: WebsiteConfig = ${JSON.stringify(this.config, null, 2)};
+`;
+    fs.writeFileSync(this.configPath, siteContent);
+
+    const structure: Record<string, string[]> = {};
+    for (const [path, page] of Object.entries(this.config.pages)) {
+      structure[path] = page.sectionOrder;
+    }
+    const structureContent = `/**
+ * SITE STRUCTURE (Layout Map)
+ */
+export const siteStructure = ${JSON.stringify(structure, null, 2)};
+`;
+    fs.writeFileSync(this.structurePath, structureContent);
+
     const sanitize = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-");
     const dir = path.join(process.cwd(), "generated", sanitize(businessName));
-    
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+
+    for (const [pagePath, pageData] of Object.entries(this.config.pages)) {
+      const fileName = pagePath === "/" ? "home.json" : `${sanitize(pagePath)}.json`;
+      fs.writeFileSync(path.join(dir, fileName), JSON.stringify(pageData, null, 2));
     }
 
-    const fileName = pathSegment === "/" ? "home.json" : `${sanitize(pathSegment)}.json`;
-    fs.writeFileSync(path.join(dir, fileName), JSON.stringify(data, null, 2));
-    console.log(`💾 Saved raw JSON to: generated/${sanitize(businessName)}/${fileName}`);
+    console.log(`\n💾 Persisted state to site.ts and generated/ folder.`);
   }
 
-  private saveGlobalConfig(businessName: string, theme: any, header: any, footer: any) {
-    const configPath = path.join(process.cwd(), "config/site.ts");
-    const globalContent = `import { WebsiteConfig } from "@/lib/schema";
+  async generateFullWebsite(businessName: string, description: string) {
+    console.log(`\n🏗️  CONSTRUCTING SITE: ${businessName}`);
 
-export const siteConfig: WebsiteConfig = {
-  theme: ${JSON.stringify(theme, null, 2)},
-  header: ${JSON.stringify(header, null, 2)},
-  footer: ${JSON.stringify(footer, null, 2)},
-  pages: {}
-};
-`;
-    fs.writeFileSync(configPath, globalContent);
-    // Also save global parts to generated folder
-    this.saveToGeneratedFolder(businessName, "global-theme", theme);
-    this.saveToGeneratedFolder(businessName, "global-nav", { header, footer });
-    console.log(`✅ Global site configuration initialized.`);
+    // 1. Sitemap
+    const sitemap = await generate_sitemap(description);
+    console.log(`📍 Sitemap: ${sitemap.join(", ")}`);
+
+    // 2. Theme
+    this.config.theme = await generate_theme(description);
+    console.log(`🎨 Theme Color (Primary): ${this.config.theme.colors.primary}`);
+
+    // 3. Navigation
+    const nav = await generate_navigation(description, sitemap);
+    this.config.header = nav.header;
+    this.config.footer = nav.footer;
+    console.log(`🧭 Navigation Header: ${nav.header.title}`);
+
+    this.config.pages = {}; 
+
+    // 4. Production Loop
+    for (const pagePath of sitemap) {
+      await this.createFullPage(businessName, description, pagePath, false);
+    }
+
+    console.log(`\n🎉 FULL WEBSITE READY: http://localhost:3000`);
   }
 
-  async createFullPage(
-    businessName: string, 
-    description: string, 
-    path: string,
-    useImageGen: boolean = false
-  ) {
-    console.log(`\n--- 🏗️  Building Full Page: ${path} ---`);
-    const pageConfig = await generate_single_page(description, businessName, path, useImageGen);
+  async createFullPage(bizName: string, desc: string, pagePath: string, useImages: boolean = false) {
+    console.log(`\n--- 🏗️  Building Page: ${pagePath} ---`);
+    const pageConfig = await generate_single_page(desc, bizName, pagePath, useImages);
     
-    // 1. Save to Debug Folder
-    this.saveToGeneratedFolder(businessName, path, pageConfig);
+    // Log a preview of the sections generated
+    console.log(`✅ Page Generated! SEO Title: "${pageConfig.seo.title}"`);
+    console.log(`📊 Sections: [${pageConfig.sectionOrder.join(", ")}]`);
 
-    // 2. Inject to Site Config
-    inject_page_to_config(path, pageConfig);
-
-    // 3. Sync Structure
-    sync_blueprint_to_file(path, pageConfig.sectionOrder);
-    
+    this.config.pages[pagePath] = pageConfig;
+    this.persist(bizName);
     return pageConfig;
   }
 
-  async updatePageNode(
-    pagePath: string, 
-    nodeId: string, 
-    nodeConfig: any, 
-    insertAt?: { before?: string; after?: string }
-  ) {
-    const newOrder = inject_node_to_config(pagePath, nodeId, nodeConfig, insertAt);
-    sync_blueprint_to_file(pagePath, newOrder);
-  }
+  async createAndInjectNode(pagePath: string, bizName: string, nodeId: string, brief: string, insertAt?: { before?: string; after?: string }, useImages: boolean = false) {
+    console.log(`\n--- 🪄  AI-Generating Node: ${nodeId} ---`);
+    const nodeConfig = await generate_node(pagePath, brief, nodeId, brief, useImages);
+    
+    console.log(`✅ Node JSON received for: ${nodeId} (${nodeConfig.type})`);
 
-  async createAndInjectNode(
-    pagePath: string,
-    businessDescription: string,
-    nodeId: string,
-    designBrief: string,
-    insertAt?: { before?: string; after?: string },
-    useImageGen: boolean = false
-  ) {
-    return await generate_and_inject_node(
-      pagePath,
-      businessDescription,
-      nodeId,
-      designBrief,
-      insertAt,
-      useImageGen
-    );
+    if (!this.config.pages[pagePath]) {
+      this.config.pages[pagePath] = { seo: { title: "Untitled" }, sectionOrder: [], sections: {} };
+    }
+
+    const page = this.config.pages[pagePath];
+    page.sections[nodeId] = nodeConfig;
+
+    if (!page.sectionOrder.includes(nodeId)) {
+      if (insertAt?.before) {
+        const idx = page.sectionOrder.indexOf(insertAt.before);
+        page.sectionOrder.splice(idx === -1 ? page.sectionOrder.length : idx, 0, nodeId);
+      } else if (insertAt?.after) {
+        const idx = page.sectionOrder.indexOf(insertAt.after);
+        page.sectionOrder.splice(idx === -1 ? page.sectionOrder.length : idx + 1, 0, nodeId);
+      } else {
+        page.sectionOrder.push(nodeId);
+      }
+    }
+
+    this.persist(bizName);
+    return nodeConfig;
   }
 }
 

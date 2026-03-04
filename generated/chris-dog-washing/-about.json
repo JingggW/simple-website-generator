@@ -1,147 +1,18 @@
 {
   "seo": {
-    "title": "Meet Our Passionate Team | Dog Wash and Grooming Point Cook",
-    "description": "Discover the heart behind our premium dog grooming services in Point Cook. Learn about our journey, values, and commitment to providing exceptional care for your beloved pets."
+    "title": "About The Groomery – Premium Dog Grooming in Point Cook",
+    "description": "Discover the story behind Melbourne’s most caring dog grooming business. Southern charm meets professional care for your pet."
   },
   "sectionOrder": [
-    "brand_story",
-    "philosophy",
-    "meet_team",
-    "our_values",
-    "local_commitment",
-    "call_to_action"
+    "about"
   ],
   "sections": {
-    "brand_story": {
-      "type": "blocks",
-      "variant": "prose",
+    "about": {
+      "type": "content",
+      "variant": "simple",
       "props": {
-        "blocks": [
-          {
-            "type": "heading",
-            "text": "Our Story",
-            "level": "h2"
-          },
-          {
-            "type": "text",
-            "content": "Born from a love for pets and a commitment to excellence, Dog Wash and Grooming Point Cook opened our doors with one simple mission: to provide premium grooming services that make tails wag and owners smile. What started as a dream in 2015 has grown into Point Cook's most trusted grooming destination."
-          },
-          {
-            "type": "image",
-            "src": "founder-grooming-salon.jpg",
-            "alt": "Founder standing in the grooming salon with happy dogs around them"
-          }
-        ]
-      }
-    },
-    "philosophy": {
-      "type": "blocks",
-      "variant": "prose",
-      "props": {
-        "blocks": [
-          {
-            "type": "heading",
-            "text": "Our Philosophy",
-            "level": "h2"
-          },
-          {
-            "type": "text",
-            "content": "We believe every pet deserves the spa treatment. Our approach combines gentle handling, premium products, and meticulous attention to detail. From nervous first-timers to seasoned regulars, we create a calm, welcoming environment where every dog feels safe and pampered."
-          },
-          {
-            "type": "image",
-            "src": "grooming-brush-dog.jpg",
-            "alt": "Close-up of hands gently brushing a dog's coat in natural light"
-          }
-        ]
-      }
-    },
-    "meet_team": {
-      "type": "blocks",
-      "variant": "prose",
-      "props": {
-        "blocks": [
-          {
-            "type": "heading",
-            "text": "Meet Our Passionate Team",
-            "level": "h2"
-          },
-          {
-            "type": "text",
-            "content": "Our certified groomers bring years of experience and genuine love for animals to every appointment. We're not just professionals - we're pet parents who understand the bond between you and your furry family member."
-          },
-          {
-            "type": "image",
-            "src": "team-photo-grooming-uniforms.jpg",
-            "alt": "Team photo in grooming uniforms, smiling"
-          }
-        ]
-      }
-    },
-    "our_values": {
-      "type": "blocks",
-      "variant": "prose",
-      "props": {
-        "blocks": [
-          {
-            "type": "heading",
-            "text": "Our Values",
-            "level": "h2"
-          },
-          {
-            "type": "text",
-            "content": "At Dog Wash and Grooming Point Cook, we're guided by three core principles: exceptional care, premium quality, and lasting relationships. We use only the finest grooming products, maintain spotless facilities, and treat every pet as if they were our own."
-          },
-          {
-            "type": "image",
-            "src": "grooming-tools-premium-products.jpg",
-            "alt": "Grooming tools and premium products arranged aesthetically"
-          }
-        ]
-      }
-    },
-    "local_commitment": {
-      "type": "blocks",
-      "variant": "prose",
-      "props": {
-        "blocks": [
-          {
-            "type": "heading",
-            "text": "Proudly Serving Point Cook",
-            "level": "h2"
-          },
-          {
-            "type": "text",
-            "content": "As a locally-owned business, we're more than just a grooming salon - we're your neighbours. We've built lasting relationships with Point Cook pet owners and take pride in being part of this vibrant community. Our convenient location and flexible scheduling make premium grooming accessible to every pet parent in our area."
-          },
-          {
-            "type": "image",
-            "src": "salon-exterior-point-cook.jpg",
-            "alt": "Exterior shot of the salon with Point Cook signage visible"
-          }
-        ]
-      }
-    },
-    "call_to_action": {
-      "type": "blocks",
-      "variant": "prose",
-      "props": {
-        "blocks": [
-          {
-            "type": "heading",
-            "text": "Experience the Difference",
-            "level": "h2"
-          },
-          {
-            "type": "text",
-            "content": "Ready to give your dog the premium grooming experience they deserve? Join the countless Point Cook pet parents who trust us with their beloved companions. Book your appointment today and discover why we're Point Cook's first choice for professional dog grooming."
-          },
-          {
-            "type": "button",
-            "label": "Book Your Appointment Now",
-            "href": "#"
-          }
-        ]
+        "title": "About The Groomery",
+        "body": "Discover the story behind Melbourne’s most caring dog grooming business. Southern charm meets professional care for your pet."
       }
     }
   }

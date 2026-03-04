@@ -37,8 +37,10 @@ export const TestimonialsGrid = ({
               <div className="flex items-center gap-4 mt-auto pt-6 border-t border-secondary/20">
                 {item.avatar ? (
                   <Image
-                    src={item.avatar}
+                    src={item.avatar.startsWith('http') ? item.avatar : `/${item.avatar.replace(/^\//, '')}`}
                     alt={item.author}
+                    width={40}
+                    height={40}
                     className="h-10 w-10 rounded-full object-cover bg-secondary"
                   />
                 ) : (

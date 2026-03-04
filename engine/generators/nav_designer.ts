@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { callLLM } from "../llmClient";
 import { WebsiteConfig } from "../../lib/schema";
+import { getSchemaSection } from "../storage/schema_utils";
 
 function loadPrompt(name: string): string {
   const promptPath = path.join(process.cwd(), `engine/prompts/${name}.md`);
@@ -13,16 +14,16 @@ export async function generate_navigation(
   sitemap: string[]
 ): Promise<{ header: WebsiteConfig["header"]; footer: WebsiteConfig["footer"] }> {
   console.log("🧭 Stage 3: Designing Navigation...");
-  const navPrompt = loadPrompt("nav-designer");
+  
+  // SURGICAL EXTRACTION: Only get Nav and Footer rules
+  const schema = getSchemaSection(["NAV", "FOOTER"]);
+  
+  const navPrompt = loadPrompt("nav-designer")
+    .replace("{{SCHEMA}}", schema)
+    .replace("{{BUSINESS}}", description)
+    .replace("{{SITEMAP}}", JSON.stringify(sitemap));
 
-  const response = await callLLM(`
-### INPUTS
-Business: ${description}
-Sitemap: ${JSON.stringify(sitemap)}
-
-### TASK: NAVIGATION DESIGNER
-${navPrompt}
-  `, "You are a senior UI/UX strategist. Output ONLY the JSON object with header and footer keys.");
+  const response = await callLLM(navPrompt, "You are a senior UI/UX strategist. Output ONLY the JSON object.");
 
   try {
     const rawJson = response.replace(/```json|```/g, "").trim();
