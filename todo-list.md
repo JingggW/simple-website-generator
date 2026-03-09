@@ -1,20 +1,24 @@
 # PropSite Engine Todo List
 
 ## 🔥 High Priority
-- [ ] **Link Integrity Guard**: Auto-repair missing pages (Integrity check done, repair loop done).
-- [ ] **Surgical Context Fix**: Update generators to include "PRICING", "FORM", and "MAP" in the `getSchemaSection` extraction.
-- [ ] **Prompt Flexibility**: Revisit `node-strategist` to allow for more creative layout choices while maintaining schema safety.
-- [ ] **Unified Block Design**: Rethink the "Component vs. Block" architecture. Should Pricing/Form just be sophisticated atoms inside the `blocks` system instead of top-level sections?
+- [x] **In-Memory State**: Standardized `site.json` as source of truth (Completed).
+- [x] **Link Integrity**: Recursive scanning for nav and CTA buttons (Completed).
+- [x] **Self-Healing**: 3-retry loop with specific Zod error feedback (Completed).
+- [ ] **Global UI/UX Design**: Refactor to design visual brief ONCE per site (Implementing).
+- [ ] **HTML Injection Guard**: Programmatic stripping of `<form>` and other tags (Implementing).
+- [ ] **Programmatic Section Repair**: Convert block-hallucinations (like text-based price lists) into real components.
 
 ## 🛠️ Core Engine Features
-- [x] **In-Memory Orchestrator**: Atomic state management (Completed).
-- [x] **Self-Healing Guard**: Programmatic + LLM repair loop (Completed).
-- [x] **Reliable Storage**: Switched to `site.json` as the primary state source.
+- [x] **Site Architect**: Domain-aware sitemap generation (Completed).
+- [x] **Surgical Schema Extraction**: Generators only see relevant Zod rules (Completed).
+- [ ] **Site Factory (Scaffolder)**: Project cloning and package management.
+
+## 🎨 UI/UX & Design
+- [x] **Layout Versatility**: Support for Recursive Columns and Alignment (Completed).
+- [ ] **Hover Effects**: Add interaction layer to schema and components.
+- [ ] **Modern Aesthetic Library**: Expand design-library with 2026 patterns.
 
 ## 🤖 Advanced AI Workflow
-- [ ] **Natural Language CLI**: Translating intent to engine calls.
-- [ ] **Layout Versatility**: Support Split/Grid layouts in `BlockSection.tsx`.
-
-## 🎨 UI/UX improvements
-- [x] **New Components**: PricingList, RequestForm, MapEmbedded (Completed).
-- [x] **Premium Blocks**: Redesigned flexible block system (Completed).
+- [x] **Agentic Failure Recovery**: Retry queue for failed pages (Completed).
+- [ ] **Natural Language CLI**: Translator for intent-based commands.
+- [x] **Content-First Strategy**: Copy generation before JSON assembly (Completed).

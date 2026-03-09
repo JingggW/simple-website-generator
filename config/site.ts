@@ -4,604 +4,117 @@ export const siteConfig: WebsiteConfig = {
   "theme": {
     "mode": "light",
     "colors": {
-      "primary": "#228B22",
-      "secondary": "#dede09",
+      "primary": "#2563EB",
+      "secondary": "#10B981",
       "background": "#FFFFFF",
       "text": "#111827"
     },
-    "fontStyle": "serif",
-    "borderRadius": "full"
+    "fontStyle": "sans",
+    "borderRadius": "md"
   },
   "header": {
-    "title": "Chris Gardening & Mowing",
+    "title": "Point Cook Cosplay Cleaning",
     "links": [
+      { "type": "link", "label": "Home", "href": "/" },
       {
-        "type": "link",
-        "label": "Home",
-        "href": "/"
-      },
-      {
-        "type": "link",
-        "label": "About",
-        "href": "/about"
-      },
-      {
-        "type": "link",
+        "type": "dropdown",
         "label": "Services",
-        "href": "/services"
+        "items": [
+          { "type": "link", "label": "Our Services", "href": "/services" },
+          { "type": "link", "label": "Cosplay Costume Cleaning", "href": "/cosplay-costume-cleaning" }
+        ]
       },
-      {
-        "type": "link",
-        "label": "Contact",
-        "href": "/contact"
-      }
+      { "type": "link", "label": "Gallery", "href": "/gallery" },
+      { "type": "link", "label": "Contact", "href": "/contact" }
     ],
-    "cta": {
-      "type": "link",
-      "label": "Book Now",
-      "href": "/contact"
-    }
+    "cta": { "type": "link", "label": "Book Now", "href": "/contact" }
   },
   "footer": {
     "brand": {
-      "title": "Chris Gardening & Mowing",
-      "description": "Premium landscaping services for beautiful outdoor spaces."
+      "title": "Point Cook Cosplay Cleaning",
+      "description": "Premium professional cleaning for cosplay costumes in Melbourne."
     },
     "columns": [
       {
-        "title": "About",
+        "title": "Quick Links",
         "links": [
-          {
-            "type": "link",
-            "label": "About Us",
-            "href": "/about"
-          }
-        ]
-      },
-      {
-        "title": "Services",
-        "links": [
-          {
-            "type": "link",
-            "label": "Lawn Mowing",
-            "href": "/services#lawn-mowing"
-          },
-          {
-            "type": "link",
-            "label": "Garden Maintenance",
-            "href": "/services#garden-maintenance"
-          },
-          {
-            "type": "link",
-            "label": "Landscaping Design",
-            "href": "/services#landscaping-design"
-          }
-        ]
-      },
-      {
-        "title": "Contact",
-        "links": [
-          {
-            "type": "link",
-            "label": "Contact Us",
-            "href": "/contact"
-          }
+          { "type": "link", "label": "Services", "href": "/services" },
+          { "type": "link", "label": "Gallery", "href": "/gallery" }
         ]
       }
     ],
     "social": [
-      {
-        "platform": "facebook",
-        "url": "https://facebook.com/chrisgardening"
-      },
-      {
-        "platform": "instagram",
-        "url": "https://instagram.com/chrisgardening"
-      }
+      { "platform": "facebook", "url": "https://facebook.com" },
+      { "platform": "instagram", "url": "https://instagram.com" }
     ],
-    "copyright": "© 2026 Chris Gardening & Mowing. All rights reserved."
+    "copyright": "© 2026 Point Cook Cosplay Cleaning. All rights reserved."
   },
   "pages": {
     "/": {
       "seo": {
-        "title": "Chris Gardening & Mowing - Homepage",
-        "description": "Professional lawn care and garden design services from Chris Gardening & Mowing. Transform your outdoor space today with our expert team."
+        "title": "Point Cook Cosplay Cleaning | Expert Costume Care",
+        "description": "Professional cleaning and restoration for cosplay artistry."
       },
-      "sectionOrder": [
-        "hero",
-        "blocks",
-        "services",
-        "testimonials",
-        "contact"
-      ],
+      "sectionOrder": ["hero", "services", "form"],
       "sections": {
         "hero": {
           "type": "hero",
           "variant": "simple",
           "props": {
-            "headline": "Transform Your Lawn Into a Paradise",
-            "subheadline": "Chris Gardening & Mowing brings professional care to your outdoor spaces. With years of experience in lawn maintenance and garden design, we transform ordinary yards into extraordinary outdoor living spaces.",
-            "ctaText": "Get Your Free Quote",
-            "ctaLink": "/contact",
-            "imageName": "garden-paradise.jpg"
-          }
-        },
-        "blocks": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Passion for Perfect Lawns",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "Founded by Chris with over 15 years of landscaping experience, our company is built on a foundation of expertise, integrity, and a genuine love for creating beautiful outdoor spaces. Chris personally oversees every project to ensure our clients receive the highest level of care and attention to detail. We're not just mowing lawns; we're cultivating relationships and transforming communities, one yard at a time."
-              },
-              {
-                "type": "button",
-                "label": "Meet Our Team",
-                "href": "/about",
-                "variant": "primary"
-              }
-            ]
+            "headline": "Where Cosplay Meets Immaculate Clean",
+            "subheadline": "Preserving your artistry with expert care.",
+            "ctaText": "Get a Quote",
+            "ctaLink": "/contact"
           }
         },
         "services": {
           "type": "services",
           "variant": "grid",
           "props": {
-            "title": "Complete Lawn & Garden Care",
-            "description": "We offer a comprehensive range of services to keep your outdoor spaces looking their best all year round. From routine maintenance to complete transformations, our team has the skills and equipment to handle any gardening or lawn care challenge.",
+            "title": "Specialized Care",
             "items": [
-              {
-                "icon": "Wrench",
-                "title": "Lawn Mowing",
-                "description": "Regular mowing and trimming to maintain a healthy, vibrant lawn."
-              },
-              {
-                "icon": "Droplets",
-                "title": "Irrigation Services",
-                "description": "Expert irrigation system installation and maintenance for optimal water efficiency."
-              },
-              {
-                "icon": "Flame",
-                "title": "Garden Design",
-                "description": "Custom garden designs tailored to your lifestyle and environmental needs."
-              },
-              {
-                "icon": "Truck",
-                "title": "Emergency Repairs",
-                "description": "Quick response to urgent lawn and garden issues."
-              }
+              { "icon": "Droplets", "title": "Deep Clean", "description": "Gentle hand-washing." }
             ]
           }
         },
-        "testimonials": {
-          "type": "testimonials",
-          "variant": "carousel",
+        "form": {
+          "type": "form",
+          "variant": "request",
           "props": {
-            "title": "Loved by Our Neighbors",
-            "items": [
-              {
-                "quote": "Chris Gardening & Mowing transformed our yard into a stunning outdoor oasis. Their attention to detail is unmatched!",
-                "author": "Sarah M.",
-                "role": "Homeowner"
-              },
-              {
-                "quote": "From routine maintenance to seasonal planting, Chris's team delivers exceptional service every time.",
-                "author": "James T.",
-                "role": "Business Owner"
-              }
-            ]
-          }
-        },
-        "contact": {
-          "type": "contact",
-          "variant": "simple",
-          "props": {
-            "title": "Ready for a Beautiful Lawn?",
-            "description": "Your dream outdoor space is just a phone call away. Contact us today for a free, no-obligation consultation and quote.",
-            "email": "info@chrisgardening.com",
-            "phone": "+1 (555) 123-4567",
-            "address": "123 Green Lane, Springfield, USA"
-          }
-        }
-      }
-    },
-    "/about": {
-      "seo": {
-        "title": "About Chris Gardening & Mowing",
-        "description": "Discover the story, values, and expertise behind Chris Gardening & Mowing, your partner in creating lush, sustainable lawns and outdoor spaces."
-      },
-      "sectionOrder": [
-        "section_1",
-        "section_2",
-        "section_3",
-        "section_4",
-        "section_5"
-      ],
-      "sections": {
-        "section_1": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Your Trusted Partner in Lawn Care",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/hero-lawn.jpg",
-                "alt": "Lush lawn with team members working",
-                "caption": "Professional team maintaining a vibrant lawn"
-              },
-              {
-                "type": "text",
-                "content": "At Chris Gardening & Mowing, we understand that a beautiful, healthy lawn is more than just a chore—it’s a reflection of your pride and care for your home. With years of experience and a passion for precision, we’ve helped countless homeowners transform their outdoor spaces into vibrant, thriving landscapes. Whether it’s weekly mowing, seasonal maintenance, or expert advice, we’re here to make your lawn the envy of the neighborhood."
-              },
-              {
-                "type": "button",
-                "label": "Discover Our Services",
-                "href": "/services",
-                "variant": "primary"
-              }
-            ]
-          }
-        },
-        "section_2": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "The Story of Chris Gardening & Mowing",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/chris-in-action.jpg",
-                "alt": "Chris Gardening working on a lawn",
-                "caption": "Founder Chris in his element"
-              },
-              {
-                "type": "text",
-                "content": "Chris has always had a deep connection to nature. Growing up, he spent countless hours tending to his family’s garden, learning the art of nurturing plants and grasses. This passion evolved into a mission: to help others create outdoor spaces that inspire joy and relaxation. What started as a small side hustle has grown into a trusted name in lawn care, built on integrity, skill, and a commitment to every client’s unique needs."
-              },
-              {
-                "type": "button",
-                "label": "Explore Our Journey",
-                "href": "/",
-                "variant": "primary"
-              }
-            ]
-          }
-        },
-        "section_3": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Why Trust Chris with Your Lawn?",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/before-after.jpg",
-                "alt": "Before and after lawn transformation",
-                "caption": "See the transformation from overgrown to pristine"
-              },
-              {
-                "type": "text",
-                "content": "Personalized Care: No two lawns are the same, and neither are our solutions. Reliability: We show up on time, every time, with the tools and expertise to get the job done right. Eco-Friendly Practices: We prioritize sustainable methods to keep your lawn healthy without harming the environment. Transparent Pricing: No hidden fees, just honest, upfront service."
-              },
-              {
-                "type": "button",
-                "label": "Book a Consultation",
-                "href": "/contact",
-                "variant": "primary"
-              }
-            ]
-          }
-        },
-        "section_4": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "What Our Clients Say",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/testimonials-collage.jpg",
-                "alt": "Happy client enjoying a newly maintained garden",
-                "caption": "Client testimonials in action"
-              },
-              {
-                "type": "text",
-                "content": "Chris transformed my yard from a patchy mess to a showstopper! The team is professional and reliable. – Sarah T."
-              },
-              {
-                "type": "text",
-                "content": "I’ve used Chris for years. Their attention to detail and friendly service make all the difference. – Mike R."
-              },
-              {
-                "type": "button",
-                "label": "Read More Reviews",
-                "href": "/",
-                "variant": "primary"
-              }
-            ]
-          }
-        },
-        "section_5": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Let’s Grow Together",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/family-garden.jpg",
-                "alt": "Family enjoying a beautifully landscaped garden",
-                "caption": "Relax and enjoy your outdoor space"
-              },
-              {
-                "type": "text",
-                "content": "Ready to experience the difference of expert lawn care? Whether you’re looking for a one-time service or a long‑term partnership, we’re here to help. Let’s turn your outdoor space into a source of pride and relaxation."
-              },
-              {
-                "type": "button",
-                "label": "Contact Us",
-                "href": "/contact",
-                "variant": "primary"
-              }
+            "title": "Book Your Session",
+            "fields": [
+              { "name": "name", "label": "Name", "type": "text", "required": true }
             ]
           }
         }
       }
     },
-    "/services": {
+    "/gallery": {
       "seo": {
-        "title": "Chris Gardening & Mowing - Professional Lawn & Garden Services",
-        "description": "Expert lawn mowing, garden makeovers, and seasonal maintenance services in [City/Region]. Eco-friendly practices, certified professionals, and guaranteed results for a beautiful outdoor space."
+        "title": "Gallery | Cosplay Restorations",
+        "description": "See the results of our meticulous cleaning."
       },
-      "sectionOrder": [
-        "services_blocks",
-        "why_blocks",
-        "process_blocks",
-        "testimonials_blocks",
-        "cta_blocks",
-        "gardening pricing"
-      ],
-      "sections": {
-        "services_blocks": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Comprehensive Services Tailored to Your Landscape",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "- **Lawn Mowing & Edging** – Regular, clean cuts that keep your grass healthy and your borders crisp.\n- **Garden Makeovers** – Design, planting, soil amendment, and mulching to create vibrant, low‑maintenance gardens.\n- **Weed & Pest Control** – Eco‑friendly treatments that protect plants without harming the environment.\n- **Seasonal Clean‑ups** – Spring refreshes and fall tidy‑ups that prepare your yard for every climate.\n- **Custom Landscape Consultations** – Personalized plans that match your vision, budget, and timeline."
-              }
-            ]
-          }
-        },
-        "why_blocks": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Why Choose Chris Gardening & Mowing?",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "- **Local Expertise** – Years of experience serving the [City/Region] community, so we know what works best here.\n- **Fully Certified & Insured** – Peace of mind with professional training and comprehensive liability coverage.\n- **Transparent Pricing** – Clear, upfront quotes—no hidden fees, just honest service.\n- **Eco‑Conscious Practices** – Sustainable products and water‑saving techniques that protect your family and the planet.\n- **Customer‑First Guarantee** – We don’t consider the job done until you’re delighted with the results."
-              }
-            ]
-          }
-        },
-        "process_blocks": {
-          "type": "blocks",
-          "variant": "full",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "How It Works (Simple 3-Step Process)",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "1️⃣ **Free On‑Site Assessment** – We visit your property, discuss goals, and provide a no‑obligation estimate.\n2️⃣ **Customized Plan & Scheduling** – Receive a detailed proposal and choose a convenient service window.\n3️⃣ **Professional Execution & Follow‑Up** – Our crew delivers flawless service, then we check in to ensure satisfaction."
-              }
-            ]
-          }
-        },
-        "testimonials_blocks": {
-          "type": "testimonials",
-          "variant": "grid",
-          "props": {
-            "title": "What Our Clients Say",
-            "items": [
-              {
-                "quote": "Chris Gardening & Mowing transformed my overgrown backyard into a serene retreat. The team was punctual, courteous, and left the site spotless.",
-                "author": "Maria L.",
-                "role": "Homeowner"
-              },
-              {
-                "quote": "Their garden makeover exceeded expectations—vibrant colors, low‑maintenance plants, and a design that fits my lifestyle perfectly.",
-                "author": "James P.",
-                "role": "Condo Owner"
-              }
-            ]
-          }
-        },
-        "cta_blocks": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Ready to Elevate Your Landscape?",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "Whether you need a weekly mow, a full garden redesign, or seasonal upkeep, Chris Gardening & Mowing has the expertise to make your property shine. Let us handle the hard work while you enjoy a beautiful, hassle‑free yard."
-              },
-              {
-                "type": "button",
-                "label": "Get Your Free Quote Now",
-                "href": "/contact",
-                "variant": "primary"
-              }
-            ]
-          }
-        },
-        "gardening pricing": {
-          "type": "pricing",
-          "variant": "detailed",
-          "props": {
-            "title": "Master Your Garden's Essentials",
-            "description": "Discover cost-effective solutions for your gardening needs.\n\nPrices are estimates based on average market rates and may vary by region. All pricing reflects tiered packages and includes free shipping options.",
-            "categories": [
-              {
-                "name": "Basic Watering Solutions",
-                "items": [
-                  {
-                    "label": "💧",
-                    "price": "$25–$35"
-                  }
-                ]
-              },
-              {
-                "name": "Soil Preparation Essentials",
-                "items": [
-                  {
-                    "label": "🌱",
-                    "price": "$40–$55"
-                  }
-                ]
-              },
-              {
-                "name": "Planting Seed Starter Kits",
-                "items": [
-                  {
-                    "label": "🌿",
-                    "price": "$15–$30"
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
-    },
-    "/contact": {
-      "seo": {
-        "title": "Contact",
-        "description": "Convert visitors into leads with a modern, natural aesthetic and easy-to-use forms."
-      },
-      "sectionOrder": [
-        "hero",
-        "services",
-        "contact",
-        "testimonials"
-      ],
+      "sectionOrder": ["hero", "gallery_grid"],
       "sections": {
         "hero": {
-          "type": "hero",
-          "variant": "simple",
+          "type": "blocks",
+          "variant": "prose",
           "props": {
-            "headline": "Let’s Transform Your Yard.",
-            "ctaText": "Get Your Free, No-Obligation Quote",
-            "ctaLink": "https://example.com/contact",
-            "imageName": "garden"
-          }
-        },
-        "services": {
-          "type": "services",
-          "variant": "grid",
-          "props": {
-            "title": "Professional Lawn & Garden Services",
-            "description": "Our premium service delivers fresh, natural results using premium tools and expertise.",
-            "items": [
-              {
-                "icon": "wrench",
-                "title": "Mowing & Trimming",
-                "description": "Regular maintenance for a beautiful, healthy yard."
-              },
-              {
-                "icon": "droplets",
-                "title": "Weed & Mulch Treatment",
-                "description": "Healthy soil starts with the right ground care."
-              },
-              {
-                "icon": "flame",
-                "title": "Lawn Care Products",
-                "description": "Premium products to keep your grass vibrant."
-              }
+            "blocks": [
+              { "type": "heading", "text": "Our Best Work", "level": "h1" }
             ]
           }
         },
-        "contact": {
-          "type": "contact",
-          "variant": "simple",
+        "gallery_grid": {
+          "type": "blocks",
+          "variant": "wide",
           "props": {
-            "title": "Get in Touch",
-            "description": "Reach out to Chris Gardening & Mowing for a stress-free experience.",
-            "email": "info@chrisgardening.com",
-            "phone": "555-123-4567",
-            "address": "123 Green Lane, Springfield"
-          }
-        },
-        "testimonials": {
-          "type": "testimonials",
-          "variant": "grid",
-          "props": {
-            "title": "What Our Clients Say",
-            "subtitles": "Real Results, Real Results",
-            "items": [
-              {
-                "quote": "Chris makes our yard look pristine every season.",
-                "author": "Jane Doe",
-                "role": "Homeowner",
-                "avatar": "avatar.jane"
-              },
-              {
-                "quote": "Reliable service and friendly staff—excellent value for money.",
-                "author": "John Smith",
-                "role": "Homeowner",
-                "avatar": "avatar.john"
-              }
+            "blocks": [
+              { "type": "heading", "text": "Featured Restorations", "level": "h2" }
             ]
           }
         }
       }
     }
   }
-};
+}

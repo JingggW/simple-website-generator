@@ -2,45 +2,51 @@ export const siteStructure = {
   "pages": {
     "/": [
       "hero",
-      "blocks",
       "services",
+      "blocks",
       "testimonials",
-      "contact"
-    ],
-    "/about": [
-      "section_1",
-      "section_2",
-      "section_3",
-      "section_4",
-      "section_5"
-    ],
-    "/services": [
-      "services_blocks",
-      "why_blocks",
-      "process_blocks",
-      "testimonials_blocks",
-      "cta_blocks",
-      "gardening pricing"
+      "form"
     ],
     "/contact": [
       "hero",
       "services",
-      "contact",
-      "testimonials"
+      "map",
+      "preservation",
+      "booking"
+    ],
+    "/services": [
+      "hero",
+      "services",
+      "difference",
+      "pricing",
+      "form"
+    ],
+    "/cosplay-costume-cleaning": [
+      "hero-cosplay-intro",
+      "services-cosplay-offerings",
+      "blocks-cosplay-story",
+      "form-cosplay-booking"
+    ],
+    "/gallery": [
+      "hero",
+      "services",
+      "gallery",
+      "booking-form"
     ]
   },
   "navigation": {
     "header": [
       "/",
-      "/about",
       "/services",
+      "/cosplay-costume-cleaning",
+      "/gallery",
       "/contact"
     ],
     "footer": [
-      "/about",
-      "/services#lawn-mowing",
-      "/services#garden-maintenance",
-      "/services#landscaping-design",
+      "/",
+      "/services",
+      "/cosplay-costume-cleaning",
+      "/gallery",
       "/contact"
     ]
   }

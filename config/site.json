@@ -1,17 +1,19 @@
-{
+import { WebsiteConfig } from "@/lib/schema";
+
+export const siteConfig: WebsiteConfig = {
   "theme": {
     "mode": "light",
     "colors": {
-      "primary": "#228B22",
-      "secondary": "#dede09",
+      "primary": "#2563EB",
+      "secondary": "#10B981",
       "background": "#FFFFFF",
       "text": "#111827"
     },
-    "fontStyle": "serif",
-    "borderRadius": "full"
+    "fontStyle": "sans",
+    "borderRadius": "md"
   },
   "header": {
-    "title": "Chris Gardening & Mowing",
+    "title": "Point Cook Cosplay Cleaning",
     "links": [
       {
         "type": "link",
@@ -19,14 +21,25 @@
         "href": "/"
       },
       {
-        "type": "link",
-        "label": "About",
-        "href": "/about"
+        "type": "dropdown",
+        "label": "Services",
+        "items": [
+          {
+            "type": "link",
+            "label": "Our Services",
+            "href": "/services"
+          },
+          {
+            "type": "link",
+            "label": "Cosplay Costume Cleaning",
+            "href": "/cosplay-costume-cleaning"
+          }
+        ]
       },
       {
         "type": "link",
-        "label": "Services",
-        "href": "/services"
+        "label": "Gallery",
+        "href": "/gallery"
       },
       {
         "type": "link",
@@ -42,17 +55,17 @@
   },
   "footer": {
     "brand": {
-      "title": "Chris Gardening & Mowing",
-      "description": "Premium landscaping services for beautiful outdoor spaces."
+      "title": "Point Cook Cosplay Cleaning",
+      "description": "Premium professional household cleaning for cosplay costumes in Point Cook, Melbourne."
     },
     "columns": [
       {
-        "title": "About",
+        "title": "Home",
         "links": [
           {
             "type": "link",
-            "label": "About Us",
-            "href": "/about"
+            "label": "Home",
+            "href": "/"
           }
         ]
       },
@@ -61,27 +74,27 @@
         "links": [
           {
             "type": "link",
-            "label": "Lawn Mowing",
-            "href": "/services#lawn-mowing"
+            "label": "Our Services",
+            "href": "/services"
           },
           {
             "type": "link",
-            "label": "Garden Maintenance",
-            "href": "/services#garden-maintenance"
-          },
-          {
-            "type": "link",
-            "label": "Landscaping Design",
-            "href": "/services#landscaping-design"
+            "label": "Cosplay Costume Cleaning",
+            "href": "/cosplay-costume-cleaning"
           }
         ]
       },
       {
-        "title": "Contact",
+        "title": "More",
         "links": [
           {
             "type": "link",
-            "label": "Contact Us",
+            "label": "Gallery",
+            "href": "/gallery"
+          },
+          {
+            "type": "link",
+            "label": "Contact",
             "href": "/contact"
           }
         ]
@@ -90,38 +103,63 @@
     "social": [
       {
         "platform": "facebook",
-        "url": "https://facebook.com/chrisgardening"
+        "url": "https://facebook.com/pointcookcosplaycleaning"
       },
       {
         "platform": "instagram",
-        "url": "https://instagram.com/chrisgardening"
+        "url": "https://instagram.com/pointcookcosplaycleaning"
       }
     ],
-    "copyright": "© 2026 Chris Gardening & Mowing. All rights reserved."
+    "copyright": "© 2026 Point Cook Cosplay Cleaning. All rights reserved."
   },
   "pages": {
     "/": {
       "seo": {
-        "title": "Chris Gardening & Mowing - Homepage",
-        "description": "Professional lawn care and garden design services from Chris Gardening & Mowing. Transform your outdoor space today with our expert team."
+        "title": "Point Cook Cosplay Cleaning | Specialized Costume Care for Cosplayers",
+        "description": "Professional cleaning and restoration for cosplay costumes, armor, and props. Serving Point Cook, Melbourne, and surrounding areas. Gentle, costume-safe methods to preserve your artistry."
       },
       "sectionOrder": [
         "hero",
-        "blocks",
         "services",
+        "blocks",
         "testimonials",
-        "contact"
+        "form"
       ],
       "sections": {
         "hero": {
           "type": "hero",
           "variant": "simple",
           "props": {
-            "headline": "Transform Your Lawn Into a Paradise",
-            "subheadline": "Chris Gardening & Mowing brings professional care to your outdoor spaces. With years of experience in lawn maintenance and garden design, we transform ordinary yards into extraordinary outdoor living spaces.",
-            "ctaText": "Get Your Free Quote",
-            "ctaLink": "/contact",
-            "imageName": "garden-paradise.jpg"
+            "headline": "Where Cosplay Meets Immaculate Clean",
+            "subheadline": "Your cosplay costumes are works of art—deserving of a cleaning service that understands their craft. At Point Cook Cosplay Cleaning, we specialize in the delicate, expert care of costumes, props, and accessories. Using gentle, costume-safe methods, we restore every stitch, sequin, and foam layer so your creation looks as spectacular as the day you built it. Serving Point Cook and all of Melbourne.",
+            "ctaText": "",
+            "ctaLink": "",
+            "imageName": "hero-costume.jpg"
+          }
+        },
+        "services": {
+          "type": "services",
+          "variant": "grid",
+          "props": {
+            "title": "Specialized Care for Every Creation",
+            "description": "We offer tailored solutions for the unique materials and constructions of cosplay. Our services are designed to protect your investment and prepare you for your next convention or photoshoot.",
+            "items": [
+              {
+                "icon": "Droplets",
+                "title": "Costume Deep Clean",
+                "description": "Hand-washing for delicate fabrics, stain removal, and deodorizing."
+              },
+              {
+                "icon": "Wrench",
+                "title": "Armor & Prop Restoration",
+                "description": "Cleaning for foam, resin, 3D-printed pieces, and EVA foam."
+              },
+              {
+                "icon": "HelpCircle",
+                "title": "Emergency Spot Treatment",
+                "description": "Rush service for convention mishaps and last-minute fixes."
+              }
+            ]
           }
         },
         "blocks": {
@@ -130,243 +168,298 @@
           "props": {
             "blocks": [
               {
-                "type": "heading",
-                "text": "Passion for Perfect Lawns",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "Founded by Chris with over 15 years of landscaping experience, our company is built on a foundation of expertise, integrity, and a genuine love for creating beautiful outdoor spaces. Chris personally oversees every project to ensure our clients receive the highest level of care and attention to detail. We're not just mowing lawns; we're cultivating relationships and transforming communities, one yard at a time."
-              },
-              {
-                "type": "button",
-                "label": "Meet Our Team",
-                "href": "/about",
-                "variant": "primary"
-              }
-            ]
-          }
-        },
-        "services": {
-          "type": "services",
-          "variant": "grid",
-          "props": {
-            "title": "Complete Lawn & Garden Care",
-            "description": "We offer a comprehensive range of services to keep your outdoor spaces looking their best all year round. From routine maintenance to complete transformations, our team has the skills and equipment to handle any gardening or lawn care challenge.",
-            "items": [
-              {
-                "icon": "Wrench",
-                "title": "Lawn Mowing",
-                "description": "Regular mowing and trimming to maintain a healthy, vibrant lawn."
-              },
-              {
-                "icon": "Droplets",
-                "title": "Irrigation Services",
-                "description": "Expert irrigation system installation and maintenance for optimal water efficiency."
-              },
-              {
-                "icon": "Flame",
-                "title": "Garden Design",
-                "description": "Custom garden designs tailored to your lifestyle and environmental needs."
-              },
-              {
-                "icon": "Truck",
-                "title": "Emergency Repairs",
-                "description": "Quick response to urgent lawn and garden issues."
+                "type": "columns",
+                "layout": "split",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "The Art Behind the Clean",
+                        "level": "h2",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Cosplay costumes aren’t like ordinary clothing. They’re built with layers of glue, paint, foam, and fabrics that can’t tolerate standard dry-cleaning. Our process is built on respect for your craft:\n\n- Inspection & Sorting: We assess each piece for fabric type, attachments, and weak spots.\n- Hand-Wash Ritual: Using pH-neutral, biodegradable detergents, we hand-wash in temperature-controlled water to preserve colors and adhesives.\n- Precision Drying & Pressing: Custom racks maintain shape; we press with low-heat tools to avoid melting glues or plastics.\n- Detail Restoration: Beading, embroidery, and armor pieces are treated individually to ensure every element shines.\n\nWe don’t just clean costumes—we preserve your artistry.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "costume-after.jpg",
+                        "alt": "Restored cosplay costume showing detailed work"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         },
         "testimonials": {
           "type": "testimonials",
-          "variant": "carousel",
+          "variant": "grid",
           "props": {
-            "title": "Loved by Our Neighbors",
+            "title": "Trusted by the Cosplay Community",
+            "subtitles": "",
             "items": [
               {
-                "quote": "Chris Gardening & Mowing transformed our yard into a stunning outdoor oasis. Their attention to detail is unmatched!",
-                "author": "Sarah M.",
-                "role": "Homeowner"
+                "quote": "After my Warcraft armor came back, it looked *better* than when I first made it. The attention to detail with the foam weathering was incredible. Worth every penny!",
+                "author": "Sarah",
+                "role": "Melbourne (Instagram: @sarahcosplays)",
+                "avatar": ""
               },
               {
-                "quote": "From routine maintenance to seasonal planting, Chris's team delivers exceptional service every time.",
-                "author": "James T.",
-                "role": "Business Owner"
+                "quote": "I was terrified to wash my Renaissance gown with all its hand-stitched lace. They handled it with such care—now it’s pristine for my next fair. Cannot recommend them enough!",
+                "author": "James",
+                "role": "Point Cook (Facebook: James Cosplay)",
+                "avatar": ""
+              },
+              {
+                "quote": "Emergency spot treatment saved my Spider-Man suit before a major convention. They had it back to me in 48 hours, looking flawless. Lifesavers!",
+                "author": "Alex",
+                "role": "Geelong (Twitter: @alexcosplays)",
+                "avatar": ""
               }
             ]
           }
         },
-        "contact": {
-          "type": "contact",
-          "variant": "simple",
+        "form": {
+          "type": "form",
+          "variant": "request",
           "props": {
-            "title": "Ready for a Beautiful Lawn?",
-            "description": "Your dream outdoor space is just a phone call away. Contact us today for a free, no-obligation consultation and quote.",
-            "email": "info@chrisgardening.com",
-            "phone": "+1 (555) 123-4567",
-            "address": "123 Green Lane, Springfield, USA"
+            "title": "Ready to Restore Your Masterpiece?",
+            "description": "Get a personalized quote and discuss pickup/drop-off options. We serve Point Cook, Melbourne, and surrounding suburbs.",
+            "fields": [
+              {
+                "name": "name",
+                "label": "Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "email",
+                "label": "Email",
+                "type": "email",
+                "required": true
+              },
+              {
+                "name": "message",
+                "label": "Message",
+                "type": "textarea",
+                "required": true
+              }
+            ],
+            "submitLabel": "Get a Quote"
           }
         }
       }
     },
-    "/about": {
+    "/contact": {
       "seo": {
-        "title": "About Chris Gardening & Mowing",
-        "description": "Discover the story, values, and expertise behind Chris Gardening & Mowing, your partner in creating lush, sustainable lawns and outdoor spaces."
+        "title": "Contact Us | Point Cook Cosplay Cleaning",
+        "description": "Get in touch with Point Cook Cosplay Cleaning for expert costume cleaning. Visit our Point Cook studio or book a pickup/delivery across Melbourne."
       },
       "sectionOrder": [
-        "section_1",
-        "section_2",
-        "section_3",
-        "section_4",
-        "section_5"
+        "hero",
+        "services",
+        "map",
+        "preservation",
+        "booking"
       ],
       "sections": {
-        "section_1": {
+        "hero": {
           "type": "blocks",
-          "variant": "prose",
+          "variant": "full",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "Your Trusted Partner in Lawn Care",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/hero-lawn.jpg",
-                "alt": "Lush lawn with team members working",
-                "caption": "Professional team maintaining a vibrant lawn"
+                "text": "Your Cosplay Costumes Deserve Expert Care",
+                "level": "h1",
+                "align": "center"
               },
               {
                 "type": "text",
-                "content": "At Chris Gardening & Mowing, we understand that a beautiful, healthy lawn is more than just a chore—it’s a reflection of your pride and care for your home. With years of experience and a passion for precision, we’ve helped countless homeowners transform their outdoor spaces into vibrant, thriving landscapes. Whether it’s weekly mowing, seasonal maintenance, or expert advice, we’re here to make your lawn the envy of the neighborhood."
+                "content": "Reach out to Point Cook Cosplay Cleaning for a professional, damage-free cleaning service. We’ll restore your costumes to their original brilliance so you can focus on your next performance or convention.",
+                "align": "center"
               },
               {
-                "type": "button",
-                "label": "Discover Our Services",
-                "href": "/services",
-                "variant": "primary"
+                "type": "image",
+                "src": "cosplay-costumes.jpg",
+                "alt": "Pristine cosplay costumes displayed in a well-lit studio"
               }
             ]
           }
         },
-        "section_2": {
+        "services": {
           "type": "blocks",
           "variant": "prose",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "The Story of Chris Gardening & Mowing",
-                "level": "h2"
+                "text": "Specialized Cleaning for Every Costume",
+                "level": "h2",
+                "align": "center"
               },
               {
-                "type": "image",
-                "src": "/images/chris-in-action.jpg",
-                "alt": "Chris Gardening working on a lawn",
-                "caption": "Founder Chris in his element"
-              },
-              {
-                "type": "text",
-                "content": "Chris has always had a deep connection to nature. Growing up, he spent countless hours tending to his family’s garden, learning the art of nurturing plants and grasses. This passion evolved into a mission: to help others create outdoor spaces that inspire joy and relaxation. What started as a small side hustle has grown into a trusted name in lawn care, built on integrity, skill, and a commitment to every client’s unique needs."
-              },
-              {
-                "type": "button",
-                "label": "Explore Our Journey",
-                "href": "/",
-                "variant": "primary"
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-washing.svg",
+                        "alt": "Washing symbol icon"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Full Costume Cleaning",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Comprehensive wash and press for all cosplay outfits, from anime to superheroes.",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-fabric.svg",
+                        "alt": "Fabric swatch icon"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Delicate Fabric Care",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Expert treatment for sequins, lace, leather, and other sensitive materials.",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-leaf.svg",
+                        "alt": "Leaf icon for eco-friendly"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Eco-Friendly Process",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Non-toxic, sustainable solutions that protect your costumes and the planet.",
+                        "align": "center"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         },
-        "section_3": {
+        "map": {
           "type": "blocks",
           "variant": "prose",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "Why Trust Chris with Your Lawn?",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/before-after.jpg",
-                "alt": "Before and after lawn transformation",
-                "caption": "See the transformation from overgrown to pristine"
+                "text": "Visit Our Point Cook Studio",
+                "level": "h2",
+                "align": "center"
               },
               {
                 "type": "text",
-                "content": "Personalized Care: No two lawns are the same, and neither are our solutions. Reliability: We show up on time, every time, with the tools and expertise to get the job done right. Eco-Friendly Practices: We prioritize sustainable methods to keep your lawn healthy without harming the environment. Transparent Pricing: No hidden fees, just honest, upfront service."
+                "content": "Drop off your costumes at our convenient Point Cook location or take advantage of our pickup and delivery service across Melbourne.\n\nAddress: 123 Cosplay Lane, Point Cook VIC 3030\nHours: Mon–Fri: 9:00 AM – 6:00 PM | Sat: 10:00 AM – 4:00 PM\nPhone: (03) 1234 5678\nEmail: hello@pointcookcosplaycleaning.com",
+                "align": "center"
               },
               {
-                "type": "button",
-                "label": "Book a Consultation",
-                "href": "/contact",
-                "variant": "primary"
+                "type": "image",
+                "src": "point-cook-map.jpg",
+                "alt": "Stylized map of Point Cook with branded pin at 123 Cosplay Lane"
               }
             ]
           }
         },
-        "section_4": {
+        "preservation": {
           "type": "blocks",
           "variant": "prose",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "What Our Clients Say",
-                "level": "h2"
+                "text": "The Art of Costume Preservation",
+                "level": "h2",
+                "align": "left"
               },
               {
-                "type": "image",
-                "src": "/images/testimonials-collage.jpg",
-                "alt": "Happy client enjoying a newly maintained garden",
-                "caption": "Client testimonials in action"
-              },
-              {
-                "type": "text",
-                "content": "Chris transformed my yard from a patchy mess to a showstopper! The team is professional and reliable. – Sarah T."
-              },
-              {
-                "type": "text",
-                "content": "I’ve used Chris for years. Their attention to detail and friendly service make all the difference. – Mike R."
-              },
-              {
-                "type": "button",
-                "label": "Read More Reviews",
-                "href": "/",
-                "variant": "primary"
+                "type": "columns",
+                "layout": "split",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "content": "Every costume has a story, and we’re committed to preserving it. Our process begins with a thorough inspection to identify fabric types and construction. Then, we hand-clean each piece using pH-balanced solutions tailored to the material. After a gentle rinse and controlled drying, costumes are pressed and packaged with care. This meticulous approach ensures no detail is overlooked—from sequins to zippers—so your costume stays as stunning as the day you made it.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "technician-hands.jpg",
+                        "alt": "Technician's hands gently hand-washing a beaded costume piece"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         },
-        "section_5": {
+        "booking": {
           "type": "blocks",
           "variant": "prose",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "Let’s Grow Together",
-                "level": "h2"
-              },
-              {
-                "type": "image",
-                "src": "/images/family-garden.jpg",
-                "alt": "Family enjoying a beautifully landscaped garden",
-                "caption": "Relax and enjoy your outdoor space"
+                "text": "Book Your Cleaning Service",
+                "level": "h2",
+                "align": "center"
               },
               {
                 "type": "text",
-                "content": "Ready to experience the difference of expert lawn care? Whether you’re looking for a one-time service or a long‑term partnership, we’re here to help. Let’s turn your outdoor space into a source of pride and relaxation."
+                "content": "Ready to experience the Point Cook Cosplay Cleaning difference? Complete the form below and we’ll confirm your appointment within 24 hours. For urgent requests, call us directly at (03) 1234 5678.",
+                "align": "center"
               },
               {
                 "type": "button",
-                "label": "Contact Us",
-                "href": "/contact",
-                "variant": "primary"
+                "label": "Book Your Cleaning Service",
+                "href": "mailto:hello@pointcookcosplaycleaning.com?subject=Booking%20Request",
+                "variant": "primary",
+                "align": "center"
               }
             ]
           }
@@ -375,226 +468,731 @@
     },
     "/services": {
       "seo": {
-        "title": "Chris Gardening & Mowing - Professional Lawn & Garden Services",
-        "description": "Expert lawn mowing, garden makeovers, and seasonal maintenance services in [City/Region]. Eco-friendly practices, certified professionals, and guaranteed results for a beautiful outdoor space."
+        "title": "Services - Chris Housemaid Cleaning",
+        "description": "Professional cleaning services in Point Cook and Melbourne. Eco-friendly, personalized cleaning for your home with regular, deep, and move-in/move-out options."
       },
       "sectionOrder": [
-        "services_blocks",
-        "why_blocks",
-        "process_blocks",
-        "testimonials_blocks",
-        "cta_blocks",
-        "gardening pricing"
+        "hero",
+        "services",
+        "difference",
+        "pricing",
+        "form"
       ],
       "sections": {
-        "services_blocks": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Comprehensive Services Tailored to Your Landscape",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "- **Lawn Mowing & Edging** – Regular, clean cuts that keep your grass healthy and your borders crisp.\n- **Garden Makeovers** – Design, planting, soil amendment, and mulching to create vibrant, low‑maintenance gardens.\n- **Weed & Pest Control** – Eco‑friendly treatments that protect plants without harming the environment.\n- **Seasonal Clean‑ups** – Spring refreshes and fall tidy‑ups that prepare your yard for every climate.\n- **Custom Landscape Consultations** – Personalized plans that match your vision, budget, and timeline."
-              }
-            ]
-          }
-        },
-        "why_blocks": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Why Choose Chris Gardening & Mowing?",
-                "level": "h2"
-              },
-              {
-                "type": "text",
-                "content": "- **Local Expertise** – Years of experience serving the [City/Region] community, so we know what works best here.\n- **Fully Certified & Insured** – Peace of mind with professional training and comprehensive liability coverage.\n- **Transparent Pricing** – Clear, upfront quotes—no hidden fees, just honest service.\n- **Eco‑Conscious Practices** – Sustainable products and water‑saving techniques that protect your family and the planet.\n- **Customer‑First Guarantee** – We don’t consider the job done until you’re delighted with the results."
-              }
-            ]
-          }
-        },
-        "process_blocks": {
+        "hero": {
           "type": "blocks",
           "variant": "full",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "How It Works (Simple 3-Step Process)",
-                "level": "h2"
+                "text": "Premium Home Cleaning, Personalized for You",
+                "level": "h1",
+                "align": "center"
               },
               {
                 "type": "text",
-                "content": "1️⃣ **Free On‑Site Assessment** – We visit your property, discuss goals, and provide a no‑obligation estimate.\n2️⃣ **Customized Plan & Scheduling** – Receive a detailed proposal and choose a convenient service window.\n3️⃣ **Professional Execution & Follow‑Up** – Our crew delivers flawless service, then we check in to ensure satisfaction."
-              }
-            ]
-          }
-        },
-        "testimonials_blocks": {
-          "type": "testimonials",
-          "variant": "grid",
-          "props": {
-            "title": "What Our Clients Say",
-            "items": [
-              {
-                "quote": "Chris Gardening & Mowing transformed my overgrown backyard into a serene retreat. The team was punctual, courteous, and left the site spotless.",
-                "author": "Maria L.",
-                "role": "Homeowner"
+                "content": "Chris Housemaid Cleaning delivers exceptional, tailored cleaning services for homes across Point Cook and Melbourne. Our vetted professionals use eco-friendly products to ensure a sparkling, healthy environment for your family—because your home deserves nothing less than perfection.",
+                "align": "left"
               },
               {
-                "quote": "Their garden makeover exceeded expectations—vibrant colors, low‑maintenance plants, and a design that fits my lifestyle perfectly.",
-                "author": "James P.",
-                "role": "Condo Owner"
+                "type": "image",
+                "src": "hero-living-room.jpg",
+                "alt": "Sunlit modern living room with crisp linens, polished surfaces, and a hint of greenery, showcasing a pristine, inviting space."
               }
             ]
           }
         },
-        "cta_blocks": {
+        "services": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Our Professional Cleaning Services",
+                "level": "h2",
+                "align": "left"
+              },
+              {
+                "type": "text",
+                "content": "From routine upkeep to intensive deep cleans, we have a service to match your lifestyle and home requirements—all performed with meticulous attention to detail.",
+                "align": "left"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Regular Cleaning",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "A recurring arrow symbolizing weekly/bi-weekly maintenance.",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Deep Cleaning",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "A magnifying glass representing thorough, detail-oriented cleaning.",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Move-In/Move-Out",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "A key and house icon for fresh-start transitions.",
+                        "align": "center"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "difference": {
           "type": "blocks",
           "variant": "wide",
           "props": {
             "blocks": [
               {
                 "type": "heading",
-                "text": "Ready to Elevate Your Landscape?",
-                "level": "h2"
+                "text": "The Chris Housemaid Difference",
+                "level": "h2",
+                "align": "left"
               },
               {
-                "type": "text",
-                "content": "Whether you need a weekly mow, a full garden redesign, or seasonal upkeep, Chris Gardening & Mowing has the expertise to make your property shine. Let us handle the hard work while you enjoy a beautiful, hassle‑free yard."
-              },
-              {
-                "type": "button",
-                "label": "Get Your Free Quote Now",
-                "href": "/contact",
-                "variant": "primary"
+                "type": "columns",
+                "layout": "split",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "content": "Our meticulous 10-step process guarantees a consistently immaculate home. We begin with a comprehensive assessment, then move through dusting, vacuuming, sanitizing, and a final inspection. All products are child- and pet-safe, and our team uses advanced equipment to tackle even the toughest grime—ensuring your home isn’t just clean, but genuinely refreshed.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "cleaner-kitchen.jpg",
+                        "alt": "Professional cleaner using a microfiber cloth to wipe down a kitchen counter, with an eco-friendly spray bottle and organized cleaning tools nearby, conveying precision and care."
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         },
-        "gardening pricing": {
-          "type": "pricing",
-          "variant": "detailed",
+        "pricing": {
+          "type": "blocks",
+          "variant": "prose",
           "props": {
-            "title": "Master Your Garden's Essentials",
-            "description": "Discover cost-effective solutions for your gardening needs.\n\nPrices are estimates based on average market rates and may vary by region. All pricing reflects tiered packages and includes free shipping options.",
-            "categories": [
+            "blocks": [
               {
-                "name": "Basic Watering Solutions",
-                "items": [
-                  {
-                    "label": "💧",
-                    "price": "$25–$35"
-                  }
-                ]
+                "type": "heading",
+                "text": "Simple, Transparent Pricing",
+                "level": "h2",
+                "align": "left"
               },
               {
-                "name": "Soil Preparation Essentials",
-                "items": [
-                  {
-                    "label": "🌱",
-                    "price": "$40–$55"
-                  }
-                ]
+                "type": "text",
+                "content": "We believe in honest pricing with no hidden fees. Choose the package that fits your home and schedule, or contact us for a custom quote tailored to your unique needs.",
+                "align": "left"
               },
               {
-                "name": "Planting Seed Starter Kits",
+                "type": "columns",
+                "layout": "3-col",
                 "items": [
                   {
-                    "label": "🌿",
-                    "price": "$15–$30"
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Basic Clean",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "$120",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "2-hour standard clean (living areas, bathrooms, kitchen).",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Premium Clean",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "$200",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "3-hour deep clean (includes oven, fridge, and windows).",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Deep Clean",
+                        "level": "h3",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "$300",
+                        "align": "center"
+                      },
+                      {
+                        "type": "text",
+                        "content": "4-hour intensive service (full home, including cabinets and baseboards).",
+                        "align": "center"
+                      }
+                    ]
                   }
                 ]
+              }
+            ]
+          }
+        },
+        "form": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Book Your Clean Today",
+                "level": "h2",
+                "align": "left"
+              },
+              {
+                "type": "text",
+                "content": "Ready for a spotless home? Fill out the form below with your preferred service and timing—we’ll confirm your appointment within 24 hours.",
+                "align": "left"
+              },
+              {
+                "type": "button",
+                "label": "Request Booking",
+                "href": "/contact",
+                "variant": "primary",
+                "align": "center"
               }
             ]
           }
         }
       }
     },
-    "/contact": {
+    "/cosplay-costume-cleaning": {
       "seo": {
-        "title": "Contact",
-        "description": "Convert visitors into leads with a modern, natural aesthetic and easy-to-use forms."
+        "title": "Cosplay Costume Cleaning | Point Cook Cosplay Cleaning",
+        "description": "Professional cleaning for cosplay costumes, props, and accessories in Point Cook and Melbourne. Specialized care for delicate materials, foam armor, and more."
       },
       "sectionOrder": [
-        "hero",
-        "services",
-        "contact",
-        "testimonials"
+        "hero-cosplay-intro",
+        "services-cosplay-offerings",
+        "blocks-cosplay-story",
+        "form-cosplay-booking"
       ],
       "sections": {
-        "hero": {
-          "type": "hero",
-          "variant": "simple",
+        "hero-cosplay-intro": {
+          "type": "blocks",
+          "variant": "prose",
           "props": {
-            "headline": "Let’s Transform Your Yard.",
-            "ctaText": "Get Your Free, No-Obligation Quote",
-            "ctaLink": "https://example.com/contact",
-            "imageName": "garden"
-          }
-        },
-        "services": {
-          "type": "services",
-          "variant": "grid",
-          "props": {
-            "title": "Professional Lawn & Garden Services",
-            "description": "Our premium service delivers fresh, natural results using premium tools and expertise.",
-            "items": [
+            "blocks": [
               {
-                "icon": "wrench",
-                "title": "Mowing & Trimming",
-                "description": "Regular maintenance for a beautiful, healthy yard."
+                "type": "heading",
+                "text": "Where Artistry Meets Expert Care",
+                "level": "h1",
+                "align": "left"
               },
               {
-                "icon": "droplets",
-                "title": "Weed & Mulch Treatment",
-                "description": "Healthy soil starts with the right ground care."
+                "type": "text",
+                "content": "Your cosplay costume is more than fabric—it’s a character, a story, and countless hours of creativity. At Point Cook Cosplay Cleaning, we honor that dedication with specialized, gentle cleaning designed exclusively for delicate costumes, props, and accessories. From foam armor to hand-beaded gowns, we restore your masterpiece without compromising a single detail.",
+                "align": "left"
               },
               {
-                "icon": "flame",
-                "title": "Lawn Care Products",
-                "description": "Premium products to keep your grass vibrant."
+                "type": "image",
+                "src": "hero-costume.jpg",
+                "alt": "Intricate cosplay costume on a mannequin in gallery lighting"
               }
             ]
           }
         },
-        "contact": {
-          "type": "contact",
-          "variant": "simple",
+        "services-cosplay-offerings": {
+          "type": "blocks",
+          "variant": "prose",
           "props": {
-            "title": "Get in Touch",
-            "description": "Reach out to Chris Gardening & Mowing for a stress-free experience.",
-            "email": "info@chrisgardening.com",
-            "phone": "555-123-4567",
-            "address": "123 Green Lane, Springfield"
-          }
-        },
-        "testimonials": {
-          "type": "testimonials",
-          "variant": "grid",
-          "props": {
-            "title": "What Our Clients Say",
-            "subtitles": "Real Results, Real Results",
-            "items": [
+            "blocks": [
               {
-                "quote": "Chris makes our yard look pristine every season.",
-                "author": "Jane Doe",
-                "role": "Homeowner",
-                "avatar": "avatar.jane"
+                "type": "heading",
+                "text": "Specialized Cleaning for Every Cosplay Creation",
+                "level": "h2",
+                "align": "left"
               },
               {
-                "quote": "Reliable service and friendly staff—excellent value for money.",
-                "author": "John Smith",
-                "role": "Homeowner",
-                "avatar": "avatar.john"
+                "type": "text",
+                "content": "Our tailored services address the unique needs of cosplay materials and construction:",
+                "align": "left"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-fabric.svg",
+                        "alt": "Delicate Fabric Revival"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Delicate Fabric Revival",
+                        "level": "h3",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Hand-washing for silks, chiffons, lace, and embellished textiles using pH-neutral solutions.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-foam.svg",
+                        "alt": "Prop & Armor Sanitization"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Prop & Armor Sanitization",
+                        "level": "h3",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Safe cleaning for EVA foam, resin, 3D-printed pieces, and painted surfaces.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-adhesive.svg",
+                        "alt": "Adhesive & Makeup Rescue"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Adhesive & Makeup Rescue",
+                        "level": "h3",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Gentle removal of spirit gum, liquid latex, sweat stains, and makeup residue.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-structural.svg",
+                        "alt": "Structural Preservation"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Structural Preservation",
+                        "level": "h3",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Re-securing loose seams, reinforcing weak points, and acid-free storage wrapping.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "icon-rush.svg",
+                        "alt": "Rush Convention Service"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Rush Convention Service",
+                        "level": "h3",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "48-hour turnaround for urgent costume needs (additional fee applies).",
+                        "align": "left"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "blocks-cosplay-story": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "columns",
+                "layout": "split",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Why Generic Cleaning Ruins Cosplay Costumes",
+                        "level": "h2",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Standard dry-cleaning methods are a gamble with your creation. Harsh chemicals can dissolve adhesives, weaken foam structures, strip paint from props, and distort delicate hand-stitched details. Our process was developed with cosplayers in mind: we use cold-water hand techniques, costume-safe spot treatments, and meticulous inspection for hidden wear. Every zipper, snap, and piece of armor is treated with the respect it deserves—because we know your costume isn’t just clothing, it’s your craft.",
+                        "align": "left"
+                      },
+                      {
+                        "type": "text",
+                        "content": "“We don’t clean costumes—we preserve artistry.”",
+                        "align": "center"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "before-after.jpg",
+                        "alt": "Before and after of a cleaned costume"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "form-cosplay-booking": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Restore Your Costume Today",
+                "level": "h2",
+                "align": "left"
+              },
+              {
+                "type": "text",
+                "content": "Book a pickup or drop-off in Point Cook or surrounding Melbourne suburbs. Tell us about your costume’s materials, stains, and any urgent needs—we’ll reply within 4 hours with a quote and availability.",
+                "align": "left"
+              },
+              {
+                "type": "image",
+                "src": "costume-box.jpg",
+                "alt": "Neatly packed costume box ready for transport"
+              },
+              {
+                "type": "button",
+                "label": "Contact Us",
+                "href": "/contact",
+                "variant": "primary",
+                "align": "center"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/gallery": {
+      "seo": {
+        "title": "Gallery | Point Cook Cosplay Cleaning",
+        "description": "View our gallery of professionally cleaned cosplay costumes. See the transformative results of our meticulous cleaning and restoration services."
+      },
+      "sectionOrder": [
+        "hero",
+        "services",
+        "gallery",
+        "booking-form"
+      ],
+      "sections": {
+        "hero": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Gallery: Where Art Meets Immaculate Care",
+                "level": "h1",
+                "align": "left"
+              },
+              {
+                "type": "text",
+                "content": "Discover the transformative power of professional cosplay costume cleaning. Our gallery showcases the meticulous attention to detail that brings your beloved creations back to life, preserving every stitch and seam.",
+                "align": "left"
+              },
+              {
+                "type": "image",
+                "src": "/images/hero-gallery.jpg",
+                "alt": "Steampunk cosplay costume after cleaning on a mannequin"
+              }
+            ]
+          }
+        },
+        "services": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Our Specialized Services",
+                "level": "h2",
+                "align": "left"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/icons/fabric.svg",
+                        "alt": "Fabric care icon"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Delicate Fabric Handwashing\nExpert care for sensitive materials like silk, satin, and wool, using gentle, pH-balanced solutions.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/icons/armor.svg",
+                        "alt": "Armor restoration icon"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Prop & Armor Restoration\nThorough cleaning and refinishing for foam, latex, thermoplastic, and 3D-printed components, removing dirt and scuffs.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/icons/storage.svg",
+                        "alt": "Storage icon"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Preservation & Storage\nAcid-free packaging and climate-controlled storage options to protect your costume between events.",
+                        "align": "left"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "gallery": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Featured Restorations",
+                "level": "h2",
+                "align": "left"
+              },
+              {
+                "type": "text",
+                "content": "A curated selection of costumes we've had the privilege to restore. Each image represents the final result of our meticulous cleaning process.",
+                "align": "left"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/gallery/sailor-uniform.jpg",
+                        "alt": "Vibrant anime-style school uniform after cleaning"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Sailor Uniform Restoration - Removed stubborn makeup stains and refreshed colors.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/gallery/elven-gown.jpg",
+                        "alt": "Elaborate fantasy gown with sequins and beads, sparkling clean"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Elven Gown - Hand-washed to protect delicate beading, restored to ethereal glory.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/gallery/warrior-armor.jpg",
+                        "alt": "Foam armor chest plate, polished and free of scuffs"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Warrior Armor - Deep cleaned and polished thermoplastic, removed all surface scratches.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/gallery/leather-jacket.jpg",
+                        "alt": "Leather biker jacket from a post-apocalyptic cosplay, supple and clean"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Leather Jacket - Conditioned and cleaned without drying out the material.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/gallery/character-wig.jpg",
+                        "alt": "Complex wig styled for a character, fresh and styled"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Character Wig - Washed and restyled to original form, removed all product buildup.",
+                        "align": "left"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "/gallery/combat-boots.jpg",
+                        "alt": "Detailed boots with fabric and plastic components"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Combat Boots - Multi-material cleaning, including laces and soles.",
+                        "align": "left"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "booking-form": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Book Your Cleaning Today",
+                "level": "h2",
+                "align": "left"
+              },
+              {
+                "type": "text",
+                "content": "Ready to revive your costume? Fill out the form below with your costume details, and we'll get back to you within 24 hours with a custom quote and pickup/drop-off options.",
+                "align": "left"
+              },
+              {
+                "type": "image",
+                "src": "/images/costume-bag.jpg",
+                "alt": "Neatly folded costume in protective bag"
+              },
+              {
+                "type": "text",
+                "content": "Ready to book? Contact us now.",
+                "align": "left"
               }
             ]
           }

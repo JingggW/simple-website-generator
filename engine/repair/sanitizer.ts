@@ -1,7 +1,5 @@
 /**
  * PROGRAMMATIC SANITIZER
- * 
- * Brute-forces common AI schema hallucinations into valid structures.
  */
 
 export function sanitize_json_structure(data: any): any {
@@ -13,34 +11,42 @@ export function sanitize_json_structure(data: any): any {
     if (!obj || typeof obj !== "object") return;
 
     for (const key in obj) {
-      // 1. Auto-map 'url' to 'href'
+      // 1. STRIP RAW HTML FROM ALL STRINGS (Prevention of <form> hallucinations)
+      if (typeof obj[key] === "string") {
+        const hasHtml = /<[a-z][\s\S]*>/i.test(obj[key]);
+        if (hasHtml) {
+          // If we find HTML, strip tags but keep inner text
+          obj[key] = obj[key].replace(/<[^>]*>?/gm, '');
+        }
+      }
+
+      // 2. Auto-map 'url' -> 'href'
       if (key === "url" && !obj.href) obj.href = obj[key];
 
-      // 2. Fix Section Variants (brute-force valid options)
+      // 3. Fix Form Field Types
+      if (obj.type && typeof obj.type === "string") {
+        const t = obj.type.toLowerCase();
+        if (obj.label && obj.name) {
+          const validTypes = ["text", "email", "textarea", "select"];
+          if (!validTypes.includes(t)) {
+            if (t.includes("mail")) obj.type = "email";
+            else if (t.includes("area") || t.includes("message")) obj.type = "textarea";
+            else if (t.includes("select") || t.includes("option")) obj.type = "select";
+            else obj.type = "text";
+          }
+        }
+      }
+
+      // 4. Fix Missing Alignment
+      if (["heading", "text", "button"].includes(obj.type)) {
+        if (obj.align === undefined) obj.align = "left";
+      }
+
+      // 5. Fix Section Variants
       if (key === "variant" && obj.type === "blocks") {
         const valid = ["prose", "wide", "full"];
         if (!valid.includes(obj[key])) obj[key] = "prose";
       }
-      
-      if (key === "variant" && obj.type === "hero") {
-        const valid = ["simple", "split"];
-        if (!valid.includes(obj[key])) obj[key] = "simple";
-      }
-
-      // 3. Prevent 'undefined' for required fields (fill with placeholder)
-      // For Headings
-      if (obj.type === "heading" && obj.text === undefined) obj.text = "Untitled Section";
-      // For Text
-      if (obj.type === "text" && obj.content === undefined) obj.content = "";
-      // For Buttons
-      if (obj.type === "button") {
-        if (obj.label === undefined) obj.label = "Click Here";
-        if (obj.href === undefined) obj.href = "#";
-        if (!["primary", "secondary", "outline"].includes(obj.variant)) obj.variant = "primary";
-      }
-
-      // 4. Ensure props exist
-      if (obj.type && !obj.props) obj.props = {};
 
       walk(obj[key]);
     }

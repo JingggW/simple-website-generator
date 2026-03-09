@@ -188,15 +188,17 @@ export const TestimonialsSectionSchema = z.object({
 // --- END TESTIMONIALS ---
 
 // --- START BLOCKS ---
-export const BlockSchema = z.discriminatedUnion("type", [
+export const BaseBlockSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("heading"),
     text: z.string(),
     level: z.enum(["h1", "h2", "h3"]).default("h2"),
+    align: z.enum(["left", "center", "right"]).default("left"),
   }),
   z.object({
     type: z.literal("text"),
     content: z.string(),
+    align: z.enum(["left", "center", "right"]).default("left"),
   }),
   z.object({
     type: z.literal("image"),
@@ -209,8 +211,27 @@ export const BlockSchema = z.discriminatedUnion("type", [
     label: z.string(),
     href: z.string(),
     variant: z.enum(["primary", "secondary", "outline"]).default("primary"),
+    align: z.enum(["left", "center", "right"]).default("left"),
   }),
 ]);
+
+// Helper for Recursive Columns
+export type Block = z.infer<typeof BaseBlockSchema> | { 
+  type: "columns"; 
+  layout: "split" | "3-col" | "split-left" | "split-right"; 
+  items: { blocks: Block[] }[] 
+};
+
+export const BlockSchema: z.ZodType<Block> = z.lazy(() => z.union([
+  BaseBlockSchema,
+  z.object({
+    type: z.literal("columns"),
+    layout: z.enum(["split", "3-col", "split-left", "split-right"]).default("split"),
+    items: z.array(z.object({
+      blocks: z.array(BlockSchema)
+    })),
+  })
+]));
 
 export const BlockSectionSchema = z.object({
   type: z.literal("blocks"),

@@ -21,7 +21,7 @@ export async function callLLM(prompt: string, systemPrompt?: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "openrouter/free",
+        model: "stepfun/step-3.5-flash:free",
         messages: [
           ...(systemPrompt ? [{ role: "system", content: systemPrompt }] : []),
           { role: "user", content: prompt },

@@ -7,7 +7,7 @@ import { WebsiteConfig } from "../../lib/schema";
 export interface IntegrityReport {
   orphans: string[];
   deadLinks: string[];
-  brokenCTAs: string[]; // NEW: For buttons and CTAs within pages
+  brokenCTAs: string[]; 
   isValid: boolean;
 }
 
@@ -15,12 +15,12 @@ export function run_integrity_check(config: WebsiteConfig): IntegrityReport {
   const pagePaths = Object.keys(config.pages);
   const brokenCTAs: string[] = [];
   
-  // 1. Helper to extract all HREFs in navigation
   const getNavPaths = (links: any[]) => {
     const paths: string[] = [];
+    if (!links) return paths;
     links.forEach(l => {
       if (l.type === 'link') paths.push(l.href);
-      if (l.type === 'dropdown') l.items.forEach((si: any) => paths.push(si.href));
+      if (l.type === 'dropdown' && l.items) l.items.forEach((si: any) => paths.push(si.href));
     });
     return Array.from(new Set(paths));
   };
@@ -30,42 +30,59 @@ export function run_integrity_check(config: WebsiteConfig): IntegrityReport {
     ...getNavPaths(config.footer.columns?.flatMap(c => c.links) || [])
   ]));
 
-  // 2. Scan ALL pages for CTA buttons and internal links
+  const validateLink = (href: string, location: string) => {
+    if (!href || href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:') || href === "#") return;
+    
+    const [path, anchor] = href.split('#');
+    const targetPath = path === "" ? "/" : path;
+    const targetPage = config.pages[targetPath];
+
+    if (!targetPage) {
+      brokenCTAs.push(`${location}: Path "${targetPath}" does not exist.`);
+      return;
+    }
+
+    if (anchor && !targetPage.sectionOrder.includes(anchor)) {
+      brokenCTAs.push(`${location}: Anchor "#${anchor}" not found on page "${targetPath}".`);
+    }
+  };
+
+  // RECURSIVE SCANNER for nested blocks (columns, etc.)
+  const scanBlocks = (blocks: any[], location: string) => {
+    if (!blocks) return;
+    blocks.forEach((b: any) => {
+      if (b.type === "button" && b.href) {
+        validateLink(b.href, location);
+      }
+      if (b.type === "columns" && b.items) {
+        b.items.forEach((col: any) => scanBlocks(col.blocks, location));
+      }
+    });
+  };
+
+  // 1. Scan ALL pages for CTA buttons
   for (const [path, page] of Object.entries(config.pages)) {
     for (const [sectionId, section] of Object.entries(page.sections)) {
       const props: any = section.props;
-      const foundLinks: string[] = [];
-
-      // Case A: Hero CTA
-      if (props.ctaLink) foundLinks.push(props.ctaLink);
-
-      // Case B: Block Buttons
+      if (props.ctaLink) validateLink(props.ctaLink, `Page ${path} | Section ${sectionId}`);
       if (props.blocks) {
-        props.blocks.forEach((b: any) => {
-          if (b.type === "button" && b.href) foundLinks.push(b.href);
-        });
+        scanBlocks(props.blocks, `Page ${path} | Section ${sectionId}`);
       }
-
-      // Validate found links
-      foundLinks.forEach(href => {
-        if (href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:') || href === "#") return;
-        
-        const basePath = href.split('#')[0];
-        if (basePath !== "" && !pagePaths.includes(basePath)) {
-          brokenCTAs.push(`Page ${path} | Section ${sectionId}: Button links to non-existent page "${href}"`);
-        }
-      });
     }
   }
 
-  // 3. Find Orphans
+  // 2. Find Orphans
   const orphans = pagePaths.filter(p => p !== "/" && !allNavPaths.some(nav => nav.split('#')[0] === p));
 
-  // 4. Find Dead Nav Links
+  // 3. Find Dead Nav Links
   const deadLinks = allNavPaths.filter(href => {
     if (href.startsWith('http') || href.startsWith('tel:') || href.startsWith('mailto:') || href === "#") return false;
-    const [basePath] = href.split('#');
-    return basePath !== "" && !pagePaths.includes(basePath);
+    const [path, anchor] = href.split('#');
+    const targetPath = path === "" ? "/" : path;
+    const targetPage = config.pages[targetPath];
+    if (!targetPage) return true;
+    if (anchor && !targetPage.sectionOrder.includes(anchor)) return true;
+    return false;
   });
 
   return {
