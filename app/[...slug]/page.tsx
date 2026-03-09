@@ -11,10 +11,7 @@ export default async function DynamicPage(props: {
 }) {
   const params = await props.params;
   const slugArray = params.slug;
-  
-  // Reconstruct the full path (e.g. ["services", "emergency"] -> "/services/emergency")
   const path = `/${slugArray.join("/")}`;
-  
   const page = siteConfig.pages[path];
 
   if (!page) {
@@ -28,7 +25,8 @@ export default async function DynamicPage(props: {
         {page.sectionOrder.map((sectionId) => {
           const section = page.sections[sectionId];
           if (!section) return null;
-          return <SectionRenderer key={sectionId} section={section} />;
+          // PASS sectionId HERE
+          return <SectionRenderer key={sectionId} sectionId={sectionId} section={section} />;
         })}
       </main>
       <Footer config={siteConfig.footer} />
@@ -36,12 +34,10 @@ export default async function DynamicPage(props: {
   );
 }
 
-// Generate static params for all pages in the config
 export async function generateStaticParams() {
   return Object.keys(siteConfig.pages)
     .filter((path) => path !== "/")
     .map((path) => ({
-      // Next.js expects an array for catch-all params
       slug: path.split("/").filter(Boolean),
     }));
 }

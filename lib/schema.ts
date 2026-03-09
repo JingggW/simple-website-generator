@@ -17,7 +17,7 @@ export const ThemeSchema = z.object({
 // --- START HERO ---
 export const HeroSchema = z.object({
   type: z.literal("hero"),
-  variant: z.enum(["simple", "split"]).describe("Visual design of the hero"),
+  variant: z.enum(["simple", "split"]),
   props: z.object({
     headline: z.string(),
     subheadline: z.string().optional(),
@@ -31,13 +31,13 @@ export const HeroSchema = z.object({
 // --- START SERVICES ---
 export const ServicesSchema = z.object({
   type: z.literal("services"),
-  variant: z.enum(["grid", "list"]).describe("Layout style for services"),
+  variant: z.enum(["grid", "list"]),
   props: z.object({
     title: z.string(),
     description: z.string().optional(),
     items: z.array(
       z.object({
-        icon: z.string().describe("Name of the icon from lucide-react"),
+        icon: z.string(),
         title: z.string(),
         description: z.string(),
       }),
@@ -45,6 +45,56 @@ export const ServicesSchema = z.object({
   }),
 });
 // --- END SERVICES ---
+
+// --- START PRICING ---
+export const PricingSchema = z.object({
+  type: z.literal("pricing"),
+  variant: z.enum(["simple", "detailed"]),
+  props: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    categories: z.array(z.object({
+      name: z.string(),
+      items: z.array(z.object({
+        label: z.string(),
+        price: z.string(),
+        details: z.string().optional(),
+      }))
+    }))
+  })
+});
+// --- END PRICING ---
+
+// --- START FORM ---
+export const FormSchema = z.object({
+  type: z.literal("form"),
+  variant: z.enum(["contact", "request"]),
+  props: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    fields: z.array(z.object({
+      name: z.string(),
+      label: z.string(),
+      type: z.enum(["text", "email", "textarea", "select"]),
+      options: z.array(z.string()).optional().describe("For select type"),
+      required: z.boolean().default(true),
+    })),
+    submitLabel: z.string().default("Submit"),
+  })
+});
+// --- END FORM ---
+
+// --- START MAP ---
+export const MapSchema = z.object({
+  type: z.literal("map"),
+  variant: z.enum(["embedded"]),
+  props: z.object({
+    title: z.string().optional(),
+    address: z.string(),
+    zoom: z.number().default(14),
+  })
+});
+// --- END MAP ---
 
 // --- START CONTACT ---
 export const ContactSchema = z.object({
@@ -111,7 +161,7 @@ export const FooterSchema = z.object({
   social: z.array(
     z.object({
       platform: z.enum(["twitter", "github", "linkedin", "facebook", "instagram"]),
-      url: z.string().url(),
+      url: z.string(),
     }),
   ).optional(),
   copyright: z.string().default("© 2026 Company Name. All rights reserved."),
@@ -183,6 +233,9 @@ export const PageSchema = z.object({
     z.discriminatedUnion("type", [
       HeroSchema,
       ServicesSchema,
+      PricingSchema,
+      FormSchema,
+      MapSchema,
       ContactSchema,
       ContentSchema,
       TestimonialsSectionSchema,
@@ -202,6 +255,9 @@ export const WebsiteConfigSchema = z.object({
 export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;
 export type ServicesSection = z.infer<typeof ServicesSchema>;
+export type PricingSection = z.infer<typeof PricingSchema>;
+export type FormSection = z.infer<typeof FormSchema>;
+export type MapSection = z.infer<typeof MapSchema>;
 export type ContactSection = z.infer<typeof ContactSchema>;
 export type ContentSection = z.infer<typeof ContentSchema>;
 export type TestimonialsSection = z.infer<typeof TestimonialsSectionSchema>;
@@ -209,6 +265,9 @@ export type BlockSection = z.infer<typeof BlockSectionSchema>;
 export type AnySection =
   | HeroSection
   | ServicesSection
+  | PricingSection
+  | FormSection
+  | MapSection
   | ContactSection
   | ContentSection
   | TestimonialsSection

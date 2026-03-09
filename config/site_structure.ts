@@ -1,32 +1,47 @@
-/**
- * SITE STRUCTURE (Layout Map)
- */
 export const siteStructure = {
-  "/": [
-    "hero",
-    "services",
-    "testimonials",
-    "contact"
-  ],
-  "/about": [
-    "about"
-  ],
-  "/services": [
-    "aboutUs",
-    "services",
-    "whyChooseUs",
-    "testimonials",
-    "clientTestimonials",
-    "cta"
-  ],
-  "/contact": [
-    "hero_section",
-    "booking_section",
-    "contact_info_section",
-    "online_booking_section",
-    "first_visit_section",
-    "special_requests_section",
-    "testimonials_section",
-    "final_cta_section"
-  ]
+  "pages": {
+    "/": [
+      "hero",
+      "blocks",
+      "services",
+      "testimonials",
+      "contact"
+    ],
+    "/about": [
+      "section_1",
+      "section_2",
+      "section_3",
+      "section_4",
+      "section_5"
+    ],
+    "/services": [
+      "services_blocks",
+      "why_blocks",
+      "process_blocks",
+      "testimonials_blocks",
+      "cta_blocks",
+      "gardening pricing"
+    ],
+    "/contact": [
+      "hero",
+      "services",
+      "contact",
+      "testimonials"
+    ]
+  },
+  "navigation": {
+    "header": [
+      "/",
+      "/about",
+      "/services",
+      "/contact"
+    ],
+    "footer": [
+      "/about",
+      "/services#lawn-mowing",
+      "/services#garden-maintenance",
+      "/services#landscaping-design",
+      "/contact"
+    ]
+  }
 };

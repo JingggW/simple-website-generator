@@ -9,11 +9,14 @@ import { getSchemaSection } from "../storage/schema_utils";
  * PAGE GENERATOR ENGINE
  */
 
-function getSystemContext(): { iconMap: string } {
+function getSystemContext(): { iconMap: string; structure: string } {
   const iconMapPath = path.join(process.cwd(), "components/ui/IconMap.tsx");
-  return {
-    iconMap: fs.readFileSync(iconMapPath, "utf-8"),
-  };
+  const structurePath = path.join(process.cwd(), "config/site_structure.ts");
+  
+  const iconMap = fs.existsSync(iconMapPath) ? fs.readFileSync(iconMapPath, "utf-8") : "// No icons defined";
+  const structure = fs.existsSync(structurePath) ? fs.readFileSync(structurePath, "utf-8") : "// No existing structure";
+
+  return { iconMap, structure };
 }
 
 function loadPrompt(name: string): string {
@@ -25,15 +28,26 @@ export async function generate_single_page(
   description: string, 
   businessName: string, 
   targetPath: string = "/",
-  useImageGen: boolean = false
+  useImageGen: boolean = false,
+  currentSitemap: string[] = [] 
 ) {
-  console.log(`🚀 Orchestrating Page Generation: ${targetPath}`);
+  console.log(`🚀 Generating Page: ${targetPath}`);
   
   const system = getSystemContext();
 
   try {
     /**
-     * STAGE 1: UI/UX DESIGN
+     * STAGE 1: CONTENT WRITING
+     */
+    const contentPrompt = loadPrompt("content-strategist")
+      .replace("{{BUSINESS}}", businessName)
+      .replace("{{PATH}}", targetPath)
+      .replace("{{STRUCTURE}}", `Current Sitemap: ${currentSitemap.join(", ")}`);
+
+    const rawCopy = await callLLM(contentPrompt, "You are a world-class copywriter.");
+
+    /**
+     * STAGE 2: DESIGN
      */
     const uiPrompt = loadPrompt("ui-ux-designer");
     const designBrief = await callLLM(`
@@ -44,41 +58,13 @@ ${uiPrompt}
     `, "You are a senior UI/UX designer.");
 
     /**
-     * STAGE 2: CONTENT STRATEGY
+     * STAGE 3: ASSEMBLY
      */
-    const contentPrompt = loadPrompt("content-strategist");
-    const contentBlueprint = await callLLM(`
-### INPUTS
-Business: ${description}
-Page Path: ${targetPath}
-Design Vibe: ${designBrief}
-### TASK: CONTENT STRATEGY
-${contentPrompt}
-    `, "You are a senior content strategist.");
-
-    /**
-     * STAGE 3: OPTIONAL IMAGE INSERTION
-     */
-    let finalBlueprint = contentBlueprint;
-    if (useImageGen) {
-      const imagePrompt = loadPrompt("image-inserter");
-      finalBlueprint = await callLLM(`
-### INPUTS
-Text Blueprint: ${contentBlueprint}
-Available Assets: ["hero-plumber.webp", "salon-interior.jpg", "cafe-front.jpg"]
-### TASK: IMAGE INSERTION
-${imagePrompt}
-      `, "You are a visual editor.");
-    }
-
-    /**
-     * STAGE 4: CODE ASSEMBLY
-     */
-    console.log("🛠️  Stage 4: Page Assembler...");
+    console.log("🛠️  Stage 3: Assembling JSON...");
     
-    // SURGICAL EXTRACTION: Get all Section schemas + Block schema + Website schema
+    // FIXED: Included PRICING, FORM, and MAP
     const schema = getSchemaSection([
-      "HERO", "SERVICES", "CONTACT", "CONTENT", "TESTIMONIALS", "BLOCKS", "WEBSITE"
+      "HERO", "SERVICES", "PRICING", "FORM", "MAP", "CONTACT", "CONTENT", "TESTIMONIALS", "BLOCKS", "WEBSITE"
     ]);
 
     const assemblerPrompt = loadPrompt("page-assembler")
@@ -89,23 +75,20 @@ ${imagePrompt}
 ### INPUTS
 Target Path: ${targetPath}
 Design Brief: ${designBrief}
-Content Strategy (Enhanced): ${finalBlueprint}
+RAW COPY:
+${rawCopy}
+
 ### TASK: PAGE ASSEMBLY
 ${assemblerPrompt}
-    `, "You are a senior frontend developer. Output ONLY the valid JSON object.");
+    `, "You are a senior frontend developer.");
 
     const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(rawJson);
     
-    // --- SELF-HEALING GUARD ---
-    return await validate_and_repair(
-      parsed, 
-      PageSchema, 
-      `Page: ${targetPath}`
-    );
+    return await validate_and_repair(parsed, PageSchema, `Page: ${targetPath}`);
 
   } catch (error) {
-    console.error("\n❌ Page Generation Pipeline Failed:", error);
+    console.error("\n❌ Page Generation Failed:", error);
     throw error;
   }
 }

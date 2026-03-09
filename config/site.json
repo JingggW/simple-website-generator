@@ -1,6 +1,4 @@
-import { WebsiteConfig } from "@/lib/schema";
-
-export const siteConfig: WebsiteConfig = {
+{
   "theme": {
     "mode": "light",
     "colors": {
@@ -604,4 +602,4 @@ export const siteConfig: WebsiteConfig = {
       }
     }
   }
-};
+}

@@ -19,7 +19,8 @@ export default function Home() {
         {page.sectionOrder.map((sectionId) => {
           const section = page.sections[sectionId];
           if (!section) return null;
-          return <SectionRenderer key={sectionId} section={section} />;
+          // PASS sectionId HERE
+          return <SectionRenderer key={sectionId} sectionId={sectionId} section={section} />;
         })}
       </main>
       <Footer config={siteConfig.footer} />

@@ -3,10 +3,12 @@ import path from "path";
 import { callLLM } from "../llmClient";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { getSchemaSection } from "../storage/schema_utils";
+import { classify_intent } from "./intent_classifier";
 import { z } from "zod";
 import { 
   HeroSchema, ServicesSchema, ContactSchema, 
-  ContentSchema, TestimonialsSectionSchema, BlockSectionSchema 
+  ContentSchema, TestimonialsSectionSchema, BlockSectionSchema,
+  PricingSchema, FormSchema, MapSchema
 } from "../../lib/schema";
 
 /**
@@ -16,6 +18,9 @@ import {
 const AnySectionSchema = z.discriminatedUnion("type", [
   HeroSchema,
   ServicesSchema,
+  PricingSchema,
+  FormSchema,
+  MapSchema,
   ContactSchema,
   ContentSchema,
   TestimonialsSectionSchema,
@@ -44,43 +49,35 @@ export async function generate_node(
   console.log(`🚀 Generating JSON for Node: ${nodeId}`);
   const system = getSystemContext();
 
-  const strategistPrompt = loadPrompt("node-strategist");
-  const nodeBlueprintRaw = await callLLM(`
-### INPUTS
-Business: ${businessDescription}
-Node ID: ${nodeId}
-Design Vibe: ${designBrief}
-### TASK: NODE STRATEGY
-${strategistPrompt}
-  `, "You are a senior content strategist.");
+  // 1. CLASSIFY INTENT
+  const schemaCategory = await classify_intent(designBrief);
+  console.log(`🎯 Chosen Schema: ${schemaCategory}`);
 
-  let finalBlueprint = nodeBlueprintRaw;
-  if (useImageGen) {
-    const imagePrompt = loadPrompt("image-inserter");
-    finalBlueprint = await callLLM(`
-### INPUTS
-Text Blueprint: ${nodeBlueprintRaw}
-Available Assets: ["hero-plumber.webp", "salon-interior.jpg"]
-### TASK: IMAGE INSERTION
-${imagePrompt}
-    `, "You are a visual editor.");
-  }
+  // 2. STAGE 1: NODE STRATEGY
+  console.log("✍️  Stage 1: Node Strategist...");
+  const strategistPrompt = loadPrompt("node-strategist")
+    .replace("{{BUSINESS}}", businessDescription)
+    .replace("{{PATH}}", pagePath)
+    .replace("{{GOAL}}", designBrief);
 
-  // SURGICAL EXTRACTION: Get all Section schemas + Block schema
-  const schema = getSchemaSection([
-    "HERO", "SERVICES", "CONTACT", "CONTENT", "TESTIMONIALS", "BLOCKS"
-  ]);
+  const nodeBlueprintRaw = await callLLM(strategistPrompt, `You are a content strategist. You have decided to use the ${schemaCategory} component.`);
+
+  // 3. STAGE 2: ASSEMBLY (With Surgical Schema)
+  console.log("🛠️  Stage 2: Node Assembler...");
+  
+  // SURGICAL: Only get the ONE schema we need!
+  const surgicalSchema = getSchemaSection([schemaCategory]);
 
   const assemblerPrompt = loadPrompt("node-assembler")
-    .replace("{{SCHEMA}}", schema)
+    .replace("{{PATH}}", pagePath)
+    .replace("{{NODE_ID}}", nodeId)
+    .replace("{{SCHEMA}}", surgicalSchema)
     .replace("{{ICON_MAP}}", system.iconMap);
 
   const nodeJsonRaw = await callLLM(`
 ### INPUTS
-Target Path: ${pagePath}
-Design Brief: ${designBrief}
-Node Blueprint: ${finalBlueprint}
-Target Node ID: ${nodeId}
+Node Blueprint: ${nodeBlueprintRaw}
+
 ### TASK: NODE ASSEMBLY
 ${assemblerPrompt}
   `, "You are a senior developer.");

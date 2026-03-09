@@ -11,17 +11,24 @@ export async function generate_sitemap(description: string): Promise<string[]> {
   console.log("🗺️  Stage 1: Generating Sitemap...");
   const architectPrompt = loadPrompt("site-architect");
 
-  const response = await callLLM(`
+  const response = await callLLM(
+    `
 ### BUSINESS DESCRIPTION
 ${description}
 
 ### TASK: SITE ARCHITECT
 ${architectPrompt}
-  `, "You are a senior digital strategist. Output ONLY a JSON array of strings.");
+  `,
+    "You are a senior digital strategist. Output ONLY a JSON array of strings.",
+  );
 
   try {
     const rawJson = response.replace(/```json|```/g, "").trim();
-    return JSON.parse(rawJson);
+    // More robust extraction: find the first '[' and last ']'
+    const start = rawJson.indexOf("[");
+    const end = rawJson.lastIndexOf("]") + 1;
+    if (start === -1 || end === 0) throw new Error("No JSON array found");
+    return JSON.parse(rawJson.slice(start, end));
   } catch (error) {
     console.error("❌ Failed to parse Sitemap JSON:", error);
     return ["/", "/about", "/services", "/contact"]; // Safe fallback

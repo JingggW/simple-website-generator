@@ -7,6 +7,9 @@ import { ContentSimple } from "@/components/sections/content";
 import { ContactSimple } from "@/components/sections/contact";
 import { TestimonialsGrid } from "@/components/sections/testimonials";
 import { BlockSection } from "@/components/sections/blocks";
+import { PricingList } from "@/components/sections/pricing";
+import { RequestForm } from "@/components/sections/form";
+import { MapEmbedded } from "@/components/sections/map";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   hero: {
@@ -15,7 +18,18 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   },
   services: {
     grid: ServicesGrid,
-    list: ServicesGrid, // Reuse grid for list temporarily, should implement ServicesList separately
+    list: ServicesGrid,
+  },
+  pricing: {
+    simple: PricingList,
+    detailed: PricingList,
+  },
+  form: {
+    contact: RequestForm,
+    request: RequestForm,
+  },
+  map: {
+    embedded: MapEmbedded,
   },
   content: {
     simple: ContentSimple,
@@ -33,20 +47,19 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   },
 };
 
-export const SectionRenderer = ({ section }: { section: AnySection }) => {
+export const SectionRenderer = ({ section, sectionId }: { section: AnySection, sectionId: string }) => {
   const group = sectionComponents[section.type];
 
-  if (!group) {
-    return null;
-  }
+  if (!group) return null;
 
   const variantName = section.variant;
-  const Component =
-    group[variantName] || group["simple"] || Object.values(group)[0];
+  const Component = group[variantName] || group["simple"] || Object.values(group)[0];
 
-  if (!Component) {
-    return null;
-  }
+  if (!Component) return null;
 
-  return <Component {...section.props} />;
+  return (
+    <div id={sectionId}>
+      <Component {...section.props} />
+    </div>
+  );
 };
