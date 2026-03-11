@@ -38,7 +38,9 @@ export async function generate_single_page(
   targetPath: string = "/",
   useImageGen: boolean = false,
   currentSitemap: string[] = [],
-  providedDesignBrief?: string // NEW: Optional provided design brief
+  providedDesignBrief?: string,
+  pagePlan?: { type: string; goal: string }[],
+  existingPages: Record<string, any> = {} // NEW: Pass existing pages directly
 ) {
   console.log(`🚀 Generating Page: ${targetPath}`);
   
@@ -50,18 +52,17 @@ export async function generate_single_page(
      * STAGE 1: CONTENT WRITING
      */
     console.log("✍️  Stage 1: Writing Raw Copy...");
+    
+    const generatedMap = Object.entries(existingPages)
+      .map(([p, data]: [string, any]) => `${p}: [${(data.sectionOrder || []).join(", ")}]`)
+      .join("\n");
+
     const contentPrompt = loadPrompt("content-strategist")
       .replace("{{BUSINESS}}", businessName)
       .replace("{{PATH}}", targetPath)
-      .replace("{{STRUCTURE}}", `
-Current Sitemap: ${currentSitemap.join(", ")}
-Full Layout Map: ${system.structure}
-Navigation Config:
-${system.navigation}
-
-AVAILABLE LAYOUTS:
-${layoutsMenu}
-`);
+      .replace("{{SITEMAP}}", currentSitemap.join(", "))
+      .replace("{{GENERATED_MAP}}", generatedMap || "None yet.")
+      .replace("{{PAGE_PLAN}}", pagePlan ? JSON.stringify(pagePlan, null, 2) : "Decide the plan yourself based on the business.");
 
     const rawCopy = await callLLM(contentPrompt, "You are a brand storyteller.");
     console.log(`\n--- RAW COPY FOR ${targetPath} ---\n${rawCopy}\n--- END COPY ---\n`);

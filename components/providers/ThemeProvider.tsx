@@ -18,11 +18,17 @@ export const ThemeProvider = ({
     const primaryRgb = hexToRgb(theme.colors.primary);
     const secondaryRgb = hexToRgb(theme.colors.secondary);
     const backgroundRgb = hexToRgb(theme.colors.background);
+    const surfaceRgb = hexToRgb(theme.colors.surface || "#F9FAFB");
+    const mutedRgb = hexToRgb(theme.colors.muted || "#F3F4F6");
+    const accentRgb = hexToRgb(theme.colors.accent || "#F59E0B");
     const textRgb = hexToRgb(theme.colors.text);
 
     root.style.setProperty("--primary", primaryRgb);
     root.style.setProperty("--secondary", secondaryRgb);
     root.style.setProperty("--background", backgroundRgb);
+    root.style.setProperty("--surface", surfaceRgb);
+    root.style.setProperty("--muted", mutedRgb);
+    root.style.setProperty("--accent", accentRgb);
     root.style.setProperty("--text", textRgb);
 
     root.style.setProperty("--font-body", fontMap[theme.fontStyle]);

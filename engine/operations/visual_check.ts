@@ -1,19 +1,24 @@
 import { WebsiteConfig } from "../../lib/schema";
+import { getContrastRatio } from "../../lib/theme-utils";
 
 /**
  * VISUAL CHECKER
- * 
- * Audits the site for CSS overrides and visual inconsistencies.
  */
 
 export interface VisualReport {
-  themeOverrides: string[]; // Sections using hardcoded colors instead of theme vars
+  themeOverrides: string[];
   contrastWarnings: string[];
 }
 
 export function run_visual_check(config: WebsiteConfig): VisualReport {
   const overrides: string[] = [];
-  const contrast: string[] = [];
+  const contrastWarnings: string[] = [];
+
+  // 1. Global Theme Check
+  const ratio = getContrastRatio(config.theme.colors.text, config.theme.colors.background);
+  if (ratio < 4.5) {
+    contrastWarnings.push(`Global: Contrast ratio between text (${config.theme.colors.text}) and background (${config.theme.colors.background}) is only ${ratio.toFixed(2)}:1. (Minimum recommended is 4.5:1)`);
+  }
 
   for (const [path, page] of Object.entries(config.pages)) {
     for (const [id, section] of Object.entries(page.sections)) {
@@ -36,6 +41,6 @@ export function run_visual_check(config: WebsiteConfig): VisualReport {
 
   return {
     themeOverrides: overrides,
-    contrastWarnings: contrast
+    contrastWarnings: contrastWarnings
   };
 }

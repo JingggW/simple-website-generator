@@ -14,7 +14,10 @@ A raw business description (e.g., "A high-end Italian restaurant in Brooklyn").
 2. **Color Palette**: 
    - `primary`: The main brand color (Hex).
    - `secondary`: The accent color (Hex).
-   - `background`: The page color (Hex).
+   - `background`: The main page color (Hex).
+   - `surface`: A slightly off-background color for cards or offset sections (Hex).
+   - `muted`: A very subtle color for secondary backgrounds (Hex).
+   - `accent`: A high-contrast highlight color for small elements like pills or icons (Hex).
    - `text`: The main text color (Hex).
 3. **Typography**: Choose one (`sans`, `serif`, `mono`).
 4. **Border Radius**: Choose one (`none`, `sm`, `md`, `full`).

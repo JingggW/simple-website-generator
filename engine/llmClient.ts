@@ -5,7 +5,8 @@
 import "dotenv/config";
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
-const MODEL = "qwen/qwen3-coder:free";
+const FREE_MODEL = "openrouter/free";
+const MODEL = "deepseek/deepseek-v3.2";
 
 export async function callLLM(prompt: string, systemPrompt?: string) {
   if (!OPENROUTER_API_KEY) {
@@ -21,7 +22,7 @@ export async function callLLM(prompt: string, systemPrompt?: string) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "stepfun/step-3.5-flash:free",
+        model: FREE_MODEL,
         messages: [
           ...(systemPrompt ? [{ role: "system", content: systemPrompt }] : []),
           { role: "user", content: prompt },

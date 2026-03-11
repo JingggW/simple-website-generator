@@ -6,7 +6,7 @@ type ServicesProps = ServicesSection["props"];
 
 export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
   return (
-    <section className="py-24 bg-background px-4" id="services">
+    <section id="services">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16 max-w-2xl mx-auto">

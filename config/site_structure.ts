@@ -3,50 +3,67 @@ export const siteStructure = {
     "/": [
       "hero",
       "services",
-      "blocks",
       "testimonials",
+      "form",
+      "pricing",
+      "map"
+    ],
+    "/products": [
+      "hero",
+      "blocks1",
+      "services",
+      "blocks2"
+    ],
+    "/about": [
+      "hero",
+      "meetChristine",
+      "qualityCommitment",
       "form"
     ],
     "/contact": [
-      "hero",
-      "services",
-      "map",
-      "preservation",
-      "booking"
+      "Hero",
+      "Form",
+      "Map",
+      "Contact"
     ],
-    "/services": [
+    "/pricing": [
+      "Hero",
+      "Services",
+      "Testimonials",
+      "Form",
+      "Map",
+      "Contact",
+      "Content",
+      "TestimonialsSection",
+      "BlockSection"
+    ],
+    "/products/blocks2": [
       "hero",
-      "services",
-      "difference",
+      "blocks2",
+      "testimonials",
       "pricing",
+      "map",
       "form"
     ],
-    "/cosplay-costume-cleaning": [
-      "hero-cosplay-intro",
-      "services-cosplay-offerings",
-      "blocks-cosplay-story",
-      "form-cosplay-booking"
-    ],
-    "/gallery": [
+    "/blog": [
       "hero",
-      "services",
-      "gallery",
-      "booking-form"
+      "blocks",
+      "testimonials"
     ]
   },
   "navigation": {
     "header": [
       "/",
-      "/services",
-      "/cosplay-costume-cleaning",
-      "/gallery",
+      "/products",
+      "/about",
+      "/blog",
       "/contact"
     ],
     "footer": [
+      "/products",
+      "/pricing",
+      "/about",
       "/",
-      "/services",
-      "/cosplay-costume-cleaning",
-      "/gallery",
       "/contact"
     ]
   }

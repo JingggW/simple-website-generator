@@ -7,6 +7,9 @@ export const ThemeSchema = z.object({
     primary: z.string().default("#1D4ED8").describe("Main brand color (hex)"),
     secondary: z.string().default("#6B7280").describe("Accent color (hex)"),
     background: z.string().default("#FFFFFF"),
+    surface: z.string().default("#F9FAFB").describe("Slightly off-background color for cards/sections"),
+    muted: z.string().default("#F3F4F6").describe("Very subtle color for backgrounds"),
+    accent: z.string().default("#F59E0B").describe("Highlight color for small elements"),
     text: z.string().default("#111827"),
   }),
   fontStyle: z.enum(["sans", "serif", "mono"]).default("sans"),
@@ -14,15 +17,22 @@ export const ThemeSchema = z.object({
 });
 // --- END THEME ---
 
+// Common props for all sections
+const BaseSectionSchema = z.object({
+  background: z.enum(["default", "muted", "surface", "primary", "secondary"]).default("default"),
+  animation: z.enum(["none", "fade", "slide-up", "zoom-in"]).default("slide-up"),
+  width: z.enum(["prose", "default", "wide", "full"]).default("default"),
+});
+
 // --- START HERO ---
 export const HeroSchema = z.object({
   type: z.literal("hero"),
   variant: z.enum(["simple", "split"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     headline: z.string(),
     subheadline: z.string().optional(),
     ctaText: z.string().default("Get Started"),
-    ctaLink: z.string().optional(),
+    ctaLink: z.string().optional().describe("Internal path or anchor"),
     imageName: z.string().optional(),
   }),
 });
@@ -32,7 +42,7 @@ export const HeroSchema = z.object({
 export const ServicesSchema = z.object({
   type: z.literal("services"),
   variant: z.enum(["grid", "list"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
     items: z.array(
@@ -50,7 +60,7 @@ export const ServicesSchema = z.object({
 export const PricingSchema = z.object({
   type: z.literal("pricing"),
   variant: z.enum(["simple", "detailed"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
     categories: z.array(z.object({
@@ -69,7 +79,7 @@ export const PricingSchema = z.object({
 export const FormSchema = z.object({
   type: z.literal("form"),
   variant: z.enum(["contact", "request"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
     fields: z.array(z.object({
@@ -88,7 +98,7 @@ export const FormSchema = z.object({
 export const MapSchema = z.object({
   type: z.literal("map"),
   variant: z.enum(["embedded"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string().optional(),
     address: z.string(),
     zoom: z.number().default(14),
@@ -100,7 +110,7 @@ export const MapSchema = z.object({
 export const ContactSchema = z.object({
   type: z.literal("contact"),
   variant: z.enum(["simple"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
     email: z.string().email().optional(),
@@ -114,7 +124,7 @@ export const ContactSchema = z.object({
 export const ContentSchema = z.object({
   type: z.literal("content"),
   variant: z.enum(["simple"]),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string(),
     body: z.string(),
   }),
@@ -125,7 +135,7 @@ export const ContentSchema = z.object({
 export const LinkSchema = z.object({
   type: z.literal("link"),
   label: z.string(),
-  href: z.string().default("#"),
+  href: z.string().optional().describe("Internal path or anchor"),
 });
 
 export const DropdownSchema = z.object({
@@ -179,7 +189,7 @@ export const TestimonialSchema = z.object({
 export const TestimonialsSectionSchema = z.object({
   type: z.literal("testimonials"),
   variant: z.enum(["carousel", "grid"]).default("grid"),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     title: z.string().default("What Our Clients Say"),
     subtitles: z.string().optional(),
     items: z.array(TestimonialSchema),
@@ -194,24 +204,28 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     text: z.string(),
     level: z.enum(["h1", "h2", "h3"]).default("h2"),
     align: z.enum(["left", "center", "right"]).default("left"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
   z.object({
     type: z.literal("text"),
     content: z.string(),
     align: z.enum(["left", "center", "right"]).default("left"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
   z.object({
     type: z.literal("image"),
     src: z.string(),
     alt: z.string().optional(),
     caption: z.string().optional(),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
   z.object({
     type: z.literal("button"),
     label: z.string(),
-    href: z.string(),
+    href: z.string().optional().describe("Internal path or anchor"),
     variant: z.enum(["primary", "secondary", "outline"]).default("primary"),
     align: z.enum(["left", "center", "right"]).default("left"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
 ]);
 
@@ -236,7 +250,7 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() => z.union([
 export const BlockSectionSchema = z.object({
   type: z.literal("blocks"),
   variant: z.enum(["prose", "wide", "full"]).default("prose"),
-  props: z.object({
+  props: BaseSectionSchema.extend({
     blocks: z.array(BlockSchema),
   }),
 });

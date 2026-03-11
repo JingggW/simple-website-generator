@@ -22,6 +22,7 @@ Convert a single node's content blueprint into a strictly valid, schema-complian
 - **`pricing`**: Must follow the categories -> items structure exactly.
 - **`form`**: Must follow the fields structure.
 - **`services`**: Must use valid icons from the Icon Map.
+- **`blocks`**: Use the `spacing` property (`sm`, `md`, `lg`) on individual blocks to create visual breathing room. Large gaps between headings and text are encouraged for a modern look.
 
 ## Icon Mapping
 {{ICON_MAP}}

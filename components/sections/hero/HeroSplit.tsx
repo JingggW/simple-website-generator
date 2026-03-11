@@ -12,7 +12,7 @@ export const HeroSplit = ({
   imageName,
 }: HeroSplitProps) => {
   return (
-    <section className="py-16 md:py-24 bg-background">
+    <section>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-12">
           {/* Text Column */}
