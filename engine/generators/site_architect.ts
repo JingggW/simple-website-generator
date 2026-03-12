@@ -19,19 +19,23 @@ export interface SiteBlueprint {
 
 export async function generate_full_site_blueprint(
   description: string,
-  instruction: string = "" // NEW: Optional specific instruction
+  instruction: string = "", // NEW: Optional specific instruction
 ): Promise<SiteBlueprint> {
   console.log("📐 Stage 1: Drafting Structural Blueprint...");
 
   // 1. Get Structure (Sitemap & Page Plans)
   const architectPrompt = loadPrompt("site-architect")
     .replace("{{BUSINESS}}", description)
-    .replace("{{INSTRUCTION}}", instruction || "Create a comprehensive website structure.");
+    .replace(
+      "{{INSTRUCTION}}",
+      instruction || "Create a comprehensive website structure.",
+    );
 
   const structResponse = await callLLM(
     architectPrompt,
     "You are a senior digital architect. Output ONLY the valid JSON structure.",
   );
+
   const structure = JSON.parse(
     structResponse.replace(/```json|```/g, "").trim(),
   );

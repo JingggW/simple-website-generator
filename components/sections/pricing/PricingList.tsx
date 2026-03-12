@@ -5,7 +5,7 @@ type PricingProps = PricingSection["props"];
 
 export const PricingList = ({ title, description, categories }: PricingProps) => {
   return (
-    <section className="py-24 bg-background">
+    <section>
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl font-black text-foreground mb-4">{title}</h2>

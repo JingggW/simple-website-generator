@@ -3,7 +3,10 @@ import path from "path";
 import "dotenv/config";
 
 // Generators
-import { generate_full_site_blueprint } from "./generators/site_architect";
+import {
+  generate_full_site_blueprint,
+  SiteBlueprint,
+} from "./generators/site_architect";
 import { generate_single_page } from "./generators/page_generator";
 import { generate_node } from "./generators/node_generator";
 import { repair_link } from "./generators/link_repairer";
@@ -25,6 +28,9 @@ import { PageConfig, WebsiteConfig } from "../lib/schema";
  */
 export class PropSiteEngine {
   private config: WebsiteConfig;
+  private currentBusinessName: string = "default"; // Store current business name
+  private sitePlan: Record<string, { type: string; goal: string }[]> = {};
+  private currentBlueprint: SiteBlueprint | null = null;
   private jsonPath = path.join(process.cwd(), "config/site.json");
   private tsPath = path.join(process.cwd(), "config/site.ts");
   private structurePath = path.join(process.cwd(), "config/site_structure.ts");
@@ -161,7 +167,8 @@ export class PropSiteEngine {
     });
   }
 
-  private persist(businessName: string = "default") {
+  private persist(businessName?: string) {
+    const targetName = businessName || this.currentBusinessName;
     const jsonContent = JSON.stringify(this.config, null, 2);
     fs.writeFileSync(this.jsonPath, jsonContent);
     fs.writeFileSync(
@@ -192,13 +199,33 @@ export class PropSiteEngine {
         .toLowerCase()
         .replace(/[^a-z0-9]/g, "-")
         .replace(/-+/g, "-");
-    const dir = path.join(process.cwd(), "generated", sanitize(businessName));
+    const dir = path.join(process.cwd(), "generated", sanitize(targetName));
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
 
     fs.writeFileSync(path.join(dir, "site_full.json"), jsonContent);
     fs.writeFileSync(
       path.join(dir, "failures.json"),
       JSON.stringify(this.failures, null, 2),
+    );
+
+    // Save the full blueprint as site_plan.json
+    if (this.currentBlueprint) {
+      fs.writeFileSync(
+        path.join(dir, "site_plan.json"),
+        JSON.stringify(this.currentBlueprint, null, 2),
+      );
+    }
+
+    // Explicitly save sitemap
+    fs.writeFileSync(
+      path.join(dir, "sitemap.json"),
+      JSON.stringify(Object.keys(this.config.pages), null, 2),
+    );
+
+    // Save the original blueprint plan (sections)
+    fs.writeFileSync(
+      path.join(dir, "blueprint.json"),
+      JSON.stringify(this.sitePlan, null, 2),
     );
 
     for (const [pagePath, pageData] of Object.entries(this.config.pages)) {
@@ -211,12 +238,23 @@ export class PropSiteEngine {
     }
   }
 
-  async generateFullWebsite(businessName: string, description: string, instruction: string = "") {
+  async generateFullWebsite(
+    businessName: string,
+    description: string,
+    instruction: string = "",
+  ) {
     console.log(`\n🏗️  CONSTRUCTING SITE: ${businessName}`);
+    this.currentBusinessName = businessName;
     this.failures = [];
 
     // 1. Blueprint Phase (Master Planning)
-    const blueprint = await generate_full_site_blueprint(description, instruction);
+    const blueprint = await generate_full_site_blueprint(
+      description,
+      instruction,
+    );
+    this.currentBlueprint = blueprint;
+    this.sitePlan = blueprint.sitePlan;
+
     this.config.theme = blueprint.theme;
     this.config.header = blueprint.header;
     this.config.footer = blueprint.footer;
@@ -239,7 +277,7 @@ ${uiPrompt}
       "You are a senior UI/UX designer. Define the global visual style guide.",
     );
 
-    this.persist(businessName);
+    this.persist();
 
     // 2. Production Phase (Building Pages based on Blueprint)
     for (const pagePath of blueprint.sitemap) {
@@ -256,7 +294,7 @@ ${uiPrompt}
         );
       } catch (e: any) {
         this.recordFailure(pagePath, e);
-        this.persist(businessName);
+        this.persist();
       }
     }
 
@@ -351,9 +389,15 @@ ${uiPrompt}
     if (visual.themeOverrides.length > 0)
       console.warn(`🎨 Visual Overrides: ${visual.themeOverrides.length}`);
     if (visual.contrastWarnings.length > 0)
-      console.warn(`♿ A11y Contrast Warnings: ${visual.contrastWarnings.join(", ")}`);
+      console.warn(
+        `♿ A11y Contrast Warnings: ${visual.contrastWarnings.join(", ")}`,
+      );
 
-    if (integrity.isValid && visual.themeOverrides.length === 0 && visual.contrastWarnings.length === 0)
+    if (
+      integrity.isValid &&
+      visual.themeOverrides.length === 0 &&
+      visual.contrastWarnings.length === 0
+    )
       console.log("✅ Audit Passed.");
   }
 }

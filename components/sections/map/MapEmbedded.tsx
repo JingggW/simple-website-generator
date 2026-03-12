@@ -11,7 +11,7 @@ export const MapEmbedded = ({ title, address, zoom = 14 }: MapProps) => {
   const fallbackUrl = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=${zoom}&ie=UTF8&iwloc=&output=embed`;
 
   return (
-    <section className="py-24 bg-background">
+    <section>
       <div className="max-w-6xl mx-auto px-6">
         {title && (
           <div className="text-center mb-12">

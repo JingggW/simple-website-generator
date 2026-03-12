@@ -12,7 +12,7 @@ export const ContactSimple = ({
   address,
 }: ContactProps) => {
   return (
-    <section className="py-24 bg-background text-foreground" id="contact">
+    <section id="contact">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* LEFT COLUMN: Contact Info */}

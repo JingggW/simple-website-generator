@@ -5,7 +5,7 @@ type FormProps = FormSection["props"];
 
 export const RequestForm = ({ title, description, fields, submitLabel }: FormProps) => {
   return (
-    <section className="py-24 bg-background">
+    <section>
       <div className="max-w-3xl mx-auto px-6">
         <div className="bg-foreground/[0.02] border border-foreground/5 rounded-[2.5rem] p-8 md:p-16 shadow-sm">
           <div className="mb-12">

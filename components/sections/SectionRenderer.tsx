@@ -109,7 +109,11 @@ export const SectionRenderer = ({
   const containerClass = widthClasses[section.props.width || "default"];
 
   return (
-    <motion.div id={sectionId} className={bgClass} {...animationProps}>
+    <motion.div 
+      id={sectionId} 
+      className={`${bgClass} py-16 md:py-24`} 
+      {...animationProps}
+    >
       <div className={containerClass}>
         <Component {...section.props} />
       </div>

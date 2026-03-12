@@ -2,69 +2,37 @@ export const siteStructure = {
   "pages": {
     "/": [
       "hero",
-      "services",
       "testimonials",
-      "form",
-      "pricing",
-      "map"
+      "blocks"
     ],
     "/products": [
-      "hero",
-      "blocks1",
-      "services",
-      "blocks2"
+      "hero_1",
+      "blocks_1"
     ],
     "/about": [
+      "hero_section",
+      "artisanal_journey",
+      "christine_difference",
+      "sustainable_luxury",
+      "experience_difference"
+    ],
+    "/services": [
       "hero",
-      "meetChristine",
-      "qualityCommitment",
-      "form"
-    ],
-    "/contact": [
-      "Hero",
-      "Form",
-      "Map",
-      "Contact"
-    ],
-    "/pricing": [
-      "Hero",
-      "Services",
-      "Testimonials",
-      "Form",
-      "Map",
-      "Contact",
-      "Content",
-      "TestimonialsSection",
-      "BlockSection"
-    ],
-    "/products/blocks2": [
-      "hero",
-      "blocks2",
-      "testimonials",
       "pricing",
-      "map",
-      "form"
-    ],
-    "/blog": [
-      "hero",
-      "blocks",
-      "testimonials"
+      "blocks"
     ]
   },
   "navigation": {
     "header": [
-      "/",
       "/products",
+      null,
       "/about",
-      "/blog",
       "/contact"
     ],
     "footer": [
-      "/products",
-      "/pricing",
       "/about",
-      "/",
-      "/contact"
+      "/contact",
+      "/services"
     ]
   }
 };

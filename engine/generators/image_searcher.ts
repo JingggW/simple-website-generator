@@ -1,17 +1,28 @@
 /**
  * UTILITY: Generate a placeholder image URL using LoremFlickr (Reliable for <img> tags)
- * Format: https://loremflickr.com/1600/900/keyword1,keyword2/all
  */
 export function get_placeholder_url(query: string, width: number = 1600, height: number = 900): string {
+  const stopWords = new Set([
+    "a", "an", "the", "and", "or", "but", "is", "if", "then", "else", "when", 
+    "at", "from", "by", "for", "with", "in", "out", "on", "off", "over", "under",
+    "your", "yours", "my", "mine", "our", "ours", "their", "theirs", "his", "her", "hers",
+    "it", "its", "me", "you", "us", "them", "him", "she", "every", "moment", "elegant",
+    "perfect", "discover", "explore", "best", "top", "premium", "bespoke", "custom",
+    "experience", "elevate", "modern", "traditional", "artisanal"
+  ]);
+
   const sanitized = query
     .toLowerCase()
-    .replace(/[^a-z0-9]/g, ",") // Replace special chars with commas
-    .split(",")
-    .filter(Boolean)
-    .slice(0, 2) // Limit to 2 keywords for better relevance
+    .replace(/[^a-z0-9]/g, " ") // Use spaces for better splitting
+    .split(/\s+/)
+    .filter(word => word.length > 2 && !stopWords.has(word)) // Filter stop words and short words
+    .slice(0, 2) // Limit to 2 high-quality keywords
     .join(",");
     
-  return `https://loremflickr.com/${width}/${height}/${sanitized}/all`;
+  // Fallback if all words were filtered out
+  const finalQuery = sanitized || "business";
+    
+  return `https://loremflickr.com/${width}/${height}/${finalQuery}`;
 }
 
 /**
