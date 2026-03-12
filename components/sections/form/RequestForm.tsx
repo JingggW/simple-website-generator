@@ -48,7 +48,7 @@ export const RequestForm = ({ title, description, fields, submitLabel }: FormPro
 
             <button
               type="submit"
-              className="w-full bg-primary text-background font-black text-xl py-5 rounded-2xl shadow-xl shadow-primary/20 hover:-translate-y-1 transition-all duration-300 mt-4"
+              className="w-full bg-primary text-on-primary font-black text-xl py-5 rounded-2xl shadow-xl shadow-primary/20 hover:-translate-y-1 transition-all duration-300 mt-4"
             >
               {submitLabel}
             </button>

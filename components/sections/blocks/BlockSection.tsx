@@ -3,16 +3,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlockSection as BlockSectionType, Block } from "@/lib/schema";
 
-export const BlockSection = ({
-  blocks,
-}: BlockSectionType["props"]) => {
+export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
   // RECURSIVE BLOCK RENDERER
   const RenderBlock = ({ block }: { block: Block }) => {
     const spacingClasses = {
       none: "my-0",
-      sm: "my-4",
-      md: "my-8",
-      lg: "my-16",
+      sm: "my-3",
+      md: "my-6",
+      lg: "my-10",
     };
     const spacing = (block as any).spacing || "md";
     const marginClass = spacingClasses[spacing as keyof typeof spacingClasses];
@@ -83,7 +81,7 @@ export const BlockSection = ({
       case "image":
         return (
           <figure className={`group ${marginClass}`}>
-            <div className="relative aspect-[16/9] rounded-3xl overflow-hidden shadow-2xl border-8 border-secondary/5">
+            <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border-8 border-secondary/5">
               <Image
                 src={
                   block.src.startsWith("http")
@@ -134,7 +132,7 @@ export const BlockSection = ({
   };
 
   return (
-    <div className="space-y-12">
+    <div className="flex flex-col">
       {blocks.map((block, index) => (
         <RenderBlock key={index} block={block} />
       ))}

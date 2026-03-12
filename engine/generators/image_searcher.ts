@@ -8,7 +8,8 @@ export function get_placeholder_url(query: string, width: number = 1600, height:
     "your", "yours", "my", "mine", "our", "ours", "their", "theirs", "his", "her", "hers",
     "it", "its", "me", "you", "us", "them", "him", "she", "every", "moment", "elegant",
     "perfect", "discover", "explore", "best", "top", "premium", "bespoke", "custom",
-    "experience", "elevate", "modern", "traditional", "artisanal"
+    "experience", "elevate", "modern", "traditional", "artisanal",
+    "image", "images", "placeholder", "assets", "public", "jpg", "jpeg", "png", "webp", "gif", "svg"
   ]);
 
   const sanitized = query

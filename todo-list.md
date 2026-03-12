@@ -5,8 +5,8 @@
 - [x] **Link Integrity**: Recursive scanning for nav and CTA buttons (Completed).
 - [x] **Self-Healing**: 3-retry loop with specific Zod error feedback (Completed).
 - [x] **Global UI/UX Design**: Refactor to design visual brief ONCE per site (Completed).
-- [ ] **HTML Injection Guard**: Programmatic stripping of `<form>` and other tags (Implementing).
-- [ ] **Programmatic Section Repair**: Convert block-hallucinations (like text-based price lists) into real components.
+- [x] **HTML Injection Guard**: Programmatic stripping of `<form>` and other tags (Completed).
+- [x] **Programmatic Section Repair**: Convert block-hallucinations (like text-based price lists) into real components (Completed).
 
 ## 🛠️ Core Engine Features
 - [x] **Site Architect**: Structural Blueprinting (Sitemap + Page Plans) (Completed).

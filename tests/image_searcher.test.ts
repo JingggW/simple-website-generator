@@ -38,4 +38,11 @@ describe("Image Searcher Utility", () => {
     const url = auto_fill_placeholders(props);
     expect(url).toContain("bra,styles");
   });
+
+  it("should filter out path-like words from src", () => {
+    const props = { src: "/images/core-collection.jpg" };
+    const url = auto_fill_placeholders(props);
+    // 'images' and 'jpg' should be filtered out. 'core' and 'collection' remain.
+    expect(url).toContain("core,collection");
+  });
 });

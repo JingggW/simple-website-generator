@@ -20,29 +20,41 @@ export async function repair_link(
     .replace("{{LOCATION}}", brokenLink.location)
     .replace("{{STRUCTURE}}", structureContext);
 
-  const response = await callLLM(
-    prompt,
-    "You are a link repair specialist. Output ONLY the corrected href string.",
-  );
+  let cleaned = "#";
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      const response = await callLLM(
+        prompt,
+        "You are a link repair specialist. Output ONLY the corrected href string.",
+      );
 
-  const cleaned = response.trim().replace(/['"`]/g, ""); // Remove quotes if any
+      cleaned = response.trim().replace(/['"`]/g, ""); // Remove quotes if any
 
-  // Validate it's a path, anchor, or protocol
-  const isValid =
-    cleaned.startsWith("/") ||
-    cleaned.startsWith("#") ||
-    cleaned.startsWith("mailto:") ||
-    cleaned.startsWith("tel:") ||
-    cleaned.startsWith("http");
+      // Validate it's a path, anchor, or protocol
+      const isValid =
+        cleaned.startsWith("/") ||
+        cleaned.startsWith("#") ||
+        cleaned.startsWith("mailto:") ||
+        cleaned.startsWith("tel:") ||
+        cleaned.startsWith("http");
 
-  if (!isValid) {
-    console.warn(
-      `⚠️ LLM suggested invalid link: "${cleaned}". Falling back to "#".`,
-    );
-    return "#";
+      if (isValid) {
+        console.log(
+          `🔗 Repaired Link: "${brokenLink.currentHref}" -> "${cleaned}" (Attempt ${attempt + 1})`,
+        );
+        return cleaned;
+      }
+
+      console.warn(
+        `⚠️ LLM suggested invalid link (Attempt ${attempt + 1}): "${cleaned}". Retrying...`,
+      );
+    } catch (error) {
+      console.error(`❌ Link repair attempt ${attempt + 1} failed:`, error);
+    }
   }
 
-  console.log(`🔗 Repaired Link: "${brokenLink.currentHref}" -> "${cleaned}"`);
-
-  return cleaned;
+  console.error(
+    `❌ Failed to repair link after multiple attempts: "${brokenLink.label}"`,
+  );
+  return "#";
 }

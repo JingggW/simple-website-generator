@@ -15,7 +15,7 @@ export const PricingList = ({ title, description, categories }: PricingProps) =>
         <div className="grid gap-12">
           {categories.map((category, idx) => (
             <div key={idx} className="bg-secondary/5 rounded-3xl p-8 md:p-12">
-              <h3 className="text-2xl font-bold text-primary mb-8 border-b border-primary/10 pb-4">
+              <h3 className="text-2xl font-bold text-on-primary bg-primary rounded-xl px-4 py-2 inline-block mb-8 border-b border-primary/10 pb-4">
                 {category.name}
               </h3>
               <div className="grid gap-6">

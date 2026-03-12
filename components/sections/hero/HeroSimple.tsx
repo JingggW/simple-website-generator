@@ -17,10 +17,10 @@ export const HeroSimple = ({
           <p className="text-xl md:text-2xl mb-8 opacity-90">{subheadline}</p>
         )}
 
-        {ctaLink && (
+        {ctaText && (
           <Link
-            href={ctaLink}
-            className="bg-accent text-foreground font-semibold px-6 py-3 rounded-md hover:opacity-90 transition"
+            href={ctaLink || "#"}
+            className="bg-accent text-on-accent font-semibold px-6 py-3 rounded-md hover:opacity-90 transition inline-block"
           >
             {ctaText}
           </Link>

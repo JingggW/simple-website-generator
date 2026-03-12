@@ -9,6 +9,10 @@
   --color-accent: rgb(var(--accent));
   --color-foreground: rgb(var(--text));
 
+  --color-on-primary: rgb(var(--on-primary));
+  --color-on-secondary: rgb(var(--on-secondary));
+  --color-on-accent: rgb(var(--on-accent));
+
   --font-sans: var(--font-body);
 
   --radius-sm: var(--radius);

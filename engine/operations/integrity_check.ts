@@ -65,6 +65,7 @@ export function run_integrity_check(config: WebsiteConfig): IntegrityReport {
   // 3. Scan ALL pages for CTA buttons
   const scanBlocks = (blocks: any[], location: string) => {
     if (!blocks) return;
+
     blocks.forEach((b: any) => {
       if (b.type === "button") {
         validateLink(b.href, b.label, location);
@@ -80,6 +81,7 @@ export function run_integrity_check(config: WebsiteConfig): IntegrityReport {
       const props: any = section.props;
       const loc = `${path}:::${sectionId}`;
       if (props.ctaLink !== undefined || props.ctaText) validateLink(props.ctaLink, props.ctaText || "CTA", loc);
+      
       if (props.blocks) {
         scanBlocks(props.blocks, loc);
       }

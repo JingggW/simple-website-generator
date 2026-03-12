@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { WebsiteConfig } from "@/lib/schema";
-import { fontMap, hexToRgb } from "@/lib/theme-utils";
+import { fontMap, hexToRgb, getLuminance } from "@/lib/theme-utils";
 import { radiusMap } from "@/lib/theme-utils";
 
 export const ThemeProvider = ({
@@ -30,6 +30,16 @@ export const ThemeProvider = ({
     root.style.setProperty("--muted", mutedRgb);
     root.style.setProperty("--accent", accentRgb);
     root.style.setProperty("--text", textRgb);
+
+    // Calculate high-contrast text colors for brand backgrounds
+    const getOnColor = (bgHex: string) => {
+      const luminance = getLuminance(bgHex);
+      return luminance > 0.5 ? "0 0 0" : "255 255 255";
+    };
+
+    root.style.setProperty("--on-primary", getOnColor(theme.colors.primary));
+    root.style.setProperty("--on-secondary", getOnColor(theme.colors.secondary));
+    root.style.setProperty("--on-accent", getOnColor(theme.colors.accent));
 
     root.style.setProperty("--font-body", fontMap[theme.fontStyle]);
 

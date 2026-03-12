@@ -3,36 +3,41 @@ export const siteStructure = {
     "/": [
       "hero",
       "testimonials",
-      "blocks"
+      "mission",
+      "values",
+      "quickdry"
     ],
-    "/products": [
-      "hero_1",
-      "blocks_1"
+    "/shop": [
+      "hero_section",
+      "blocks_section"
     ],
     "/about": [
-      "hero_section",
-      "artisanal_journey",
-      "christine_difference",
-      "sustainable_luxury",
-      "experience_difference"
+      "hero",
+      "blocks"
     ],
     "/services": [
+      "Hero",
+      "Services"
+    ],
+    "/contact": [
       "hero",
-      "pricing",
-      "blocks"
+      "map",
+      "form",
+      "services"
     ]
   },
   "navigation": {
     "header": [
-      "/products",
-      null,
+      "/",
+      "/shop",
       "/about",
+      "/services",
       "/contact"
     ],
     "footer": [
+      "/shop",
       "/about",
-      "/contact",
-      "/services"
+      "/contact"
     ]
   }
 };

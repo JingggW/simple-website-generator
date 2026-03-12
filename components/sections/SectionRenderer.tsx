@@ -54,8 +54,8 @@ const backgroundClasses: Record<string, string> = {
   default: "bg-background text-foreground",
   muted: "bg-muted text-foreground",
   surface: "bg-surface text-foreground",
-  primary: "bg-primary text-background",
-  secondary: "bg-secondary text-background",
+  primary: "bg-primary text-on-primary",
+  secondary: "bg-secondary text-on-secondary",
 };
 
 const animations = {
@@ -111,7 +111,7 @@ export const SectionRenderer = ({
   return (
     <motion.div 
       id={sectionId} 
-      className={`${bgClass} py-16 md:py-24`} 
+      className={`${bgClass} py-12 md:py-16`} 
       {...animationProps}
     >
       <div className={containerClass}>

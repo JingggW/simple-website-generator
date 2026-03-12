@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import { HeroSection } from "@/lib/schema";
 
 type HeroSplitProps = HeroSection["props"];
@@ -9,6 +10,7 @@ export const HeroSplit = ({
   headline,
   subheadline,
   ctaText,
+  ctaLink,
   imageName,
 }: HeroSplitProps) => {
   return (
@@ -27,11 +29,15 @@ export const HeroSplit = ({
               </p>
             )}
 
-            <button className="inline-flex items-center px-6 py-3 text-base font-medium text-background bg-primary rounded-lg hover:opacity-90 transition-opacity">
-              {ctaText}
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </button>
-          </div>
+                        {ctaText && (
+                          <Link
+                            href={ctaLink || "#"}
+                            className="inline-flex items-center px-6 py-3 text-base font-medium text-on-primary bg-primary rounded-lg hover:opacity-90 transition-opacity"
+                          >
+                            {ctaText}
+                            <ArrowRight className="ml-2 w-4 h-4" />
+                          </Link>
+                        )}          </div>
 
           <div className="flex-1 w-full">
             {imageName ? (

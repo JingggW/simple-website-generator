@@ -37,12 +37,12 @@ export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
                         {/* 2. Safety Check */}
                         {IconComponent ? (
                           <IconComponent
-                            // Icon Color: text-white -> text-background (for contrast on primary)
-                            className="h-6 w-6 text-background"
+                            // Icon Color: text-white -> text-on-primary (for contrast on primary)
+                            className="h-6 w-6 text-on-primary"
                             aria-hidden="true"
                           />
                         ) : (
-                          <div className="h-6 w-6 bg-background/20" />
+                          <div className="h-6 w-6 bg-on-primary/20" />
                         )}
                       </span>
                     </div>

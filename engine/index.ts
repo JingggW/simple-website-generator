@@ -44,8 +44,12 @@ export class PropSiteEngine {
     console.log("🖼️  Searching for image placeholders...");
     const isPlaceholder = (src: string | undefined) => {
       if (!src || src === "" || src === "#") return true;
-      // If it's a URL or a direct local path (starts with /), it's NOT a placeholder
-      if (src.startsWith("http") || src.startsWith("/")) return false;
+      // If it's a URL, it's NOT a placeholder
+      if (src.startsWith("http")) return false;
+      // If it's a direct local path (starts with /), check if it exists in public/
+      if (src.startsWith("/")) {
+        return !fs.existsSync(path.join(process.cwd(), "public", src));
+      }
       // Everything else (descriptive strings, local filenames without path) is a placeholder to be filled
       return true;
     };
@@ -107,10 +111,11 @@ export class PropSiteEngine {
         const section = this.config.pages[pagePath]?.sections[sectionId];
         if (section) {
           const props: any = section.props;
-          // Fix: Ensure we update ctaLink even if it's currently undefined/empty
+          // Fix: ONLY update ctaLink if the component actually supports it
+          // We check if ctaText exists OR if ctaLink was already there (not just hallucinated by AI)
           if (
             props.ctaText === link.label ||
-            (!props.ctaLink && !props.ctaText)
+            (props.ctaLink !== undefined && props.ctaText)
           ) {
             props.ctaLink = fixedHref;
           }
@@ -405,8 +410,8 @@ ${uiPrompt}
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Christine Customised Bras Co.",
-    "Premium and professionally fit Bra made in house by Christine in Point Cook, Melbourne. Pink and girly, but well-designed.",
+    "Christine Gymwear Co.",
+    "Home gym wear brand specialising in quick-dry, comfort, and breathable fabrics for women. Made in Point Cook, Melbourne",
   );
 }
 
