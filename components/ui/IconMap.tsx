@@ -1,19 +1,19 @@
-import {
-  Wrench,
-  Droplets,
-  Flame,
-  Truck,
-  Phone,
-  HelpCircle,
-} from "lucide-react";
+import React from "react";
+import * as LucideIcons from "lucide-react";
 
-export const IconMap = {
-  Wrench: Wrench,
-  Droplets: Droplets,
-  Flame: Flame,
-  Truck: Truck,
-  Phone: Phone,
-  HelpCircle: HelpCircle,
+interface IconProps {
+  name: string;
+  className?: string;
+}
+
+export const IconMap: React.FC<IconProps> = ({ name, className }) => {
+  // Normalize name to PascalCase (e.g., 'check' -> 'Check')
+  const pascalName = name
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join("");
+
+  const IconComponent = (LucideIcons as any)[pascalName] || LucideIcons.HelpCircle;
+
+  return <IconComponent className={className} />;
 };
-
-export type IconName = keyof typeof IconMap;

@@ -50,13 +50,21 @@ export async function callLLM(
       const data = await response.json();
 
       if (!response.ok) {
-        console.error(`OpenRouter Error (Attempt ${i + 1}):`, data);
-        lastError = new Error(
-          `OpenRouter API failed: ${data.error?.message || response.statusText}`,
-        );
-        if (response.status === 429 || response.status >= 500) {
-          // Retry for rate limiting or server errors
-          await sleep(Math.pow(2, i) * 1000);
+        const errorMsg = data.error?.message || response.statusText;
+        console.error(`OpenRouter Error (Attempt ${i + 1}):`, errorMsg);
+        lastError = new Error(`OpenRouter API failed: ${errorMsg}`);
+
+        // Retry for rate limiting, server errors, OR transient provider errors
+        const isTransient =
+          response.status === 429 ||
+          response.status >= 500 ||
+          errorMsg.toLowerCase().includes("provider") ||
+          errorMsg.toLowerCase().includes("model");
+
+        if (isTransient && i < maxRetries - 1) {
+          const delay = Math.pow(2, i) * 1500;
+          console.warn(`⏳ Transient error detected. Retrying in ${delay}ms...`);
+          await sleep(delay);
           continue;
         }
         throw lastError;

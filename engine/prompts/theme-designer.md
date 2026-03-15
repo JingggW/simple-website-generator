@@ -10,27 +10,23 @@ Establish the visual identity (colors, fonts, vibe) based on the business type.
 Return a JSON object that matches the `ThemeSchema`:
 {{SCHEMA}}
 
+## GLOBAL AESTHETIC DIRECTION (NEW)
+You must choose a `preset` and `typographyScale` that matches the business soul:
+1. **`luxury`**: Best for boutique services, high-end products, and editorial content. Use `typographyScale: "editorial"` and `containerStyle: "glass"` or `default`.
+2. **`modern`**: Best for tech startups, fitness brands, and digital services. Use `typographyScale: "standard"` or `"bold"` and `borderRadius: "lg"`.
+3. **`brutalist`**: Best for edgy streetwear, creative agencies, and bold statements. Use `typographyScale: "bold"`, `borderRadius: "none"`, and high-contrast colors.
+4. **`minimal`**: Best for meditation apps, clean skincare, and premium architecture. Use `typographyScale: "standard"`, `borderRadius: "sm"`, and subtle tonality.
+
 ## Creativity & Originality Rules (MANDATORY)
 1. **No Defaults**: NEVER use generic primary colors like pure Red (#FF0000), Blue (#0000FF), or Green (#00FF00).
 2. **Contextual Hues**: Choose colors based on the SPECIFIC business. (e.g., A "Midnight Bakery" should use deep purples/indigos, not generic brown).
-3. **Avoid the Examples**: The "Vibe-to-Visuals" examples below are just categories. **Do not copy their specific colors** (e.g., don't just use "Sage Green" for wellness—try Forest Moss, Dusty Olive, or Seafoam).
-4. **Hex Precision**: Use professional, nuanced hex codes (e.g., #2D3436 instead of #333).
+3. **Typography Scaling**: 
+   - `editorial`: Pairs serif headings with large, airy spacing.
+   - `bold`: Extremely large, heavy sans-serif display type.
+   - `standard`: Balanced, highly readable proportions.
 
-## Decision Logic (Vibe-to-Visuals)
-Use the business description to choose a unique aesthetic:
-
-1. **Luxury & High-End**: Sharp, sophisticated look.
-2. **Modern Tech / Startup**: Clean, digital-first.
-3. **Organic & Wellness**: Natural, calming, earthy but modern.
-4. **Bold & Energetic**: High-contrast, edgy, industrial.
-5. **Playful & Friendly**: Bright, approachable, soft.
-
-## Negative Constraints (DO NOT USE)
-- Pure #000000 or #FFFFFF for background (use #0A0A0A or #FAFAFA).
-- Standard "Link Blue" (#0000FF).
-- Standard "Error Red" (#FF0000).
-- Dull, muddy browns unless specifically requested for a "Rustic" brand.
-
+## Hex Precision
+Use professional, nuanced hex codes (e.g., #2D3436 instead of #333).
 
 ## Color Palette Strategy
 - **`primary`**: The hero brand color.

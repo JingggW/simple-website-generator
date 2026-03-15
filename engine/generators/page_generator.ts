@@ -4,24 +4,18 @@ import { callLLM } from "../llmClient";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { PageSchema } from "../../lib/schema";
 import { getSchemaSection } from "../storage/schema_utils";
-import { getDesignToken } from "../storage/design_utils";
 
 /**
  * PAGE GENERATOR ENGINE
  */
 
 function getSystemContext(): {
-  iconMap: string;
   structure: string;
   navigation: string;
 } {
-  const iconMapPath = path.join(process.cwd(), "components/ui/IconMap.tsx");
   const structurePath = path.join(process.cwd(), "config/site_structure.ts");
   const sitePath = path.join(process.cwd(), "config/site.json");
 
-  const iconMap = fs.existsSync(iconMapPath)
-    ? fs.readFileSync(iconMapPath, "utf-8")
-    : "";
   const structure = fs.existsSync(structurePath)
     ? fs.readFileSync(structurePath, "utf-8")
     : "";
@@ -36,7 +30,7 @@ function getSystemContext(): {
     );
   }
 
-  return { iconMap, structure, navigation };
+  return { structure, navigation };
 }
 
 function loadPrompt(name: string): string {
@@ -55,12 +49,6 @@ export async function generate_single_page(
   existingPages: Record<string, any> = {}, // NEW: Pass existing pages directly
 ) {
   console.log(`🚀 Generating Page: ${targetPath}`);
-
-  const system = getSystemContext();
-  const layoutsMenu = fs.readFileSync(
-    path.join(process.cwd(), "engine/design-library/layouts.md"),
-    "utf-8",
-  );
 
   try {
     /**
@@ -87,6 +75,8 @@ export async function generate_single_page(
           : "Decide the plan yourself based on the business.",
       );
 
+    console.log("📄 Content Prompt:\n", contentPrompt);
+
     const rawCopy = await callLLM(
       contentPrompt,
       "You are a brand storyteller.",
@@ -101,8 +91,8 @@ export async function generate_single_page(
       const uiPrompt = loadPrompt("ui-ux-designer");
       designBrief = await callLLM(
         `
-### USER BUSINESS DESCRIPTION
-${description}
+### USER BUSINESS NAME AND DESCRIPTION
+${businessName}: ${description}
 ### TASK: UI/UX DESIGN
 ${uiPrompt}
       `,
@@ -117,33 +107,41 @@ ${uiPrompt}
      */
     console.log("🛠️  Stage 3: Assembling JSON...");
 
-    let designGuidance = "";
-    if (rawCopy.toUpperCase().includes("SPLIT"))
-      designGuidance += getDesignToken("layouts", "SPLIT");
-    if (rawCopy.toUpperCase().includes("GRID"))
-      designGuidance += getDesignToken("layouts", "FEATURE_GRID");
+    const layoutsLibrary = fs.readFileSync(
+      path.join(process.cwd(), "engine/design-library/layouts.md"),
+      "utf-8",
+    );
 
-    const schema = getSchemaSection([
-      "HERO",
-      "SERVICES",
-      "PRICING",
-      "FORM",
-      "MAP",
-      "CONTACT",
-      "CONTENT",
-      "TESTIMONIALS",
-      "BLOCKS",
-      "WEBSITE",
-    ]);
+    // Surgically select schema tags based on page plan
+    const requiredTags = new Set(["PAGE", "BLOCKS", "HERO"]);
+    if (pagePlan) {
+      pagePlan.forEach((p) => {
+        const tag = p.type.toUpperCase();
+        if (
+          ["FORM", "MAP", "CONTACT", "CONTENT", "TESTIMONIALS"].includes(tag)
+        ) {
+          requiredTags.add(tag);
+        }
+      });
+    } else {
+      // Fallback/Inferred tags
+      ["CONTENT", "TESTIMONIALS"].forEach((t) => requiredTags.add(t));
+      if (targetPath.includes("contact")) {
+        ["FORM", "MAP", "CONTACT"].forEach((t) => requiredTags.add(t));
+      }
+    }
 
-    const assemblerPrompt = loadPrompt("page-assembler")
-      .replace("{{SCHEMA}}", schema)
-      .replace("{{ICON_MAP}}", system.iconMap);
+    const schema = getSchemaSection(Array.from(requiredTags));
+
+    const assemblerPrompt = loadPrompt("page-assembler").replace(
+      "{{SCHEMA}}",
+      schema,
+    );
 
     const finalJsonRaw = await callLLM(
       `
-### DESIGN GUIDANCE
-${designGuidance}
+### LAYOUT PATTERNS & EXAMPLES
+${layoutsLibrary}
 
 ### DESIGN BRIEF
 ${designBrief}

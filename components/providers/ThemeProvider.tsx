@@ -44,6 +44,15 @@ export const ThemeProvider = ({
     root.style.setProperty("--font-body", fontMap[theme.fontStyle]);
 
     root.style.setProperty("--border-radius", radiusMap[theme.borderRadius]);
+
+    // Global Scale Factor (Experimental)
+    const scales = {
+      standard: "1",
+      editorial: "1.2",
+      bold: "1.4",
+    };
+    root.style.setProperty("--scale-factor", scales[theme.typographyScale || "standard"]);
+    root.style.setProperty("--preset", theme.preset || "modern");
   }, [theme]);
   return <>{children}</>;
 };

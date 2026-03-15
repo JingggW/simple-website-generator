@@ -21,7 +21,7 @@ import { run_integrity_check } from "./operations/integrity_check";
 import { run_visual_check } from "./operations/visual_check";
 
 // Types
-import { PageConfig, WebsiteConfig } from "../lib/schema";
+import { PageConfig, WebsiteConfig, Theme } from "../lib/schema";
 
 /**
  * PROPSITE ENGINE: ORCHESTRATOR
@@ -70,8 +70,12 @@ export class PropSiteEngine {
               b.src =
                 auto_fill_placeholders(b) || auto_fill_placeholders(props);
             }
-            if (b.type === "columns" && b.items)
+            if (b.type === "columns" && b.items) {
               b.items.forEach((c: any) => fillBlocks(c.blocks));
+            }
+            if (b.type === "container" && b.blocks) {
+              fillBlocks(b.blocks);
+            }
           });
         };
         fillBlocks(props.blocks);
@@ -274,12 +278,20 @@ export class PropSiteEngine {
       `
 ### BUSINESS
 ${businessName}: ${description}
-### THEME COLORS
-${JSON.stringify(this.config.theme.colors, null, 2)}
-### TASK: UI/UX DESIGN
+
+### THEME
+${JSON.stringify(this.config.theme, null, 2)}
+
+### TASK: UI/UX DESIGN STRATEGY
 ${uiPrompt}
+
+Focus on:
+1. Brand "Soul" and tone of voice.
+2. Visual Hierarchy (Typography, Spacing).
+3. Interaction Strategy (Hover effects, animations).
+4. Image Aesthetic (Cinematic vs Minimal vs Bold).
     `,
-      "You are a senior UI/UX designer. Define the global visual style guide.",
+      "You are a senior UI/UX strategist. Define the global visual style guide.",
     );
 
     this.persist();

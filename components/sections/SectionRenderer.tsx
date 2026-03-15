@@ -2,7 +2,7 @@
 
 import React from "react";
 import { AnySection } from "@/lib/schema";
-import { motion } from "framer-motion";
+import { motion, HTMLMotionProps } from "framer-motion";
 
 import { HeroSimple, HeroSplit } from "@/components/sections/hero";
 import { ServicesGrid } from "@/components/sections/services";
@@ -58,7 +58,7 @@ const backgroundClasses: Record<string, string> = {
   secondary: "bg-secondary text-on-secondary",
 };
 
-const animations = {
+const animations: Record<string, HTMLMotionProps<"div">> = {
   none: {},
   fade: {
     initial: { opacity: 0 },
@@ -85,6 +85,7 @@ const widthClasses: Record<string, string> = {
   default: "max-w-5xl mx-auto px-6",
   wide: "max-w-7xl mx-auto px-6",
   full: "w-full px-6",
+  bleed: "w-full px-0",
 };
 
 export const SectionRenderer = ({
@@ -107,11 +108,12 @@ export const SectionRenderer = ({
   const bgClass = backgroundClasses[section.props.background || "default"];
   const animationProps = animations[section.props.animation || "slide-up"];
   const containerClass = widthClasses[section.props.width || "default"];
+  const isBleed = section.props.width === "bleed";
 
   return (
     <motion.div 
       id={sectionId} 
-      className={`${bgClass} py-12 md:py-16`} 
+      className={`${bgClass} ${isBleed ? "py-0" : "py-12 md:py-16"}`} 
       {...animationProps}
     >
       <div className={containerClass}>

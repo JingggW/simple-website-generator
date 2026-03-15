@@ -1,13 +1,15 @@
 export const fontMap: Record<string, string> = {
-  sans: "var(--font-sans), ui-sans-serif, system-ui, sans-serif", // Inherit Tailwind's default sans
+  sans: "var(--font-sans), ui-sans-serif, system-ui, sans-serif",
   serif: "var(--font-serif), ui-serif, Georgia, serif",
   mono: "var(--font-mono), ui-monospace, SFMono-Regular, monospace",
+  display: "var(--font-display), 'Inter Tight', sans-serif",
 };
 
 export const radiusMap: Record<string, string> = {
   none: "0px",
-  sm: "0.125rem",
-  md: "0.375rem",
+  sm: "0.25rem",
+  md: "1rem",
+  lg: "2rem",
   full: "9999px",
 };
 

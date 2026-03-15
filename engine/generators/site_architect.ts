@@ -42,8 +42,8 @@ export async function generate_full_site_blueprint(
 
   console.log("🎨 Stage 2: Designing Global UI & Branding...");
 
-  // 2. Get UI & Branding
-  const schema = getSchemaSection(["THEME", "NAV", "HEADER", "FOOTER"]);
+  // 2. Get UI & Branding (Theme, Header, Footer)
+  const schema = getSchemaSection(["THEME", "NAV", "HEADER", "FOOTER", "PAGE"]);
   const uiPrompt = loadPrompt("master-ui-designer")
     .replace("{{BUSINESS}}", description)
     .replace("{{SITEMAP}}", JSON.stringify(structure.sitemap))
@@ -51,7 +51,7 @@ export async function generate_full_site_blueprint(
 
   const uiResponse = await callLLM(
     uiPrompt,
-    "You are a senior UI/UX designer. Output ONLY the valid JSON branding.",
+    "You are a senior UI/UX designer. Output ONLY the valid JSON branding (theme, header, footer).",
   );
   const ui = JSON.parse(uiResponse.replace(/```json|```/g, "").trim());
 
