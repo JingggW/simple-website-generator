@@ -4,6 +4,7 @@ import { callLLM } from "../llmClient";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { PageSchema } from "../../lib/schema";
 import { getSchemaSection } from "../storage/schema_utils";
+import { repair_icons_recursive } from "../repair/icon_repairer";
 
 /**
  * PAGE GENERATOR ENGINE
@@ -56,26 +57,41 @@ export async function generate_single_page(
      */
     console.log("✍️  Stage 1: Writing Raw Copy...");
 
-    const generatedMap = Object.entries(existingPages)
-      .map(
-        ([p, data]: [string, any]) =>
-          `${p}: [${(data.sectionOrder || []).join(", ")}]`,
-      )
-      .join("\n");
+    const usedGlobalSections: string[] = [];
+    const pageStructureStrings = Object.entries(existingPages).map(
+      ([path, data]: [string, any]) => {
+        const sections = Object.values(data.sections || {}).map(
+          (s: any) => s.type,
+        );
+        sections.forEach((type) => {
+          if (["form", "map", "testimonials"].includes(type)) {
+            usedGlobalSections.push(`${type} (on ${path})`);
+          }
+        });
+        return `${path}: [${(data.sectionOrder || []).join(", ")}]`;
+      },
+    );
+
+    const generatedMap = `
+PAGES GENERATED SO FAR:
+${pageStructureStrings.join("\n") || "None."}
+
+GLOBAL SECTIONS ALREADY USED:
+${usedGlobalSections.join("\n") || "None yet."}
+    `.trim();
+    console.log("📊 Current Generated Map:\n", generatedMap);
 
     const contentPrompt = loadPrompt("content-strategist")
-      .replace("{{BUSINESS}}", businessName)
-      .replace("{{PATH}}", targetPath)
-      .replace("{{SITEMAP}}", currentSitemap.join(", "))
-      .replace("{{GENERATED_MAP}}", generatedMap || "None yet.")
+      .replace(/{{BUSINESS}}/g, businessName)
+      .replace(/{{PATH}}/g, targetPath)
+      .replace(/{{SITEMAP}}/g, currentSitemap.join(", "))
+      .replace(/{{GENERATED_MAP}}/g, generatedMap || "None yet.")
       .replace(
-        "{{PAGE_PLAN}}",
+        /{{PAGE_PLAN}}/g,
         pagePlan
           ? JSON.stringify(pagePlan, null, 2)
           : "Decide the plan yourself based on the business.",
       );
-
-    console.log("📄 Content Prompt:\n", contentPrompt);
 
     const rawCopy = await callLLM(
       contentPrompt,
@@ -134,9 +150,11 @@ ${uiPrompt}
     const schema = getSchemaSection(Array.from(requiredTags));
 
     const assemblerPrompt = loadPrompt("page-assembler").replace(
-      "{{SCHEMA}}",
+      /{{SCHEMA}}/g,
       schema,
     );
+
+    console.log("📄 Content Prompt (with replacements):\n", contentPrompt);
 
     const finalJsonRaw = await callLLM(
       `
@@ -158,7 +176,14 @@ ${assemblerPrompt}
     const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(rawJson);
 
-    return await validate_and_repair(parsed, PageSchema, `Page: ${targetPath}`);
+    const validated = await validate_and_repair(
+      parsed,
+      PageSchema,
+      `Page: ${targetPath}`,
+    );
+
+    // Final Post-Processing: Repair Icons
+    return repair_icons_recursive(validated);
   } catch (error) {
     console.error(`\n❌ Page Generation Failed for ${targetPath}:`, error);
     throw error;

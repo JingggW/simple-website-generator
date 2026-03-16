@@ -58,9 +58,9 @@ export async function generate_node(
   const layoutsMenu = fs.readFileSync(path.join(process.cwd(), "engine/design-library/layouts.md"), "utf-8");
   
   const strategistPrompt = loadPrompt("node-strategist")
-    .replace("{{BUSINESS}}", businessDescription)
-    .replace("{{PATH}}", pagePath)
-    .replace("{{GOAL}}", designBrief + `\n\nAVAILABLE LAYOUT PATTERNS:\n${layoutsMenu}`);
+    .replace(/{{BUSINESS}}/g, businessDescription)
+    .replace(/{{PATH}}/g, pagePath)
+    .replace(/{{GOAL}}/g, designBrief + `\n\nAVAILABLE LAYOUT PATTERNS:\n${layoutsMenu}`);
 
   const nodeBlueprintRaw = await callLLM(strategistPrompt, `You are a content strategist. Pick one layout pattern from the menu if using 'blocks'.`);
 
@@ -76,10 +76,10 @@ export async function generate_node(
   // 4. STAGE 2: ASSEMBLY
   const surgicalSchema = getSchemaSection([schemaCategory]);
   const assemblerPrompt = loadPrompt("node-assembler")
-    .replace("{{PATH}}", pagePath)
-    .replace("{{NODE_ID}}", nodeId)
-    .replace("{{SCHEMA}}", surgicalSchema)
-    .replace("{{ICON_MAP}}", system.iconMap);
+    .replace(/{{PATH}}/g, pagePath)
+    .replace(/{{NODE_ID}}/g, nodeId)
+    .replace(/{{SCHEMA}}/g, surgicalSchema)
+    .replace(/{{ICON_MAP}}/g, system.iconMap);
 
   const nodeJsonRaw = await callLLM(`
 ### DESIGN GUIDANCE (FOLLOW THIS PATTERN)

@@ -9,17 +9,30 @@ async function testNewBlocks() {
   const bizDesc =
     "Bespoke, hand-crafted leather goods for the modern traveler. Italian calfskin, vegetable-tanned, and made to last a lifetime. Based in Fitzroy, Melbourne.";
 
+  const pagePlan = [
+    {
+      type: "blocks",
+      goal: "A 'Cinematic Hero': Use an image with 'cinematic' aspect ratio and a 'glass' container overlay for the brand intro.",
+    },
+    {
+      type: "blocks",
+      goal: "Our Services: A 'minimal' variant price-list showing 'Bespoke Commissions' and 'Restoration Services'.",
+    },
+    {
+      type: "blocks",
+      goal: "Client Spotlight: Use a 'testimonial-card' to highlight a premium review from a high-end customer.",
+    }
+  ];
+
   try {
-    // We don't provide a manual page plan here - we want to see how the 
-    // global design settings (Luxury preset) influence the automatic generation.
     const pageConfig = await engine.createFullPage(
       bizName,
       bizDesc,
       "/collection-v1",
       true, // Use images
       ["/", "/about", "/collection-v1", "/contact"],
-      undefined, // No provided design brief, let it generate one based on the luxury theme
-      undefined  // No provided page plan, let it decide
+      undefined, // Global design brief will be used
+      pagePlan
     );
 
     console.log("\n✨ SUCCESS!");

@@ -95,6 +95,9 @@ export const SectionRenderer = ({
   section: AnySection;
   sectionId: string;
 }) => {
+  // IGNORE SEO sections (they are for metadata only)
+  if ((section.type as string) === "seo") return null;
+
   const group = sectionComponents[section.type];
 
   if (!group) return null;
@@ -110,10 +113,18 @@ export const SectionRenderer = ({
   const containerClass = widthClasses[section.props.width || "default"];
   const isBleed = section.props.width === "bleed";
 
+  const paddingClasses: Record<string, string> = {
+    none: "py-0",
+    sm: "py-6 md:py-8",
+    md: "py-12 md:py-16",
+    lg: "py-20 md:py-32",
+  };
+  const paddingClass = paddingClasses[section.props.padding || "md"];
+
   return (
-    <motion.div 
-      id={sectionId} 
-      className={`${bgClass} ${isBleed ? "py-0" : "py-12 md:py-16"}`} 
+    <motion.div
+      id={sectionId}
+      className={`${bgClass} ${isBleed && section.props.padding === "md" ? "py-0" : paddingClass}`}
       {...animationProps}
     >
       <div className={containerClass}>

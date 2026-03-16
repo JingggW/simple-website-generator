@@ -186,3 +186,127 @@ A vertical list of items, each starting with an icon. Good for "What's Included"
 ```
 
 // --- END ICON_LIST ---
+
+// --- START BOUTIQUE_PRICE_LIST ---
+
+## Pattern: Boutique Price List
+
+A structured menu of services and prices, commonly used for salons, spas, or specialized workshops.
+
+### Visual Rule
+
+- Use the 'price-list' block directly.
+- Each category creates a distinct card-like section.
+- Dotted line connectors automatically join labels and prices.
+
+### Required JSON Example
+
+```json
+{
+  "type": "price-list",
+  "variant": "default",
+  "categories": [
+    {
+      "name": "Hair Services",
+      "items": [
+        { "label": "Signature Cut", "price": "From $90", "details": "Includes wash and style." },
+        { "label": "Balayage", "price": "From $250" }
+      ]
+    }
+  ]
+}
+```
+
+// --- END BOUTIQUE_PRICE_LIST ---
+
+// --- START MINIMAL_PRICE_LIST ---
+
+## Pattern: Minimal Price List
+
+A cleaner, editorial version of the price list without card backgrounds. Ideal for luxury boutique feel where typography is the focus.
+
+### Required JSON Example
+
+```json
+{
+  "type": "price-list",
+  "variant": "minimal",
+  "categories": [
+    {
+      "name": "The Essentials",
+      "items": [
+        { "label": "Consultation", "price": "Complimentary" },
+        { "label": "Precision Trim", "price": "$120" }
+      ]
+    }
+  ]
+}
+```
+
+// --- END MINIMAL_PRICE_LIST ---
+
+// --- START BOUTIQUE_TESTIMONIAL ---
+
+## Pattern: Boutique Testimonial Card
+
+A stylized quote block that can be placed anywhere within columns or containers.
+
+### Required JSON Example
+
+```json
+{
+  "type": "testimonial-card",
+  "quote": "The attention to detail here is unmatched. My go-to for bespoke leather goods.",
+  "author": "Marcus Aurelius",
+  "role": "Frequent Traveler"
+}
+```
+
+// --- END BOUTIQUE_TESTIMONIAL ---
+
+// --- START IMAGE_GRID ---
+
+## Pattern: Image Showcase / Gallery
+
+A dedicated grid for showcasing work, products, or portfolios. Ideal for small businesses like photographers, builders, or salons.
+
+### Required JSON Example
+
+```json
+{
+  "type": "image-grid",
+  "images": [
+    { "src": "gallery-item-1", "alt": "Project A Result", "caption": "Luxury Finish" },
+    { "src": "gallery-item-2", "alt": "Project B Result" },
+    { "src": "gallery-item-3", "alt": "Project C Result" }
+  ],
+  "columns": "3",
+  "gap": "md",
+  "aspect": "square"
+}
+```
+
+// --- END IMAGE_GRID ---
+
+A cohesive unit combining an icon, title, and description. Use this instead of separate blocks for a cleaner, more stable layout.
+
+### Visual Rule
+
+- Use 'vertical' variant for grids.
+- Use 'horizontal' variant for lists or wide columns.
+- Use 'compact' variant for high-density information (like small sidebars).
+
+### Required JSON Example
+
+```json
+{
+  "type": "feature",
+  "icon": "MapPin",
+  "title": "Visit Us",
+  "description": "123 Boutique Lane, Melbourne VIC 3000",
+  "variant": "vertical",
+  "align": "center"
+}
+```
+
+// --- END FEATURE_BLOCK ---

@@ -21,7 +21,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
         const layoutClasses: Record<string, string> = {
           split: "grid-cols-1 md:grid-cols-2",
           "3-col": "grid-cols-1 md:grid-cols-3",
-          "4-col": "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4",
+          "4-col": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
           "split-left": "grid-cols-1 md:grid-cols-[2fr_1fr]",
           "split-right": "grid-cols-1 md:grid-cols-[1fr_2fr]",
         };
@@ -39,6 +39,53 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           </div>
         );
 
+      case "feature":
+        const isHorizontal = block.variant === "horizontal";
+        const isCompact = block.variant === "compact";
+        const alignClassesFeature = {
+          left: "text-left items-start",
+          center: "text-center items-center",
+          right: "text-right items-end",
+        }[block.align || "left"];
+
+        return (
+          <div
+            className={`flex ${isHorizontal ? "flex-row gap-6" : "flex-col"} ${alignClassesFeature} ${marginClass}`}
+          >
+            {block.icon && (
+              <div className={isHorizontal ? "mt-1" : "mb-4"}>
+                <IconMap
+                  name={block.icon}
+                  className="w-10 h-10 text-primary"
+                />
+              </div>
+            )}
+            <div className="flex-1">
+              {block.title && (
+                <h4
+                  className={`${isCompact ? "text-lg" : "text-xl"} font-bold text-foreground mb-2 break-words`}
+                >
+                  {block.title}
+                </h4>
+              )}
+              <div
+                className={`${isCompact ? "text-sm" : "text-base"} text-foreground/70 leading-relaxed break-words`}
+              >
+                {block.description}
+              </div>
+            </div>
+          </div>
+        );
+
+      case "spacer":
+        const spacerSizes = {
+          sm: "h-4 md:h-6",
+          md: "h-8 md:h-12",
+          lg: "h-16 md:h-24",
+          xl: "h-24 md:h-40",
+        };
+        return <div className={spacerSizes[block.size || "md"]} />;
+
       case "container":
         const bgClasses = {
           none: "",
@@ -50,8 +97,8 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
         const paddingClasses = {
           none: "p-0",
           sm: "p-4 md:p-6",
-          md: "p-8 md:p-10",
-          lg: "p-12 md:p-16",
+          md: "p-6 md:p-8",
+          lg: "p-10 md:p-12",
         };
         const variantClasses = {
           default: "rounded-[var(--border-radius)]",
@@ -76,6 +123,100 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
                 <RenderBlock key={bIdx} block={b} />
               ))}
             </div>
+          </div>
+        );
+
+      case "price-list":
+        const isMinimal = block.variant === "minimal";
+        return (
+          <div className={`grid gap-8 ${marginClass}`}>
+            {block.categories.map((category, idx) => (
+              <div
+                key={idx}
+                className={
+                  isMinimal
+                    ? ""
+                    : "bg-surface/50 rounded-3xl p-6 md:p-8 border border-secondary/10 shadow-sm"
+                }
+              >
+                <h3
+                  className={`text-xl font-bold mb-6 ${
+                    isMinimal
+                      ? "text-primary border-b-2 border-primary/10 pb-2 inline-block"
+                      : "text-on-primary bg-primary rounded-xl px-4 py-2 inline-block shadow-md"
+                  }`}
+                >
+                  {category.name}
+                </h3>
+                <div className="grid gap-4">
+                  {category.items.map((item, itemIdx) => (
+                    <div
+                      key={itemIdx}
+                      className="flex justify-between items-baseline group"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center">
+                          <span className="text-lg font-bold text-foreground group-hover:text-primary transition-colors truncate">
+                            {item.label}
+                          </span>
+                          <div className="mx-4 flex-1 border-b border-dotted border-secondary/20 h-0" />
+                        </div>
+                        {item.details && (
+                          <p className="text-sm text-secondary/60 mt-1 line-clamp-2">
+                            {item.details}
+                          </p>
+                        )}
+                      </div>
+                      <span className="text-lg font-black text-foreground ml-4 whitespace-nowrap">
+                        {item.price}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+
+      case "testimonial-card":
+        return (
+          <div
+            className={`bg-surface border border-secondary/10 rounded-[var(--border-radius)] p-8 md:p-10 shadow-xl relative ${marginClass}`}
+          >
+            <div className="absolute top-6 left-6 text-6xl text-primary/10 font-serif">
+              “
+            </div>
+            <blockquote className="relative z-10">
+              <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed italic mb-8">
+                {block.quote}
+              </p>
+              <footer className="flex items-center gap-4">
+                {block.avatar && (
+                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
+                    <Image
+                      src={
+                        block.avatar.startsWith("http")
+                          ? block.avatar
+                          : `/${block.avatar.replace(/^\//, "")}`
+                      }
+                      alt={block.author}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                )}
+                <div>
+                  <cite className="not-italic font-bold text-foreground block">
+                    {block.author}
+                  </cite>
+                  {block.role && (
+                    <span className="text-sm text-secondary font-medium">
+                      {block.role}
+                    </span>
+                  )}
+                </div>
+              </footer>
+            </blockquote>
           </div>
         );
 
@@ -113,11 +254,11 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
             : block.level || "h2"
         ) as React.ElementType;
         const fontSizes: Record<string, string> = {
-          display: "text-6xl md:text-8xl font-black tracking-tighter uppercase",
-          editorial: "text-5xl md:text-7xl font-serif italic tracking-tight",
-          h1: "text-5xl md:text-6xl font-black tracking-tight",
-          h2: "text-4xl md:text-5xl font-extrabold tracking-tight",
-          h3: "text-2xl md:text-3xl font-bold",
+          display: "text-5xl md:text-7xl font-black tracking-tighter uppercase break-words",
+          editorial: "text-4xl md:text-6xl font-serif italic tracking-tight break-words",
+          h1: "text-4xl md:text-5xl font-black tracking-tight break-words",
+          h2: "text-3xl md:text-4xl font-extrabold tracking-tight break-words",
+          h3: "text-xl md:text-2xl font-bold break-words",
         };
         const alignClasses = {
           left: "text-left",
@@ -130,7 +271,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
             className={`${alignClasses} ${block.align === "left" && block.level === "h2" ? "border-l-4 border-primary pl-6 py-2" : ""} ${marginClass}`}
           >
             <Tag
-              className={`${fontSizes[block.level || "h2"]} text-foreground leading-[0.9]`}
+              className={`${fontSizes[block.level || "h2"]} text-foreground leading-[1.1]`}
             >
               {block.text}
             </Tag>
@@ -145,11 +286,11 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           right: "text-right",
         }[block.align || "left"];
         return (
-          <p
-            className={`text-xl text-foreground/80 leading-relaxed font-medium ${alignClasses} ${marginClass}`}
+          <div
+            className={`text-base md:text-lg text-foreground/80 leading-relaxed font-medium ${alignClasses} ${marginClass} break-words whitespace-pre-wrap`}
           >
             {block.content}
-          </p>
+          </div>
         );
       }
 
@@ -187,6 +328,56 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
             )}
           </figure>
         );
+
+      case "image-grid": {
+        const gridCols = {
+          "2": "grid-cols-2",
+          "3": "grid-cols-2 md:grid-cols-3",
+          "4": "grid-cols-2 lg:grid-cols-4",
+        };
+        const gridGap = {
+          none: "gap-0",
+          sm: "gap-2 md:gap-4",
+          md: "gap-4 md:gap-8",
+          lg: "gap-8 md:gap-12",
+        };
+        const gridAspect = {
+          square: "aspect-square",
+          video: "aspect-video",
+          portrait: "aspect-[3/4]",
+          auto: "aspect-auto",
+        };
+
+        return (
+          <div
+            className={`grid ${gridCols[block.columns || "3"]} ${gridGap[block.gap || "md"]} ${marginClass}`}
+          >
+            {block.images.map((img, idx) => (
+              <figure key={idx} className="group relative w-full">
+                <div
+                  className={`relative ${gridAspect[block.aspect || "square"]} rounded-[var(--border-radius)] overflow-hidden shadow-md`}
+                >
+                  <Image
+                    src={
+                      img.src.startsWith("http")
+                        ? img.src
+                        : `/${img.src.replace(/^\//, "")}`
+                    }
+                    alt={img.alt || "Gallery Image"}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+                {img.caption && (
+                  <figcaption className="mt-2 text-center text-xs text-foreground/50">
+                    {img.caption}
+                  </figcaption>
+                )}
+              </figure>
+            ))}
+          </div>
+        );
+      }
 
       case "button": {
         const buttonVariants: Record<string, string> = {

@@ -25,22 +25,34 @@ Regardless of the page path, if the content describes a specific functional goal
 ### 2. General Storytelling & Dynamic Content
 Use the **blocks** schema for ALL OTHER CONTENT, including:
 - **Service/Feature Grids**: Use `columns` (3-col or 4-col) with `container` (background: "surface", padding: "md") to create cards.
-- **Pricing Tables**: Use `columns` with `container` (background: "muted") and `button` blocks.
+- **Business Showcases & Portfolios (NEW)**: Use `image-grid` for galleries, completed projects, or product showcases. 
+  - Use `columns: "3"` or `"4"` for high-density visual grids. 
+  - Provide descriptive `alt` and `caption` text for each image to ensure the image searcher finds relevant placeholders.
+- **Multi-Column Layouts (CRITICAL)**: When using `type: "columns"`, the `items` array represents the COLUMNS themselves.
+  - For a `3-col` layout, the `items` array MUST contain exactly THREE objects.
+  - For a `4-col` layout, the `items` array MUST contain exactly FOUR objects.
+  - Each object in `items` MUST have its own `blocks` array.
+  - **NEVER** put all your content into a single item's `blocks` array; this will collapse everything into a single column.
+- **Pricing & Service Menus**: Use the `price-list` block (default or minimal variants) for structured lists.
+- **Social Proof**: Use `testimonials` for grids, or `testimonial-card` within blocks for stylized highlights.
 - **Process/Storytelling**: Use "Alternating Split" layouts (alternating `columns` with `layout: "split-left"` and `"split-right"`).
 - **Mixed Media**: Anything combining text, icons, and images.
 
 ## FORBIDDEN (CRITICAL)
 - **DO NOT** use `services` or `pricing` section types (they are deprecated). Use `blocks`.
 - **DO NOT** use `hero` more than once per page.
+- **NO OVERLAPS**: NEVER use `position: "absolute-..."` for containers unless you are explicitly creating a "text-on-image" overlay. Standard content MUST use `position: "relative"` to prevent ugly overlapping.
+- **NO FAT HEROS**: Keep `hero` subheadlines concise. Avoid excessive internal spacing in hero sections to ensure they don't push the main content too far down.
 
 ## Constraints
 1. **Schema Strict**: Strictly follow the provided Zod schema:
 {{SCHEMA}}
 2. **Icon Mapping**: Use ONLY Lucide icon names (e.g., 'Check', 'Star', 'Activity', 'Zap', 'MapPin', 'Wrench').
-3. **Visual Variety**:
-   - **Sections**: Apply the `width`, `background`, and `animation` properties suggested in the blueprint.
+3. **Visual Variety & Safety**:
+   - **Sections**: Apply the `width`, `background`, `padding`, and `animation` properties suggested in the blueprint. Use `padding: "sm"` for simple Hero sections.
    - **Blocks**: Use the `spacing` property (`sm`, `md`, `lg`) on individual blocks to create visual breathing room.
-   - **Containers**: Use `background: "surface"` to create clear "card" divisions within columns.
+   - **Containers**: Use `background: "surface"` to create clear "card" divisions within columns. Always default to `position: "relative"`.
+   - **Hero Layout**: If using `variant: "simple"`, ensure the copy is punchy. If using `variant: "split"`, ensure the image is high-quality.
 
 ## Output Format
 Return ONLY the JSON object. No conversational text.

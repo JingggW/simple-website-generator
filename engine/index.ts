@@ -70,6 +70,16 @@ export class PropSiteEngine {
               b.src =
                 auto_fill_placeholders(b) || auto_fill_placeholders(props);
             }
+            if (b.type === "image-grid" && b.images) {
+              b.images.forEach((img: any) => {
+                if (isPlaceholder(img.src)) {
+                  img.src = auto_fill_placeholders(img) || auto_fill_placeholders(props);
+                }
+              });
+            }
+            if (b.type === "testimonial-card" && isPlaceholder(b.avatar)) {
+              b.avatar = auto_fill_placeholders({ ...b, src: b.avatar });
+            }
             if (b.type === "columns" && b.items) {
               b.items.forEach((c: any) => fillBlocks(c.blocks));
             }
@@ -127,10 +137,14 @@ export class PropSiteEngine {
           if (props.blocks) {
             const repairBlocks = (blocks: any[]) => {
               blocks.forEach((b) => {
-                if (b.type === "button" && b.label === link.label)
+                if (
+                  b.type === "button" &&
+                  (b.label === link.label || b.href === link.currentHref)
+                )
                   b.href = fixedHref;
                 if (b.type === "columns" && b.items)
                   b.items.forEach((c: any) => repairBlocks(c.blocks));
+                if (b.type === "container" && b.blocks) repairBlocks(b.blocks);
               });
             };
             repairBlocks(props.blocks);
@@ -178,6 +192,10 @@ export class PropSiteEngine {
 
   private persist(businessName?: string) {
     const targetName = businessName || this.currentBusinessName;
+    if (!targetName || targetName === "default") {
+      console.warn("⚠️ Skipping persist: No business name defined.");
+      return;
+    }
     const jsonContent = JSON.stringify(this.config, null, 2);
     fs.writeFileSync(this.jsonPath, jsonContent);
     fs.writeFileSync(
@@ -374,6 +392,7 @@ Focus on:
     designBrief?: string,
     pagePlan?: { type: string; goal: string }[],
   ) {
+    this.currentBusinessName = bizName;
     console.log(`\n--- 🏗️  Building Page: ${pagePath} ---`);
 
     const pageConfig = await generate_single_page(

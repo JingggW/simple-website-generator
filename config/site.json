@@ -1,0 +1,1375 @@
+{
+  "theme": {
+    "mode": "light",
+    "preset": "modern",
+    "colors": {
+      "primary": "#FF6B6B",
+      "secondary": "#6B7280",
+      "background": "#FFFFFF",
+      "surface": "#F9FAFB",
+      "onPrimary": "#FFFFFF",
+      "muted": "#F3F4F6",
+      "accent": "#F59E0B",
+      "text": "#111827"
+    },
+    "fontStyle": "sans",
+    "typographyScale": "standard",
+    "borderRadius": "lg",
+    "containerStyle": "default"
+  },
+  "header": {
+    "title": "ActiveWear Co.",
+    "links": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "Shop",
+        "href": "/shop"
+      },
+      {
+        "label": "About",
+        "href": "/about"
+      },
+      {
+        "label": "Contact",
+        "href": "/contact"
+      },
+      {
+        "label": "Journal",
+        "href": "/journal"
+      }
+    ],
+    "cta": {
+      "label": "New Arrivals",
+      "href": "/shop"
+    }
+  },
+  "footer": {
+    "brand": {
+      "title": "ActiveWear Co.",
+      "description": "Comfortable, breathable activewear designed for women who move."
+    },
+    "columns": [
+      {
+        "title": "Shop",
+        "links": [
+          {
+            "label": "Shop",
+            "href": "/#collections-showcase"
+          }
+        ]
+      },
+      {
+        "title": "About",
+        "links": [
+          {
+            "label": "About",
+            "href": "/about"
+          },
+          {
+            "label": "Journal",
+            "href": "/journal"
+          }
+        ]
+      },
+      {
+        "title": "Contact",
+        "links": [
+          {
+            "label": "Contact",
+            "href": "/contact"
+          }
+        ]
+      }
+    ],
+    "social": [
+      {
+        "platform": "instagram",
+        "url": "https://instagram.com/activewearco"
+      },
+      {
+        "platform": "facebook",
+        "url": "https://facebook.com/activewearco"
+      }
+    ],
+    "copyright": "© 2026 ActiveWear Co. All rights reserved."
+  },
+  "pages": {
+    "/": {
+      "seo": {
+        "title": "Christine Gymwear Co. - Elevate Your Active Lifestyle",
+        "description": "Premium activewear designed for women who demand performance, comfort, and style. Engineered in Melbourne with quick-dry tech and breathable fabrics—because your home workouts deserve excellence."
+      },
+      "sectionOrder": [
+        "hero-section",
+        "features-grid",
+        "testimonials-grid",
+        "collections-showcase",
+        "blog-preview"
+      ],
+      "sections": {
+        "hero-section": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "primary",
+            "animation": "zoom-in",
+            "width": "full",
+            "padding": "sm",
+            "headline": "Elevate Your Active Lifestyle",
+            "subheadline": "Premium activewear designed for women who demand performance, comfort, and style. Engineered in Melbourne with quick-dry tech and breathable fabrics—because your home workouts deserve excellence.",
+            "ctaText": "Shop the Collection",
+            "ctaLink": "/shop",
+            "imageName": "https://loremflickr.com/1600/900/active,lifestyle?lock=776068"
+          }
+        },
+        "features-grid": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "muted",
+            "animation": "fade",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Engineered for Performance",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Zap",
+                        "title": "Quick-Dry",
+                        "description": "Sweat-Activated Fabric\nOur moisture-wicking material dries 2x faster than cotton, keeping you cool and chafe-free.",
+                        "variant": "vertical",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Activity",
+                        "title": "Comfort",
+                        "description": "Seamless Support\nFlatlock seams and stretch blends eliminate irritation for unrestricted movement.",
+                        "variant": "vertical",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Wind",
+                        "title": "Breathability",
+                        "description": "Climate-Control Technology\nStrategic ventilation panels regulate temperature during intense sessions.",
+                        "variant": "vertical",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "testimonials-grid": {
+          "type": "testimonials",
+          "variant": "grid",
+          "props": {
+            "background": "surface",
+            "animation": "slide-up",
+            "width": "wide",
+            "padding": "lg",
+            "title": "Join Our Community",
+            "items": [
+              {
+                "quote": "5⭐️ The quick-dry leggings revolutionized my yoga practice!",
+                "author": "Sarah L.",
+                "avatar": "sarah-testimonial"
+              },
+              {
+                "quote": "4⭐️ Comfortable enough for daily wear—no more laundry day dread!",
+                "author": "Tom M.",
+                "avatar": "tom-testimonial"
+              },
+              {
+                "quote": "5⭐️ Breathable tops save me in Melbourne’s humidity!",
+                "author": "Priya R.",
+                "avatar": "priya-testimonial"
+              },
+              {
+                "quote": "4⭐️ Sets are stylish post-workout, but pricier than expected.",
+                "author": "Alex K.",
+                "avatar": "alex-testimonial"
+              }
+            ]
+          }
+        },
+        "collections-showcase": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "none",
+            "width": "full",
+            "padding": "lg",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Collections Crafted for You",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "image-grid",
+                "images": [
+                  {
+                    "src": "https://loremflickr.com/1600/900/high,waisted?lock=806328",
+                    "alt": "High-waisted, pocketed leggings from the Legends Line",
+                    "caption": "Leggings"
+                  },
+                  {
+                    "src": "https://loremflickr.com/1600/900/moisture,wicking?lock=840343",
+                    "alt": "Moisture-wicking racerback tops from the Breathe Easy line",
+                    "caption": "Tops"
+                  },
+                  {
+                    "src": "https://loremflickr.com/1600/900/matching,bra?lock=916621",
+                    "alt": "Matching bra and leggings sets from the Active Luxe collection",
+                    "caption": "Sets"
+                  }
+                ],
+                "columns": "3",
+                "gap": "md",
+                "aspect": "portrait",
+                "spacing": "md"
+              },
+              {
+                "type": "container",
+                "variant": "default",
+                "position": "relative",
+                "background": "none",
+                "padding": "sm",
+                "blocks": [
+                  {
+                    "type": "text",
+                    "content": "Legends Line: High-waisted, pocketed, and sculpting—perfect for HIIT or lounging.",
+                    "align": "center",
+                    "spacing": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "content": "Breathe Easy: Moisture-wicking racerbacks and crop styles for breathability.",
+                    "align": "center",
+                    "spacing": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "content": "Active Luxe: Matching bra + leggings with removable cups for versatility.",
+                    "align": "center",
+                    "spacing": "sm"
+                  }
+                ],
+                "spacing": "lg"
+              }
+            ]
+          }
+        },
+        "blog-preview": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "secondary",
+            "animation": "fade",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Fuel Your Fitness Journey",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/compact,home?lock=681446",
+                        "alt": "Compact home gym setup with resistance bands and foldable equipment",
+                        "aspect": "portrait",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "5 Home Workout Hacks for Small Spaces",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Maximize limited areas with resistance bands and foldable equipment. Learn how to create an effective workout zone without sacrificing living space.",
+                        "align": "left",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "button",
+                        "label": "Read More →",
+                        "href": "/journal",
+                        "variant": "secondary",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Style Meets Function: Gym-to-Street Outfits",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Transition from Surya flows to brunch with our versatile activewear. Discover styling tips that blend performance with everyday fashion.",
+                        "align": "left",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "button",
+                        "label": "Read More →",
+                        "href": "/journal",
+                        "variant": "secondary",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/model,leggings?lock=259491",
+                        "alt": "Model in leggings and crop top wearing streetwear jacket",
+                        "aspect": "portrait",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/about": {
+      "seo": {
+        "title": "Christine Gymwear | Empowering Women’s Fitness Since 2015",
+        "description": "Discover sustainable, performance-driven activewear crafted in Melbourne. Designed for comfort, style, and ethical production. Shop now and join our community."
+      },
+      "sectionOrder": [
+        "hero",
+        "brand-story",
+        "mission",
+        "manufacturing"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "default",
+            "animation": "zoom-in",
+            "width": "default",
+            "padding": "md",
+            "headline": "Empowering Women’s Fitness Since 2015",
+            "subheadline": "Founded in the heart of Point Cook, Melbourne, Christine Gymwear was born from a simple mission: to create activewear that empowers women to move with confidence, comfort, and style. Our story begins with a passion for fitness, a love for local craftsmanship, and a commitment to sustainability.",
+            "ctaText": "Shop Now",
+            "ctaLink": "/",
+            "imageName": "https://loremflickr.com/1600/900/empowering,women?lock=628673"
+          }
+        },
+        "brand-story": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "fade",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "feature",
+                "icon": "Heart",
+                "title": "Passion for Fitness",
+                "description": "Born from a professional athlete's journey, our designs prioritize performance and durability.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Globe",
+                "title": "Global Impact",
+                "description": "Ethical manufacturing practices with a focus on reducing environmental footprint.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Gear",
+                "title": "Local Craftsmanship",
+                "description": "Proudly made in Melbourne with Australian-sourced materials.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "mission": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "feature",
+                "icon": "Tree",
+                "title": "Sustainability",
+                "description": "100% recycled fabrics and compostable packaging to minimize waste.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Cloud",
+                "title": "Comfort",
+                "description": "Breathable, mobility-tested designs for all-day wearability.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "People",
+                "title": "Community",
+                "description": "Sponsoring local fitness initiatives and donating 5% of profits to grassroots sports.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "manufacturing": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "zoom-in",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Design",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Collaborating with local artists to create bold, functional patterns.",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/fabric,cutting?lock=235568",
+                        "alt": "Fabric cutting in Melbourne workshop",
+                        "caption": "Local Production",
+                        "aspect": "cinematic",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Production",
+                        "level": "h3",
+                        "align": "right",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Small-batch manufacturing in our Point Cook workshop.",
+                        "align": "right",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/stitching,process?lock=802523",
+                        "alt": "Stitching process in Point Cook",
+                        "caption": "Ethical Craftsmanship",
+                        "aspect": "cinematic",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/contact": {
+      "seo": {
+        "title": "We’re Here to Help",
+        "description": "Reach out for support, wholesale inquiries, or collaboration opportunities. Our team is ready to assist you."
+      },
+      "sectionOrder": [
+        "hero",
+        "contact-form",
+        "map",
+        "faq"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "headline": "We’re Here to Help",
+            "subheadline": "Reach out for support, wholesale inquiries, or collaboration opportunities. Our team is ready to assist you.",
+            "ctaText": "Contact Us",
+            "ctaLink": "/contact",
+            "imageName": "https://loremflickr.com/1600/900/here,help?lock=265657"
+          }
+        },
+        "contact-form": {
+          "type": "form",
+          "variant": "contact",
+          "props": {
+            "background": "muted",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "title": "Contact Us",
+            "fields": [
+              {
+                "name": "name",
+                "label": "Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "email",
+                "label": "Email",
+                "type": "email",
+                "required": true
+              },
+              {
+                "name": "message",
+                "label": "Message",
+                "type": "textarea",
+                "required": true
+              }
+            ],
+            "submitLabel": "Submit"
+          }
+        },
+        "map": {
+          "type": "map",
+          "variant": "embedded",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "title": "Our Melbourne Studio",
+            "address": "Point Cook, Melbourne",
+            "zoom": 14
+          }
+        },
+        "faq": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "secondary",
+            "animation": "slide-up",
+            "width": "prose",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "feature",
+                "icon": "Mappin",
+                "title": "Shipping",
+                "description": "How long does shipping take?",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Mappin",
+                "title": "Returns",
+                "description": "What is your return policy?",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Mappin",
+                "title": "Sizing",
+                "description": "How do I find my size?",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Mappin",
+                "title": "Care",
+                "description": "How do I care for my activewear?",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/journal": {
+      "seo": {
+        "title": "Journal | Christine Gymwear Co.",
+        "description": "Your source for fitness tips, style guides, and the latest from Christine Gymwear Co."
+      },
+      "sectionOrder": [
+        "hero",
+        "articles",
+        "filters",
+        "newsletter"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "primary",
+            "animation": "fade",
+            "width": "bleed",
+            "padding": "sm",
+            "headline": "Move Your Mind: The Journal",
+            "subheadline": "Your source for fitness tips, style guides, and the latest from Christine Gymwear Co. Dive into our featured story below.",
+            "ctaText": "Get Started",
+            "imageName": "https://loremflickr.com/1600/900/move,mind?lock=75790",
+            "ctaLink": "/journal#newsletter"
+          }
+        },
+        "articles": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "wide",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Latest Stories",
+                "level": "h2",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "text",
+                "content": "Explore our newest articles on training, nutrition, and sustainable activewear.",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/woman,doing?lock=418606",
+                            "alt": "Woman doing yoga in Christine Gymwear",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "5 Post-Workout Stretches for Recovery",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "A quick guide to essential stretches after your workout.",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Read More",
+                            "href": "/journal/5-post-workout-stretches",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "sm"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/minimalist,home?lock=107481",
+                            "alt": "Minimalist home gym setup with Christine equipment",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "How to Build a Home Gym on a Budget",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Create your dream workout space without breaking the bank.",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Read More",
+                            "href": "/journal/build-home-gym-budget",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "sm"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/healthy,meal?lock=520609",
+                            "alt": "Healthy meal prep for endurance training",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Nutrition for Endurance: Fueling Your Long Runs",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "What to eat before, during, and after your endurance training.",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Read More",
+                            "href": "/journal/nutrition-for-endurance",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "sm"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/recycled,fabric?lock=242177",
+                            "alt": "Recycled fabric texture close-up",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "The Rise of Sustainable Activewear",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "How Christine Gymwear is leading the charge in eco-friendly fashion.",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Read More",
+                            "href": "/journal/sustainable-activewear",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "sm"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/woman,meditation?lock=768952",
+                            "alt": "Woman in meditation pose wearing Christine Gymwear",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Mindful Movement: The Power of Yoga",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Unite your body and mind with these yoga practices.",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Read More",
+                            "href": "/journal/mindful-movement-yoga",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "sm"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/woman,lifting?lock=553910",
+                            "alt": "Woman lifting weights in home gym",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Strength Training for Beginners",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Start your strength journey with these essential exercises.",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Read More",
+                            "href": "/journal/strength-training-beginners",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "sm"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "filters": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "muted",
+            "animation": "none",
+            "width": "default",
+            "padding": "sm",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Filter by Topic",
+                "level": "h2",
+                "align": "center",
+                "spacing": "sm"
+              },
+              {
+                "type": "text",
+                "content": "Find exactly what you're looking for.",
+                "align": "center",
+                "spacing": "sm"
+              },
+              {
+                "type": "columns",
+                "layout": "4-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "outline",
+                        "position": "relative",
+                        "background": "none",
+                        "padding": "sm",
+                        "blocks": [
+                          {
+                            "type": "icon",
+                            "name": "Dumbbell",
+                            "size": "sm",
+                            "color": "primary",
+                            "align": "center",
+                            "spacing": "none"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Workouts",
+                            "align": "center",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "outline",
+                        "position": "relative",
+                        "background": "none",
+                        "padding": "sm",
+                        "blocks": [
+                          {
+                            "type": "icon",
+                            "name": "Leaf",
+                            "size": "sm",
+                            "color": "primary",
+                            "align": "center",
+                            "spacing": "none"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Nutrition",
+                            "align": "center",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "outline",
+                        "position": "relative",
+                        "background": "none",
+                        "padding": "sm",
+                        "blocks": [
+                          {
+                            "type": "icon",
+                            "name": "Recycle",
+                            "size": "sm",
+                            "color": "primary",
+                            "align": "center",
+                            "spacing": "none"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Sustainability",
+                            "align": "center",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "outline",
+                        "position": "relative",
+                        "background": "none",
+                        "padding": "sm",
+                        "blocks": [
+                          {
+                            "type": "icon",
+                            "name": "Flower2",
+                            "size": "sm",
+                            "color": "primary",
+                            "align": "center",
+                            "spacing": "none"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Style",
+                            "align": "center",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "newsletter": {
+          "type": "form",
+          "variant": "contact",
+          "props": {
+            "background": "surface",
+            "animation": "zoom-in",
+            "width": "prose",
+            "padding": "lg",
+            "title": "Join the Movement",
+            "description": "Subscribe to our journal for exclusive workouts, style tips, and early access to new collections.",
+            "fields": [
+              {
+                "name": "email",
+                "label": "Email Address",
+                "type": "email",
+                "required": true
+              }
+            ],
+            "submitLabel": "Subscribe"
+          }
+        }
+      }
+    },
+    "/shop": {
+      "seo": {
+        "title": "Discover Melbourne's Best Activewear",
+        "description": "Performance-driven, sustainably made. Your new favorite workout gear is here."
+      },
+      "sectionOrder": [
+        "hero_1",
+        "filter_1",
+        "products_1",
+        "sustainability_1"
+      ],
+      "sections": {
+        "hero_1": {
+          "type": "hero",
+          "variant": "split",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "headline": "Discover Melbourne's Best Activewear",
+            "subheadline": "Performance-driven, sustainably made.",
+            "ctaText": "Get Started",
+            "ctaLink": "/shop",
+            "imageName": "https://loremflickr.com/1600/900/melbourne,activewear?lock=614046"
+          }
+        },
+        "filter_1": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Find Your Perfect Fit",
+                "level": "h2",
+                "align": "left",
+                "spacing": "lg"
+              },
+              {
+                "type": "container",
+                "variant": "card",
+                "position": "relative",
+                "background": "surface",
+                "padding": "sm",
+                "blocks": [
+                  {
+                    "type": "icon",
+                    "name": "Mappin",
+                    "size": "md",
+                    "color": "primary",
+                    "align": "left",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "text",
+                    "content": "Filter by category, size, color, and feature",
+                    "align": "left",
+                    "spacing": "md"
+                  }
+                ],
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "products_1": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "New Arrivals",
+                "level": "h2",
+                "align": "left",
+                "spacing": "lg"
+              },
+              {
+                "type": "container",
+                "variant": "card",
+                "position": "relative",
+                "background": "surface",
+                "padding": "sm",
+                "blocks": [
+                  {
+                    "type": "columns",
+                    "layout": "3-col",
+                    "items": [
+                      {
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/product?lock=738523",
+                            "alt": "Product 1",
+                            "caption": "Product 1 Caption",
+                            "aspect": "video",
+                            "spacing": "md"
+                          }
+                        ]
+                      },
+                      {
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/product?lock=120324",
+                            "alt": "Product 2",
+                            "caption": "Product 2 Caption",
+                            "aspect": "video",
+                            "spacing": "md"
+                          }
+                        ]
+                      },
+                      {
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/product?lock=428928",
+                            "alt": "Product 3",
+                            "caption": "Product 3 Caption",
+                            "aspect": "video",
+                            "spacing": "md"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "sustainability_1": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Made with Purpose in Melbourne",
+                "level": "h2",
+                "align": "left",
+                "spacing": "lg"
+              },
+              {
+                "type": "container",
+                "variant": "card",
+                "position": "relative",
+                "background": "surface",
+                "padding": "sm",
+                "blocks": [
+                  {
+                    "type": "text",
+                    "content": "Our commitment to sustainability goes beyond the fabric. From sourcing eco-friendly materials to ethical manufacturing practices in our Melbourne facility, we're dedicated to creating activewear that's good for you and the planet.",
+                    "align": "left",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "image",
+                    "src": "https://loremflickr.com/1600/900/sustainability,process?lock=537801",
+                    "alt": "Sustainability Process",
+                    "caption": "Sustainable Practices",
+                    "aspect": "video",
+                    "spacing": "md"
+                  }
+                ],
+                "spacing": "md"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

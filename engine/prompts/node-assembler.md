@@ -22,7 +22,13 @@ Convert a single node's content blueprint into a strictly valid, schema-complian
 - **`pricing`**: Must follow the categories -> items structure exactly.
 - **`form`**: Must follow the fields structure.
 - **`services`**: Must use valid icons from the Icon Map.
+- **`image-grid`**: Used for portfolios and showcases. Must follow the images -> src/alt/caption structure.
 - **`blocks`**: Use the `spacing` property (`sm`, `md`, `lg`) on individual blocks to create visual breathing room. Large gaps between headings and text are encouraged for a modern look.
+- **Multi-Column Layouts (CRITICAL)**: When using `type: "columns"`, the `items` array represents the COLUMNS themselves.
+  - For a `3-col` layout, the `items` array MUST contain exactly THREE objects.
+  - For a `4-col` layout, the `items` array MUST contain exactly FOUR objects.
+  - Each object in `items` MUST have its own `blocks` array.
+  - **NEVER** put all your content into a single item's `blocks` array; this will collapse everything into a single column.
 
 ## Icon Mapping
 {{ICON_MAP}}

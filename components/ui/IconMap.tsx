@@ -7,13 +7,18 @@ interface IconProps {
 }
 
 export const IconMap: React.FC<IconProps> = ({ name, className }) => {
-  // Normalize name to PascalCase (e.g., 'check' -> 'Check')
+  if (!name) return <LucideIcons.HelpCircle className={className} />;
+
+  // Normalize name to PascalCase (e.g., 'check' -> 'Check', 'map-pin' -> 'MapPin')
   const pascalName = name
-    .split("-")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .split(/[-_ ]/)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join("");
 
-  const IconComponent = (LucideIcons as any)[pascalName] || LucideIcons.HelpCircle;
+  const IconComponent =
+    (LucideIcons as any)[pascalName] ||
+    (LucideIcons as any)[name] ||
+    LucideIcons.HelpCircle;
 
   return <IconComponent className={className} />;
 };

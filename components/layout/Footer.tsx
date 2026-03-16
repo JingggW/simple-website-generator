@@ -41,7 +41,7 @@ export const Footer = ({ config }: FooterProps) => {
                 {col.links.map((link, linkIndex) => (
                   <li key={linkIndex}>
                     <Link
-                      href={link.href}
+                      href={link.href || "#"}
                       className="hover:text-primary transition-colors"
                     >
                       {link.label}

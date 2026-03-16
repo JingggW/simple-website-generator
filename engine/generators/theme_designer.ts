@@ -14,7 +14,7 @@ export async function generate_theme(description: string): Promise<Theme> {
   
   // SURGICAL EXTRACTION: Only get Theme rules
   const schema = getSchemaSection("THEME");
-  const themePrompt = loadPrompt("theme-designer").replace("{{SCHEMA}}", schema);
+  const themePrompt = loadPrompt("theme-designer").replace(/{{SCHEMA}}/g, schema);
 
   const response = await callLLM(`
 ### BUSINESS DESCRIPTION

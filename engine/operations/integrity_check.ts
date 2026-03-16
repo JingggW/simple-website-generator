@@ -90,11 +90,19 @@ export function run_integrity_check(config: WebsiteConfig): IntegrityReport {
 
   // 4. Find Orphans
   const allNavPaths: string[] = [];
-  config.header.links?.forEach(l => {
-    if (l.type === 'link' && l.href) allNavPaths.push(l.href);
-    if (l.type === 'dropdown') l.items.forEach(si => si.href && allNavPaths.push(si.href));
+  config.header.links?.forEach((l) => {
+    if (l.type === "link" && l.href) allNavPaths.push(l.href);
+    if (l.type === "dropdown")
+      l.items.forEach((si) => si.href && allNavPaths.push(si.href));
   });
-  const orphans = pagePaths.filter(p => p !== "/" && !allNavPaths.some(nav => nav.split('#')[0] === p));
+  // NEW: Add Footer links to reachable paths
+  config.footer.columns?.forEach((col) => {
+    col.links?.forEach((l) => l.href && allNavPaths.push(l.href));
+  });
+
+  const orphans = pagePaths.filter(
+    (p) => p !== "/" && !allNavPaths.some((nav) => nav.split("#")[0] === p),
+  );
 
   const deadLinks = brokenLinks.map(b => `${b.location}: ${b.reason}`);
 

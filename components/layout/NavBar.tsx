@@ -58,7 +58,7 @@ export const Navbar = ({ config }: NavbarProps) => {
                             <li key={subIndex}>
                               <NavigationMenuLink asChild>
                                 <Link
-                                  href={subItem.href}
+                                  href={subItem.href || "#"}
                                   className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary/10 hover:text-primary focus:bg-secondary/10 focus:text-primary"
                                 >
                                   <div className="text-sm font-medium leading-none text-foreground">
@@ -79,7 +79,7 @@ export const Navbar = ({ config }: NavbarProps) => {
                   <NavigationMenuItem key={index}>
                     <NavigationMenuLink asChild>
                       <Link
-                        href={item.href}
+                        href={item.href || "#"}
                         className={cn(
                           navigationMenuTriggerStyle(),
                           "bg-transparent text-foreground hover:bg-secondary/10 focus:bg-secondary/10",
@@ -99,7 +99,7 @@ export const Navbar = ({ config }: NavbarProps) => {
         <div className="hidden md:flex items-center justify-end space-x-4">
           {config.cta && (
             <Link
-              href={config.cta.href}
+              href={config.cta.href || "#"}
               className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-primary text-background hover:bg-primary/90 h-10 px-4 py-2"
             >
               {config.cta.label}
@@ -135,7 +135,7 @@ export const Navbar = ({ config }: NavbarProps) => {
                           {item.items.map((subItem, subIndex) => (
                             <Link
                               key={subIndex}
-                              href={subItem.href}
+                              href={subItem.href || "#"}
                               className="text-secondary hover:text-primary transition-colors py-1"
                               onClick={() => setIsOpen(false)} // Close menu on click
                             >
@@ -149,7 +149,7 @@ export const Navbar = ({ config }: NavbarProps) => {
                   return (
                     <Link
                       key={index}
-                      href={item.href}
+                      href={item.href || "#"}
                       className="text-foreground font-medium hover:text-primary transition-colors py-2 block border-b border-secondary/10"
                       onClick={() => setIsOpen(false)}
                     >
@@ -160,7 +160,7 @@ export const Navbar = ({ config }: NavbarProps) => {
 
                 {config.cta && (
                   <Link
-                    href={config.cta.href}
+                    href={config.cta.href || "#"}
                     className="mt-4 inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary text-background hover:bg-primary/90 h-10 px-4 py-2 w-full"
                     onClick={() => setIsOpen(false)}
                   >

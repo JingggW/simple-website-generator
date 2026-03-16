@@ -25,9 +25,9 @@ export async function generate_full_site_blueprint(
 
   // 1. Get Structure (Sitemap & Page Plans)
   const architectPrompt = loadPrompt("site-architect")
-    .replace("{{BUSINESS}}", description)
+    .replace(/{{BUSINESS}}/g, description)
     .replace(
-      "{{INSTRUCTION}}",
+      /{{INSTRUCTION}}/g,
       instruction || "Create a comprehensive website structure.",
     );
 
@@ -45,9 +45,9 @@ export async function generate_full_site_blueprint(
   // 2. Get UI & Branding (Theme, Header, Footer)
   const schema = getSchemaSection(["THEME", "NAV", "HEADER", "FOOTER", "PAGE"]);
   const uiPrompt = loadPrompt("master-ui-designer")
-    .replace("{{BUSINESS}}", description)
-    .replace("{{SITEMAP}}", JSON.stringify(structure.sitemap))
-    .replace("{{SCHEMA}}", schema);
+    .replace(/{{BUSINESS}}/g, description)
+    .replace(/{{SITEMAP}}/g, JSON.stringify(structure.sitemap))
+    .replace(/{{SCHEMA}}/g, schema);
 
   const uiResponse = await callLLM(
     uiPrompt,

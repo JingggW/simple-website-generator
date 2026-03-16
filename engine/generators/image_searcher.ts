@@ -23,7 +23,8 @@ export function get_placeholder_url(query: string, width: number = 1600, height:
   // Fallback if all words were filtered out
   const finalQuery = sanitized || "business";
     
-  return `https://loremflickr.com/${width}/${height}/${finalQuery}`;
+  const randomLock = Math.floor(Math.random() * 1000000);
+  return `https://loremflickr.com/${width}/${height}/${finalQuery}?lock=${randomLock}`;
 }
 
 /**

@@ -26,6 +26,7 @@ const BaseSectionSchema = z.object({
   background: z.enum(["default", "muted", "surface", "primary", "secondary"]).default("default"),
   animation: z.enum(["none", "fade", "slide-up", "zoom-in"]).default("slide-up"),
   width: z.enum(["prose", "default", "wide", "full", "bleed"]).default("default"),
+  padding: z.enum(["none", "sm", "md", "lg"]).default("md"),
 });
 
 // --- START HERO ---
@@ -217,11 +218,45 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
   z.object({
+    type: z.literal("feature"),
+    icon: z.string().optional(),
+    title: z.string().optional(),
+    description: z.string(),
+    variant: z.enum(["vertical", "horizontal", "compact"]).default("vertical"),
+    align: z.enum(["left", "center", "right"]).default("left"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+  }),
+  z.object({
     type: z.literal("image"),
     src: z.string(),
     alt: z.string().optional(),
     caption: z.string().optional(),
     aspect: z.enum(["square", "video", "cinematic", "portrait", "auto"]).default("video"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+  }),
+  z.object({
+    type: z.literal("spacer"),
+    size: z.enum(["sm", "md", "lg", "xl"]).default("md"),
+  }),
+  z.object({
+    type: z.literal("price-list"),
+    variant: z.enum(["default", "minimal"]).default("default"),
+    categories: z.array(z.object({
+      name: z.string(),
+      items: z.array(z.object({
+        label: z.string(),
+        price: z.string(),
+        details: z.string().optional(),
+      }))
+    })),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+  }),
+  z.object({
+    type: z.literal("testimonial-card"),
+    quote: z.string(),
+    author: z.string(),
+    role: z.string().optional(),
+    avatar: z.string().optional(),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
   z.object({
@@ -238,6 +273,18 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     href: z.string().optional().describe("Internal path or anchor"),
     variant: z.enum(["primary", "secondary", "outline"]).default("primary"),
     align: z.enum(["left", "center", "right"]).default("left"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+  }),
+  z.object({
+    type: z.literal("image-grid"),
+    images: z.array(z.object({
+      src: z.string(),
+      alt: z.string().optional(),
+      caption: z.string().optional(),
+    })),
+    columns: z.enum(["2", "3", "4"]).default("3"),
+    gap: z.enum(["none", "sm", "md", "lg"]).default("md"),
+    aspect: z.enum(["square", "video", "portrait", "auto"]).default("square"),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
 ]);
