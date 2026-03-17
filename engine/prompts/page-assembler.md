@@ -21,9 +21,13 @@ Regardless of the page path, if the content describes a specific functional goal
 - **Location/Address**: Use `map`.
 - **Social Proof**: Use `testimonials`.
 - **High-Impact Intro**: Use `hero`.
+- **Services (Boutique/Luxury)**: Use `services`. 
+  - Use `variant: "grid"` for standard icon-based grids.
+  - Use `variant: "list"` for high-end alternating image/text layouts (Victor Churchill style). Use this for "Store Features", "Signature Collections", or "Core Offerings".
 
 ### 2. General Storytelling & Dynamic Content
 Use the **blocks** schema for ALL OTHER CONTENT, including:
+- **Headings**: Use `decoration: "line-left"` for a modern editorial look, `"line-bottom"` for centered classic impact, or `"underline"` for a subtle punchy feel.
 - **Service/Feature Grids**: Use `columns` (3-col or 4-col) with `container` (background: "surface", padding: "md") to create cards.
 - **Business Showcases & Portfolios (NEW)**: Use `image-grid` for galleries, completed projects, or product showcases. 
   - Use `columns: "3"` or `"4"` for high-density visual grids. 
@@ -39,7 +43,7 @@ Use the **blocks** schema for ALL OTHER CONTENT, including:
 - **Mixed Media**: Anything combining text, icons, and images.
 
 ## FORBIDDEN (CRITICAL)
-- **DO NOT** use `services` or `pricing` section types (they are deprecated). Use `blocks`.
+- **DO NOT** use `pricing` section types (it is deprecated). Use `blocks`.
 - **DO NOT** use `hero` more than once per page.
 - **NO OVERLAPS**: NEVER use `position: "absolute-..."` for containers unless you are explicitly creating a "text-on-image" overlay. Standard content MUST use `position: "relative"` to prevent ugly overlapping.
 - **NO FAT HEROS**: Keep `hero` subheadlines concise. Avoid excessive internal spacing in hero sections to ensure they don't push the main content too far down.
@@ -48,11 +52,12 @@ Use the **blocks** schema for ALL OTHER CONTENT, including:
 1. **Schema Strict**: Strictly follow the provided Zod schema:
 {{SCHEMA}}
 2. **Icon Mapping**: Use ONLY Lucide icon names (e.g., 'Check', 'Star', 'Activity', 'Zap', 'MapPin', 'Wrench').
-3. **Visual Variety & Safety**:
-   - **Sections**: Apply the `width`, `background`, `padding`, and `animation` properties suggested in the blueprint. Use `padding: "sm"` for simple Hero sections.
-   - **Blocks**: Use the `spacing` property (`sm`, `md`, `lg`) on individual blocks to create visual breathing room.
+3. **Visual Variety & Safety (THE SPACING RULE)**:
+   - **LUXURY MANDATE**: For 'luxury' or 'boutique' vibes, whitespace is critical. **NEVER** use `padding: "none"` for sections containing text, heroes, or maps. Use `padding: "md"` or `"lg"` to create an editorial feel.
+   - **Sections**: Use `width: "wide"` or `"full"` for high-end layouts. Use `background: "surface"` or `"muted"` to create sophisticated depth between sections.
+   - **Blocks**: Use the `spacing` property (`md`, `lg`) on individual blocks to ensure typography has room to breathe.
+   - **Hero Layout**: For luxury brands, use `padding: "lg"` or `"md"`. Avoid `sm` as it feels cramped.
    - **Containers**: Use `background: "surface"` to create clear "card" divisions within columns. Always default to `position: "relative"`.
-   - **Hero Layout**: If using `variant: "simple"`, ensure the copy is punchy. If using `variant: "split"`, ensure the image is high-quality.
 
 ## Output Format
 Return ONLY the JSON object. No conversational text.

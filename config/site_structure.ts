@@ -1,50 +1,53 @@
 export const siteStructure = {
   "pages": {
     "/": [
-      "hero-section",
-      "features-grid",
-      "testimonials-grid",
-      "collections-showcase",
-      "blog-preview"
+      "hero",
+      "testimonials",
+      "heritage",
+      "features"
     ],
     "/about": [
       "hero",
-      "brand-story",
-      "mission",
-      "manufacturing"
+      "heritage",
+      "butchery",
+      "marble"
+    ],
+    "/services": [
+      "hero",
+      "core-services",
+      "pricing",
+      "bespoke-services",
+      "bespoke-events"
+    ],
+    "/menu": [
+      "hero_menu",
+      "signature_cuts",
+      "pantry",
+      "counter_experience"
     ],
     "/contact": [
       "hero",
-      "contact-form",
       "map",
-      "faq"
-    ],
-    "/journal": [
-      "hero",
-      "articles",
-      "filters",
-      "newsletter"
-    ],
-    "/shop": [
-      "hero_1",
-      "filter_1",
-      "products_1",
-      "sustainability_1"
+      "form",
+      "blocks"
     ]
   },
   "navigation": {
     "header": [
       "/",
-      "/shop",
       "/about",
+      "/services",
+      "/menu",
       "/contact",
-      "/journal"
+      "/contact#map"
     ],
     "footer": [
-      "/#collections-showcase",
+      "/",
       "/about",
-      "/journal",
-      "/contact"
+      "/services",
+      "/menu",
+      "/contact",
+      "/contact#map"
     ]
   }
 };

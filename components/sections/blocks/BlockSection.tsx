@@ -266,12 +266,19 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           right: "text-right",
         }[block.align || "left"];
 
+        const decorationClasses = {
+          none: "",
+          underline: "border-b-2 border-primary pb-2 inline-block",
+          "line-left": "border-l-4 border-primary pl-6 py-2",
+          "line-bottom": "after:content-[''] after:block after:w-24 after:h-1 after:bg-primary after:mt-4",
+        }[block.decoration || "none"];
+
         return (
           <div
-            className={`${alignClasses} ${block.align === "left" && block.level === "h2" ? "border-l-4 border-primary pl-6 py-2" : ""} ${marginClass}`}
+            className={`${alignClasses} ${marginClass}`}
           >
             <Tag
-              className={`${fontSizes[block.level || "h2"]} text-foreground leading-[1.1]`}
+              className={`${fontSizes[block.level || "h2"]} leading-[1.1] ${decorationClasses}`}
             >
               {block.text}
             </Tag>
@@ -287,7 +294,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
         }[block.align || "left"];
         return (
           <div
-            className={`text-base md:text-lg text-foreground/80 leading-relaxed font-medium ${alignClasses} ${marginClass} break-words whitespace-pre-wrap`}
+            className={`text-base md:text-lg opacity-80 leading-relaxed font-medium ${alignClasses} ${marginClass} break-words whitespace-pre-wrap`}
           >
             {block.content}
           </div>
@@ -384,7 +391,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           primary:
             "bg-primary text-on-primary shadow-lg shadow-primary/30 hover:-translate-y-1",
           secondary: "bg-secondary/10 text-foreground hover:bg-secondary/20",
-          outline: "border-2 border-primary text-primary hover:bg-primary/5",
+          outline: "border-2 border-current hover:bg-foreground/5",
         };
         const alignClasses = {
           left: "justify-start",

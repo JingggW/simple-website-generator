@@ -11,7 +11,7 @@ A raw business description (e.g., "A high-end Italian restaurant in Brooklyn").
 
 ## Output Requirements
 1. **Brand Story**: A 2-sentence visual "vibe" (e.g., "Warm and rustic with modern accents").
-2. **Color Strategy (CRITICAL)**: Choose the most appropriate **Preset Key** from the library below based on the business type:
+2. **Color Strategy (CRITICAL)**: Choose the most appropriate **Color Preset** from the library below based on the business type:
    - `modernSaaS`: Clean blue/slate for tech and software.
    - `earthyOrganic`: Emerald/amber for cafes, florists, and wellness.
    - `boldCreative`: Rose/indigo for agencies and studios.
@@ -20,8 +20,14 @@ A raw business description (e.g., "A high-end Italian restaurant in Brooklyn").
    - `sunsetWarmth`: Orange/yellow for restaurants and bakeries.
    - `cyberDark`: Neon/dark for gaming or nightlife.
    - `softPastel`: Violet/pink for beauty and lifestyle.
+   - `professionalTrust`: Strong blue for legal/financial services.
+   - `modernTech`: Cyan/slate for modern technology.
+   - `ecoGrowth`: Green/amber for sustainability and eco-brands.
+   - `warmHospitality`: Orange/yellow for restaurants and hotels.
+   - `industrialSteel`: Gray/zinc for manufacturing and construction.
+   - `luxuryGold`: Black/gold for high-end boutique services.
 
-**Output the chosen Preset Key clearly.**
+**Output the chosen Color Preset clearly.**
 
 3. **Color Palette**: 
    - `primary`: The main brand color from the chosen preset.

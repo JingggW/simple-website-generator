@@ -156,8 +156,14 @@ ${uiPrompt}
 
     console.log("📄 Content Prompt (with replacements):\n", contentPrompt);
 
-    const finalJsonRaw = await callLLM(
-      `
+    let parsed: any = null;
+    let retries = 3;
+    let lastError = null;
+
+    while (retries > 0 && !parsed) {
+      try {
+        const finalJsonRaw = await callLLM(
+          `
 ### LAYOUT PATTERNS & EXAMPLES
 ${layoutsLibrary}
 
@@ -169,12 +175,21 @@ ${rawCopy}
 
 ### TASK: PAGE ASSEMBLY
 ${assemblerPrompt}
-    `,
-      "You are a senior frontend developer.",
-    );
 
-    const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
-    const parsed = JSON.parse(rawJson);
+${lastError ? `### PREVIOUS ERROR\nThe last JSON you generated was malformed: ${lastError}\nPlease fix the syntax errors and ensure you output valid JSON.` : ""}
+        `,
+          "You are a senior frontend developer.",
+        );
+
+        const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
+        parsed = JSON.parse(rawJson);
+      } catch (e: any) {
+        lastError = e.message;
+        retries--;
+        console.warn(`⚠️ JSON Parse Failed. Retries left: ${retries}. Error: ${lastError}`);
+        if (retries === 0) throw new Error(`Failed to parse JSON after 3 attempts: ${lastError}`);
+      }
+    }
 
     const validated = await validate_and_repair(
       parsed,

@@ -1,2 +1,2 @@
-export { ServicesGrid } from "./ServicesGrid";
-export { ServicesList } from "./ServicesList";
+export * from "./ServicesGrid";
+export * from "./ServicesList";

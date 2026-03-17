@@ -34,10 +34,10 @@ You must create a logical, non-repetitive flow:
    - **No Overlapping**: Do NOT plan for overlapping content. Ensure each piece of information has its own clear space.
    - **Column Logic**: If text is long or titles are complex (e.g. "Performance-First Activewear"), avoid `4-col` layouts. Use `3-col` or `split` to prevent ugly word breaking.
    - **Concise Hero**: The `hero` section should be a concise "handshake" with the visitor. Avoid massive subheadlines that make the section too tall.
-3. **Absolute Uniqueness**:
+3. **Absolute Uniqueness (OVERRIDE MASTER PLAN)**:
    - **`map`**, **`testimonials` (grid)**, and **`form`** sections are global resources.
    - Refer to **{{GENERATED_MAP}}** to see what already exists on the site.
-   - If a specialized section exists elsewhere, YOU MUST NOT USE IT AGAIN. Use `blocks` to describe that topic instead.
+   - **CRITICAL**: If a specialized section exists elsewhere, YOU MUST NOT USE IT AGAIN, even if the Master Page Plan suggests it. Instead, you MUST fallback to using the `blocks` type to describe that content.
 4. **Alternating Bands**: Always vary the `background` and `animation` between sections to create a rhythmic scroll.
 
 ## Input

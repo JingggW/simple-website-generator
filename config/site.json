@@ -1,85 +1,99 @@
 {
   "theme": {
     "mode": "light",
-    "preset": "modern",
+    "preset": "boutiqueAtelier",
     "colors": {
-      "primary": "#FF6B6B",
-      "secondary": "#6B7280",
+      "primary": "#000000",
+      "secondary": "#1C1917",
       "background": "#FFFFFF",
-      "surface": "#F9FAFB",
-      "onPrimary": "#FFFFFF",
-      "muted": "#F3F4F6",
-      "accent": "#F59E0B",
+      "surface": "#FAFAF9",
+      "muted": "#F5F5F4",
+      "accent": "#A16207",
       "text": "#111827"
     },
-    "fontStyle": "sans",
-    "typographyScale": "standard",
-    "borderRadius": "lg",
-    "containerStyle": "default"
+    "fontStyle": "serif",
+    "typographyScale": "editorial",
+    "borderRadius": "none",
+    "containerStyle": "glass"
   },
   "header": {
-    "title": "ActiveWear Co.",
+    "title": "Soul",
     "links": [
       {
+        "type": "link",
         "label": "Home",
         "href": "/"
       },
       {
-        "label": "Shop",
-        "href": "/shop"
-      },
-      {
+        "type": "link",
         "label": "About",
         "href": "/about"
       },
       {
+        "type": "link",
+        "label": "Services",
+        "href": "/services"
+      },
+      {
+        "type": "link",
+        "label": "Menu",
+        "href": "/menu"
+      },
+      {
+        "type": "link",
         "label": "Contact",
         "href": "/contact"
       },
       {
-        "label": "Journal",
-        "href": "/journal"
+        "type": "link",
+        "label": "Melbourne",
+        "href": "/contact#map"
       }
-    ],
-    "cta": {
-      "label": "New Arrivals",
-      "href": "/shop"
-    }
+    ]
   },
   "footer": {
     "brand": {
-      "title": "ActiveWear Co.",
-      "description": "Comfortable, breathable activewear designed for women who move."
+      "title": "Soul",
+      "description": "Artisan butchery and gourmet grocer in Armadale, Melbourne."
     },
     "columns": [
       {
-        "title": "Shop",
+        "title": "Explore",
         "links": [
           {
-            "label": "Shop",
-            "href": "/#collections-showcase"
-          }
-        ]
-      },
-      {
-        "title": "About",
-        "links": [
+            "type": "link",
+            "label": "Home",
+            "href": "/"
+          },
           {
+            "type": "link",
             "label": "About",
             "href": "/about"
           },
           {
-            "label": "Journal",
-            "href": "/journal"
+            "type": "link",
+            "label": "Services",
+            "href": "/services"
+          },
+          {
+            "type": "link",
+            "label": "Menu",
+            "href": "/menu"
           }
         ]
       },
       {
-        "title": "Contact",
+        "title": "Visit",
         "links": [
           {
+            "type": "link",
             "label": "Contact",
             "href": "/contact"
+          },
+          {
+            "type": "link",
+            "label": "Melbourne",
+            "href": "/contact#map"
           }
         ]
       }
@@ -87,228 +101,80 @@
     "social": [
       {
         "platform": "instagram",
-        "url": "https://instagram.com/activewearco"
+        "url": "https://instagram.com/soul"
       },
       {
         "platform": "facebook",
-        "url": "https://facebook.com/activewearco"
+        "url": "https://facebook.com/soul"
       }
     ],
-    "copyright": "© 2026 ActiveWear Co. All rights reserved."
+    "copyright": "© 2026 Soul. All rights reserved."
   },
   "pages": {
     "/": {
       "seo": {
-        "title": "Christine Gymwear Co. - Elevate Your Active Lifestyle",
-        "description": "Premium activewear designed for women who demand performance, comfort, and style. Engineered in Melbourne with quick-dry tech and breathable fabrics—because your home workouts deserve excellence."
+        "title": "Victor Churchill Melbourne | Heritage Butchery & Luxury Dining",
+        "description": "Experience the art of exceptional meat at Victor Churchill Melbourne. Heritage-listed architecture, dry-aged mastery, and a multisensory dining counter in the heart of Melbourne."
       },
       "sectionOrder": [
-        "hero-section",
-        "features-grid",
-        "testimonials-grid",
-        "collections-showcase",
-        "blog-preview"
+        "hero",
+        "testimonials",
+        "heritage",
+        "features"
       ],
       "sections": {
-        "hero-section": {
+        "hero": {
           "type": "hero",
           "variant": "simple",
           "props": {
             "background": "primary",
-            "animation": "zoom-in",
-            "width": "full",
-            "padding": "sm",
-            "headline": "Elevate Your Active Lifestyle",
-            "subheadline": "Premium activewear designed for women who demand performance, comfort, and style. Engineered in Melbourne with quick-dry tech and breathable fabrics—because your home workouts deserve excellence.",
-            "ctaText": "Shop the Collection",
-            "ctaLink": "/shop",
-            "imageName": "https://loremflickr.com/1600/900/active,lifestyle?lock=776068"
-          }
-        },
-        "features-grid": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "muted",
             "animation": "fade",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Engineered for Performance",
-                "level": "h2",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Zap",
-                        "title": "Quick-Dry",
-                        "description": "Sweat-Activated Fabric\nOur moisture-wicking material dries 2x faster than cotton, keeping you cool and chafe-free.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Activity",
-                        "title": "Comfort",
-                        "description": "Seamless Support\nFlatlock seams and stretch blends eliminate irritation for unrestricted movement.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Wind",
-                        "title": "Breathability",
-                        "description": "Climate-Control Technology\nStrategic ventilation panels regulate temperature during intense sessions.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
+            "width": "bleed",
+            "padding": "sm",
+            "headline": "Victor Churchill Melbourne",
+            "subheadline": "Where heritage-listed architecture meets the art of exceptional meat. An institution reborn for the modern connoisseur.",
+            "ctaText": "Reserve Your Visit",
+            "ctaLink": "/contact",
+            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=904161"
           }
         },
-        "testimonials-grid": {
+        "testimonials": {
           "type": "testimonials",
           "variant": "grid",
           "props": {
-            "background": "surface",
+            "background": "muted",
             "animation": "slide-up",
-            "width": "wide",
-            "padding": "lg",
-            "title": "Join Our Community",
-            "items": [
-              {
-                "quote": "5⭐️ The quick-dry leggings revolutionized my yoga practice!",
-                "author": "Sarah L.",
-                "avatar": "sarah-testimonial"
-              },
-              {
-                "quote": "4⭐️ Comfortable enough for daily wear—no more laundry day dread!",
-                "author": "Tom M.",
-                "avatar": "tom-testimonial"
-              },
-              {
-                "quote": "5⭐️ Breathable tops save me in Melbourne’s humidity!",
-                "author": "Priya R.",
-                "avatar": "priya-testimonial"
-              },
-              {
-                "quote": "4⭐️ Sets are stylish post-workout, but pricier than expected.",
-                "author": "Alex K.",
-                "avatar": "alex-testimonial"
-              }
-            ]
-          }
-        },
-        "collections-showcase": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "default",
-            "animation": "none",
-            "width": "full",
-            "padding": "lg",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Collections Crafted for You",
-                "level": "h2",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
-                "type": "image-grid",
-                "images": [
-                  {
-                    "src": "https://loremflickr.com/1600/900/high,waisted?lock=806328",
-                    "alt": "High-waisted, pocketed leggings from the Legends Line",
-                    "caption": "Leggings"
-                  },
-                  {
-                    "src": "https://loremflickr.com/1600/900/moisture,wicking?lock=840343",
-                    "alt": "Moisture-wicking racerback tops from the Breathe Easy line",
-                    "caption": "Tops"
-                  },
-                  {
-                    "src": "https://loremflickr.com/1600/900/matching,bra?lock=916621",
-                    "alt": "Matching bra and leggings sets from the Active Luxe collection",
-                    "caption": "Sets"
-                  }
-                ],
-                "columns": "3",
-                "gap": "md",
-                "aspect": "portrait",
-                "spacing": "md"
-              },
-              {
-                "type": "container",
-                "variant": "default",
-                "position": "relative",
-                "background": "none",
-                "padding": "sm",
-                "blocks": [
-                  {
-                    "type": "text",
-                    "content": "Legends Line: High-waisted, pocketed, and sculpting—perfect for HIIT or lounging.",
-                    "align": "center",
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "text",
-                    "content": "Breathe Easy: Moisture-wicking racerbacks and crop styles for breathability.",
-                    "align": "center",
-                    "spacing": "sm"
-                  },
-                  {
-                    "type": "text",
-                    "content": "Active Luxe: Matching bra + leggings with removable cups for versatility.",
-                    "align": "center",
-                    "spacing": "sm"
-                  }
-                ],
-                "spacing": "lg"
-              }
-            ]
-          }
-        },
-        "blog-preview": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "secondary",
-            "animation": "fade",
             "width": "default",
             "padding": "md",
-            "blocks": [
+            "title": "The Connoisseur's Verdict",
+            "items": [
               {
-                "type": "heading",
-                "text": "Fuel Your Fitness Journey",
-                "level": "h2",
-                "align": "center",
-                "spacing": "lg"
+                "quote": "The attention to detail here is unmatched. The dry-aged steak was the best I've ever had—a perfect balance of tradition and innovation.",
+                "author": "Marcus Aurelius",
+                "role": "Frequent Traveler"
               },
+              {
+                "quote": "A true Melbourne institution. The heritage building and the craft behind the meat create an experience like no other. Pure luxury.",
+                "author": "Julia Child",
+                "role": "Food Critic"
+              },
+              {
+                "quote": "Victor Churchill has redefined what a butchery can be. It's not just about the meat, it's about the story and the passion in every cut.",
+                "author": "Heston Blumenthal",
+                "role": "Celebrity Chef"
+              }
+            ]
+          }
+        },
+        "heritage": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "surface",
+            "animation": "none",
+            "width": "wide",
+            "padding": "lg",
+            "blocks": [
               {
                 "type": "columns",
                 "layout": "split-left",
@@ -317,10 +183,10 @@
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/compact,home?lock=681446",
-                        "alt": "Compact home gym setup with resistance bands and foldable equipment",
-                        "aspect": "portrait",
-                        "spacing": "md"
+                        "src": "https://loremflickr.com/1600/900/ornate,heritage?lock=758263",
+                        "alt": "Ornate heritage entrance with restored cornices and original glass",
+                        "aspect": "cinematic",
+                        "spacing": "none"
                       }
                     ]
                   },
@@ -328,22 +194,14 @@
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "5 Home Workout Hacks for Small Spaces",
-                        "level": "h3",
+                        "text": "A Melbourne Landmark, Preserved",
+                        "level": "h2",
                         "align": "left",
-                        "spacing": "md"
+                        "spacing": "lg"
                       },
                       {
                         "type": "text",
-                        "content": "Maximize limited areas with resistance bands and foldable equipment. Learn how to create an effective workout zone without sacrificing living space.",
-                        "align": "left",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "button",
-                        "label": "Read More →",
-                        "href": "/journal",
-                        "variant": "secondary",
+                        "content": "For over a century, our Collins Street address has stood as a testament to Melbourne's golden era. We didn't just occupy a space—we committed to its stewardship. Every restored cornice, every pane of original glass, tells a story of permanence in a changing city.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -359,22 +217,14 @@
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "Style Meets Function: Gym-to-Street Outfits",
-                        "level": "h3",
+                        "text": "A Promise in Stone",
+                        "level": "h2",
                         "align": "left",
-                        "spacing": "md"
+                        "spacing": "lg"
                       },
                       {
                         "type": "text",
-                        "content": "Transition from Surya flows to brunch with our versatile activewear. Discover styling tips that blend performance with everyday fashion.",
-                        "align": "left",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "button",
-                        "label": "Read More →",
-                        "href": "/journal",
-                        "variant": "secondary",
+                        "content": "This façade is our promise. It signals that what lies within is not transient, but foundational. It's a commitment to the slow, deliberate craft that built this city, now applied to the perfect cut of meat.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -383,11 +233,152 @@
                   {
                     "blocks": [
                       {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/model,leggings?lock=259491",
-                        "alt": "Model in leggings and crop top wearing streetwear jacket",
-                        "aspect": "portrait",
-                        "spacing": "md"
+                        "type": "columns",
+                        "layout": "split",
+                        "items": [
+                          {
+                            "blocks": [
+                              {
+                                "type": "image",
+                                "src": "https://loremflickr.com/1600/900/black,white?lock=42496",
+                                "alt": "Black and white archival photo of Collins Street",
+                                "aspect": "cinematic",
+                                "spacing": "none"
+                              }
+                            ]
+                          },
+                          {
+                            "blocks": [
+                              {
+                                "type": "image",
+                                "src": "https://loremflickr.com/1600/900/color,photo?lock=552554",
+                                "alt": "Modern color photo of the same streetscape",
+                                "aspect": "cinematic",
+                                "spacing": "none"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "features": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "zoom-in",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/dry,aged?lock=107814",
+                            "alt": "Dry-aged rack with fine white mold bloom",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Dry-Aged Mastery",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Our climate-controlled rooms breathe. We source whole primal cuts and age them to intensify flavor and tenderness—a process of patience you can taste.",
+                            "align": "left",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/butcher,hands?lock=609257",
+                            "alt": "Butcher's hands guiding a precision cut",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "The Butcher's Touch",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Our team are not just cutters; they are custodians of the craft. They know the story of every animal, the perfect seam to follow, the exact weight for your celebration.",
+                            "align": "left",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/perfectly,seared?lock=466917",
+                            "alt": "Perfectly seared steak on marble dining counter",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "The Dining Counter",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "This is where product becomes plate. Step up to our marble counter for a multisensory consultation. Touch the meat, discuss the cut, and leave with not just an ingredient, but a culinary moment.",
+                            "align": "left",
+                            "spacing": "none"
+                          }
+                        ],
+                        "spacing": "none"
                       }
                     ]
                   }
@@ -400,117 +391,466 @@
     },
     "/about": {
       "seo": {
-        "title": "Christine Gymwear | Empowering Women’s Fitness Since 2015",
-        "description": "Discover sustainable, performance-driven activewear crafted in Melbourne. Designed for comfort, style, and ethical production. Shop now and join our community."
+        "title": "Victor Churchill | Heritage Butchery & Dining",
+        "description": "Experience the art of traditional butchery in the heart of Melbourne. Victor Churchill combines heritage craftsmanship with modern luxury for an unparalleled culinary journey."
       },
       "sectionOrder": [
         "hero",
-        "brand-story",
-        "mission",
-        "manufacturing"
+        "heritage",
+        "butchery",
+        "marble"
       ],
       "sections": {
         "hero": {
           "type": "hero",
           "variant": "simple",
           "props": {
-            "background": "default",
-            "animation": "zoom-in",
-            "width": "default",
-            "padding": "md",
-            "headline": "Empowering Women’s Fitness Since 2015",
-            "subheadline": "Founded in the heart of Point Cook, Melbourne, Christine Gymwear was born from a simple mission: to create activewear that empowers women to move with confidence, comfort, and style. Our story begins with a passion for fitness, a love for local craftsmanship, and a commitment to sustainability.",
-            "ctaText": "Shop Now",
-            "ctaLink": "/",
-            "imageName": "https://loremflickr.com/1600/900/empowering,women?lock=628673"
+            "background": "primary",
+            "animation": "fade",
+            "width": "full",
+            "padding": "sm",
+            "headline": "Forged in Tradition, Perfected in Craft",
+            "subheadline": "Since 2010, Victor Churchill has been Melbourne’s sanctuary for exceptional meat. Within our heritage-listed façade, old-world butchery lives on—where every cut honors the animal, the land, and a relentless pursuit of perfection.",
+            "ctaText": "",
+            "imageName": "https://loremflickr.com/1600/900/forged,tradition?lock=271928"
           }
         },
-        "brand-story": {
+        "heritage": {
           "type": "blocks",
           "variant": "wide",
           "props": {
-            "background": "default",
-            "animation": "fade",
-            "width": "default",
-            "padding": "md",
+            "background": "muted",
+            "animation": "slide-up",
+            "width": "wide",
+            "padding": "lg",
             "blocks": [
               {
-                "type": "feature",
-                "icon": "Heart",
-                "title": "Passion for Fitness",
-                "description": "Born from a professional athlete's journey, our designs prioritize performance and durability.",
-                "variant": "vertical",
+                "type": "heading",
+                "text": "A Façade Reborn: History in Every Stone",
+                "level": "h2",
                 "align": "left",
                 "spacing": "md"
               },
               {
-                "type": "feature",
-                "icon": "Globe",
-                "title": "Global Impact",
-                "description": "Ethical manufacturing practices with a focus on reducing environmental footprint.",
-                "variant": "vertical",
+                "type": "text",
+                "content": "Our Collins Street home began as a 19th-century bluestone warehouse. In a two-year collaboration with heritage architects, we carefully uncovered original Victorian cornices, restored weathered sandstone, and preserved the building’s soul—ensuring every passerby feels the weight of history before stepping inside.",
                 "align": "left",
                 "spacing": "md"
               },
               {
-                "type": "feature",
-                "icon": "Gear",
-                "title": "Local Craftsmanship",
-                "description": "Proudly made in Melbourne with Australian-sourced materials.",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
+                "type": "columns",
+                "layout": "split",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/archival,photograph?lock=980541",
+                        "alt": "Archival photograph of the derelict 19th-century bluestone warehouse façade",
+                        "caption": "19th-century derelict state",
+                        "aspect": "portrait",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/contemporary,shot?lock=614373",
+                        "alt": "Contemporary shot highlighting restored bluestone and ornate Victorian cornices",
+                        "caption": "After heritage restoration",
+                        "aspect": "portrait",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         },
-        "mission": {
+        "butchery": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "surface",
+            "animation": "zoom-in",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "The Butcher’s Ritual: Selection, Age, Precision",
+                "level": "h2",
+                "align": "left",
+                "spacing": "lg"
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/farmer,hand?lock=513281",
+                        "alt": "Farmer's hand on pasture with grazing cattle",
+                        "aspect": "video",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "icon",
+                        "name": "Search",
+                        "size": "lg",
+                        "color": "accent",
+                        "align": "left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Selection",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "text",
+                        "content": "We source only pasture-raised animals with traceable provenance, visiting farms to verify welfare and diet.",
+                        "align": "left",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "icon",
+                        "name": "Clock",
+                        "size": "lg",
+                        "color": "accent",
+                        "align": "left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Aging",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "text",
+                        "content": "In our climate-controlled rooms, primals dry-age for up to 60 days, concentrating flavor and tenderizing naturally.",
+                        "align": "left",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/close,dry?lock=814548",
+                        "alt": "Close-up of dry-aged meat showing concentrated marbling and texture",
+                        "aspect": "video",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/butcher,hands?lock=855871",
+                        "alt": "Butcher's hands at work with hand-forged knives",
+                        "aspect": "video",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "icon",
+                        "name": "Knife",
+                        "size": "lg",
+                        "color": "accent",
+                        "align": "left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "heading",
+                        "text": "Precision",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Using hand-forged knives, our butchers break each carcass with reverence—honoring the whole animal through nose-to-tail mastery.",
+                        "align": "left",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "marble": {
+          "type": "blocks",
+          "variant": "full",
+          "props": {
+            "background": "default",
+            "animation": "none",
+            "width": "bleed",
+            "padding": "none",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "The Marble Stage: Where Community Gathers",
+                "level": "h2",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "text",
+                "content": "A sweeping curve of Calacatta marble anchors our space—more than a counter, it’s a stage for connection. Here, we host tastings, share stories of provenance, and invite strangers to become friends over a slice of perfectly aged sirloin. This is where craft becomes conversation, and every visit feels like coming home.",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "image",
+                "src": "https://loremflickr.com/1600/900/full,bleed?lock=985365",
+                "alt": "Full-bleed cinematic shot of the curved Calacatta marble counter mid-service, with butcher's hands presenting a cut to a guest",
+                "aspect": "cinematic",
+                "spacing": "none"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/services": {
+      "seo": {
+        "title": "Services | Victor Churchill Melbourne",
+        "description": "Discover Victor Churchill's complete service ecosystem: artisan butchery, curated grocery, and intimate dining experiences. Transparent pricing and bespoke services for the discerning carnivore."
+      },
+      "sectionOrder": [
+        "hero",
+        "core-services",
+        "pricing",
+        "bespoke-services",
+        "bespoke-events"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "primary",
+            "animation": "fade",
+            "width": "bleed",
+            "padding": "none",
+            "headline": "The Victor Churchill Experience",
+            "subheadline": "From our artisan butchery to our curated grocery and intimate dining room, we offer a complete ecosystem for the discerning carnivore. Discover the full scope of our craftsmanship.",
+            "ctaText": "Explore Services",
+            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=6603",
+            "ctaLink": "#core-services"
+          }
+        },
+        "core-services": {
           "type": "blocks",
           "variant": "wide",
           "props": {
             "background": "default",
             "animation": "slide-up",
-            "width": "default",
+            "width": "wide",
             "padding": "md",
             "blocks": [
               {
-                "type": "feature",
-                "icon": "Tree",
-                "title": "Sustainability",
-                "description": "100% recycled fabrics and compostable packaging to minimize waste.",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
+                "type": "heading",
+                "text": "Our Three Pillars",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
               },
               {
-                "type": "feature",
-                "icon": "Cloud",
-                "title": "Comfort",
-                "description": "Breathable, mobility-tested designs for all-day wearability.",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
-              },
-              {
-                "type": "feature",
-                "icon": "People",
-                "title": "Community",
-                "description": "Sponsoring local fitness initiatives and donating 5% of profits to grassroots sports.",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Cleaver",
+                        "title": "Master Butchery",
+                        "description": "Whole-animal butchery, dry-aged perfection, and custom cuts from the world's finest producers.",
+                        "variant": "horizontal",
+                        "align": "center",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "ShoppingBag",
+                        "title": "Curated Grocer",
+                        "description": "Hand-picked pantry staples, artisan cheeses, charcuterie, and exclusive provisions.",
+                        "variant": "horizontal",
+                        "align": "center",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Utensils",
+                        "title": "The Dining Room",
+                        "description": "An intimate, seasonal tasting menu celebrating pristine ingredients in a setting of understated luxury.",
+                        "variant": "horizontal",
+                        "align": "center",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           }
         },
-        "manufacturing": {
+        "pricing": {
           "type": "blocks",
           "variant": "prose",
           "props": {
-            "background": "default",
+            "background": "muted",
             "animation": "zoom-in",
             "width": "default",
-            "padding": "md",
+            "padding": "lg",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Price & Menu Guide",
+                "level": "h2",
+                "align": "left",
+                "spacing": "lg"
+              },
+              {
+                "type": "text",
+                "content": "We believe in clarity. Below are our current price lists for our butchery and grocer, along with our latest seasonal dining menu and fixed-price offering.",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
+                "type": "price-list",
+                "variant": "default",
+                "categories": [
+                  {
+                    "name": "Artisan Butchery",
+                    "items": [
+                      {
+                        "label": "Dry-Aged Ribeye",
+                        "price": "$45/lb",
+                        "details": "21-day dry-aged, prime grade"
+                      },
+                      {
+                        "label": "Wagyu Striploin",
+                        "price": "$85/lb",
+                        "details": "A5 Japanese, limited availability"
+                      },
+                      {
+                        "label": "Heritage Pork Chop",
+                        "price": "$32",
+                        "details": "Free-range, apple-finished"
+                      },
+                      {
+                        "label": "Lamb Rack",
+                        "price": "$55",
+                        "details": "French trimmed, pasture-raised"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Curated Grocer",
+                    "items": [
+                      {
+                        "label": "Aged Cheddar",
+                        "price": "$28/200g",
+                        "details": "18-month vintage, clothbound"
+                      },
+                      {
+                        "label": "Bresaola",
+                        "price": "$45",
+                        "details": "Air-dried beef, thinly sliced"
+                      },
+                      {
+                        "label": "Truffle Honey",
+                        "price": "$38",
+                        "details": "Black truffle infused, 250ml"
+                      },
+                      {
+                        "label": "Artisan Mustard",
+                        "price": "$12",
+                        "details": "Wholegrain, house-made"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Dining Room",
+                    "items": [
+                      {
+                        "label": "Seasonal Tasting Menu",
+                        "price": "$150 per person",
+                        "details": "5 courses, wine pairing +$65"
+                      },
+                      {
+                        "label": "Fixed-Price Feast",
+                        "price": "$120 per person",
+                        "details": "3 courses, shared family-style"
+                      },
+                      {
+                        "label": "Butcher's Cut Special",
+                        "price": "Market Price",
+                        "details": "Daily selection of rare cuts"
+                      }
+                    ]
+                  }
+                ],
+                "spacing": "none"
+              }
+            ]
+          }
+        },
+        "bespoke-services": {
+          "type": "blocks",
+          "variant": "full",
+          "props": {
+            "background": "surface",
+            "animation": "slide-up",
+            "width": "full",
+            "padding": "none",
             "blocks": [
               {
                 "type": "columns",
@@ -519,15 +859,396 @@
                   {
                     "blocks": [
                       {
-                        "type": "heading",
-                        "text": "Design",
-                        "level": "h3",
-                        "align": "left",
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/precision,butchery?lock=43526",
+                        "alt": "Precision butchery showcasing a custom-cut rack of lamb on marble",
+                        "aspect": "cinematic",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "none",
+                        "padding": "lg",
+                        "blocks": [
+                          {
+                            "type": "heading",
+                            "text": "Your Custom Order",
+                            "level": "h2",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Have a specific cut in mind? Planning a feast? Our butchers work directly with you to source, prepare, and advise on any custom request, from a whole suckling pig to a curated cheese board for 50.",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Request Custom Cut",
+                            "href": "/contact",
+                            "variant": "primary",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
                         "spacing": "md"
-                      },
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "bespoke-events": {
+          "type": "blocks",
+          "variant": "full",
+          "props": {
+            "background": "secondary",
+            "animation": "fade",
+            "width": "full",
+            "padding": "none",
+            "blocks": [
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "none",
+                        "padding": "lg",
+                        "blocks": [
+                          {
+                            "type": "heading",
+                            "text": "The Private Event",
+                            "level": "h2",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Host an unforgettable gathering in our dining room. From corporate dinners to milestone celebrations, we craft bespoke menus and seamless service for groups of 12 to 24.",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "button",
+                            "label": "Inquire About Events",
+                            "href": "/contact?subject=private-event",
+                            "variant": "outline",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/dining,room?lock=119382",
+                        "alt": "Elegant dining room set for a private event with long table and candles",
+                        "aspect": "cinematic",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/menu": {
+      "seo": {
+        "title": "Menu | Victor Churchill Melbourne",
+        "description": "Explore the curated menu of premium meats, artisan groceries, and counter dining experiences at Victor Churchill Melbourne."
+      },
+      "sectionOrder": [
+        "hero_menu",
+        "signature_cuts",
+        "pantry",
+        "counter_experience"
+      ],
+      "sections": {
+        "hero_menu": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "primary",
+            "animation": "fade",
+            "width": "bleed",
+            "padding": "none",
+            "headline": "The Victor Churchill Melbourne Menu",
+            "subheadline": "A curated selection of the finest meats, artisan groceries, and counter dining experiences, sourced with intention and prepared with reverence.",
+            "ctaText": "",
+            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=707735"
+          }
+        },
+        "signature_cuts": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "muted",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "lg",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Signature Cuts",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Beef",
+                        "title": "Dry-Aged Ribeye",
+                        "description": "40+ days of meticulous dry-aging in our temperature-controlled vaults, concentrating flavor to create a nutty, intensely beefy profile with unparalleled tenderness.",
+                        "variant": "vertical",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Award",
+                        "title": "Wagyu Striploin",
+                        "description": "Sourced from premium Japanese or Australian Wagyu herds, renowned for its exquisite marbling (BMS 8-9), resulting in a buttery, melt-in-the-mouth texture and rich umami.",
+                        "variant": "vertical",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Sheep",
+                        "title": "Lamb Rack, French Trimmed",
+                        "description": "Premier Cut lamb, meticulously French-trimmed for elegant presentation. Succulent, with a delicate gamey flavor, perfect for roasting.",
+                        "variant": "vertical",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "pantry": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "surface",
+            "animation": "none",
+            "width": "wide",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "The Pantry",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "columns",
+                "layout": "4-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/artisan,cheeses?lock=417440",
+                            "alt": "Artisan Cheeses",
+                            "aspect": "square",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Artisan Cheeses",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "A rotating selection from Victoria's finest producers, from creamy triple-creams to aged cheddars.",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/house,made?lock=431182",
+                            "alt": "House-Made Condiments",
+                            "aspect": "square",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "House-Made Condiments",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Our signature beef & bone marrow butter, rich demi-glace, and seasonal fruit preserves.",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/charcuterie?lock=659159",
+                            "alt": "Charcuterie",
+                            "aspect": "square",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Charcuterie",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Cured meats and pâtés made in-house and by select local artisans.",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/specialty,provisions?lock=880170",
+                            "alt": "Specialty Provisions",
+                            "aspect": "square",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Specialty Provisions",
+                            "level": "h3",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Fine oils, vinegars, and pantry staples chosen to complement our proteins.",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "counter_experience": {
+          "type": "blocks",
+          "variant": "full",
+          "props": {
+            "background": "secondary",
+            "animation": "zoom-in",
+            "width": "full",
+            "padding": "lg",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "The Counter Experience",
+                "level": "h2",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
                       {
                         "type": "text",
-                        "content": "Collaborating with local artists to create bold, functional patterns.",
+                        "content": "More than a menu, it's a performance. Seat at our marble counter and watch as your chosen cut is butchered, seasoned, and cooked to perfection before your eyes. A front-row seat to the craft.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -537,9 +1258,8 @@
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/fabric,cutting?lock=235568",
-                        "alt": "Fabric cutting in Melbourne workshop",
-                        "caption": "Local Production",
+                        "src": "https://loremflickr.com/1600/900/dining,counter?lock=168225",
+                        "alt": "Dining counter experience",
                         "aspect": "cinematic",
                         "spacing": "md"
                       }
@@ -554,16 +1274,10 @@
                   {
                     "blocks": [
                       {
-                        "type": "heading",
-                        "text": "Production",
-                        "level": "h3",
-                        "align": "right",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "text",
-                        "content": "Small-batch manufacturing in our Point Cook workshop.",
-                        "align": "right",
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/tasting,menu?lock=636122",
+                        "alt": "Tasting menu course",
+                        "aspect": "cinematic",
                         "spacing": "md"
                       }
                     ]
@@ -571,11 +1285,16 @@
                   {
                     "blocks": [
                       {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/stitching,process?lock=802523",
-                        "alt": "Stitching process in Point Cook",
-                        "caption": "Ethical Craftsmanship",
-                        "aspect": "cinematic",
+                        "type": "heading",
+                        "text": "The Tasting Menu",
+                        "level": "h3",
+                        "align": "left",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "A curated journey of 5-7 courses, featuring the best of what's in the case that day. Each course is a dialogue between exceptional protein and its perfect accompaniment, served directly from the counter.",
+                        "align": "left",
                         "spacing": "md"
                       }
                     ]
@@ -589,40 +1308,54 @@
     },
     "/contact": {
       "seo": {
-        "title": "We’re Here to Help",
-        "description": "Reach out for support, wholesale inquiries, or collaboration opportunities. Our team is ready to assist you."
+        "title": "Contact Victor Churchill | Armadale Boutique",
+        "description": "Reach out to Victor Churchill for butchery inquiries, custom orders, and event bookings. Visit us at 1/2 Armadale St, Armadale VIC 3143 or send a message."
       },
       "sectionOrder": [
         "hero",
-        "contact-form",
         "map",
-        "faq"
+        "form",
+        "blocks"
       ],
       "sections": {
         "hero": {
           "type": "hero",
           "variant": "simple",
           "props": {
-            "background": "default",
-            "animation": "slide-up",
+            "background": "primary",
+            "animation": "fade",
             "width": "default",
-            "padding": "md",
-            "headline": "We’re Here to Help",
-            "subheadline": "Reach out for support, wholesale inquiries, or collaboration opportunities. Our team is ready to assist you.",
-            "ctaText": "Contact Us",
-            "ctaLink": "/contact",
-            "imageName": "https://loremflickr.com/1600/900/here,help?lock=265657"
+            "padding": "sm",
+            "headline": "Victor Churchill Melbourne",
+            "subheadline": "Experience exceptional butchery in the heart of Armadale. A destination for the finest provenance-driven meat and expert guidance.",
+            "ctaText": "Get Started",
+            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=840543",
+            "ctaLink": "/contact#form"
           }
         },
-        "contact-form": {
-          "type": "form",
-          "variant": "contact",
+        "map": {
+          "type": "map",
+          "variant": "embedded",
           "props": {
             "background": "muted",
             "animation": "slide-up",
+            "width": "full",
+            "padding": "none",
+            "title": "Find Us in Armadale",
+            "address": "Victor Churchill, 1/2 Armadale St, Armadale VIC 3143",
+            "zoom": 14
+          }
+        },
+        "form": {
+          "type": "form",
+          "variant": "contact",
+          "props": {
+            "background": "surface",
+            "animation": "zoom-in",
             "width": "default",
-            "padding": "md",
-            "title": "Contact Us",
+            "padding": "lg",
+            "title": "Let's Talk Meat",
+            "description": "Have a specific request, planning an event, or want to learn more about our cuts? Send us a message and our team will be in touch.",
             "fields": [
               {
                 "name": "name",
@@ -637,127 +1370,41 @@
                 "required": true
               },
               {
+                "name": "phone",
+                "label": "Phone",
+                "type": "text",
+                "required": false
+              },
+              {
+                "name": "inquiryType",
+                "label": "Inquiry Type",
+                "type": "select",
+                "options": [
+                  "General",
+                  "Custom Order",
+                  "Event"
+                ],
+                "required": true
+              },
+              {
                 "name": "message",
                 "label": "Message",
                 "type": "textarea",
                 "required": true
               }
             ],
-            "submitLabel": "Submit"
+            "submitLabel": "Send Message"
           }
         },
-        "map": {
-          "type": "map",
-          "variant": "embedded",
-          "props": {
-            "background": "default",
-            "animation": "slide-up",
-            "width": "default",
-            "padding": "md",
-            "title": "Our Melbourne Studio",
-            "address": "Point Cook, Melbourne",
-            "zoom": 14
-          }
-        },
-        "faq": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "secondary",
-            "animation": "slide-up",
-            "width": "prose",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "feature",
-                "icon": "Mappin",
-                "title": "Shipping",
-                "description": "How long does shipping take?",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
-              },
-              {
-                "type": "feature",
-                "icon": "Mappin",
-                "title": "Returns",
-                "description": "What is your return policy?",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
-              },
-              {
-                "type": "feature",
-                "icon": "Mappin",
-                "title": "Sizing",
-                "description": "How do I find my size?",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
-              },
-              {
-                "type": "feature",
-                "icon": "Mappin",
-                "title": "Care",
-                "description": "How do I care for my activewear?",
-                "variant": "vertical",
-                "align": "left",
-                "spacing": "md"
-              }
-            ]
-          }
-        }
-      }
-    },
-    "/journal": {
-      "seo": {
-        "title": "Journal | Christine Gymwear Co.",
-        "description": "Your source for fitness tips, style guides, and the latest from Christine Gymwear Co."
-      },
-      "sectionOrder": [
-        "hero",
-        "articles",
-        "filters",
-        "newsletter"
-      ],
-      "sections": {
-        "hero": {
-          "type": "hero",
-          "variant": "simple",
-          "props": {
-            "background": "primary",
-            "animation": "fade",
-            "width": "bleed",
-            "padding": "sm",
-            "headline": "Move Your Mind: The Journal",
-            "subheadline": "Your source for fitness tips, style guides, and the latest from Christine Gymwear Co. Dive into our featured story below.",
-            "ctaText": "Get Started",
-            "imageName": "https://loremflickr.com/1600/900/move,mind?lock=75790",
-            "ctaLink": "/journal#newsletter"
-          }
-        },
-        "articles": {
+        "blocks": {
           "type": "blocks",
           "variant": "wide",
           "props": {
             "background": "default",
-            "animation": "slide-up",
+            "animation": "none",
             "width": "wide",
             "padding": "md",
             "blocks": [
-              {
-                "type": "heading",
-                "text": "Latest Stories",
-                "level": "h2",
-                "align": "center",
-                "spacing": "md"
-              },
-              {
-                "type": "text",
-                "content": "Explore our newest articles on training, nutrition, and sustainable activewear.",
-                "align": "center",
-                "spacing": "md"
-              },
               {
                 "type": "columns",
                 "layout": "3-col",
@@ -765,310 +1412,12 @@
                   {
                     "blocks": [
                       {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/woman,doing?lock=418606",
-                            "alt": "Woman doing yoga in Christine Gymwear",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "5 Post-Workout Stretches for Recovery",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "A quick guide to essential stretches after your workout.",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Read More",
-                            "href": "/journal/5-post-workout-stretches",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "sm"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/minimalist,home?lock=107481",
-                            "alt": "Minimalist home gym setup with Christine equipment",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "How to Build a Home Gym on a Budget",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Create your dream workout space without breaking the bank.",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Read More",
-                            "href": "/journal/build-home-gym-budget",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "sm"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/healthy,meal?lock=520609",
-                            "alt": "Healthy meal prep for endurance training",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Nutrition for Endurance: Fueling Your Long Runs",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "What to eat before, during, and after your endurance training.",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Read More",
-                            "href": "/journal/nutrition-for-endurance",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "sm"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/recycled,fabric?lock=242177",
-                            "alt": "Recycled fabric texture close-up",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "The Rise of Sustainable Activewear",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "How Christine Gymwear is leading the charge in eco-friendly fashion.",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Read More",
-                            "href": "/journal/sustainable-activewear",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "sm"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/woman,meditation?lock=768952",
-                            "alt": "Woman in meditation pose wearing Christine Gymwear",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Mindful Movement: The Power of Yoga",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Unite your body and mind with these yoga practices.",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Read More",
-                            "href": "/journal/mindful-movement-yoga",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "sm"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/woman,lifting?lock=553910",
-                            "alt": "Woman lifting weights in home gym",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Strength Training for Beginners",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Start your strength journey with these essential exercises.",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Read More",
-                            "href": "/journal/strength-training-beginners",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "sm"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "filters": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "muted",
-            "animation": "none",
-            "width": "default",
-            "padding": "sm",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Filter by Topic",
-                "level": "h2",
-                "align": "center",
-                "spacing": "sm"
-              },
-              {
-                "type": "text",
-                "content": "Find exactly what you're looking for.",
-                "align": "center",
-                "spacing": "sm"
-              },
-              {
-                "type": "columns",
-                "layout": "4-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "outline",
-                        "position": "relative",
-                        "background": "none",
-                        "padding": "sm",
-                        "blocks": [
-                          {
-                            "type": "icon",
-                            "name": "Dumbbell",
-                            "size": "sm",
-                            "color": "primary",
-                            "align": "center",
-                            "spacing": "none"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Workouts",
-                            "align": "center",
-                            "spacing": "none"
-                          }
-                        ],
+                        "type": "feature",
+                        "icon": "Clock",
+                        "title": "Opening Hours",
+                        "description": "Monday - Friday: 9:00am - 6:00pm\nSaturday: 8:00am - 5:00pm\nSunday: Closed",
+                        "variant": "vertical",
+                        "align": "left",
                         "spacing": "none"
                       }
                     ]
@@ -1076,27 +1425,12 @@
                   {
                     "blocks": [
                       {
-                        "type": "container",
-                        "variant": "outline",
-                        "position": "relative",
-                        "background": "none",
-                        "padding": "sm",
-                        "blocks": [
-                          {
-                            "type": "icon",
-                            "name": "Leaf",
-                            "size": "sm",
-                            "color": "primary",
-                            "align": "center",
-                            "spacing": "none"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Nutrition",
-                            "align": "center",
-                            "spacing": "none"
-                          }
-                        ],
+                        "type": "feature",
+                        "icon": "Phone",
+                        "title": "Get in Touch",
+                        "description": "Phone: (03) 9509 1234\nEmail: armadale@victorchurchill.com.au",
+                        "variant": "vertical",
+                        "align": "left",
                         "spacing": "none"
                       }
                     ]
@@ -1104,267 +1438,17 @@
                   {
                     "blocks": [
                       {
-                        "type": "container",
-                        "variant": "outline",
-                        "position": "relative",
-                        "background": "none",
-                        "padding": "sm",
-                        "blocks": [
-                          {
-                            "type": "icon",
-                            "name": "Recycle",
-                            "size": "sm",
-                            "color": "primary",
-                            "align": "center",
-                            "spacing": "none"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Sustainability",
-                            "align": "center",
-                            "spacing": "none"
-                          }
-                        ],
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "outline",
-                        "position": "relative",
-                        "background": "none",
-                        "padding": "sm",
-                        "blocks": [
-                          {
-                            "type": "icon",
-                            "name": "Flower2",
-                            "size": "sm",
-                            "color": "primary",
-                            "align": "center",
-                            "spacing": "none"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Style",
-                            "align": "center",
-                            "spacing": "none"
-                          }
-                        ],
+                        "type": "feature",
+                        "icon": "Car",
+                        "title": "Parking",
+                        "description": "Limited customer parking is available at the rear of the boutique, accessible via Pine Street. Street parking is also available on Armadale Street.",
+                        "variant": "vertical",
+                        "align": "left",
                         "spacing": "none"
                       }
                     ]
                   }
                 ]
-              }
-            ]
-          }
-        },
-        "newsletter": {
-          "type": "form",
-          "variant": "contact",
-          "props": {
-            "background": "surface",
-            "animation": "zoom-in",
-            "width": "prose",
-            "padding": "lg",
-            "title": "Join the Movement",
-            "description": "Subscribe to our journal for exclusive workouts, style tips, and early access to new collections.",
-            "fields": [
-              {
-                "name": "email",
-                "label": "Email Address",
-                "type": "email",
-                "required": true
-              }
-            ],
-            "submitLabel": "Subscribe"
-          }
-        }
-      }
-    },
-    "/shop": {
-      "seo": {
-        "title": "Discover Melbourne's Best Activewear",
-        "description": "Performance-driven, sustainably made. Your new favorite workout gear is here."
-      },
-      "sectionOrder": [
-        "hero_1",
-        "filter_1",
-        "products_1",
-        "sustainability_1"
-      ],
-      "sections": {
-        "hero_1": {
-          "type": "hero",
-          "variant": "split",
-          "props": {
-            "background": "default",
-            "animation": "slide-up",
-            "width": "default",
-            "padding": "md",
-            "headline": "Discover Melbourne's Best Activewear",
-            "subheadline": "Performance-driven, sustainably made.",
-            "ctaText": "Get Started",
-            "ctaLink": "/shop",
-            "imageName": "https://loremflickr.com/1600/900/melbourne,activewear?lock=614046"
-          }
-        },
-        "filter_1": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "background": "default",
-            "animation": "slide-up",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Find Your Perfect Fit",
-                "level": "h2",
-                "align": "left",
-                "spacing": "lg"
-              },
-              {
-                "type": "container",
-                "variant": "card",
-                "position": "relative",
-                "background": "surface",
-                "padding": "sm",
-                "blocks": [
-                  {
-                    "type": "icon",
-                    "name": "Mappin",
-                    "size": "md",
-                    "color": "primary",
-                    "align": "left",
-                    "spacing": "md"
-                  },
-                  {
-                    "type": "text",
-                    "content": "Filter by category, size, color, and feature",
-                    "align": "left",
-                    "spacing": "md"
-                  }
-                ],
-                "spacing": "md"
-              }
-            ]
-          }
-        },
-        "products_1": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "background": "default",
-            "animation": "slide-up",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "New Arrivals",
-                "level": "h2",
-                "align": "left",
-                "spacing": "lg"
-              },
-              {
-                "type": "container",
-                "variant": "card",
-                "position": "relative",
-                "background": "surface",
-                "padding": "sm",
-                "blocks": [
-                  {
-                    "type": "columns",
-                    "layout": "3-col",
-                    "items": [
-                      {
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/product?lock=738523",
-                            "alt": "Product 1",
-                            "caption": "Product 1 Caption",
-                            "aspect": "video",
-                            "spacing": "md"
-                          }
-                        ]
-                      },
-                      {
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/product?lock=120324",
-                            "alt": "Product 2",
-                            "caption": "Product 2 Caption",
-                            "aspect": "video",
-                            "spacing": "md"
-                          }
-                        ]
-                      },
-                      {
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/product?lock=428928",
-                            "alt": "Product 3",
-                            "caption": "Product 3 Caption",
-                            "aspect": "video",
-                            "spacing": "md"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "spacing": "md"
-              }
-            ]
-          }
-        },
-        "sustainability_1": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "background": "default",
-            "animation": "slide-up",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Made with Purpose in Melbourne",
-                "level": "h2",
-                "align": "left",
-                "spacing": "lg"
-              },
-              {
-                "type": "container",
-                "variant": "card",
-                "position": "relative",
-                "background": "surface",
-                "padding": "sm",
-                "blocks": [
-                  {
-                    "type": "text",
-                    "content": "Our commitment to sustainability goes beyond the fabric. From sourcing eco-friendly materials to ethical manufacturing practices in our Melbourne facility, we're dedicated to creating activewear that's good for you and the planet.",
-                    "align": "left",
-                    "spacing": "md"
-                  },
-                  {
-                    "type": "image",
-                    "src": "https://loremflickr.com/1600/900/sustainability,process?lock=537801",
-                    "alt": "Sustainability Process",
-                    "caption": "Sustainable Practices",
-                    "aspect": "video",
-                    "spacing": "md"
-                  }
-                ],
-                "spacing": "md"
               }
             ]
           }

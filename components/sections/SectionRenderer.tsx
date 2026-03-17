@@ -5,7 +5,7 @@ import { AnySection } from "@/lib/schema";
 import { motion, HTMLMotionProps } from "framer-motion";
 
 import { HeroSimple, HeroSplit } from "@/components/sections/hero";
-import { ServicesGrid } from "@/components/sections/services";
+import { ServicesGrid, ServicesList } from "@/components/sections/services";
 import { ContentSimple } from "@/components/sections/content";
 import { ContactSimple } from "@/components/sections/contact";
 import { TestimonialsGrid } from "@/components/sections/testimonials";
@@ -21,7 +21,7 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   },
   services: {
     grid: ServicesGrid,
-    list: ServicesGrid,
+    list: ServicesList,
   },
   pricing: {
     simple: PricingList,
@@ -56,6 +56,15 @@ const backgroundClasses: Record<string, string> = {
   surface: "bg-surface text-foreground",
   primary: "bg-primary text-on-primary",
   secondary: "bg-secondary text-on-secondary",
+};
+
+// Map current background to text color to enforce inheritance
+const textInheritClasses: Record<string, string> = {
+  default: "text-foreground",
+  muted: "text-foreground",
+  surface: "text-foreground",
+  primary: "text-on-primary",
+  secondary: "text-on-secondary",
 };
 
 const animations: Record<string, HTMLMotionProps<"div">> = {
@@ -124,10 +133,10 @@ export const SectionRenderer = ({
   return (
     <motion.div
       id={sectionId}
-      className={`${bgClass} ${isBleed && section.props.padding === "md" ? "py-0" : paddingClass}`}
+      className={`${bgClass} ${paddingClass}`}
       {...animationProps}
     >
-      <div className={containerClass}>
+      <div className={`${containerClass} ${textInheritClasses[section.props.background || "default"]}`}>
         <Component {...section.props} />
       </div>
     </motion.div>

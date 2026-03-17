@@ -33,7 +33,7 @@ export async function callLLM(
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: FREE_MODEL,
+            model: "stepfun/step-3.5-flash:free",
             messages: [
               ...(systemPrompt
                 ? [{ role: "system", content: systemPrompt }]
@@ -63,7 +63,9 @@ export async function callLLM(
 
         if (isTransient && i < maxRetries - 1) {
           const delay = Math.pow(2, i) * 1500;
-          console.warn(`⏳ Transient error detected. Retrying in ${delay}ms...`);
+          console.warn(
+            `⏳ Transient error detected. Retrying in ${delay}ms...`,
+          );
           await sleep(delay);
           continue;
         }

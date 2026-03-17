@@ -17,7 +17,7 @@ export function get_placeholder_url(query: string, width: number = 1600, height:
     .replace(/[^a-z0-9]/g, " ") // Use spaces for better splitting
     .split(/\s+/)
     .filter(word => word.length > 2 && !stopWords.has(word)) // Filter stop words and short words
-    .slice(0, 2) // Limit to 2 high-quality keywords
+    .slice(0, 1) // Limit to 1 high-quality keyword
     .join(",");
     
   // Fallback if all words were filtered out

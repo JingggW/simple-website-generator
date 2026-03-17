@@ -73,7 +73,9 @@ export class PropSiteEngine {
             if (b.type === "image-grid" && b.images) {
               b.images.forEach((img: any) => {
                 if (isPlaceholder(img.src)) {
-                  img.src = auto_fill_placeholders(img) || auto_fill_placeholders(props);
+                  img.src =
+                    auto_fill_placeholders(img) ||
+                    auto_fill_placeholders(props);
                 }
               });
             }
@@ -441,8 +443,9 @@ Focus on:
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Christine Gymwear Co.",
-    "Home gym wear brand specialising in quick-dry, comfort, and breathable fabrics for women. Made in Point Cook, Melbourne",
+    "Victor Churchill Melbourne",
+    "A luxury butcher shop and grocer in Armadale, Melbourne. It features a heritage façade, an artisan butchery, and a curved marble dining counter for a multisensory food experience. It elevates butchery into an artform.",
+    "Focus on a premium, editorial boutique feel. Ensure the 'Melbourne' page uses alternating split layouts (services variant: 'list') for the store features like the Bar, Dry Aging Room, and Exterior.",
   );
 }
 

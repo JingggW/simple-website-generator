@@ -23,12 +23,19 @@ Return a JSON object with:
 1. **Absolute Uniqueness (MAX ONCE PER SITE)**:
    - **`map`**: Place ONLY ONCE in the entire site (usually on `/contact`).
    - **`form`**: Place ONLY ONCE in the entire site (usually on `/contact` or a booking page).
-   - **`testimonials`**: Place ONLY ONCE in the entire site (usually on `/`).
+   - **`testimonials`**: Place ONLY ONCE in the entire site (usually on the home page `/`).
    - **`pricing`**: Place ONLY ONCE in the entire site (usually on `/services`).
    - **`services`**: High-level grid. Place ONLY ONCE in the entire site.
 2. **Standard Flow**: Every page MUST start with a `hero`.
 3. **Diversity**: Every other section should use the `blocks` schema for storytelling, details, or secondary information. Never repeat a specialized section type (hero is the only exception, once per page).
 4. **No Redundancy**: If a component is on the landing page, do not put it on any other page.
+
+## FORBIDDEN (CRITICAL)
+- **DO NOT** repeat `testimonials` on multiple pages.
+- **DO NOT** repeat `form` on multiple pages.
+- **DO NOT** repeat `map` on multiple pages.
+- **DO NOT** repeat `pricing` or `services` on multiple pages.
+- **If you need to mention these topics again on another page, YOU MUST use the `blocks` type.**
 
 ## Expected Output Structure
 

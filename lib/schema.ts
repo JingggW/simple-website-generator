@@ -3,7 +3,13 @@ import { z } from "zod";
 // --- START THEME ---
 export const ThemeSchema = z.object({
   mode: z.enum(["light", "dark", "auto"]).default("light"),
-  preset: z.enum(["modern", "luxury", "brutalist", "minimal"]).default("modern").describe("Global aesthetic direction"),
+  preset: z.enum([
+    "modern", "luxury", "brutalist", "minimal",
+    "modernSaaS", "earthyOrganic", "boldCreative", "elegantMinimal",
+    "corporateTrust", "sunsetWarmth", "cyberDark", "softPastel",
+    "professionalTrust", "modernTech", "ecoGrowth", "warmHospitality",
+    "industrialSteel", "luxuryGold", "boutiqueAtelier"
+  ]).default("modern").describe("Global aesthetic direction"),
   colors: z.object({
     primary: z.string().default("#1D4ED8").describe("Main brand color (hex)"),
     secondary: z.string().default("#6B7280").describe("Accent color (hex)"),
@@ -52,13 +58,17 @@ export const ServicesSchema = z.object({
     description: z.string().optional(),
     items: z.array(
       z.object({
-        icon: z.string(),
+        icon: z.string().optional(),
+        image: z.string().optional(),
         title: z.string(),
         description: z.string(),
+        ctaText: z.string().optional(),
+        ctaLink: z.string().optional(),
       }),
     ),
   }),
 });
+export type ServicesSection = z.infer<typeof ServicesSchema>;
 // --- END SERVICES ---
 
 // --- START PRICING ---
@@ -209,6 +219,7 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     text: z.string(),
     level: z.enum(["h1", "h2", "h3", "display", "editorial"]).default("h2"),
     align: z.enum(["left", "center", "right"]).default("left"),
+    decoration: z.enum(["none", "underline", "line-left", "line-bottom"]).default("none"),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
   z.object({
@@ -344,6 +355,7 @@ export const PageSchema = z.object({
     z.string(),
     z.discriminatedUnion("type", [
       HeroSchema,
+      ServicesSchema,
       FormSchema,
       MapSchema,
       ContactSchema,
@@ -374,6 +386,7 @@ export type TestimonialsSection = z.infer<typeof TestimonialsSectionSchema>;
 export type BlockSection = z.infer<typeof BlockSectionSchema>;
 export type AnySection =
   | HeroSection
+  | ServicesSection
   | FormSection
   | MapSection
   | ContactSection
