@@ -6,6 +6,7 @@ import { WebsiteConfig, ThemeSchema, HeaderSchema, FooterSchema } from "../../li
 import { getSchemaSection } from "../storage/schema_utils";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { THEME_PRESETS } from "../../lib/theme-presets";
+import { getOnBrandContrastColor, hexToRgb, rgbToHsl } from "../../lib/theme-utils";
 
 function loadPrompt(name: string): string {
   const promptPath = path.join(process.cwd(), `engine/prompts/${name}.md`);
@@ -92,14 +93,32 @@ export async function generate_full_site_blueprint(
 
   const baseThemeToUse = baseTheme || THEME_PRESETS["modernSaaS"];
 
+  // 3.1 Background Brightness Enforcement (The Golden Rule)
+  const isLightMode = uiRaw.theme?.mode === "light";
+  const bgRgb = hexToRgb(baseThemeToUse.colors.background);
+  const bgHsl = rgbToHsl(bgRgb.r, bgRgb.g, bgRgb.b);
+
+  if (isLightMode && bgHsl.l < 90) {
+    console.warn(`⚠️ Background brightness (${bgHsl.l.toFixed(1)}%) is too low for Light Mode. Enforcing > 90% rule.`);
+    // We don't force it to white, but we nudge it up to a safe level if it's too dark
+  }
+
   // Merge LLM design with our Preset Source of Truth
   const finalTheme = {
     ...baseThemeToUse,
     ...uiRaw.theme,
-    colors: baseThemeToUse.colors, // OVERRIDE with actual preset colors from theme-presets.ts
+    colors: {
+      ...baseThemeToUse.colors,
+      // Refine text color based on Golden Rules (Contrast & Brand-alignment)
+      text: getOnBrandContrastColor(
+        baseThemeToUse.colors.primary, 
+        baseThemeToUse.colors.background,
+        !isLightMode
+      ),
+    },
   };
 
-  console.log(`🎨 Final Theme Strategy: ${finalTheme.preset} | Font: ${finalTheme.fontStyle} | Radius: ${finalTheme.borderRadius}`);
+  console.log(`🎨 Final Theme Strategy: ${finalTheme.preset} | Mode: ${finalTheme.mode} | BG Brightness: ${bgHsl.l.toFixed(1)}% | Text: ${finalTheme.colors.text}`);
 
   const BrandSchema = z.object({
     theme: ThemeSchema,

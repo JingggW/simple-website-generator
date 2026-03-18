@@ -39,7 +39,10 @@ Use the **blocks** schema for ALL OTHER CONTENT, including:
   - **NEVER** put all your content into a single item's `blocks` array; this will collapse everything into a single column.
 - **Pricing & Service Menus**: Use the `price-list` block (default or minimal variants) for structured lists.
 - **Social Proof**: Use `testimonials` for grids, or `testimonial-card` within blocks for stylized highlights.
-- **Process/Storytelling**: Use "Alternating Split" layouts (alternating `columns` with `layout: "split-left"` and `"split-right"`).
+- **Process/Storytelling (ARTISTIC)**: Beyond alternating splits, use advanced patterns:
+  - **The Overlap**: Use a `split` layout where one column is an `image` and the other is a `container` with `variant: "card"` and `background: "surface"`.
+  - **Cinematic Focus**: Use a `container` with an `image` (aspect: "cinematic") and a nested `container` with `position: "absolute-center"` and `variant: "glass"`.
+  - **Asymmetric Editorial**: Use `layout: "split-left"` or `"split-right"` with large `display` headings to create a magazine feel.
 - **Mixed Media**: Anything combining text, icons, and images.
 
 ## FORBIDDEN (CRITICAL)

@@ -288,6 +288,8 @@ A dedicated grid for showcasing work, products, or portfolios. Ideal for small b
 
 // --- END IMAGE_GRID ---
 
+// --- START FEATURE_BLOCK ---
+
 A cohesive unit combining an icon, title, and description. Use this instead of separate blocks for a cleaner, more stable layout.
 
 ### Visual Rule
@@ -310,3 +312,94 @@ A cohesive unit combining an icon, title, and description. Use this instead of s
 ```
 
 // --- END FEATURE_BLOCK ---
+
+// --- START OVERlapping_STORY ---
+
+## Pattern: The Layered Overlap
+
+A luxury layout where a text container partially overlaps an image. Creates high visual depth.
+
+### Visual Rule
+- Use `columns` with `split`. 
+- One column contains an `image` (aspect: 'portrait' or 'video').
+- The other column contains a `container` with `variant: 'card'`, `background: 'surface'`, and `position: 'relative'`.
+
+```json
+{
+  "type": "columns",
+  "layout": "split",
+  "items": [
+    { "blocks": [{ "type": "image", "src": "...", "aspect": "portrait" }] },
+    { 
+      "blocks": [{
+        "type": "container",
+        "variant": "card",
+        "background": "surface",
+        "padding": "lg",
+        "blocks": [
+          { "type": "heading", "text": "Our Heritage", "decoration": "line-left" },
+          { "type": "text", "content": "..." }
+        ]
+      }]
+    }
+  ]
+}
+```
+
+// --- END OVERlapping_STORY ---
+
+// --- START CINEMATIC_FOCUS ---
+
+## Pattern: Cinematic Focus
+
+A high-impact section with a full-bleed image and a centered floating text box.
+
+### Visual Rule
+- Use a `container` with `background: 'none'`.
+- Inside, use an `image` (aspect: 'cinematic').
+- Inside that same section (or nested), use a `container` with `position: 'absolute-center'`.
+
+```json
+{
+  "type": "container",
+  "background": "none",
+  "blocks": [
+    { "type": "image", "src": "...", "aspect": "cinematic" },
+    {
+      "type": "container",
+      "position": "absolute-center",
+      "variant": "glass",
+      "padding": "lg",
+      "blocks": [
+        { "type": "heading", "text": "The Philosophy", "align": "center" },
+        { "type": "text", "content": "...", "align": "center" }
+      ]
+    }
+  ]
+}
+```
+
+// --- END CINEMATIC_FOCUS ---
+
+// --- START EDITORIAL_STACK ---
+
+## Pattern: Asymmetric Editorial
+
+Magazine-style layout with uneven columns (1/3 vs 2/3).
+
+### Visual Rule
+- Use `layout: 'split-right'` or `'split-left'`.
+- Use `typographyScale: 'editorial'` for the heading.
+
+```json
+{
+  "type": "columns",
+  "layout": "split-right",
+  "items": [
+    { "blocks": [ { "type": "heading", "text": "Signature Style", "level": "display" } ] },
+    { "blocks": [ { "type": "image", "src": "...", "aspect": "video" }, { "type": "text", "content": "..." } ] }
+  ]
+}
+```
+
+// --- END EDITORIAL_STACK ---

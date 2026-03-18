@@ -3,51 +3,47 @@ export const siteStructure = {
     "/": [
       "hero",
       "testimonials",
-      "heritage",
+      "process",
       "features"
-    ],
-    "/about": [
-      "hero",
-      "heritage",
-      "butchery",
-      "marble"
     ],
     "/services": [
       "hero",
-      "core-services",
+      "services",
       "pricing",
-      "bespoke-services",
-      "bespoke-events"
+      "story"
     ],
-    "/menu": [
-      "hero_menu",
-      "signature_cuts",
-      "pantry",
-      "counter_experience"
-    ],
-    "/contact": [
+    "/booking": [
       "hero",
-      "map",
       "form",
       "blocks"
+    ],
+    "/about": [
+      "hero",
+      "features",
+      "process"
+    ],
+    "/contact": [
+      "hero_contact",
+      "map_service_area",
+      "blocks_contact_info"
     ]
   },
   "navigation": {
     "header": [
       "/",
+      null,
+      "/booking",
       "/about",
-      "/services",
-      "/menu",
-      "/contact",
-      "/contact#map"
+      "/contact"
     ],
     "footer": [
-      "/",
+      "/services#services",
+      "/services#services",
+      "/services#services",
       "/about",
-      "/services",
-      "/menu",
       "/contact",
-      "/contact#map"
+      "/contact#blocks_contact_info",
+      "/about"
     ]
   }
 };

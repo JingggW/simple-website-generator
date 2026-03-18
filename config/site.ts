@@ -3,28 +3,55 @@ import { WebsiteConfig } from "@/lib/schema";
 export const siteConfig: WebsiteConfig = {
   "theme": {
     "mode": "light",
-    "preset": "boutiqueAtelier",
+    "preset": "ecoGrowth",
     "colors": {
-      "primary": "#000000",
-      "secondary": "#1C1917",
-      "background": "#FFFFFF",
-      "surface": "#FAFAF9",
-      "muted": "#F5F5F4",
-      "accent": "#A16207",
-      "text": "#111827"
+      "primary": "#065F46",
+      "secondary": "#D97706",
+      "background": "#F0F4F1",
+      "surface": "#FFFFFF",
+      "muted": "#D1FAE5",
+      "accent": "#10B981",
+      "text": "#065F46"
     },
-    "fontStyle": "serif",
-    "typographyScale": "editorial",
-    "borderRadius": "none",
-    "containerStyle": "glass"
+    "fontStyle": "sans",
+    "typographyScale": "standard",
+    "borderRadius": "md",
+    "containerStyle": "default"
   },
   "header": {
-    "title": "Soul",
+    "title": "PurePaws Mobile Grooming",
+    "variant": "default",
     "links": [
       {
         "type": "link",
         "label": "Home",
         "href": "/"
+      },
+      {
+        "type": "dropdown",
+        "label": "Services",
+        "items": [
+          {
+            "type": "link",
+            "label": "Full Grooming",
+            "href": "/services#services"
+          },
+          {
+            "type": "link",
+            "label": "Breed-Specific Styling",
+            "href": "/services#services"
+          },
+          {
+            "type": "link",
+            "label": "Organic Skincare Treatments",
+            "href": "/services#services"
+          }
+        ]
+      },
+      {
+        "type": "link",
+        "label": "Booking",
+        "href": "/booking"
       },
       {
         "type": "link",
@@ -33,69 +60,69 @@ export const siteConfig: WebsiteConfig = {
       },
       {
         "type": "link",
-        "label": "Services",
-        "href": "/services"
-      },
-      {
-        "type": "link",
-        "label": "Menu",
-        "href": "/menu"
-      },
-      {
-        "type": "link",
         "label": "Contact",
         "href": "/contact"
-      },
-      {
-        "type": "link",
-        "label": "Melbourne",
-        "href": "/contact#map"
       }
-    ]
+    ],
+    "cta": {
+      "type": "link",
+      "label": "Book Now",
+      "href": "/booking"
+    }
   },
   "footer": {
     "brand": {
-      "title": "Soul",
-      "description": "Artisan butchery and gourmet grocer in Armadale, Melbourne."
+      "title": "PurePaws Mobile Grooming",
+      "description": "Stress-free, breed-specific grooming and organic skincare delivered to your door in our fully equipped mobile van."
     },
     "columns": [
       {
-        "title": "Explore",
+        "title": "Services",
         "links": [
           {
             "type": "link",
-            "label": "Home",
-            "href": "/"
+            "label": "Full Grooming",
+            "href": "/services#services"
           },
           {
             "type": "link",
-            "label": "About",
-            "href": "/about"
+            "label": "Breed Styling",
+            "href": "/services#services"
           },
           {
             "type": "link",
-            "label": "Services",
-            "href": "/services"
-          },
-          {
-            "type": "link",
-            "label": "Menu",
-            "href": "/menu"
+            "label": "Organic Treatments",
+            "href": "/services#services"
           }
         ]
       },
       {
-        "title": "Visit",
+        "title": "Company",
         "links": [
+          {
+            "type": "link",
+            "label": "About Us",
+            "href": "/about"
+          },
           {
             "type": "link",
             "label": "Contact",
             "href": "/contact"
+          }
+        ]
+      },
+      {
+        "title": "Support",
+        "links": [
+          {
+            "type": "link",
+            "label": "FAQ",
+            "href": "/contact#blocks_contact_info"
           },
           {
             "type": "link",
-            "label": "Melbourne",
-            "href": "/contact#map"
+            "label": "Privacy Policy",
+            "href": "/about"
           }
         ]
       }
@@ -103,25 +130,25 @@ export const siteConfig: WebsiteConfig = {
     "social": [
       {
         "platform": "instagram",
-        "url": "https://instagram.com/soul"
+        "url": "https://instagram.com/purepawsgrooming"
       },
       {
         "platform": "facebook",
-        "url": "https://facebook.com/soul"
+        "url": "https://facebook.com/purepawsgrooming"
       }
     ],
-    "copyright": "© 2026 Soul. All rights reserved."
+    "copyright": "© 2026 PurePaws Mobile Grooming. All rights reserved."
   },
   "pages": {
     "/": {
       "seo": {
-        "title": "Victor Churchill Melbourne | Heritage Butchery & Luxury Dining",
-        "description": "Experience the art of exceptional meat at Victor Churchill Melbourne. Heritage-listed architecture, dry-aged mastery, and a multisensory dining counter in the heart of Melbourne."
+        "title": "Chris & Bruce Pet Spa - Stress-Free Mobile Grooming in NYC",
+        "description": "Premium mobile pet grooming service in New York City. Certified groomers, organic products, and climate-controlled van. Book your pet's stress-free spa day today."
       },
       "sectionOrder": [
         "hero",
         "testimonials",
-        "heritage",
+        "process",
         "features"
       ],
       "sections": {
@@ -131,13 +158,13 @@ export const siteConfig: WebsiteConfig = {
           "props": {
             "background": "primary",
             "animation": "fade",
-            "width": "bleed",
-            "padding": "sm",
-            "headline": "Victor Churchill Melbourne",
-            "subheadline": "Where heritage-listed architecture meets the art of exceptional meat. An institution reborn for the modern connoisseur.",
-            "ctaText": "Reserve Your Visit",
-            "ctaLink": "/contact",
-            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=904161"
+            "width": "full",
+            "padding": "lg",
+            "headline": "Stress-Free Grooming, Delivered to Your Door.",
+            "subheadline": "Chris & Bruce Pet Spa brings the salon experience to your driveway. Our mobile grooming van eliminates the stress of cages and loud salons, using only organic, gentle products. Book your pet's spa day today and watch them shine.",
+            "ctaText": "Book Your Pet's Spa Day",
+            "ctaLink": "/booking",
+            "imageName": "https://loremflickr.com/1600/900/stress?lock=224901"
           }
         },
         "testimonials": {
@@ -148,35 +175,59 @@ export const siteConfig: WebsiteConfig = {
             "animation": "slide-up",
             "width": "default",
             "padding": "md",
-            "title": "The Connoisseur's Verdict",
+            "title": "Pets & Parents Rave About Us.",
+            "subtitles": "See why pet parents across the city trust us with their furry family members.",
             "items": [
               {
-                "quote": "The attention to detail here is unmatched. The dry-aged steak was the best I've ever had—a perfect balance of tradition and innovation.",
-                "author": "Marcus Aurelius",
-                "role": "Frequent Traveler"
+                "quote": "The attention to detail here is unmatched. My anxious rescue dog actually wagged his tail when the groomer opened the van door. Truly transformative!",
+                "author": "Sarah Mitchell",
+                "role": "Owner of Winston (Golden Retriever)",
+                "avatar": "testimonial-winston"
               },
               {
-                "quote": "A true Melbourne institution. The heritage building and the craft behind the meat create an experience like no other. Pure luxury.",
-                "author": "Julia Child",
-                "role": "Food Critic"
+                "quote": "Finally, a grooming service that understands cats! The gentle approach and organic products made all the difference. Luna came back calm and gorgeous.",
+                "author": "James Chen",
+                "role": "Parent of Luna (Turkish Van)",
+                "avatar": "testimonial-luna"
               },
               {
-                "quote": "Victor Churchill has redefined what a butchery can be. It's not just about the meat, it's about the story and the passion in every cut.",
-                "author": "Heston Blumenthal",
-                "role": "Celebrity Chef"
+                "quote": "The mobile van is spotless and smells amazing. No more dragging my nervous terrier into a noisy salon. Worth every penny for the peace of mind.",
+                "author": "Elena Rodriguez",
+                "role": "Owner of Peanut (Jack Russell)",
+                "avatar": "testimonial-peanut"
+              },
+              {
+                "quote": "Chris and Bruce are magicians. My high-maintenance poodle looks better than ever, and the bandana was a lovely touch. Absolutely recommend!",
+                "author": "Michael Thompson",
+                "role": "Parent of Coco (Poodle)",
+                "avatar": "testimonial-coco"
               }
             ]
           }
         },
-        "heritage": {
+        "process": {
           "type": "blocks",
           "variant": "prose",
           "props": {
             "background": "surface",
-            "animation": "none",
-            "width": "wide",
-            "padding": "lg",
+            "animation": "zoom-in",
+            "width": "default",
+            "padding": "md",
             "blocks": [
+              {
+                "type": "heading",
+                "text": "The Gentle Grooming Journey",
+                "level": "h2",
+                "align": "center",
+                "decoration": "line-bottom",
+                "spacing": "md"
+              },
+              {
+                "type": "text",
+                "content": "Every pet receives individualized, low-stress care from our certified groomers. We use only certified organic, hypoallergenic products to ensure the safest experience.",
+                "align": "center",
+                "spacing": "lg"
+              },
               {
                 "type": "columns",
                 "layout": "split-left",
@@ -185,9 +236,9 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/ornate,heritage?lock=758263",
-                        "alt": "Ornate heritage entrance with restored cornices and original glass",
-                        "aspect": "cinematic",
+                        "src": "https://loremflickr.com/1600/900/gentle?lock=454551",
+                        "alt": "Gentle groomer kneeling to greet a shy dog at the mobile van door",
+                        "aspect": "video",
                         "spacing": "none"
                       }
                     ]
@@ -196,14 +247,15 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "A Melbourne Landmark, Preserved",
-                        "level": "h2",
+                        "text": "1. Calm Arrival",
+                        "level": "h3",
                         "align": "left",
-                        "spacing": "lg"
+                        "decoration": "line-left",
+                        "spacing": "sm"
                       },
                       {
                         "type": "text",
-                        "content": "For over a century, our Collins Street address has stood as a testament to Melbourne's golden era. We didn't just occupy a space—we committed to its stewardship. Every restored cornice, every pane of original glass, tells a story of permanence in a changing city.",
+                        "content": "Your pet is welcomed into our climate-controlled van for a stress-free start. We let them explore and settle at their own pace before any grooming begins.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -219,14 +271,15 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "A Promise in Stone",
-                        "level": "h2",
+                        "text": "2. Organic Bath",
+                        "level": "h3",
                         "align": "left",
-                        "spacing": "lg"
+                        "decoration": "line-left",
+                        "spacing": "sm"
                       },
                       {
                         "type": "text",
-                        "content": "This façade is our promise. It signals that what lies within is not transient, but foundational. It's a commitment to the slow, deliberate craft that built this city, now applied to the perfect cut of meat.",
+                        "content": "We lather up with soothing, plant-based shampoos that clean without irritants. All products are certified organic and pH-balanced for sensitive skin.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -235,32 +288,81 @@ export const siteConfig: WebsiteConfig = {
                   {
                     "blocks": [
                       {
-                        "type": "columns",
-                        "layout": "split",
-                        "items": [
-                          {
-                            "blocks": [
-                              {
-                                "type": "image",
-                                "src": "https://loremflickr.com/1600/900/black,white?lock=42496",
-                                "alt": "Black and white archival photo of Collins Street",
-                                "aspect": "cinematic",
-                                "spacing": "none"
-                              }
-                            ]
-                          },
-                          {
-                            "blocks": [
-                              {
-                                "type": "image",
-                                "src": "https://loremflickr.com/1600/900/color,photo?lock=552554",
-                                "alt": "Modern color photo of the same streetscape",
-                                "aspect": "cinematic",
-                                "spacing": "none"
-                              }
-                            ]
-                          }
-                        ]
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/close?lock=402245",
+                        "alt": "Close-up of gentle hands lathering with organic shampoo",
+                        "aspect": "video",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/patient?lock=750172",
+                        "alt": "Patient groomer carefully trimming a cat's nails with focused expression",
+                        "aspect": "video",
+                        "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "3. Precision Styling",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "line-left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Our expert groomers trim and style with patience and care. Whether it's a breed-specific cut or a simple tidy, we work at your pet's comfort level.",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "4. Happy Pickup",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "line-left",
+                        "spacing": "sm"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Your fresh, relaxed pet is ready to go home, often with a complimentary bandana. We share grooming notes and tips for maintaining their look between visits.",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/happy?lock=428806",
+                        "alt": "Happy poodle wearing a bandana being gently handed to owner",
+                        "aspect": "video",
+                        "spacing": "none"
                       }
                     ]
                   }
@@ -274,10 +376,24 @@ export const siteConfig: WebsiteConfig = {
           "variant": "prose",
           "props": {
             "background": "default",
-            "animation": "zoom-in",
+            "animation": "none",
             "width": "default",
             "padding": "md",
             "blocks": [
+              {
+                "type": "heading",
+                "text": "Your Neighborhood, Our Mobile Spa",
+                "level": "h2",
+                "align": "center",
+                "decoration": "line-bottom",
+                "spacing": "md"
+              },
+              {
+                "type": "text",
+                "content": "We bring the spa to you. Our mobile van is equipped with everything needed for a premium grooming experience, and we serve all of New York City's key neighborhoods.",
+                "align": "center",
+                "spacing": "lg"
+              },
               {
                 "type": "columns",
                 "layout": "3-col",
@@ -286,33 +402,22 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "container",
-                        "variant": "default",
+                        "variant": "card",
                         "position": "relative",
                         "background": "surface",
                         "padding": "md",
                         "blocks": [
                           {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/dry,aged?lock=107814",
-                            "alt": "Dry-aged rack with fine white mold bloom",
-                            "aspect": "square",
+                            "type": "feature",
+                            "icon": "Mappin",
+                            "title": "Manhattan",
+                            "description": "Upper East Side to SoHo.",
+                            "variant": "vertical",
+                            "align": "center",
                             "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Dry-Aged Mastery",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Our climate-controlled rooms breathe. We source whole primal cuts and age them to intensify flavor and tenderness—a process of patience you can taste.",
-                            "align": "left",
-                            "spacing": "none"
                           }
                         ],
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -320,33 +425,22 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "container",
-                        "variant": "default",
+                        "variant": "card",
                         "position": "relative",
                         "background": "surface",
                         "padding": "md",
                         "blocks": [
                           {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/butcher,hands?lock=609257",
-                            "alt": "Butcher's hands guiding a precision cut",
-                            "aspect": "square",
+                            "type": "feature",
+                            "icon": "Mappin",
+                            "title": "Brooklyn",
+                            "description": "Williamsburg, Park Slope, and more.",
+                            "variant": "vertical",
+                            "align": "center",
                             "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "The Butcher's Touch",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Our team are not just cutters; they are custodians of the craft. They know the story of every animal, the perfect seam to follow, the exact weight for your celebration.",
-                            "align": "left",
-                            "spacing": "none"
                           }
                         ],
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -354,297 +448,105 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "container",
-                        "variant": "default",
+                        "variant": "card",
                         "position": "relative",
                         "background": "surface",
                         "padding": "md",
                         "blocks": [
                           {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/perfectly,seared?lock=466917",
-                            "alt": "Perfectly seared steak on marble dining counter",
-                            "aspect": "square",
+                            "type": "feature",
+                            "icon": "Mappin",
+                            "title": "Queens",
+                            "description": "Long Island City, Astoria, and beyond.",
+                            "variant": "vertical",
+                            "align": "center",
                             "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "The Dining Counter",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "This is where product becomes plate. Step up to our marble counter for a multisensory consultation. Touch the meat, discuss the cut, and leave with not just an ingredient, but a culinary moment.",
-                            "align": "left",
-                            "spacing": "none"
                           }
                         ],
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   }
                 ]
-              }
-            ]
-          }
-        }
-      }
-    },
-    "/about": {
-      "seo": {
-        "title": "Victor Churchill | Heritage Butchery & Dining",
-        "description": "Experience the art of traditional butchery in the heart of Melbourne. Victor Churchill combines heritage craftsmanship with modern luxury for an unparalleled culinary journey."
-      },
-      "sectionOrder": [
-        "hero",
-        "heritage",
-        "butchery",
-        "marble"
-      ],
-      "sections": {
-        "hero": {
-          "type": "hero",
-          "variant": "simple",
-          "props": {
-            "background": "primary",
-            "animation": "fade",
-            "width": "full",
-            "padding": "sm",
-            "headline": "Forged in Tradition, Perfected in Craft",
-            "subheadline": "Since 2010, Victor Churchill has been Melbourne’s sanctuary for exceptional meat. Within our heritage-listed façade, old-world butchery lives on—where every cut honors the animal, the land, and a relentless pursuit of perfection.",
-            "ctaText": "",
-            "imageName": "https://loremflickr.com/1600/900/forged,tradition?lock=271928"
-          }
-        },
-        "heritage": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "background": "muted",
-            "animation": "slide-up",
-            "width": "wide",
-            "padding": "lg",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "A Façade Reborn: History in Every Stone",
-                "level": "h2",
-                "align": "left",
-                "spacing": "md"
               },
               {
-                "type": "text",
-                "content": "Our Collins Street home began as a 19th-century bluestone warehouse. In a two-year collaboration with heritage architects, we carefully uncovered original Victorian cornices, restored weathered sandstone, and preserved the building’s soul—ensuring every passerby feels the weight of history before stepping inside.",
-                "align": "left",
-                "spacing": "md"
+                "type": "spacer",
+                "size": "lg"
               },
               {
                 "type": "columns",
-                "layout": "split",
+                "layout": "3-col",
                 "items": [
                   {
                     "blocks": [
                       {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/archival,photograph?lock=980541",
-                        "alt": "Archival photograph of the derelict 19th-century bluestone warehouse façade",
-                        "caption": "19th-century derelict state",
-                        "aspect": "portrait",
-                        "spacing": "none"
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "feature",
+                            "icon": "Van",
+                            "title": "Climate-Controlled Van",
+                            "description": "Temperature-regulated for comfort year-round.",
+                            "variant": "vertical",
+                            "align": "center",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "md"
                       }
                     ]
                   },
                   {
                     "blocks": [
                       {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/contemporary,shot?lock=614373",
-                        "alt": "Contemporary shot highlighting restored bluestone and ornate Victorian cornices",
-                        "caption": "After heritage restoration",
-                        "aspect": "portrait",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "butchery": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "surface",
-            "animation": "zoom-in",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "The Butcher’s Ritual: Selection, Age, Precision",
-                "level": "h2",
-                "align": "left",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "split-left",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/farmer,hand?lock=513281",
-                        "alt": "Farmer's hand on pasture with grazing cattle",
-                        "aspect": "video",
-                        "spacing": "none"
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "feature",
+                            "icon": "Bottle",
+                            "title": "Organic Products",
+                            "description": "All shampoos and conditioners are certified organic.",
+                            "variant": "vertical",
+                            "align": "center",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "md"
                       }
                     ]
                   },
                   {
                     "blocks": [
                       {
-                        "type": "icon",
-                        "name": "Search",
-                        "size": "lg",
-                        "color": "accent",
-                        "align": "left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "heading",
-                        "text": "Selection",
-                        "level": "h3",
-                        "align": "left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "We source only pasture-raised animals with traceable provenance, visiting farms to verify welfare and diet.",
-                        "align": "left",
-                        "spacing": "none"
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "feature",
+                            "icon": "Paw",
+                            "title": "No-Cage Wait",
+                            "description": "Pets relax freely in the van during grooming.",
+                            "variant": "vertical",
+                            "align": "center",
+                            "spacing": "sm"
+                          }
+                        ],
+                        "spacing": "md"
                       }
                     ]
                   }
                 ]
-              },
-              {
-                "type": "columns",
-                "layout": "split-right",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "icon",
-                        "name": "Clock",
-                        "size": "lg",
-                        "color": "accent",
-                        "align": "left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "heading",
-                        "text": "Aging",
-                        "level": "h3",
-                        "align": "left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "In our climate-controlled rooms, primals dry-age for up to 60 days, concentrating flavor and tenderizing naturally.",
-                        "align": "left",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/close,dry?lock=814548",
-                        "alt": "Close-up of dry-aged meat showing concentrated marbling and texture",
-                        "aspect": "video",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "columns",
-                "layout": "split-left",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/butcher,hands?lock=855871",
-                        "alt": "Butcher's hands at work with hand-forged knives",
-                        "aspect": "video",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "icon",
-                        "name": "Knife",
-                        "size": "lg",
-                        "color": "accent",
-                        "align": "left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "heading",
-                        "text": "Precision",
-                        "level": "h3",
-                        "align": "left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "Using hand-forged knives, our butchers break each carcass with reverence—honoring the whole animal through nose-to-tail mastery.",
-                        "align": "left",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "marble": {
-          "type": "blocks",
-          "variant": "full",
-          "props": {
-            "background": "default",
-            "animation": "none",
-            "width": "bleed",
-            "padding": "none",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "The Marble Stage: Where Community Gathers",
-                "level": "h2",
-                "align": "center",
-                "spacing": "md"
-              },
-              {
-                "type": "text",
-                "content": "A sweeping curve of Calacatta marble anchors our space—more than a counter, it’s a stage for connection. Here, we host tastings, share stories of provenance, and invite strangers to become friends over a slice of perfectly aged sirloin. This is where craft becomes conversation, and every visit feels like coming home.",
-                "align": "center",
-                "spacing": "md"
-              },
-              {
-                "type": "image",
-                "src": "https://loremflickr.com/1600/900/full,bleed?lock=985365",
-                "alt": "Full-bleed cinematic shot of the curved Calacatta marble counter mid-service, with butcher's hands presenting a cut to a guest",
-                "aspect": "cinematic",
-                "spacing": "none"
               }
             ]
           }
@@ -653,15 +555,14 @@ export const siteConfig: WebsiteConfig = {
     },
     "/services": {
       "seo": {
-        "title": "Services | Victor Churchill Melbourne",
-        "description": "Discover Victor Churchill's complete service ecosystem: artisan butchery, curated grocery, and intimate dining experiences. Transparent pricing and bespoke services for the discerning carnivore."
+        "title": "Services | Chris & Bruce Pet Spa",
+        "description": "Expert grooming services for dogs, cats, and small animals. Organic treatments, breed-specific styling, and transparent pricing by pet size."
       },
       "sectionOrder": [
         "hero",
-        "core-services",
+        "services",
         "pricing",
-        "bespoke-services",
-        "bespoke-events"
+        "story"
       ],
       "sections": {
         "hero": {
@@ -669,31 +570,38 @@ export const siteConfig: WebsiteConfig = {
           "variant": "simple",
           "props": {
             "background": "primary",
-            "animation": "fade",
-            "width": "bleed",
-            "padding": "none",
-            "headline": "The Victor Churchill Experience",
-            "subheadline": "From our artisan butchery to our curated grocery and intimate dining room, we offer a complete ecosystem for the discerning carnivore. Discover the full scope of our craftsmanship.",
-            "ctaText": "Explore Services",
-            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=6603",
-            "ctaLink": "#core-services"
-          }
-        },
-        "core-services": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "background": "default",
             "animation": "slide-up",
             "width": "wide",
+            "padding": "sm",
+            "headline": "Expert Grooming for Every Paw, Scale & Feather.",
+            "subheadline": "From a refreshing bath to a breed-standard cut, we provide compassionate, professional care for dogs, cats, and small animals. Your pet's comfort is our highest priority.",
+            "ctaText": "Book Now",
+            "ctaLink": "/booking",
+            "imageName": "https://loremflickr.com/1600/900/expert?lock=626712"
+          }
+        },
+        "services": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "fade",
+            "width": "default",
             "padding": "md",
             "blocks": [
               {
                 "type": "heading",
-                "text": "Our Three Pillars",
+                "text": "Our Service Menu",
                 "level": "h2",
-                "align": "center",
-                "spacing": "lg"
+                "align": "left",
+                "decoration": "line-left",
+                "spacing": "md"
+              },
+              {
+                "type": "text",
+                "content": "Choose a full-service package or à la carte options. Every service includes a gentle consultation, coat assessment, and a stress-free experience.",
+                "align": "left",
+                "spacing": "md"
               },
               {
                 "type": "columns",
@@ -703,12 +611,12 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "feature",
-                        "icon": "Cleaver",
-                        "title": "Master Butchery",
-                        "description": "Whole-animal butchery, dry-aged perfection, and custom cuts from the world's finest producers.",
-                        "variant": "horizontal",
+                        "icon": "Droplet",
+                        "title": "Washing",
+                        "description": "Gentle baths with organic, hypoallergenic shampoos and conditioners.",
+                        "variant": "vertical",
                         "align": "center",
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -716,12 +624,12 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "feature",
-                        "icon": "ShoppingBag",
-                        "title": "Curated Grocer",
-                        "description": "Hand-picked pantry staples, artisan cheeses, charcuterie, and exclusive provisions.",
-                        "variant": "horizontal",
+                        "icon": "Scissors",
+                        "title": "Styling",
+                        "description": "Breed-specific cuts and stylish trims tailored to your pet's lifestyle.",
+                        "variant": "vertical",
                         "align": "center",
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -729,12 +637,12 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "feature",
-                        "icon": "Utensils",
-                        "title": "The Dining Room",
-                        "description": "An intimate, seasonal tasting menu celebrating pristine ingredients in a setting of understated luxury.",
-                        "variant": "horizontal",
+                        "icon": "Leaf",
+                        "title": "Organic Treatments",
+                        "description": "Natural conditioners and skin-soothing therapies for sensitive coats.",
+                        "variant": "vertical",
                         "align": "center",
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   }
@@ -750,174 +658,125 @@ export const siteConfig: WebsiteConfig = {
             "background": "muted",
             "animation": "zoom-in",
             "width": "default",
-            "padding": "lg",
+            "padding": "md",
             "blocks": [
               {
                 "type": "heading",
-                "text": "Price & Menu Guide",
+                "text": "Simple Pricing by Size",
                 "level": "h2",
                 "align": "left",
-                "spacing": "lg"
+                "decoration": "line-left",
+                "spacing": "md"
               },
               {
                 "type": "text",
-                "content": "We believe in clarity. Below are our current price lists for our butchery and grocer, along with our latest seasonal dining menu and fixed-price offering.",
+                "content": "Our base bath & brush service is priced by your pet's weight. Add-ons like deshedding, nail trimming, and teeth brushing are listed below.",
                 "align": "left",
                 "spacing": "md"
               },
               {
+                "type": "icon",
+                "name": "Scale",
+                "size": "md",
+                "color": "primary",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
                 "type": "price-list",
-                "variant": "default",
+                "variant": "minimal",
                 "categories": [
                   {
-                    "name": "Artisan Butchery",
+                    "name": "Bath & Brush",
                     "items": [
                       {
-                        "label": "Dry-Aged Ribeye",
-                        "price": "$45/lb",
-                        "details": "21-day dry-aged, prime grade"
+                        "label": "Small (<20lbs)",
+                        "price": "$40"
                       },
                       {
-                        "label": "Wagyu Striploin",
-                        "price": "$85/lb",
-                        "details": "A5 Japanese, limited availability"
+                        "label": "Medium (21-50lbs)",
+                        "price": "$60"
                       },
                       {
-                        "label": "Heritage Pork Chop",
-                        "price": "$32",
-                        "details": "Free-range, apple-finished"
-                      },
-                      {
-                        "label": "Lamb Rack",
-                        "price": "$55",
-                        "details": "French trimmed, pasture-raised"
+                        "label": "Large (>50lbs)",
+                        "price": "$80"
                       }
                     ]
                   },
                   {
-                    "name": "Curated Grocer",
+                    "name": "Deshedding Treatment",
                     "items": [
                       {
-                        "label": "Aged Cheddar",
-                        "price": "$28/200g",
-                        "details": "18-month vintage, clothbound"
+                        "label": "Small",
+                        "price": "$30"
                       },
                       {
-                        "label": "Bresaola",
-                        "price": "$45",
-                        "details": "Air-dried beef, thinly sliced"
+                        "label": "Medium",
+                        "price": "$45"
                       },
                       {
-                        "label": "Truffle Honey",
-                        "price": "$38",
-                        "details": "Black truffle infused, 250ml"
-                      },
-                      {
-                        "label": "Artisan Mustard",
-                        "price": "$12",
-                        "details": "Wholegrain, house-made"
+                        "label": "Large",
+                        "price": "$60"
                       }
                     ]
                   },
                   {
-                    "name": "Dining Room",
+                    "name": "Nail Trim",
                     "items": [
                       {
-                        "label": "Seasonal Tasting Menu",
-                        "price": "$150 per person",
-                        "details": "5 courses, wine pairing +$65"
+                        "label": "Small",
+                        "price": "$15"
                       },
                       {
-                        "label": "Fixed-Price Feast",
-                        "price": "$120 per person",
-                        "details": "3 courses, shared family-style"
+                        "label": "Medium",
+                        "price": "$20"
                       },
                       {
-                        "label": "Butcher's Cut Special",
-                        "price": "Market Price",
-                        "details": "Daily selection of rare cuts"
+                        "label": "Large",
+                        "price": "$25"
+                      }
+                    ]
+                  },
+                  {
+                    "name": "Teeth Brushing",
+                    "items": [
+                      {
+                        "label": "Small",
+                        "price": "$10"
+                      },
+                      {
+                        "label": "Medium",
+                        "price": "$15"
+                      },
+                      {
+                        "label": "Large",
+                        "price": "$20"
                       }
                     ]
                   }
                 ],
-                "spacing": "none"
+                "spacing": "md"
               }
             ]
           }
         },
-        "bespoke-services": {
+        "story": {
           "type": "blocks",
-          "variant": "full",
+          "variant": "prose",
           "props": {
             "background": "surface",
-            "animation": "slide-up",
-            "width": "full",
-            "padding": "none",
+            "animation": "none",
+            "width": "wide",
+            "padding": "lg",
             "blocks": [
               {
-                "type": "columns",
-                "layout": "split-left",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/precision,butchery?lock=43526",
-                        "alt": "Precision butchery showcasing a custom-cut rack of lamb on marble",
-                        "aspect": "cinematic",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "none",
-                        "padding": "lg",
-                        "blocks": [
-                          {
-                            "type": "heading",
-                            "text": "Your Custom Order",
-                            "level": "h2",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Have a specific cut in mind? Planning a feast? Our butchers work directly with you to source, prepare, and advise on any custom request, from a whole suckling pig to a curated cheese board for 50.",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Request Custom Cut",
-                            "href": "/contact",
-                            "variant": "primary",
-                            "align": "left",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "bespoke-events": {
-          "type": "blocks",
-          "variant": "full",
-          "props": {
-            "background": "secondary",
-            "animation": "fade",
-            "width": "full",
-            "padding": "none",
-            "blocks": [
+                "type": "heading",
+                "text": "The Chris & Bruce Difference: Science & Soul",
+                "level": "h2",
+                "align": "left",
+                "decoration": "line-left",
+                "spacing": "lg"
+              },
               {
                 "type": "columns",
                 "layout": "split-right",
@@ -925,332 +784,16 @@ export const siteConfig: WebsiteConfig = {
                   {
                     "blocks": [
                       {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "none",
-                        "padding": "lg",
-                        "blocks": [
-                          {
-                            "type": "heading",
-                            "text": "The Private Event",
-                            "level": "h2",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Host an unforgettable gathering in our dining room. From corporate dinners to milestone celebrations, we craft bespoke menus and seamless service for groups of 12 to 24.",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "button",
-                            "label": "Inquire About Events",
-                            "href": "/contact?subject=private-event",
-                            "variant": "outline",
-                            "align": "left",
-                            "spacing": "md"
-                          }
-                        ],
+                        "type": "heading",
+                        "text": "Organic Wellness",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "none",
                         "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/dining,room?lock=119382",
-                        "alt": "Elegant dining room set for a private event with long table and candles",
-                        "aspect": "cinematic",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
-    },
-    "/menu": {
-      "seo": {
-        "title": "Menu | Victor Churchill Melbourne",
-        "description": "Explore the curated menu of premium meats, artisan groceries, and counter dining experiences at Victor Churchill Melbourne."
-      },
-      "sectionOrder": [
-        "hero_menu",
-        "signature_cuts",
-        "pantry",
-        "counter_experience"
-      ],
-      "sections": {
-        "hero_menu": {
-          "type": "hero",
-          "variant": "simple",
-          "props": {
-            "background": "primary",
-            "animation": "fade",
-            "width": "bleed",
-            "padding": "none",
-            "headline": "The Victor Churchill Melbourne Menu",
-            "subheadline": "A curated selection of the finest meats, artisan groceries, and counter dining experiences, sourced with intention and prepared with reverence.",
-            "ctaText": "",
-            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=707735"
-          }
-        },
-        "signature_cuts": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "muted",
-            "animation": "slide-up",
-            "width": "default",
-            "padding": "lg",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Signature Cuts",
-                "level": "h2",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Beef",
-                        "title": "Dry-Aged Ribeye",
-                        "description": "40+ days of meticulous dry-aging in our temperature-controlled vaults, concentrating flavor to create a nutty, intensely beefy profile with unparalleled tenderness.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Award",
-                        "title": "Wagyu Striploin",
-                        "description": "Sourced from premium Japanese or Australian Wagyu herds, renowned for its exquisite marbling (BMS 8-9), resulting in a buttery, melt-in-the-mouth texture and rich umami.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Sheep",
-                        "title": "Lamb Rack, French Trimmed",
-                        "description": "Premier Cut lamb, meticulously French-trimmed for elegant presentation. Succulent, with a delicate gamey flavor, perfect for roasting.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "pantry": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "surface",
-            "animation": "none",
-            "width": "wide",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "The Pantry",
-                "level": "h2",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "4-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/artisan,cheeses?lock=417440",
-                            "alt": "Artisan Cheeses",
-                            "aspect": "square",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Artisan Cheeses",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "A rotating selection from Victoria's finest producers, from creamy triple-creams to aged cheddars.",
-                            "align": "left",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/house,made?lock=431182",
-                            "alt": "House-Made Condiments",
-                            "aspect": "square",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "House-Made Condiments",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Our signature beef & bone marrow butter, rich demi-glace, and seasonal fruit preserves.",
-                            "align": "left",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/charcuterie?lock=659159",
-                            "alt": "Charcuterie",
-                            "aspect": "square",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Charcuterie",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Cured meats and pâtés made in-house and by select local artisans.",
-                            "align": "left",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/specialty,provisions?lock=880170",
-                            "alt": "Specialty Provisions",
-                            "aspect": "square",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Specialty Provisions",
-                            "level": "h3",
-                            "align": "left",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Fine oils, vinegars, and pantry staples chosen to complement our proteins.",
-                            "align": "left",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "counter_experience": {
-          "type": "blocks",
-          "variant": "full",
-          "props": {
-            "background": "secondary",
-            "animation": "zoom-in",
-            "width": "full",
-            "padding": "lg",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "The Counter Experience",
-                "level": "h2",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "split-left",
-                "items": [
-                  {
-                    "blocks": [
+                      },
                       {
                         "type": "text",
-                        "content": "More than a menu, it's a performance. Seat at our marble counter and watch as your chosen cut is butchered, seasoned, and cooked to perfection before your eyes. A front-row seat to the craft.",
+                        "content": "We believe grooming is part of holistic pet wellness. Our organic, hypoallergenic products soothe sensitive skin and promote a healthy coat without harsh chemicals.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -1260,10 +803,18 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/dining,counter?lock=168225",
-                        "alt": "Dining counter experience",
-                        "aspect": "cinematic",
+                        "src": "https://loremflickr.com/1600/900/professional?lock=686926",
+                        "alt": "Professional groomer gently applying organic coconut-oil conditioner to a dog's coat",
+                        "aspect": "video",
                         "spacing": "md"
+                      },
+                      {
+                        "type": "testimonial-card",
+                        "quote": "My dog has allergies and the organic products made all the difference. No more itching after visits!",
+                        "author": "Sarah J.",
+                        "role": "Happy Client",
+                        "spacing": "md",
+                        "avatar": "https://loremflickr.com/1600/900/business?lock=544811"
                       }
                     ]
                   }
@@ -1271,15 +822,15 @@ export const siteConfig: WebsiteConfig = {
               },
               {
                 "type": "columns",
-                "layout": "split-right",
+                "layout": "split-left",
                 "items": [
                   {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/tasting,menu?lock=636122",
-                        "alt": "Tasting menu course",
-                        "aspect": "cinematic",
+                        "src": "https://loremflickr.com/1600/900/before?lock=616751",
+                        "alt": "Before and after shot of a poodle receiving a neat, breed-standard clip",
+                        "aspect": "video",
                         "spacing": "md"
                       }
                     ]
@@ -1288,16 +839,25 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "The Tasting Menu",
+                        "text": "Breed-Perfect Styling",
                         "level": "h3",
                         "align": "left",
+                        "decoration": "none",
                         "spacing": "md"
                       },
                       {
                         "type": "text",
-                        "content": "A curated journey of 5-7 courses, featuring the best of what's in the case that day. Each course is a dialogue between exceptional protein and its perfect accompaniment, served directly from the counter.",
+                        "content": "We honor breed standards while ensuring each cut suits your pet's unique lifestyle and personality. Every trim is a custom collaboration.",
                         "align": "left",
                         "spacing": "md"
+                      },
+                      {
+                        "type": "testimonial-card",
+                        "quote": "My show poodle always comes back perfectly styled. They really understand the breed standard and what works for my dog's coat type.",
+                        "author": "Michael T.",
+                        "role": "Show Dog Owner",
+                        "spacing": "md",
+                        "avatar": "https://loremflickr.com/1600/900/business?lock=416455"
                       }
                     ]
                   }
@@ -1308,14 +868,13 @@ export const siteConfig: WebsiteConfig = {
         }
       }
     },
-    "/contact": {
+    "/booking": {
       "seo": {
-        "title": "Contact Victor Churchill | Armadale Boutique",
-        "description": "Reach out to Victor Churchill for butchery inquiries, custom orders, and event bookings. Visit us at 1/2 Armadale St, Armadale VIC 3143 or send a message."
+        "title": "Pet Spa Day Booking | Mobile Grooming Services",
+        "description": "Book your pet's spa day with our boutique mobile grooming service. Easy online booking, professional care, and stress-free experience for your furry friends."
       },
       "sectionOrder": [
         "hero",
-        "map",
         "form",
         "blocks"
       ],
@@ -1325,87 +884,641 @@ export const siteConfig: WebsiteConfig = {
           "variant": "simple",
           "props": {
             "background": "primary",
-            "animation": "fade",
-            "width": "default",
-            "padding": "sm",
-            "headline": "Victor Churchill Melbourne",
-            "subheadline": "Experience exceptional butchery in the heart of Armadale. A destination for the finest provenance-driven meat and expert guidance.",
-            "ctaText": "Get Started",
-            "imageName": "https://loremflickr.com/1600/900/victor,churchill?lock=840543",
-            "ctaLink": "/contact#form"
+            "animation": "slide-up",
+            "width": "full",
+            "padding": "md",
+            "headline": "Book Your Pet’s Spa Day in Seconds",
+            "subheadline": "Reserve a grooming appointment for your furry friend. Choose a service, pick a time, and we’ll handle the rest.",
+            "ctaText": "Book Appointment",
+            "ctaLink": "/booking#form",
+            "imageName": "https://loremflickr.com/1600/900/book?lock=395632"
           }
         },
-        "map": {
+        "form": {
+          "type": "form",
+          "variant": "request",
+          "props": {
+            "background": "muted",
+            "animation": "fade",
+            "width": "prose",
+            "padding": "md",
+            "title": "Schedule Your Appointment",
+            "description": "Fill out the details below to book your pet’s grooming session. We’ll confirm via email or phone within 2 hours.",
+            "fields": [
+              {
+                "name": "ownerName",
+                "label": "Your Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "ownerEmail",
+                "label": "Email Address",
+                "type": "email",
+                "required": true
+              },
+              {
+                "name": "ownerPhone",
+                "label": "Phone Number",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "petName",
+                "label": "Pet's Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "petType",
+                "label": "Pet Type",
+                "type": "select",
+                "options": [
+                  "Dog",
+                  "Cat",
+                  "Other"
+                ],
+                "required": true
+              },
+              {
+                "name": "petBreed",
+                "label": "Breed",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "service",
+                "label": "Service",
+                "type": "select",
+                "options": [
+                  "Bath & Brush",
+                  "Full Groom",
+                  "Nail Trim",
+                  "Teeth Cleaning",
+                  "De-shedding Treatment"
+                ],
+                "required": true
+              },
+              {
+                "name": "appointmentDate",
+                "label": "Preferred Date",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "appointmentTime",
+                "label": "Preferred Time",
+                "type": "text",
+                "required": true
+              }
+            ],
+            "submitLabel": "Book Appointment"
+          }
+        },
+        "blocks": {
+          "type": "blocks",
+          "variant": "full",
+          "props": {
+            "background": "default",
+            "animation": "none",
+            "width": "full",
+            "padding": "none",
+            "blocks": [
+              {
+                "type": "container",
+                "variant": "default",
+                "position": "relative",
+                "background": "surface",
+                "padding": "md",
+                "blocks": [
+                  {
+                    "type": "heading",
+                    "text": "How It Works",
+                    "level": "h2",
+                    "align": "center",
+                    "decoration": "line-bottom",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "columns",
+                    "layout": "3-col",
+                    "items": [
+                      {
+                        "blocks": [
+                          {
+                            "type": "container",
+                            "variant": "default",
+                            "position": "relative",
+                            "background": "surface",
+                            "padding": "md",
+                            "blocks": [
+                              {
+                                "type": "icon",
+                                "name": "Listchecks",
+                                "size": "lg",
+                                "color": "primary",
+                                "align": "center",
+                                "spacing": "md"
+                              },
+                              {
+                                "type": "heading",
+                                "text": "Choose Service",
+                                "level": "h3",
+                                "align": "center",
+                                "decoration": "none",
+                                "spacing": "sm"
+                              },
+                              {
+                                "type": "text",
+                                "content": "Browse our grooming menu and select the perfect treatment for your pet’s coat and needs.",
+                                "align": "center",
+                                "spacing": "none"
+                              }
+                            ],
+                            "spacing": "md"
+                          }
+                        ]
+                      },
+                      {
+                        "blocks": [
+                          {
+                            "type": "container",
+                            "variant": "default",
+                            "position": "relative",
+                            "background": "surface",
+                            "padding": "md",
+                            "blocks": [
+                              {
+                                "type": "icon",
+                                "name": "Calendar",
+                                "size": "lg",
+                                "color": "primary",
+                                "align": "center",
+                                "spacing": "md"
+                              },
+                              {
+                                "type": "heading",
+                                "text": "Pick a Time",
+                                "level": "h3",
+                                "align": "center",
+                                "decoration": "none",
+                                "spacing": "sm"
+                              },
+                              {
+                                "type": "text",
+                                "content": "View real-time availability and choose a convenient appointment slot.",
+                                "align": "center",
+                                "spacing": "none"
+                              }
+                            ],
+                            "spacing": "md"
+                          }
+                        ]
+                      },
+                      {
+                        "blocks": [
+                          {
+                            "type": "container",
+                            "variant": "default",
+                            "position": "relative",
+                            "background": "surface",
+                            "padding": "md",
+                            "blocks": [
+                              {
+                                "type": "icon",
+                                "name": "Shieldcheck",
+                                "size": "lg",
+                                "color": "primary",
+                                "align": "center",
+                                "spacing": "md"
+                              },
+                              {
+                                "type": "heading",
+                                "text": "Confirm & Pay",
+                                "level": "h3",
+                                "align": "center",
+                                "decoration": "none",
+                                "spacing": "sm"
+                              },
+                              {
+                                "type": "text",
+                                "content": "Securely complete your booking online with instant email confirmation.",
+                                "align": "center",
+                                "spacing": "none"
+                              }
+                            ],
+                            "spacing": "md"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "spacing": "lg"
+              },
+              {
+                "type": "container",
+                "variant": "default",
+                "position": "relative",
+                "background": "secondary",
+                "padding": "lg",
+                "blocks": [
+                  {
+                    "type": "columns",
+                    "layout": "split-right",
+                    "items": [
+                      {
+                        "blocks": [
+                          {
+                            "type": "heading",
+                            "text": "Before Your Appointment",
+                            "level": "h2",
+                            "align": "left",
+                            "decoration": "none",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "To ensure a smooth, stress-free experience, please brush your pet thoroughly before arrival and ensure they’ve relieved themselves. Bring any vaccination records if your pet is new to us.",
+                            "align": "left",
+                            "spacing": "none"
+                          }
+                        ]
+                      },
+                      {
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/calm?lock=698786",
+                            "alt": "Calm pet being gently brushed at home by owner with natural lighting",
+                            "aspect": "video",
+                            "spacing": "none"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "spacing": "lg"
+              },
+              {
+                "type": "container",
+                "variant": "default",
+                "position": "relative",
+                "background": "none",
+                "padding": "md",
+                "blocks": [
+                  {
+                    "type": "heading",
+                    "text": "Loved by Local Pet Parents",
+                    "level": "h2",
+                    "align": "center",
+                    "decoration": "line-bottom",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "testimonial-card",
+                    "quote": "The online booking was so simple, and my nervous pup came back looking happier than ever. Chris & Bruce truly understand anxious pets!",
+                    "author": "Maya T.",
+                    "role": "owner of Milo the anxious Poodle",
+                    "avatar": "https://loremflickr.com/1600/900/maya?lock=958508",
+                    "spacing": "none"
+                  }
+                ],
+                "spacing": "lg"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/about": {
+      "seo": {
+        "title": "About Us | Chris & Bruce Pet Spa - Mobile Grooming with Heart",
+        "description": "Learn about Chris & Bruce Pet Spa, your trusted mobile grooming service. We bring the spa experience to your doorstep with certified groomers and a custom mobile van for stress-free pet care."
+      },
+      "sectionOrder": [
+        "hero",
+        "features",
+        "process"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "primary",
+            "animation": "fade",
+            "width": "full",
+            "padding": "md",
+            "headline": "Chris & Bruce Pet Spa: Mobile Grooming with Heart",
+            "subheadline": "We bring the spa experience directly to your doorstep, ensuring every pet feels relaxed and loved. Our mission is to provide stress-free grooming with a personal touch.",
+            "ctaText": "Book Your Pet's Spa Day",
+            "ctaLink": "/booking",
+            "imageName": "https://loremflickr.com/1600/900/chris?lock=100358"
+          }
+        },
+        "features": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "muted",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Expertise on Wheels",
+                "level": "h2",
+                "align": "center",
+                "decoration": "line-bottom",
+                "spacing": "lg"
+              },
+              {
+                "type": "text",
+                "content": "Our team combines professional certifications with a custom-equipped mobile van to deliver top-tier grooming in the comfort of your home.",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "feature",
+                            "icon": "Award",
+                            "title": "Certified Groomers",
+                            "description": "Our team holds IPG and NDGAA certifications, ensuring the highest standards.",
+                            "variant": "vertical",
+                            "align": "center",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "feature",
+                            "icon": "Van",
+                            "title": "Custom Mobile Van",
+                            "description": "Equipped with hydro-bath and climate control for your pet's comfort.",
+                            "variant": "vertical",
+                            "align": "center",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "container",
+                        "variant": "default",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "md",
+                        "blocks": [
+                          {
+                            "type": "image",
+                            "src": "https://loremflickr.com/1600/900/non?lock=40303",
+                            "alt": "Non-slip floors and secure restraints in the mobile van",
+                            "aspect": "square",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "heading",
+                            "text": "Safety First",
+                            "level": "h3",
+                            "align": "center",
+                            "decoration": "none",
+                            "spacing": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Non-slip floors and secure restraints ensure your pet's safety during grooming.",
+                            "align": "center",
+                            "spacing": "md"
+                          }
+                        ],
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "process": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "surface",
+            "animation": "zoom-in",
+            "width": "wide",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "The Stress-Free Difference",
+                "level": "h2",
+                "align": "center",
+                "decoration": "line-bottom",
+                "spacing": "lg"
+              },
+              {
+                "type": "text",
+                "content": "From gentle handling to calming techniques, we prioritize pet wellness at every step. See what our clients say about the transformation.",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Gentle Handling",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "none",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "We use soft, reassuring touches to calm even the most anxious pets.",
+                        "align": "left",
+                        "spacing": "lg"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/bruce?lock=26458",
+                        "alt": "Bruce softly brushing an anxious pup",
+                        "aspect": "video",
+                        "spacing": "lg"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/chris?lock=456724",
+                        "alt": "Chris using low-noise tools on a small dog",
+                        "aspect": "video",
+                        "spacing": "lg"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Quiet Clippers & Soothing Sounds",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "none",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Our low-noise tools and calming music create a peaceful grooming environment.",
+                        "align": "left",
+                        "spacing": "lg"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "Home Environment Benefits",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "none",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Grooming in the comfort of home reduces stress and allows for a more personalized experience.",
+                        "align": "left",
+                        "spacing": "lg"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/cat?lock=110681",
+                        "alt": "A cat relaxing in a mobile van cabin",
+                        "aspect": "video",
+                        "spacing": "lg"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "testimonial-card",
+                "quote": "They turned my nervous dog into a happy, clean best friend—without leaving our driveway!",
+                "author": "Sarah J.",
+                "role": "Golden Retriever Mom",
+                "avatar": "https://loremflickr.com/1600/900/client?lock=314076",
+                "spacing": "lg"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/contact": {
+      "seo": {
+        "title": "Contact Us - Chris & Bruce Pet Spa | Mobile Grooming",
+        "description": "Get in touch with Chris & Bruce Pet Spa. Book mobile pet grooming, view service area, hours, and FAQs. We bring professional care to your doorstep."
+      },
+      "sectionOrder": [
+        "hero_contact",
+        "map_service_area",
+        "blocks_contact_info"
+      ],
+      "sections": {
+        "hero_contact": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "primary",
+            "animation": "fade",
+            "width": "default",
+            "padding": "lg",
+            "headline": "Ready for a Spa Day?",
+            "subheadline": "Chris & Bruce Pet Spa comes to you. Book an appointment for mobile grooming in your neighborhood or send us a message with your questions.",
+            "ctaText": "Book Now",
+            "ctaLink": "/booking",
+            "imageName": "https://loremflickr.com/1600/900/ready?lock=101891"
+          }
+        },
+        "map_service_area": {
           "type": "map",
           "variant": "embedded",
           "props": {
             "background": "muted",
             "animation": "slide-up",
             "width": "full",
-            "padding": "none",
-            "title": "Find Us in Armadale",
-            "address": "Victor Churchill, 1/2 Armadale St, Armadale VIC 3143",
-            "zoom": 14
+            "padding": "md",
+            "title": "Our Service Area",
+            "address": "We service the greater Melbourne region. Our mobile van is based in Carlton and travels to your home. Enter your zip code on the booking page to confirm availability.",
+            "zoom": 12
           }
         },
-        "form": {
-          "type": "form",
-          "variant": "contact",
+        "blocks_contact_info": {
+          "type": "blocks",
+          "variant": "prose",
           "props": {
             "background": "surface",
             "animation": "zoom-in",
             "width": "default",
             "padding": "lg",
-            "title": "Let's Talk Meat",
-            "description": "Have a specific request, planning an event, or want to learn more about our cuts? Send us a message and our team will be in touch.",
-            "fields": [
-              {
-                "name": "name",
-                "label": "Name",
-                "type": "text",
-                "required": true
-              },
-              {
-                "name": "email",
-                "label": "Email",
-                "type": "email",
-                "required": true
-              },
-              {
-                "name": "phone",
-                "label": "Phone",
-                "type": "text",
-                "required": false
-              },
-              {
-                "name": "inquiryType",
-                "label": "Inquiry Type",
-                "type": "select",
-                "options": [
-                  "General",
-                  "Custom Order",
-                  "Event"
-                ],
-                "required": true
-              },
-              {
-                "name": "message",
-                "label": "Message",
-                "type": "textarea",
-                "required": true
-              }
-            ],
-            "submitLabel": "Send Message"
-          }
-        },
-        "blocks": {
-          "type": "blocks",
-          "variant": "wide",
-          "props": {
-            "background": "default",
-            "animation": "none",
-            "width": "wide",
-            "padding": "md",
             "blocks": [
               {
                 "type": "columns",
@@ -1415,24 +1528,56 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "feature",
-                        "icon": "Clock",
-                        "title": "Opening Hours",
-                        "description": "Monday - Friday: 9:00am - 6:00pm\nSaturday: 8:00am - 5:00pm\nSunday: Closed",
-                        "variant": "vertical",
-                        "align": "left",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
                         "icon": "Phone",
-                        "title": "Get in Touch",
-                        "description": "Phone: (03) 9509 1234\nEmail: armadale@victorchurchill.com.au",
-                        "variant": "vertical",
-                        "align": "left",
+                        "title": "Call Us",
+                        "description": "(03) 1234 5678",
+                        "variant": "horizontal",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Mail",
+                        "title": "Email Us",
+                        "description": "hello@chrisandbruce.com.au",
+                        "variant": "horizontal",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Messagecircle",
+                        "title": "Text Us",
+                        "description": "Respond within 2 hours",
+                        "variant": "horizontal",
+                        "align": "center",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "3-col",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Clock",
+                        "title": "Mon-Fri",
+                        "description": "9:00 AM - 5:00 PM",
+                        "variant": "compact",
+                        "align": "center",
                         "spacing": "none"
                       }
                     ]
@@ -1441,12 +1586,109 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "feature",
-                        "icon": "Car",
-                        "title": "Parking",
-                        "description": "Limited customer parking is available at the rear of the boutique, accessible via Pine Street. Street parking is also available on Armadale Street.",
-                        "variant": "vertical",
-                        "align": "left",
+                        "icon": "Clock",
+                        "title": "Saturday",
+                        "description": "9:00 AM - 3:00 PM",
+                        "variant": "compact",
+                        "align": "center",
                         "spacing": "none"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "feature",
+                        "icon": "Clock",
+                        "title": "Sunday",
+                        "description": "Closed",
+                        "variant": "compact",
+                        "align": "center",
+                        "spacing": "none"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "What areas do you service?",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "line-left",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "content": "We cover the greater Melbourne metropolitan area, including inner suburbs up to 15km from Carlton. Specific suburbs include Carlton, Fitzroy, Brunswick, Richmond, South Yarra, and parts of St Kilda. Use our booking tool to check your exact postcode.",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-right",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "content": "Appointments must be booked at least 48 hours in advance. Same-day bookings are rarely available due to our scheduled routes. For urgent matters, please call us directly to check for cancellations.",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "How far in advance should I book?",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "line-left",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "What payment methods do you accept?",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "line-left",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "text",
+                        "content": "We accept all major credit cards (Visa, Mastercard, Amex), debit cards, and cash. Payment is due at the time of service. We also offer gift vouchers for purchase.",
+                        "align": "left",
+                        "spacing": "md"
                       }
                     ]
                   }

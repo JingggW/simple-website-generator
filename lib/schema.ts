@@ -5,10 +5,8 @@ export const ThemeSchema = z.object({
   mode: z.enum(["light", "dark", "auto"]).default("light"),
   preset: z.enum([
     "modern", "luxury", "brutalist", "minimal",
-    "modernSaaS", "earthyOrganic", "boldCreative", "elegantMinimal",
-    "corporateTrust", "sunsetWarmth", "cyberDark", "softPastel",
-    "professionalTrust", "modernTech", "ecoGrowth", "warmHospitality",
-    "industrialSteel", "luxuryGold", "boutiqueAtelier"
+    "modernSaaS", "ecoGrowth", "plumNoir", "elegantMinimal",
+    "digitalWasabi", "champagnePearl", "modernTech", "industrialSteel"
   ]).default("modern").describe("Global aesthetic direction"),
   colors: z.object({
     primary: z.string().default("#1D4ED8").describe("Main brand color (hex)"),
@@ -166,6 +164,7 @@ export const NavItemSchema = z.discriminatedUnion("type", [
 
 export const HeaderSchema = z.object({
   title: z.string().default("Brand"),
+  variant: z.enum(["default", "centered", "split", "transparent"]).default("default"),
   links: z.array(NavItemSchema).default([]),
   cta: LinkSchema.optional(),
 });

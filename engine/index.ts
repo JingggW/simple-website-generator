@@ -289,30 +289,7 @@ export class PropSiteEngine {
     this.config.footer = blueprint.footer;
     this.config.pages = {};
 
-    console.log("🎨 Stage 4: Defining Global UI/UX Design Brief...");
-    const uiPrompt = fs.readFileSync(
-      path.join(process.cwd(), "engine/prompts/ui-ux-designer.md"),
-      "utf-8",
-    );
-    const globalDesignBrief = await callLLM(
-      `
-### BUSINESS
-${businessName}: ${description}
-
-### THEME
-${JSON.stringify(this.config.theme, null, 2)}
-
-### TASK: UI/UX DESIGN STRATEGY
-${uiPrompt}
-
-Focus on:
-1. Brand "Soul" and tone of voice.
-2. Visual Hierarchy (Typography, Spacing).
-3. Interaction Strategy (Hover effects, animations).
-4. Image Aesthetic (Cinematic vs Minimal vs Bold).
-    `,
-      "You are a senior UI/UX strategist. Define the global visual style guide.",
-    );
+    const globalDesignBrief = blueprint.soul || "Professional and modern.";
 
     this.persist();
 
@@ -443,9 +420,9 @@ Focus on:
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Victor Churchill Melbourne",
-    "A luxury butcher shop and grocer in Armadale, Melbourne. It features a heritage façade, an artisan butchery, and a curved marble dining counter for a multisensory food experience. It elevates butchery into an artform.",
-    "Focus on a premium, editorial boutique feel. Ensure the 'Melbourne' page uses alternating split layouts (services variant: 'list') for the store features like the Bar, Dry Aging Room, and Exterior.",
+    "Chris & Bruce Pet Spa",
+    "A professional mobile pet grooming and washing service. We offer stress-free washing, breed-specific styling, and organic skincare treatments in our fully equipped mobile van. Serving busy pet owners with gentle, expert care.",
+    "",
   );
 }
 
