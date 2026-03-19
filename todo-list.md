@@ -9,6 +9,7 @@
 - [x] **Programmatic Section Repair**: Convert block-hallucinations (like text-based price lists) into real components (Completed).
 - [x] **Luxury Layouts**: Implemented Victor Churchill style alternating split list (Completed).
 - [x] **Preset-Driven UI**: Site Architect now enforces exact colors from presets (Completed).
+- [x] **Design Auto-Repair**: Programmatic enforcement of "Golden Rules" (padding, brightness) (Completed).
 
 ## 🛠️ Core Engine Features
 - [x] **Site Architect**: Structural Blueprinting (Sitemap + Page Plans) (Completed).
@@ -16,6 +17,7 @@
 - [x] **Master UI Designer**: Centralized branding and navigation planning (Completed).
 - [ ] **Site Factory (Scaffolder)**: Project cloning and package management.
 - [x] **Heading Decorations**: Added line-left, line-bottom, and underline for blocks (Completed).
+- [ ] **Section Dividers**: Artistic SVG transitions between sections (Waves, Slants).
 
 ## 🎨 UI/UX & Design
 - [x] **Layout Versatility**: Section Widths and Block Spacing (Completed).

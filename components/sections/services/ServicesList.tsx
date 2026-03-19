@@ -1,11 +1,8 @@
 import React from "react";
 import Image from "next/image";
-import Link from "react-router-dom"; // Actually Next.js uses next/link
-import { ServicesSection } from "@/lib/schema";
-import { IconMap, IconName } from "@/components/ui/IconMap";
-
-// Using next/link for standard Next.js behavior
 import NextLink from "next/link";
+import { ServicesSection } from "@/lib/schema";
+import { IconMap } from "@/components/ui/IconMap";
 
 type ServicesProps = ServicesSection["props"];
 
@@ -30,7 +27,6 @@ export const ServicesList = ({ title, description, items }: ServicesProps) => {
       <div className="space-y-32">
         {items.map((item, index) => {
           const isEven = index % 2 === 0;
-          const IconComponent = item.icon ? IconMap[item.icon as IconName] : null;
 
           return (
             <div
@@ -57,8 +53,8 @@ export const ServicesList = ({ title, description, items }: ServicesProps) => {
                   </div>
                 ) : (
                   <div className="aspect-[16/10] bg-secondary/5 flex items-center justify-center">
-                    {IconComponent ? (
-                      <IconComponent className="w-20 h-20 text-secondary/20" />
+                    {item.icon ? (
+                      <IconMap name={item.icon} className="w-20 h-20 text-secondary/20" />
                     ) : (
                       <div className="w-20 h-20 bg-secondary/10 rounded-full" />
                     )}

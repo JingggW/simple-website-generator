@@ -36,13 +36,14 @@ const BaseSectionSchema = z.object({
 // --- START HERO ---
 export const HeroSchema = z.object({
   type: z.literal("hero"),
-  variant: z.enum(["simple", "split"]),
+  variant: z.enum(["simple", "split", "visual", "editorial"]),
   props: BaseSectionSchema.extend({
     headline: z.string(),
     subheadline: z.string().optional(),
     ctaText: z.string().default("Get Started"),
     ctaLink: z.string().optional().describe("Internal path or anchor"),
     imageName: z.string().optional(),
+    imagePosition: z.enum(["left", "right"]).default("right").optional(),
   }),
 });
 // --- END HERO ---
@@ -66,13 +67,12 @@ export const ServicesSchema = z.object({
     ),
   }),
 });
-export type ServicesSection = z.infer<typeof ServicesSchema>;
 // --- END SERVICES ---
 
 // --- START PRICING ---
 export const PricingSchema = z.object({
   type: z.literal("pricing"),
-  variant: z.enum(["simple", "detailed"]),
+  variant: z.enum(["simple", "detailed", "cards"]),
   props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
@@ -91,10 +91,11 @@ export const PricingSchema = z.object({
 // --- START FORM ---
 export const FormSchema = z.object({
   type: z.literal("form"),
-  variant: z.enum(["contact", "request"]),
+  variant: z.enum(["contact", "request", "split"]),
   props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
+    imageName: z.string().optional(),
     fields: z.array(z.object({
       name: z.string(),
       label: z.string(),
@@ -136,7 +137,7 @@ export const ContactSchema = z.object({
 // --- START CONTENT ---
 export const ContentSchema = z.object({
   type: z.literal("content"),
-  variant: z.enum(["simple"]),
+  variant: z.enum(["simple", "multi-column"]),
   props: BaseSectionSchema.extend({
     title: z.string(),
     body: z.string(),
@@ -164,7 +165,8 @@ export const NavItemSchema = z.discriminatedUnion("type", [
 
 export const HeaderSchema = z.object({
   title: z.string().default("Brand"),
-  variant: z.enum(["default", "centered", "split", "transparent"]).default("default"),
+  variant: z.enum(["default", "centered", "split", "transparent", "island"]).default("default"),
+  announcement: z.string().optional().describe("Top bar promo text"),
   links: z.array(NavItemSchema).default([]),
   cta: LinkSchema.optional(),
 });
@@ -202,7 +204,7 @@ export const TestimonialSchema = z.object({
 
 export const TestimonialsSectionSchema = z.object({
   type: z.literal("testimonials"),
-  variant: z.enum(["carousel", "grid"]).default("grid"),
+  variant: z.enum(["carousel", "grid", "masonry", "hero"]).default("grid"),
   props: BaseSectionSchema.extend({
     title: z.string().default("What Our Clients Say"),
     subtitles: z.string().optional(),
@@ -377,12 +379,15 @@ export const WebsiteConfigSchema = z.object({
 
 export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;
+export type ServicesSection = z.infer<typeof ServicesSchema>;
+export type PricingSection = z.infer<typeof PricingSchema>;
 export type FormSection = z.infer<typeof FormSchema>;
 export type MapSection = z.infer<typeof MapSchema>;
 export type ContactSection = z.infer<typeof ContactSchema>;
 export type ContentSection = z.infer<typeof ContentSchema>;
 export type TestimonialsSection = z.infer<typeof TestimonialsSectionSchema>;
 export type BlockSection = z.infer<typeof BlockSectionSchema>;
+
 export type AnySection =
   | HeroSection
   | ServicesSection

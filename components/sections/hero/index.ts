@@ -1,2 +1,4 @@
-export { HeroSimple } from "./HeroSimple";
-export { HeroSplit } from "./HeroSplit";
+export * from "./HeroSimple";
+export * from "./HeroSplit";
+export * from "./HeroVisual";
+export * from "./HeroEditorial";

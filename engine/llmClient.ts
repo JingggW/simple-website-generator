@@ -33,7 +33,7 @@ export async function callLLM(
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: "stepfun/step-3.5-flash:free",
+            model: FREE_MODEL,
             messages: [
               ...(systemPrompt
                 ? [{ role: "system", content: systemPrompt }]

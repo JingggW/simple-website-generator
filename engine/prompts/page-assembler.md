@@ -13,6 +13,8 @@ Your output MUST contain these three top-level keys ONLY:
 3. `"sections"`: { "id_1": { ... }, "id_2": { ... } }
 
 ## THE HYBRID RULE (CRITICAL)
+{{CAPABILITIES}}
+
 You MUST choose the best section types based on the content blueprint:
 
 ### 1. Specialized Content (PRIORITIZE THESE)

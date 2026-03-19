@@ -3,23 +3,23 @@ import { WebsiteConfig } from "@/lib/schema";
 export const siteConfig: WebsiteConfig = {
   "theme": {
     "mode": "light",
-    "preset": "ecoGrowth",
+    "preset": "elegantMinimal",
     "colors": {
-      "primary": "#065F46",
-      "secondary": "#D97706",
-      "background": "#F0F4F1",
+      "primary": "#171717",
+      "secondary": "#525252",
+      "background": "#FAFAFA",
       "surface": "#FFFFFF",
-      "muted": "#D1FAE5",
-      "accent": "#10B981",
-      "text": "#065F46"
+      "muted": "#F5F5F5",
+      "accent": "#A3A3A3",
+      "text": "#171717"
     },
-    "fontStyle": "sans",
-    "typographyScale": "standard",
-    "borderRadius": "md",
+    "fontStyle": "serif",
+    "typographyScale": "editorial",
+    "borderRadius": "sm",
     "containerStyle": "default"
   },
   "header": {
-    "title": "PurePaws Mobile Grooming",
+    "title": "Timber & Light",
     "variant": "default",
     "links": [
       {
@@ -28,35 +28,19 @@ export const siteConfig: WebsiteConfig = {
         "href": "/"
       },
       {
-        "type": "dropdown",
-        "label": "Services",
-        "items": [
-          {
-            "type": "link",
-            "label": "Full Grooming",
-            "href": "/services#services"
-          },
-          {
-            "type": "link",
-            "label": "Breed-Specific Styling",
-            "href": "/services#services"
-          },
-          {
-            "type": "link",
-            "label": "Organic Skincare Treatments",
-            "href": "/services#services"
-          }
-        ]
-      },
-      {
-        "type": "link",
-        "label": "Booking",
-        "href": "/booking"
-      },
-      {
         "type": "link",
         "label": "About",
         "href": "/about"
+      },
+      {
+        "type": "link",
+        "label": "Collections",
+        "href": "/collections"
+      },
+      {
+        "type": "link",
+        "label": "Services",
+        "href": "/services"
       },
       {
         "type": "link",
@@ -66,33 +50,38 @@ export const siteConfig: WebsiteConfig = {
     ],
     "cta": {
       "type": "link",
-      "label": "Book Now",
-      "href": "/booking"
+      "label": "View Portfolio",
+      "href": "/collections"
     }
   },
   "footer": {
     "brand": {
-      "title": "PurePaws Mobile Grooming",
-      "description": "Stress-free, breed-specific grooming and organic skincare delivered to your door in our fully equipped mobile van."
+      "title": "Timber & Light",
+      "description": "Bespoke timber furniture and artisanal lighting, handcrafted for contemporary living."
     },
     "columns": [
       {
-        "title": "Services",
+        "title": "Collections",
         "links": [
           {
             "type": "link",
-            "label": "Full Grooming",
-            "href": "/services#services"
+            "label": "Dining Tables",
+            "href": "/collections"
           },
           {
             "type": "link",
-            "label": "Breed Styling",
-            "href": "/services#services"
+            "label": "Seating",
+            "href": "/collections"
           },
           {
             "type": "link",
-            "label": "Organic Treatments",
-            "href": "/services#services"
+            "label": "Lighting",
+            "href": "/collections"
+          },
+          {
+            "type": "link",
+            "label": "Custom Work",
+            "href": "/services"
           }
         ]
       },
@@ -106,50 +95,330 @@ export const siteConfig: WebsiteConfig = {
           },
           {
             "type": "link",
-            "label": "Contact",
-            "href": "/contact"
+            "label": "Our Process",
+            "href": "/services/process"
+          },
+          {
+            "type": "link",
+            "label": "Sustainability",
+            "href": "/about"
           }
         ]
       },
       {
-        "title": "Support",
+        "title": "Connect",
         "links": [
           {
             "type": "link",
-            "label": "FAQ",
-            "href": "/contact#blocks_contact_info"
+            "label": "Contact",
+            "href": "/contact"
           },
           {
             "type": "link",
-            "label": "Privacy Policy",
-            "href": "/about"
+            "label": "Book Consultation",
+            "href": "/contact#form"
+          },
+          {
+            "type": "link",
+            "label": "Showroom",
+            "href": "/collections"
           }
         ]
       }
     ],
     "social": [
       {
-        "platform": "instagram",
-        "url": "https://instagram.com/purepawsgrooming"
+        "platform": "twitter",
+        "url": "https://twitter.com/timberandlight"
       },
       {
-        "platform": "facebook",
-        "url": "https://facebook.com/purepawsgrooming"
+        "platform": "instagram",
+        "url": "https://instagram.com/timberandlight"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://linkedin.com/company/timberandlight"
       }
     ],
-    "copyright": "© 2026 PurePaws Mobile Grooming. All rights reserved."
+    "copyright": "© 2025 Timber & Light. All rights reserved."
   },
   "pages": {
     "/": {
       "seo": {
-        "title": "Chris & Bruce Pet Spa - Stress-Free Mobile Grooming in NYC",
-        "description": "Premium mobile pet grooming service in New York City. Certified groomers, organic products, and climate-controlled van. Book your pet's stress-free spa day today."
+        "title": "Timeless Craftsmanship Meets Modern Living | Chris & Co. Furniture",
+        "description": "Discover handcrafted timber furniture and bespoke lighting designed to elevate your home. Explore our curated collection inspired by traditional craftsmanship and contemporary minimalism."
       },
       "sectionOrder": [
         "hero",
         "testimonials",
-        "process",
-        "features"
+        "storytelling",
+        "gallery"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "split",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "headline": "Timeless Craftsmanship Meets Modern Living",
+            "subheadline": "Discover handcrafted timber furniture and bespoke lighting designed to elevate your home.",
+            "ctaText": "Explore Collection",
+            "ctaLink": "/collections",
+            "imageName": "https://loremflickr.com/1600/900/timeless?lock=642587"
+          }
+        },
+        "testimonials": {
+          "type": "testimonials",
+          "variant": "grid",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "title": "What Our Clients Say",
+            "items": [
+              {
+                "quote": "Working with Chris & Co. was a dream. Their attention to detail and quality craftsmanship transformed our office space into a masterpiece.",
+                "author": "Sarah L.",
+                "role": "Interior Designer"
+              },
+              {
+                "quote": "The attention to detail here is unmatched. My go-to for bespoke leather goods.",
+                "author": "Marcus Aurelius",
+                "role": "Frequent Traveler"
+              }
+            ]
+          }
+        },
+        "storytelling": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Crafted with Intention",
+                "level": "display",
+                "align": "center",
+                "decoration": "none",
+                "spacing": "md"
+              },
+              {
+                "type": "text",
+                "content": "Since 1998, Chris & Co. has blended traditional woodworking techniques with contemporary design. Each piece is a testament to our commitment to sustainability and artistry.",
+                "align": "center",
+                "spacing": "lg"
+              },
+              {
+                "type": "image",
+                "src": "https://loremflickr.com/1600/900/chris?lock=748430",
+                "alt": "Chris & Co. woodworking workshop",
+                "aspect": "portrait",
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "gallery": {
+          "type": "blocks",
+          "variant": "wide",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "image-grid",
+                "images": [
+                  {
+                    "src": "https://loremflickr.com/1600/900/signature?lock=633201",
+                    "alt": "Signature Dining Table",
+                    "caption": "Luxury Finish"
+                  },
+                  {
+                    "src": "https://loremflickr.com/1600/900/handcrafted?lock=88428",
+                    "alt": "Handcrafted Coffee Table",
+                    "caption": "Natural Grain"
+                  },
+                  {
+                    "src": "https://loremflickr.com/1600/900/pendant?lock=923222",
+                    "alt": "Pendant Lighting",
+                    "caption": "Modern Elegance"
+                  },
+                  {
+                    "src": "https://loremflickr.com/1600/900/cabinetry?lock=698326",
+                    "alt": "Custom Cabinetry",
+                    "caption": "Bespoke Design"
+                  }
+                ],
+                "columns": "4",
+                "gap": "lg",
+                "aspect": "square",
+                "spacing": "md"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/about": {
+      "seo": {
+        "title": "Discover Craftsmanship Meets Comfort | Chris & Co. Furniture",
+        "description": "At Chris & Co. Furniture, we blend timeless design with modern functionality. Explore our collection of bespoke pieces crafted for those who value quality and precision."
+      },
+      "sectionOrder": [
+        "hero",
+        "form",
+        "blocks",
+        "map",
+        "testimonials"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "headline": "Discover Craftsmanship Meets Comfort",
+            "subheadline": "At Chris & Co. Furniture, we blend timeless design with modern functionality. Explore our collection of bespoke pieces crafted for those who value quality and precision.",
+            "ctaText": "Get Started",
+            "ctaLink": "/contact#form",
+            "imageName": "https://loremflickr.com/1600/900/craftsmanship?lock=461620"
+          }
+        },
+        "form": {
+          "type": "form",
+          "variant": "contact",
+          "props": {
+            "background": "muted",
+            "animation": "fade",
+            "width": "default",
+            "padding": "sm",
+            "title": "Share Your Vision",
+            "fields": [
+              {
+                "name": "name",
+                "label": "Your Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "email",
+                "label": "Email Address",
+                "type": "email",
+                "required": true
+              }
+            ],
+            "submitLabel": "Submit"
+          }
+        },
+        "blocks": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Our Strengths Unfold",
+                "level": "h2",
+                "align": "center",
+                "decoration": "none",
+                "spacing": "lg"
+              },
+              {
+                "type": "feature",
+                "icon": "Zap",
+                "title": "Fast Performance",
+                "description": "Lightning fast load times for all users.",
+                "variant": "vertical",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Mappin",
+                "title": "Visit Us",
+                "description": "123 Boutique Lane, Melbourne VIC 3000",
+                "variant": "compact",
+                "align": "center",
+                "spacing": "md"
+              },
+              {
+                "type": "feature",
+                "icon": "Check",
+                "title": "Premium Fabric",
+                "description": "Includes wash and style.",
+                "variant": "horizontal",
+                "align": "center",
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "map": {
+          "type": "map",
+          "variant": "embedded",
+          "props": {
+            "background": "primary",
+            "animation": "slide-up",
+            "width": "wide",
+            "padding": "none",
+            "title": "Rooted in Community",
+            "address": "123 Boutique Lane, Melbourne VIC 3000",
+            "zoom": 14
+          }
+        },
+        "testimonials": {
+          "type": "testimonials",
+          "variant": "grid",
+          "props": {
+            "background": "secondary",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "sm",
+            "title": "Client Impact",
+            "items": [
+              {
+                "quote": "This furniture is exactly what we needed for our home.",
+                "author": "Sarah T.",
+                "role": "Customer",
+                "avatar": "sarah.jpg"
+              },
+              {
+                "quote": "The craftsmanship and attention to detail are exceptional.",
+                "author": "Mike R.",
+                "role": "Client",
+                "avatar": "mike.jpg"
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/collections": {
+      "seo": {
+        "title": "Discover the Art of Living - Curated Timber Furniture Collections",
+        "description": "Explore hand-picked timber furniture collections blending craftsmanship with contemporary design. Discover modern lounges, rustic offices, and elegant dining sets for your home."
+      },
+      "sectionOrder": [
+        "hero",
+        "portfolio",
+        "inspiration"
       ],
       "sections": {
         "hero": {
@@ -158,105 +427,185 @@ export const siteConfig: WebsiteConfig = {
           "props": {
             "background": "primary",
             "animation": "fade",
-            "width": "full",
-            "padding": "lg",
-            "headline": "Stress-Free Grooming, Delivered to Your Door.",
-            "subheadline": "Chris & Bruce Pet Spa brings the salon experience to your driveway. Our mobile grooming van eliminates the stress of cages and loud salons, using only organic, gentle products. Book your pet's spa day today and watch them shine.",
-            "ctaText": "Book Your Pet's Spa Day",
-            "ctaLink": "/booking",
-            "imageName": "https://loremflickr.com/1600/900/stress?lock=224901"
+            "width": "default",
+            "padding": "sm",
+            "headline": "Discover the Art of Living",
+            "subheadline": "From sleek sofas to timeless dining sets, explore hand-picked collections that blend craftsmanship with contemporary design.",
+            "ctaText": "Explore Collections",
+            "imageName": "https://loremflickr.com/1600/900/art?lock=766615",
+            "ctaLink": "/collections#portfolio"
           }
         },
-        "testimonials": {
-          "type": "testimonials",
-          "variant": "grid",
+        "portfolio": {
+          "type": "blocks",
+          "variant": "prose",
           "props": {
             "background": "muted",
             "animation": "slide-up",
             "width": "default",
             "padding": "md",
-            "title": "Pets & Parents Rave About Us.",
-            "subtitles": "See why pet parents across the city trust us with their furry family members.",
-            "items": [
+            "blocks": [
               {
-                "quote": "The attention to detail here is unmatched. My anxious rescue dog actually wagged his tail when the groomer opened the van door. Truly transformative!",
-                "author": "Sarah Mitchell",
-                "role": "Owner of Winston (Golden Retriever)",
-                "avatar": "testimonial-winston"
+                "type": "container",
+                "variant": "card",
+                "position": "relative",
+                "background": "surface",
+                "padding": "md",
+                "blocks": [
+                  {
+                    "type": "image",
+                    "src": "https://loremflickr.com/1600/900/lounge?lock=27275",
+                    "alt": "Modern lounge collection featuring sleek sofas and contemporary design",
+                    "caption": "Modern Living",
+                    "aspect": "video",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "feature",
+                    "icon": "Zap",
+                    "title": "Modern Collection",
+                    "description": "Clean lines and minimalist forms for contemporary spaces",
+                    "variant": "compact",
+                    "align": "left",
+                    "spacing": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "content": "Sleek sofas, modular seating, and statement coffee tables crafted from premium timbers.",
+                    "align": "left",
+                    "spacing": "sm"
+                  }
+                ],
+                "spacing": "md"
               },
               {
-                "quote": "Finally, a grooming service that understands cats! The gentle approach and organic products made all the difference. Luna came back calm and gorgeous.",
-                "author": "James Chen",
-                "role": "Parent of Luna (Turkish Van)",
-                "avatar": "testimonial-luna"
+                "type": "container",
+                "variant": "card",
+                "position": "relative",
+                "background": "surface",
+                "padding": "md",
+                "blocks": [
+                  {
+                    "type": "image",
+                    "src": "https://loremflickr.com/1600/900/heritage?lock=548021",
+                    "alt": "Heritage collection featuring rustic timber dining set and classic designs",
+                    "caption": "Heritage Living",
+                    "aspect": "video",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "feature",
+                    "icon": "Star",
+                    "title": "Heritage Collection",
+                    "description": "Timeless pieces with traditional craftsmanship and warm timbers",
+                    "variant": "compact",
+                    "align": "left",
+                    "spacing": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "content": "Rustic dining tables, classic armchairs, and heirloom-quality storage solutions.",
+                    "align": "left",
+                    "spacing": "sm"
+                  }
+                ],
+                "spacing": "md"
               },
               {
-                "quote": "The mobile van is spotless and smells amazing. No more dragging my nervous terrier into a noisy salon. Worth every penny for the peace of mind.",
-                "author": "Elena Rodriguez",
-                "role": "Owner of Peanut (Jack Russell)",
-                "avatar": "testimonial-peanut"
-              },
-              {
-                "quote": "Chris and Bruce are magicians. My high-maintenance poodle looks better than ever, and the bandana was a lovely touch. Absolutely recommend!",
-                "author": "Michael Thompson",
-                "role": "Parent of Coco (Poodle)",
-                "avatar": "testimonial-coco"
+                "type": "container",
+                "variant": "card",
+                "position": "relative",
+                "background": "surface",
+                "padding": "md",
+                "blocks": [
+                  {
+                    "type": "image",
+                    "src": "https://loremflickr.com/1600/900/boutique?lock=725943",
+                    "alt": "Boutique collection featuring hand-woven rug and unique accent pieces",
+                    "caption": "Boutique Living",
+                    "aspect": "video",
+                    "spacing": "md"
+                  },
+                  {
+                    "type": "feature",
+                    "icon": "Palette",
+                    "title": "Boutique Collection",
+                    "description": "Artisan-crafted statement pieces and unique design accents",
+                    "variant": "compact",
+                    "align": "left",
+                    "spacing": "sm"
+                  },
+                  {
+                    "type": "text",
+                    "content": "Hand-woven textiles, sculptural lighting, and bespoke accessories for distinctive interiors.",
+                    "align": "left",
+                    "spacing": "sm"
+                  }
+                ],
+                "spacing": "md"
               }
             ]
           }
         },
-        "process": {
+        "inspiration": {
           "type": "blocks",
-          "variant": "prose",
+          "variant": "wide",
           "props": {
             "background": "surface",
             "animation": "zoom-in",
             "width": "default",
-            "padding": "md",
+            "padding": "lg",
             "blocks": [
               {
-                "type": "heading",
-                "text": "The Gentle Grooming Journey",
-                "level": "h2",
-                "align": "center",
-                "decoration": "line-bottom",
-                "spacing": "md"
-              },
-              {
-                "type": "text",
-                "content": "Every pet receives individualized, low-stress care from our certified groomers. We use only certified organic, hypoallergenic products to ensure the safest experience.",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
                 "type": "columns",
-                "layout": "split-left",
+                "layout": "split",
                 "items": [
                   {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/gentle?lock=454551",
-                        "alt": "Gentle groomer kneeling to greet a shy dog at the mobile van door",
+                        "src": "https://loremflickr.com/1600/900/home?lock=321185",
+                        "alt": "Modern home office with timber furniture and natural lighting",
+                        "caption": "Inspired Spaces",
                         "aspect": "video",
-                        "spacing": "none"
+                        "spacing": "md"
                       }
                     ]
                   },
                   {
                     "blocks": [
                       {
-                        "type": "heading",
-                        "text": "1. Calm Arrival",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "line-left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "Your pet is welcomed into our climate-controlled van for a stress-free start. We let them explore and settle at their own pace before any grooming begins.",
-                        "align": "left",
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "lg",
+                        "blocks": [
+                          {
+                            "type": "heading",
+                            "text": "The Material Story",
+                            "level": "h3",
+                            "align": "left",
+                            "decoration": "line-left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "Every timber piece tells a story of sustainable forests and skilled craftsmanship. Our American Oak is quarter-sawn for stability, revealing distinctive grain patterns that make each table unique. The natural oil finish enhances the wood's character while providing lasting protection.",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "spacer",
+                            "size": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "We partner with family-owned mills committed to responsible forestry. This means your furniture not only looks beautiful but also supports healthy forest ecosystems for generations to come.",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
                         "spacing": "md"
                       }
                     ]
@@ -265,92 +614,42 @@ export const siteConfig: WebsiteConfig = {
               },
               {
                 "type": "columns",
-                "layout": "split-right",
+                "layout": "split",
                 "items": [
                   {
                     "blocks": [
                       {
-                        "type": "heading",
-                        "text": "2. Organic Bath",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "line-left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "We lather up with soothing, plant-based shampoos that clean without irritants. All products are certified organic and pH-balanced for sensitive skin.",
-                        "align": "left",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/close?lock=402245",
-                        "alt": "Close-up of gentle hands lathering with organic shampoo",
-                        "aspect": "video",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "columns",
-                "layout": "split-left",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/patient?lock=750172",
-                        "alt": "Patient groomer carefully trimming a cat's nails with focused expression",
-                        "aspect": "video",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "heading",
-                        "text": "3. Precision Styling",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "line-left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "Our expert groomers trim and style with patience and care. Whether it's a breed-specific cut or a simple tidy, we work at your pet's comfort level.",
-                        "align": "left",
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "columns",
-                "layout": "split-right",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "heading",
-                        "text": "4. Happy Pickup",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "line-left",
-                        "spacing": "sm"
-                      },
-                      {
-                        "type": "text",
-                        "content": "Your fresh, relaxed pet is ready to go home, often with a complimentary bandana. We share grooming notes and tips for maintaining their look between visits.",
-                        "align": "left",
+                        "type": "container",
+                        "variant": "card",
+                        "position": "relative",
+                        "background": "surface",
+                        "padding": "lg",
+                        "blocks": [
+                          {
+                            "type": "heading",
+                            "text": "Artisan Details",
+                            "level": "h3",
+                            "align": "left",
+                            "decoration": "line-left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "text",
+                            "content": "The beauty lies in the details—hand-turned legs, dovetail joinery, and carefully matched wood grain. Our craftspeople spend years perfecting techniques that machines cannot replicate, ensuring each piece carries the mark of human artistry.",
+                            "align": "left",
+                            "spacing": "md"
+                          },
+                          {
+                            "type": "spacer",
+                            "size": "sm"
+                          },
+                          {
+                            "type": "text",
+                            "content": "From traditional mortise and tenon to modern hidden hardware, every joint serves both form and function. This dedication to craft means your furniture will last generations while maintaining its aesthetic appeal.",
+                            "align": "left",
+                            "spacing": "md"
+                          }
+                        ],
                         "spacing": "md"
                       }
                     ]
@@ -359,189 +658,10 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/happy?lock=428806",
-                        "alt": "Happy poodle wearing a bandana being gently handed to owner",
-                        "aspect": "video",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "features": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "default",
-            "animation": "none",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Your Neighborhood, Our Mobile Spa",
-                "level": "h2",
-                "align": "center",
-                "decoration": "line-bottom",
-                "spacing": "md"
-              },
-              {
-                "type": "text",
-                "content": "We bring the spa to you. Our mobile van is equipped with everything needed for a premium grooming experience, and we serve all of New York City's key neighborhoods.",
-                "align": "center",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Mappin",
-                            "title": "Manhattan",
-                            "description": "Upper East Side to SoHo.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Mappin",
-                            "title": "Brooklyn",
-                            "description": "Williamsburg, Park Slope, and more.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Mappin",
-                            "title": "Queens",
-                            "description": "Long Island City, Astoria, and beyond.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "spacer",
-                "size": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Van",
-                            "title": "Climate-Controlled Van",
-                            "description": "Temperature-regulated for comfort year-round.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Bottle",
-                            "title": "Organic Products",
-                            "description": "All shampoos and conditioners are certified organic.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "sm"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "card",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Paw",
-                            "title": "No-Cage Wait",
-                            "description": "Pets relax freely in the van during grooming.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "sm"
-                          }
-                        ],
+                        "src": "https://loremflickr.com/1600/900/close?lock=618139",
+                        "alt": "Close-up macro shot of timber grain and hand-finished surface",
+                        "caption": "Craftsmanship Close-Up",
+                        "aspect": "portrait",
                         "spacing": "md"
                       }
                     ]
@@ -555,14 +675,14 @@ export const siteConfig: WebsiteConfig = {
     },
     "/services": {
       "seo": {
-        "title": "Services | Chris & Bruce Pet Spa",
-        "description": "Expert grooming services for dogs, cats, and small animals. Organic treatments, breed-specific styling, and transparent pricing by pet size."
+        "title": "Chris & Co. Furniture | Bespoke Custom Furniture",
+        "description": "Chris & Co. Furniture transforms your ideas into heirloom-quality, custom pieces. From initial sketch to final installation, we partner with you to create furniture that’s uniquely yours."
       },
       "sectionOrder": [
         "hero",
         "services",
-        "pricing",
-        "story"
+        "process",
+        "caseStudy"
       ],
       "sections": {
         "hero": {
@@ -570,788 +690,64 @@ export const siteConfig: WebsiteConfig = {
           "variant": "simple",
           "props": {
             "background": "primary",
-            "animation": "slide-up",
-            "width": "wide",
+            "animation": "fade",
+            "width": "full",
             "padding": "sm",
-            "headline": "Expert Grooming for Every Paw, Scale & Feather.",
-            "subheadline": "From a refreshing bath to a breed-standard cut, we provide compassionate, professional care for dogs, cats, and small animals. Your pet's comfort is our highest priority.",
-            "ctaText": "Book Now",
-            "ctaLink": "/booking",
-            "imageName": "https://loremflickr.com/1600/900/expert?lock=626712"
+            "headline": "Your Vision, Masterfully Crafted",
+            "subheadline": "Chris & Co. Furniture transforms your ideas into heirloom-quality, custom pieces. From initial sketch to final installation, we partner with you to create furniture that’s uniquely yours.",
+            "ctaText": "",
+            "imageName": "https://loremflickr.com/1600/900/vision?lock=152723"
           }
         },
         "services": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "default",
-            "animation": "fade",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Our Service Menu",
-                "level": "h2",
-                "align": "left",
-                "decoration": "line-left",
-                "spacing": "md"
-              },
-              {
-                "type": "text",
-                "content": "Choose a full-service package or à la carte options. Every service includes a gentle consultation, coat assessment, and a stress-free experience.",
-                "align": "left",
-                "spacing": "md"
-              },
-              {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Droplet",
-                        "title": "Washing",
-                        "description": "Gentle baths with organic, hypoallergenic shampoos and conditioners.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Scissors",
-                        "title": "Styling",
-                        "description": "Breed-specific cuts and stylish trims tailored to your pet's lifestyle.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Leaf",
-                        "title": "Organic Treatments",
-                        "description": "Natural conditioners and skin-soothing therapies for sensitive coats.",
-                        "variant": "vertical",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        },
-        "pricing": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "muted",
-            "animation": "zoom-in",
-            "width": "default",
-            "padding": "md",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "Simple Pricing by Size",
-                "level": "h2",
-                "align": "left",
-                "decoration": "line-left",
-                "spacing": "md"
-              },
-              {
-                "type": "text",
-                "content": "Our base bath & brush service is priced by your pet's weight. Add-ons like deshedding, nail trimming, and teeth brushing are listed below.",
-                "align": "left",
-                "spacing": "md"
-              },
-              {
-                "type": "icon",
-                "name": "Scale",
-                "size": "md",
-                "color": "primary",
-                "align": "center",
-                "spacing": "md"
-              },
-              {
-                "type": "price-list",
-                "variant": "minimal",
-                "categories": [
-                  {
-                    "name": "Bath & Brush",
-                    "items": [
-                      {
-                        "label": "Small (<20lbs)",
-                        "price": "$40"
-                      },
-                      {
-                        "label": "Medium (21-50lbs)",
-                        "price": "$60"
-                      },
-                      {
-                        "label": "Large (>50lbs)",
-                        "price": "$80"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Deshedding Treatment",
-                    "items": [
-                      {
-                        "label": "Small",
-                        "price": "$30"
-                      },
-                      {
-                        "label": "Medium",
-                        "price": "$45"
-                      },
-                      {
-                        "label": "Large",
-                        "price": "$60"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Nail Trim",
-                    "items": [
-                      {
-                        "label": "Small",
-                        "price": "$15"
-                      },
-                      {
-                        "label": "Medium",
-                        "price": "$20"
-                      },
-                      {
-                        "label": "Large",
-                        "price": "$25"
-                      }
-                    ]
-                  },
-                  {
-                    "name": "Teeth Brushing",
-                    "items": [
-                      {
-                        "label": "Small",
-                        "price": "$10"
-                      },
-                      {
-                        "label": "Medium",
-                        "price": "$15"
-                      },
-                      {
-                        "label": "Large",
-                        "price": "$20"
-                      }
-                    ]
-                  }
-                ],
-                "spacing": "md"
-              }
-            ]
-          }
-        },
-        "story": {
-          "type": "blocks",
-          "variant": "prose",
-          "props": {
-            "background": "surface",
-            "animation": "none",
-            "width": "wide",
-            "padding": "lg",
-            "blocks": [
-              {
-                "type": "heading",
-                "text": "The Chris & Bruce Difference: Science & Soul",
-                "level": "h2",
-                "align": "left",
-                "decoration": "line-left",
-                "spacing": "lg"
-              },
-              {
-                "type": "columns",
-                "layout": "split-right",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "heading",
-                        "text": "Organic Wellness",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "none",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "text",
-                        "content": "We believe grooming is part of holistic pet wellness. Our organic, hypoallergenic products soothe sensitive skin and promote a healthy coat without harsh chemicals.",
-                        "align": "left",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/professional?lock=686926",
-                        "alt": "Professional groomer gently applying organic coconut-oil conditioner to a dog's coat",
-                        "aspect": "video",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "testimonial-card",
-                        "quote": "My dog has allergies and the organic products made all the difference. No more itching after visits!",
-                        "author": "Sarah J.",
-                        "role": "Happy Client",
-                        "spacing": "md",
-                        "avatar": "https://loremflickr.com/1600/900/business?lock=544811"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "columns",
-                "layout": "split-left",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "image",
-                        "src": "https://loremflickr.com/1600/900/before?lock=616751",
-                        "alt": "Before and after shot of a poodle receiving a neat, breed-standard clip",
-                        "aspect": "video",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "heading",
-                        "text": "Breed-Perfect Styling",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "none",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "text",
-                        "content": "We honor breed standards while ensuring each cut suits your pet's unique lifestyle and personality. Every trim is a custom collaboration.",
-                        "align": "left",
-                        "spacing": "md"
-                      },
-                      {
-                        "type": "testimonial-card",
-                        "quote": "My show poodle always comes back perfectly styled. They really understand the breed standard and what works for my dog's coat type.",
-                        "author": "Michael T.",
-                        "role": "Show Dog Owner",
-                        "spacing": "md",
-                        "avatar": "https://loremflickr.com/1600/900/business?lock=416455"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        }
-      }
-    },
-    "/booking": {
-      "seo": {
-        "title": "Pet Spa Day Booking | Mobile Grooming Services",
-        "description": "Book your pet's spa day with our boutique mobile grooming service. Easy online booking, professional care, and stress-free experience for your furry friends."
-      },
-      "sectionOrder": [
-        "hero",
-        "form",
-        "blocks"
-      ],
-      "sections": {
-        "hero": {
-          "type": "hero",
-          "variant": "simple",
-          "props": {
-            "background": "primary",
-            "animation": "slide-up",
-            "width": "full",
-            "padding": "md",
-            "headline": "Book Your Pet’s Spa Day in Seconds",
-            "subheadline": "Reserve a grooming appointment for your furry friend. Choose a service, pick a time, and we’ll handle the rest.",
-            "ctaText": "Book Appointment",
-            "ctaLink": "/booking#form",
-            "imageName": "https://loremflickr.com/1600/900/book?lock=395632"
-          }
-        },
-        "form": {
-          "type": "form",
-          "variant": "request",
-          "props": {
-            "background": "muted",
-            "animation": "fade",
-            "width": "prose",
-            "padding": "md",
-            "title": "Schedule Your Appointment",
-            "description": "Fill out the details below to book your pet’s grooming session. We’ll confirm via email or phone within 2 hours.",
-            "fields": [
-              {
-                "name": "ownerName",
-                "label": "Your Name",
-                "type": "text",
-                "required": true
-              },
-              {
-                "name": "ownerEmail",
-                "label": "Email Address",
-                "type": "email",
-                "required": true
-              },
-              {
-                "name": "ownerPhone",
-                "label": "Phone Number",
-                "type": "text",
-                "required": true
-              },
-              {
-                "name": "petName",
-                "label": "Pet's Name",
-                "type": "text",
-                "required": true
-              },
-              {
-                "name": "petType",
-                "label": "Pet Type",
-                "type": "select",
-                "options": [
-                  "Dog",
-                  "Cat",
-                  "Other"
-                ],
-                "required": true
-              },
-              {
-                "name": "petBreed",
-                "label": "Breed",
-                "type": "text",
-                "required": true
-              },
-              {
-                "name": "service",
-                "label": "Service",
-                "type": "select",
-                "options": [
-                  "Bath & Brush",
-                  "Full Groom",
-                  "Nail Trim",
-                  "Teeth Cleaning",
-                  "De-shedding Treatment"
-                ],
-                "required": true
-              },
-              {
-                "name": "appointmentDate",
-                "label": "Preferred Date",
-                "type": "text",
-                "required": true
-              },
-              {
-                "name": "appointmentTime",
-                "label": "Preferred Time",
-                "type": "text",
-                "required": true
-              }
-            ],
-            "submitLabel": "Book Appointment"
-          }
-        },
-        "blocks": {
-          "type": "blocks",
-          "variant": "full",
-          "props": {
-            "background": "default",
-            "animation": "none",
-            "width": "full",
-            "padding": "none",
-            "blocks": [
-              {
-                "type": "container",
-                "variant": "default",
-                "position": "relative",
-                "background": "surface",
-                "padding": "md",
-                "blocks": [
-                  {
-                    "type": "heading",
-                    "text": "How It Works",
-                    "level": "h2",
-                    "align": "center",
-                    "decoration": "line-bottom",
-                    "spacing": "md"
-                  },
-                  {
-                    "type": "columns",
-                    "layout": "3-col",
-                    "items": [
-                      {
-                        "blocks": [
-                          {
-                            "type": "container",
-                            "variant": "default",
-                            "position": "relative",
-                            "background": "surface",
-                            "padding": "md",
-                            "blocks": [
-                              {
-                                "type": "icon",
-                                "name": "Listchecks",
-                                "size": "lg",
-                                "color": "primary",
-                                "align": "center",
-                                "spacing": "md"
-                              },
-                              {
-                                "type": "heading",
-                                "text": "Choose Service",
-                                "level": "h3",
-                                "align": "center",
-                                "decoration": "none",
-                                "spacing": "sm"
-                              },
-                              {
-                                "type": "text",
-                                "content": "Browse our grooming menu and select the perfect treatment for your pet’s coat and needs.",
-                                "align": "center",
-                                "spacing": "none"
-                              }
-                            ],
-                            "spacing": "md"
-                          }
-                        ]
-                      },
-                      {
-                        "blocks": [
-                          {
-                            "type": "container",
-                            "variant": "default",
-                            "position": "relative",
-                            "background": "surface",
-                            "padding": "md",
-                            "blocks": [
-                              {
-                                "type": "icon",
-                                "name": "Calendar",
-                                "size": "lg",
-                                "color": "primary",
-                                "align": "center",
-                                "spacing": "md"
-                              },
-                              {
-                                "type": "heading",
-                                "text": "Pick a Time",
-                                "level": "h3",
-                                "align": "center",
-                                "decoration": "none",
-                                "spacing": "sm"
-                              },
-                              {
-                                "type": "text",
-                                "content": "View real-time availability and choose a convenient appointment slot.",
-                                "align": "center",
-                                "spacing": "none"
-                              }
-                            ],
-                            "spacing": "md"
-                          }
-                        ]
-                      },
-                      {
-                        "blocks": [
-                          {
-                            "type": "container",
-                            "variant": "default",
-                            "position": "relative",
-                            "background": "surface",
-                            "padding": "md",
-                            "blocks": [
-                              {
-                                "type": "icon",
-                                "name": "Shieldcheck",
-                                "size": "lg",
-                                "color": "primary",
-                                "align": "center",
-                                "spacing": "md"
-                              },
-                              {
-                                "type": "heading",
-                                "text": "Confirm & Pay",
-                                "level": "h3",
-                                "align": "center",
-                                "decoration": "none",
-                                "spacing": "sm"
-                              },
-                              {
-                                "type": "text",
-                                "content": "Securely complete your booking online with instant email confirmation.",
-                                "align": "center",
-                                "spacing": "none"
-                              }
-                            ],
-                            "spacing": "md"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "spacing": "lg"
-              },
-              {
-                "type": "container",
-                "variant": "default",
-                "position": "relative",
-                "background": "secondary",
-                "padding": "lg",
-                "blocks": [
-                  {
-                    "type": "columns",
-                    "layout": "split-right",
-                    "items": [
-                      {
-                        "blocks": [
-                          {
-                            "type": "heading",
-                            "text": "Before Your Appointment",
-                            "level": "h2",
-                            "align": "left",
-                            "decoration": "none",
-                            "spacing": "md"
-                          },
-                          {
-                            "type": "text",
-                            "content": "To ensure a smooth, stress-free experience, please brush your pet thoroughly before arrival and ensure they’ve relieved themselves. Bring any vaccination records if your pet is new to us.",
-                            "align": "left",
-                            "spacing": "none"
-                          }
-                        ]
-                      },
-                      {
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/calm?lock=698786",
-                            "alt": "Calm pet being gently brushed at home by owner with natural lighting",
-                            "aspect": "video",
-                            "spacing": "none"
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ],
-                "spacing": "lg"
-              },
-              {
-                "type": "container",
-                "variant": "default",
-                "position": "relative",
-                "background": "none",
-                "padding": "md",
-                "blocks": [
-                  {
-                    "type": "heading",
-                    "text": "Loved by Local Pet Parents",
-                    "level": "h2",
-                    "align": "center",
-                    "decoration": "line-bottom",
-                    "spacing": "md"
-                  },
-                  {
-                    "type": "testimonial-card",
-                    "quote": "The online booking was so simple, and my nervous pup came back looking happier than ever. Chris & Bruce truly understand anxious pets!",
-                    "author": "Maya T.",
-                    "role": "owner of Milo the anxious Poodle",
-                    "avatar": "https://loremflickr.com/1600/900/maya?lock=958508",
-                    "spacing": "none"
-                  }
-                ],
-                "spacing": "lg"
-              }
-            ]
-          }
-        }
-      }
-    },
-    "/about": {
-      "seo": {
-        "title": "About Us | Chris & Bruce Pet Spa - Mobile Grooming with Heart",
-        "description": "Learn about Chris & Bruce Pet Spa, your trusted mobile grooming service. We bring the spa experience to your doorstep with certified groomers and a custom mobile van for stress-free pet care."
-      },
-      "sectionOrder": [
-        "hero",
-        "features",
-        "process"
-      ],
-      "sections": {
-        "hero": {
-          "type": "hero",
-          "variant": "simple",
-          "props": {
-            "background": "primary",
-            "animation": "fade",
-            "width": "full",
-            "padding": "md",
-            "headline": "Chris & Bruce Pet Spa: Mobile Grooming with Heart",
-            "subheadline": "We bring the spa experience directly to your doorstep, ensuring every pet feels relaxed and loved. Our mission is to provide stress-free grooming with a personal touch.",
-            "ctaText": "Book Your Pet's Spa Day",
-            "ctaLink": "/booking",
-            "imageName": "https://loremflickr.com/1600/900/chris?lock=100358"
-          }
-        },
-        "features": {
-          "type": "blocks",
-          "variant": "prose",
+          "type": "services",
+          "variant": "grid",
           "props": {
             "background": "muted",
             "animation": "slide-up",
             "width": "default",
             "padding": "md",
-            "blocks": [
+            "title": "Our Bespoke Services",
+            "items": [
               {
-                "type": "heading",
-                "text": "Expertise on Wheels",
-                "level": "h2",
-                "align": "center",
-                "decoration": "line-bottom",
-                "spacing": "lg"
+                "icon": "Pencil",
+                "title": "Bespoke Design Consultations",
+                "description": "Collaborative sessions to explore layouts, materials, and finishes—all personalized to your home."
               },
               {
-                "type": "text",
-                "content": "Our team combines professional certifications with a custom-equipped mobile van to deliver top-tier grooming in the comfort of your home.",
-                "align": "center",
-                "spacing": "md"
+                "icon": "Wrench",
+                "title": "Custom Furniture Creation",
+                "description": "From sofas to dining tables, each piece is handcrafted in our workshop using sustainably sourced, premium materials."
               },
               {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Award",
-                            "title": "Certified Groomers",
-                            "description": "Our team holds IPG and NDGAA certifications, ensuring the highest standards.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "feature",
-                            "icon": "Van",
-                            "title": "Custom Mobile Van",
-                            "description": "Equipped with hydro-bath and climate control for your pet's comfort.",
-                            "variant": "vertical",
-                            "align": "center",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "container",
-                        "variant": "default",
-                        "position": "relative",
-                        "background": "surface",
-                        "padding": "md",
-                        "blocks": [
-                          {
-                            "type": "image",
-                            "src": "https://loremflickr.com/1600/900/non?lock=40303",
-                            "alt": "Non-slip floors and secure restraints in the mobile van",
-                            "aspect": "square",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "heading",
-                            "text": "Safety First",
-                            "level": "h3",
-                            "align": "center",
-                            "decoration": "none",
-                            "spacing": "sm"
-                          },
-                          {
-                            "type": "text",
-                            "content": "Non-slip floors and secure restraints ensure your pet's safety during grooming.",
-                            "align": "center",
-                            "spacing": "md"
-                          }
-                        ],
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
+                "icon": "Lightbulb",
+                "title": "Lighting & Accessory Installations",
+                "description": "Seamless integration of curated lighting, hardware, and accessories to elevate your custom pieces."
               }
             ]
           }
         },
         "process": {
           "type": "blocks",
-          "variant": "wide",
+          "variant": "prose",
           "props": {
             "background": "surface",
             "animation": "zoom-in",
             "width": "wide",
-            "padding": "md",
+            "padding": "lg",
             "blocks": [
               {
                 "type": "heading",
-                "text": "The Stress-Free Difference",
+                "text": "The Chris & Co. Process",
                 "level": "h2",
-                "align": "center",
-                "decoration": "line-bottom",
-                "spacing": "lg"
+                "align": "left",
+                "decoration": "none",
+                "spacing": "none"
               },
               {
                 "type": "text",
-                "content": "From gentle handling to calming techniques, we prioritize pet wellness at every step. See what our clients say about the transformation.",
-                "align": "center",
+                "content": "A transparent, collaborative journey from concept to completion.",
+                "align": "left",
                 "spacing": "md"
               },
               {
@@ -1362,17 +758,17 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "Gentle Handling",
+                        "text": "1. Discovery",
                         "level": "h3",
                         "align": "left",
                         "decoration": "none",
-                        "spacing": "md"
+                        "spacing": "none"
                       },
                       {
                         "type": "text",
-                        "content": "We use soft, reassuring touches to calm even the most anxious pets.",
+                        "content": "We listen—to your needs, space, and inspiration—laying the foundation for a truly personalized design.",
                         "align": "left",
-                        "spacing": "lg"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -1380,10 +776,10 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/bruce?lock=26458",
-                        "alt": "Bruce softly brushing an anxious pup",
+                        "src": "https://loremflickr.com/1600/900/design?lock=667410",
+                        "alt": "Design meeting with client",
                         "aspect": "video",
-                        "spacing": "lg"
+                        "spacing": "md"
                       }
                     ]
                   }
@@ -1397,10 +793,10 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/chris?lock=456724",
-                        "alt": "Chris using low-noise tools on a small dog",
+                        "src": "https://loremflickr.com/1600/900/sketches?lock=667969",
+                        "alt": "Sketches and material samples",
                         "aspect": "video",
-                        "spacing": "lg"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -1408,17 +804,17 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "Quiet Clippers & Soothing Sounds",
+                        "text": "2. Design",
                         "level": "h3",
                         "align": "left",
                         "decoration": "none",
-                        "spacing": "md"
+                        "spacing": "none"
                       },
                       {
                         "type": "text",
-                        "content": "Our low-noise tools and calming music create a peaceful grooming environment.",
+                        "content": "Detailed renderings, material boards, and 3D models bring your vision to life for approval.",
                         "align": "left",
-                        "spacing": "lg"
+                        "spacing": "md"
                       }
                     ]
                   }
@@ -1432,17 +828,17 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "Home Environment Benefits",
+                        "text": "3. Crafting",
                         "level": "h3",
                         "align": "left",
                         "decoration": "none",
-                        "spacing": "md"
+                        "spacing": "none"
                       },
                       {
                         "type": "text",
-                        "content": "Grooming in the comfort of home reduces stress and allows for a more personalized experience.",
+                        "content": "Our artisans meticulously build your piece in-house, with progress updates at every stage.",
                         "align": "left",
-                        "spacing": "lg"
+                        "spacing": "md"
                       }
                     ]
                   },
@@ -1450,22 +846,91 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "image",
-                        "src": "https://loremflickr.com/1600/900/cat?lock=110681",
-                        "alt": "A cat relaxing in a mobile van cabin",
+                        "src": "https://loremflickr.com/1600/900/artisans?lock=911567",
+                        "alt": "Artisans crafting furniture in workshop",
                         "aspect": "video",
-                        "spacing": "lg"
+                        "spacing": "md"
                       }
                     ]
                   }
                 ]
               },
               {
+                "type": "columns",
+                "layout": "split-left",
+                "items": [
+                  {
+                    "blocks": [
+                      {
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/installation?lock=502005",
+                        "alt": "Installation of furniture in home",
+                        "aspect": "video",
+                        "spacing": "md"
+                      }
+                    ]
+                  },
+                  {
+                    "blocks": [
+                      {
+                        "type": "heading",
+                        "text": "4. Installation",
+                        "level": "h3",
+                        "align": "left",
+                        "decoration": "none",
+                        "spacing": "none"
+                      },
+                      {
+                        "type": "text",
+                        "content": "White-glove delivery and installation, ensuring a perfect fit and finish in your home.",
+                        "align": "left",
+                        "spacing": "md"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "caseStudy": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "secondary",
+            "animation": "none",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "heading",
+                "text": "Project Spotlight: The Rivera Family Library",
+                "level": "h2",
+                "align": "left",
+                "decoration": "none",
+                "spacing": "none"
+              },
+              {
+                "type": "text",
+                "content": "A custom-built, floor-to-ceiling library that blends traditional craftsmanship with modern functionality.",
+                "align": "left",
+                "spacing": "md"
+              },
+              {
                 "type": "testimonial-card",
-                "quote": "They turned my nervous dog into a happy, clean best friend—without leaving our driveway!",
-                "author": "Sarah J.",
-                "role": "Golden Retriever Mom",
-                "avatar": "https://loremflickr.com/1600/900/client?lock=314076",
-                "spacing": "lg"
+                "quote": "They didn’t just build shelves—they created a legacy room. Every curve, every wood choice felt like it was made for our family.",
+                "author": "Elena Rivera",
+                "role": "Custom Home Library",
+                "avatar": "https://loremflickr.com/1600/900/elena?lock=643467",
+                "spacing": "md"
+              },
+              {
+                "type": "testimonial-card",
+                "quote": "The team’s attention to detail was extraordinary. They hid wiring for lighting, integrated a ladder system, and used wood from our own land.",
+                "author": "Miguel Rivera",
+                "role": "Custom Home Library",
+                "avatar": "https://loremflickr.com/1600/900/miguel?lock=838648",
+                "spacing": "none"
               }
             ]
           }
@@ -1474,142 +939,215 @@ export const siteConfig: WebsiteConfig = {
     },
     "/contact": {
       "seo": {
-        "title": "Contact Us - Chris & Bruce Pet Spa | Mobile Grooming",
-        "description": "Get in touch with Chris & Bruce Pet Spa. Book mobile pet grooming, view service area, hours, and FAQs. We bring professional care to your doorstep."
+        "title": "Contact Chris & Co. Furniture | Bespoke Luxury Timber Design",
+        "description": "Experience timeless craftsmanship and bespoke timber furniture. Schedule a consultation or visit our showroom in Melbourne. Discover our collection of luxury pieces today."
       },
       "sectionOrder": [
-        "hero_contact",
-        "map_service_area",
-        "blocks_contact_info"
+        "hero",
+        "map",
+        "form",
+        "testimonials"
       ],
       "sections": {
-        "hero_contact": {
+        "hero": {
           "type": "hero",
-          "variant": "simple",
+          "variant": "split",
           "props": {
-            "background": "primary",
-            "animation": "fade",
+            "background": "default",
+            "animation": "slide-up",
             "width": "default",
-            "padding": "lg",
-            "headline": "Ready for a Spa Day?",
-            "subheadline": "Chris & Bruce Pet Spa comes to you. Book an appointment for mobile grooming in your neighborhood or send us a message with your questions.",
-            "ctaText": "Book Now",
-            "ctaLink": "/booking",
-            "imageName": "https://loremflickr.com/1600/900/ready?lock=101891"
+            "padding": "md",
+            "headline": "Bring Your Vision to Life with Chris & Co. Furniture",
+            "subheadline": "Where Style Meets Craft",
+            "ctaText": "Get Started",
+            "ctaLink": "/contact/consultation",
+            "imageName": "https://loremflickr.com/1600/900/bring?lock=748997"
           }
         },
-        "map_service_area": {
+        "map": {
           "type": "map",
           "variant": "embedded",
           "props": {
-            "background": "muted",
+            "background": "default",
             "animation": "slide-up",
-            "width": "full",
+            "width": "default",
             "padding": "md",
-            "title": "Our Service Area",
-            "address": "We service the greater Melbourne region. Our mobile van is based in Carlton and travels to your home. Enter your zip code on the booking page to confirm availability.",
-            "zoom": 12
+            "title": "Showroom Location",
+            "address": "123 Boutique Lane, Melbourne VIC 3000",
+            "zoom": 14
           }
         },
-        "blocks_contact_info": {
+        "form": {
+          "type": "form",
+          "variant": "contact",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "title": "Request a Custom Quote",
+            "description": "Tell us about your project and receive a personalized quote within 24 hours.",
+            "fields": [
+              {
+                "name": "name",
+                "label": "Full Name",
+                "type": "text",
+                "required": true
+              },
+              {
+                "name": "email",
+                "label": "Email Address",
+                "type": "email",
+                "required": true
+              },
+              {
+                "name": "projectType",
+                "label": "Project Type",
+                "type": "select",
+                "options": [
+                  "Custom Furniture",
+                  "Renovation",
+                  "Restoration"
+                ],
+                "required": true
+              }
+            ],
+            "submitLabel": "Send Request"
+          }
+        },
+        "testimonials": {
+          "type": "testimonials",
+          "variant": "grid",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "title": "What Our Clients Say",
+            "items": []
+          }
+        }
+      }
+    },
+    "/services/process": {
+      "seo": {
+        "title": "Crafting Spaces, Step by Step",
+        "description": "Explore the art of handcrafted furniture with Chris & Co. Discover our process from concept to delivery, blending traditional craftsmanship with modern minimalism."
+      },
+      "sectionOrder": [
+        "hero",
+        "blocks"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "headline": "Crafting Spaces, Step by Step",
+            "subheadline": "Discover how Chris & Co. Furniture turns your ideas into handcrafted pieces, from first sketch to final placement.",
+            "ctaText": "Get Started",
+            "ctaLink": "/contact#form",
+            "imageName": "https://loremflickr.com/1600/900/crafting?lock=975256"
+          }
+        },
+        "blocks": {
+          "type": "services",
+          "variant": "grid",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "title": "Our Process",
+            "items": [
+              {
+                "icon": "Lightbulb",
+                "title": "Concept",
+                "description": "We sit down, listen, and map your style."
+              },
+              {
+                "icon": "Blueprint",
+                "title": "Design",
+                "description": "Detailed sketches and 3D models bring ideas to life."
+              },
+              {
+                "icon": "Hammerchisel",
+                "title": "Craft",
+                "description": "Master artisans hand-craft each piece with premium materials."
+              },
+              {
+                "icon": "Truck",
+                "title": "Delivery",
+                "description": "Thoughtful logistics and flawless setup complete the journey."
+              }
+            ]
+          }
+        }
+      }
+    },
+    "/contact/consultation": {
+      "seo": {
+        "title": "Your Furniture Vision, Realized | Chris & Co.",
+        "description": "Schedule a personalized consultation to explore custom furniture solutions tailored to your space and style. Experience the Chris & Co. difference with expert guidance and no-obligation design consultations."
+      },
+      "sectionOrder": [
+        "hero",
+        "blocks_1",
+        "blocks_2",
+        "blocks_3",
+        "blocks_4",
+        "blocks_5"
+      ],
+      "sections": {
+        "hero": {
+          "type": "hero",
+          "variant": "simple",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "headline": "Your Furniture Vision, Realized",
+            "subheadline": "Schedule a personalized consultation to explore custom solutions tailored to your space and style",
+            "ctaText": "Schedule Consultation",
+            "ctaLink": "/contact#form",
+            "imageName": "https://loremflickr.com/1600/900/furniture?lock=793087"
+          }
+        },
+        "blocks_1": {
           "type": "blocks",
           "variant": "prose",
           "props": {
-            "background": "surface",
-            "animation": "zoom-in",
+            "background": "default",
+            "animation": "slide-up",
             "width": "default",
-            "padding": "lg",
+            "padding": "md",
             "blocks": [
               {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Phone",
-                        "title": "Call Us",
-                        "description": "(03) 1234 5678",
-                        "variant": "horizontal",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Mail",
-                        "title": "Email Us",
-                        "description": "hello@chrisandbruce.com.au",
-                        "variant": "horizontal",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Messagecircle",
-                        "title": "Text Us",
-                        "description": "Respond within 2 hours",
-                        "variant": "horizontal",
-                        "align": "center",
-                        "spacing": "md"
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "type": "columns",
-                "layout": "3-col",
-                "items": [
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Clock",
-                        "title": "Mon-Fri",
-                        "description": "9:00 AM - 5:00 PM",
-                        "variant": "compact",
-                        "align": "center",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Clock",
-                        "title": "Saturday",
-                        "description": "9:00 AM - 3:00 PM",
-                        "variant": "compact",
-                        "align": "center",
-                        "spacing": "none"
-                      }
-                    ]
-                  },
-                  {
-                    "blocks": [
-                      {
-                        "type": "feature",
-                        "icon": "Clock",
-                        "title": "Sunday",
-                        "description": "Closed",
-                        "variant": "compact",
-                        "align": "center",
-                        "spacing": "none"
-                      }
-                    ]
-                  }
-                ]
-              },
+                "type": "feature",
+                "icon": "Check",
+                "title": "Tailored to Your Vision",
+                "description": "Every consultation is customized to your unique style, space, and budget. Your vision comes first—no pressure, just possibilities.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "blocks_2": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
               {
                 "type": "columns",
                 "layout": "split-left",
@@ -1618,10 +1156,16 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "What areas do you service?",
-                        "level": "h3",
+                        "text": "Discovery Call",
+                        "level": "h2",
                         "align": "left",
-                        "decoration": "line-left",
+                        "decoration": "none",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "We start with a conversation to understand your needs, style preferences, and project scope.",
+                        "align": "left",
                         "spacing": "md"
                       }
                     ]
@@ -1629,9 +1173,10 @@ export const siteConfig: WebsiteConfig = {
                   {
                     "blocks": [
                       {
-                        "type": "text",
-                        "content": "We cover the greater Melbourne metropolitan area, including inner suburbs up to 15km from Carlton. Specific suburbs include Carlton, Fitzroy, Brunswick, Richmond, South Yarra, and parts of St Kilda. Use our booking tool to check your exact postcode.",
-                        "align": "left",
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/designer?lock=824908",
+                        "alt": "Designer and client discussing furniture options",
+                        "aspect": "portrait",
                         "spacing": "md"
                       }
                     ]
@@ -1645,8 +1190,16 @@ export const siteConfig: WebsiteConfig = {
                   {
                     "blocks": [
                       {
+                        "type": "heading",
+                        "text": "In-Home or Showroom Visit",
+                        "level": "h2",
+                        "align": "left",
+                        "decoration": "none",
+                        "spacing": "md"
+                      },
+                      {
                         "type": "text",
-                        "content": "Appointments must be booked at least 48 hours in advance. Same-day bookings are rarely available due to our scheduled routes. For urgent matters, please call us directly to check for cancellations.",
+                        "content": "We assess your space in person or welcome you to our showroom to explore fabrics, finishes, and furniture.",
                         "align": "left",
                         "spacing": "md"
                       }
@@ -1655,11 +1208,10 @@ export const siteConfig: WebsiteConfig = {
                   {
                     "blocks": [
                       {
-                        "type": "heading",
-                        "text": "How far in advance should I book?",
-                        "level": "h3",
-                        "align": "left",
-                        "decoration": "line-left",
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/client?lock=561666",
+                        "alt": "Client and designer reviewing fabrics in a showroom",
+                        "aspect": "portrait",
                         "spacing": "md"
                       }
                     ]
@@ -1674,10 +1226,16 @@ export const siteConfig: WebsiteConfig = {
                     "blocks": [
                       {
                         "type": "heading",
-                        "text": "What payment methods do you accept?",
-                        "level": "h3",
+                        "text": "Custom Proposal",
+                        "level": "h2",
                         "align": "left",
-                        "decoration": "line-left",
+                        "decoration": "none",
+                        "spacing": "md"
+                      },
+                      {
+                        "type": "text",
+                        "content": "Within 48 hours, you’ll receive a detailed proposal with design concepts, quotes, and timelines.",
+                        "align": "left",
                         "spacing": "md"
                       }
                     ]
@@ -1685,14 +1243,100 @@ export const siteConfig: WebsiteConfig = {
                   {
                     "blocks": [
                       {
-                        "type": "text",
-                        "content": "We accept all major credit cards (Visa, Mastercard, Amex), debit cards, and cash. Payment is due at the time of service. We also offer gift vouchers for purchase.",
-                        "align": "left",
+                        "type": "image",
+                        "src": "https://loremflickr.com/1600/900/designer?lock=460605",
+                        "alt": "Designer presenting furniture proposal to client",
+                        "aspect": "portrait",
                         "spacing": "md"
                       }
                     ]
                   }
                 ]
+              }
+            ]
+          }
+        },
+        "blocks_3": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "testimonial-card",
+                "quote": "The attention to detail here is unmatched. My go-to for bespoke leather goods.",
+                "author": "Sarah T.",
+                "role": "Satisfied Client",
+                "spacing": "md",
+                "avatar": "https://loremflickr.com/1600/900/business?lock=114664"
+              }
+            ]
+          }
+        },
+        "blocks_4": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "price-list",
+                "variant": "minimal",
+                "categories": [
+                  {
+                    "name": "Consultation Inclusions",
+                    "items": [
+                      {
+                        "label": "1-hour personalized consultation",
+                        "price": ""
+                      },
+                      {
+                        "label": "Custom mood board",
+                        "price": ""
+                      },
+                      {
+                        "label": "Fabric and finish samples",
+                        "price": ""
+                      },
+                      {
+                        "label": "Detailed project quote",
+                        "price": ""
+                      },
+                      {
+                        "label": "30-day design support",
+                        "price": ""
+                      }
+                    ]
+                  }
+                ],
+                "spacing": "md"
+              }
+            ]
+          }
+        },
+        "blocks_5": {
+          "type": "blocks",
+          "variant": "prose",
+          "props": {
+            "background": "default",
+            "animation": "slide-up",
+            "width": "default",
+            "padding": "md",
+            "blocks": [
+              {
+                "type": "feature",
+                "icon": "Zap",
+                "title": "Why Choose a Chris & Co. Consultation?",
+                "description": "Our consultations are more than meetings—they’re collaborative journeys from vision to reality. Discover how we make the process seamless and inspiring.",
+                "variant": "vertical",
+                "align": "left",
+                "spacing": "md"
               }
             ]
           }

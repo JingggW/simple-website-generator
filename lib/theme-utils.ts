@@ -2,13 +2,6 @@
  * Utility functions for theme generation and accessibility
  */
 
-export const fontMap: Record<string, string> = {
-  sans: "var(--font-sans), ui-sans-serif, system-ui, sans-serif",
-  serif: "var(--font-serif), ui-serif, Georgia, serif",
-  mono: "var(--font-mono), ui-monospace, SFMono-Regular, monospace",
-  display: "var(--font-display), 'Inter Tight', sans-serif",
-};
-
 export const radiusMap: Record<string, string> = {
   none: "0px",
   sm: "0.25rem",

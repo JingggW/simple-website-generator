@@ -3,10 +3,10 @@ import path from "path";
 import { z } from "zod";
 import { callLLM } from "../llmClient";
 import { WebsiteConfig, ThemeSchema, HeaderSchema, FooterSchema } from "../../lib/schema";
-import { getSchemaSection } from "../storage/schema_utils";
+import { getSchemaSection, getUICapabilities } from "../storage/schema_utils";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { THEME_PRESETS } from "../../lib/theme-presets";
-import { getOnBrandContrastColor, hexToRgb, rgbToHsl } from "../../lib/theme-utils";
+import { getOnBrandContrastColor, hexToRgbObj, rgbToHsl } from "../../lib/theme-utils";
 
 function loadPrompt(name: string): string {
   const promptPath = path.join(process.cwd(), `engine/prompts/${name}.md`);
@@ -23,6 +23,7 @@ export interface SiteBlueprint {
 }
 
 export async function generate_full_site_blueprint(
+  businessName: string,
   description: string,
   instruction: string = "", // NEW: Optional specific instruction
 ): Promise<SiteBlueprint> {
@@ -30,7 +31,7 @@ export async function generate_full_site_blueprint(
 
   // 1. Get Structure (Sitemap & Page Plans)
   const architectPrompt = loadPrompt("site-architect")
-    .replace(/{{BUSINESS}}/g, description)
+    .replace(/{{BUSINESS}}/g, `${businessName}: ${description}`)
     .replace(
       /{{INSTRUCTION}}/g,
       instruction || "Create a comprehensive website structure.",
@@ -63,10 +64,13 @@ export async function generate_full_site_blueprint(
 
   // 2. Get UI Strategy (Preset & Soul)
   const schema = getSchemaSection(["THEME", "NAV", "HEADER", "FOOTER", "PAGE"]);
+  const capabilities = getUICapabilities();
+  
   const uiPrompt = loadPrompt("master-ui-designer")
-    .replace(/{{BUSINESS}}/g, description)
+    .replace(/{{BUSINESS}}/g, `${businessName}: ${description}`)
     .replace(/{{SITEMAP}}/g, JSON.stringify(structure.sitemap))
-    .replace(/{{SCHEMA}}/g, schema);
+    .replace(/{{SCHEMA}}/g, schema)
+    .replace(/{{CAPABILITIES}}/g, capabilities);
 
   const uiResponse = await callLLM(
     uiPrompt,
@@ -80,6 +84,10 @@ export async function generate_full_site_blueprint(
     console.warn("⚠️ Initial JSON parse failed for Brand config. Retrying with LLM repair...", error);
     uiRaw = JSON.parse(uiResponse.replace(/[\s\S]*?```json/i, "").replace(/```[\s\S]*/i, "").trim());
   }
+
+  // FORCE BUSINESS NAME (The Logo Fix)
+  if (uiRaw.header) uiRaw.header.title = businessName;
+  if (uiRaw.footer?.brand) uiRaw.footer.brand.title = businessName;
 
   // 3. ENFORCE PRESET (The "Boutique" Fix)
   const chosenKey = uiRaw.theme?.preset || "modernSaaS";
@@ -95,7 +103,7 @@ export async function generate_full_site_blueprint(
 
   // 3.1 Background Brightness Enforcement (The Golden Rule)
   const isLightMode = uiRaw.theme?.mode === "light";
-  const bgRgb = hexToRgb(baseThemeToUse.colors.background);
+  const bgRgb = hexToRgbObj(baseThemeToUse.colors.background);
   const bgHsl = rgbToHsl(bgRgb.r, bgRgb.g, bgRgb.b);
 
   if (isLightMode && bgHsl.l < 90) {

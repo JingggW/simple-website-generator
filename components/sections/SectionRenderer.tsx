@@ -4,7 +4,7 @@ import React from "react";
 import { AnySection } from "@/lib/schema";
 import { motion, HTMLMotionProps } from "framer-motion";
 
-import { HeroSimple, HeroSplit } from "@/components/sections/hero";
+import { HeroSimple, HeroSplit, HeroVisual, HeroEditorial } from "@/components/sections/hero";
 import { ServicesGrid, ServicesList } from "@/components/sections/services";
 import { ContentSimple } from "@/components/sections/content";
 import { ContactSimple } from "@/components/sections/contact";
@@ -18,6 +18,8 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   hero: {
     simple: HeroSimple,
     split: HeroSplit,
+    visual: HeroVisual,
+    editorial: HeroEditorial,
   },
   services: {
     grid: ServicesGrid,

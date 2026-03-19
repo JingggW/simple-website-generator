@@ -62,6 +62,16 @@ export class PropSiteEngine {
         props.imageName = auto_fill_placeholders(props);
       }
 
+      // Form image fill (for split variant)
+      if (section.type === "form" && isPlaceholder(props.imageName)) {
+        props.imageName = auto_fill_placeholders(props);
+      }
+
+      // Content image fill
+      if (section.type === "content" && isPlaceholder(props.imageName)) {
+        props.imageName = auto_fill_placeholders(props);
+      }
+
       // Blocks image fill
       if (section.type === "blocks" && props.blocks) {
         const fillBlocks = (blocks: any[]) => {
@@ -278,6 +288,7 @@ export class PropSiteEngine {
 
     // 1. Blueprint Phase (Master Planning)
     const blueprint = await generate_full_site_blueprint(
+      businessName,
       description,
       instruction,
     );
@@ -357,9 +368,32 @@ export class PropSiteEngine {
       }
     }
 
+    await this.runDesignRepair();
+
     this.validateSite();
     this.persist(businessName);
     console.log(`\n🎉 SITE CONSTRUCTION FINISHED!`);
+  }
+
+  async runDesignRepair() {
+    console.log("\n🎨 RUNNING DESIGN AUTO-REPAIR (Golden Rules)...");
+    for (const page of Object.values(this.config.pages)) {
+      for (const section of Object.values(page.sections)) {
+        const props = section.props as any;
+
+        // Rule 1: Whitespace is Luxury (Force padding if none)
+        if (props.padding === "none" && section.type !== "map") {
+          console.log(`✨ Auto-Fix: Upgrading padding for ${section.type}`);
+          props.padding = "md";
+        }
+
+        // Rule 2: Force Branding (Logo) consistency
+        if (section.type === "hero" && props.headline === "Brand Name") {
+          props.headline = this.currentBusinessName;
+        }
+      }
+    }
+    this.persist();
   }
 
   async createFullPage(
@@ -388,6 +422,37 @@ export class PropSiteEngine {
     this.config.pages[pagePath] = pageConfig;
     this.persist(bizName);
     return pageConfig;
+  }
+
+  async createAndInjectNode(
+    pagePath: string,
+    bizDesc: string,
+    nodeId: string,
+    nodeBrief: string,
+    bizName?: string,
+    useImages: boolean = false,
+  ) {
+    const section = await generate_node(
+      pagePath,
+      bizDesc,
+      nodeId,
+      nodeBrief,
+      useImages,
+    );
+    const page = this.config.pages[pagePath];
+    if (!page) throw new Error(`Page ${pagePath} not found.`);
+
+    page.sections[nodeId] = section as any;
+    if (!page.sectionOrder.includes(nodeId)) {
+      page.sectionOrder.push(nodeId);
+    }
+
+    if (useImages) {
+      this.autoSearchImages(page);
+    }
+
+    this.persist(bizName || this.currentBusinessName);
+    return section;
   }
 
   validateSite() {
@@ -420,9 +485,9 @@ export class PropSiteEngine {
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Chris & Bruce Pet Spa",
-    "A professional mobile pet grooming and washing service. We offer stress-free washing, breed-specific styling, and organic skincare treatments in our fully equipped mobile van. Serving busy pet owners with gentle, expert care.",
-    "",
+    "The Oak & Ember Atelier",
+    "A boutique studio specializing in hand-crafted, bespoke timber furniture and artisanal lighting. We blend traditional woodworking techniques with modern minimalist aesthetics to create timeless heirloom pieces for contemporary homes.",
+    "Use the 'island' header variant and add a top-bar announcement about a new Summer collection."
   );
 }
 

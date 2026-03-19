@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BlockSection as BlockSectionType, Block } from "@/lib/schema";
 import { IconMap } from "@/components/ui/IconMap";
+import { TestimonialCard } from "../testimonials/TestimonialCard";
 
 export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
   // RECURSIVE BLOCK RENDERER
@@ -180,44 +181,13 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
 
       case "testimonial-card":
         return (
-          <div
-            className={`bg-surface border border-secondary/10 rounded-[var(--border-radius)] p-8 md:p-10 shadow-xl relative ${marginClass}`}
-          >
-            <div className="absolute top-6 left-6 text-6xl text-primary/10 font-serif">
-              “
-            </div>
-            <blockquote className="relative z-10">
-              <p className="text-xl md:text-2xl font-medium text-foreground leading-relaxed italic mb-8">
-                {block.quote}
-              </p>
-              <footer className="flex items-center gap-4">
-                {block.avatar && (
-                  <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-primary/20">
-                    <Image
-                      src={
-                        block.avatar.startsWith("http")
-                          ? block.avatar
-                          : `/${block.avatar.replace(/^\//, "")}`
-                      }
-                      alt={block.author}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                )}
-                <div>
-                  <cite className="not-italic font-bold text-foreground block">
-                    {block.author}
-                  </cite>
-                  {block.role && (
-                    <span className="text-sm text-secondary font-medium">
-                      {block.role}
-                    </span>
-                  )}
-                </div>
-              </footer>
-            </blockquote>
-          </div>
+          <TestimonialCard 
+            quote={block.quote}
+            author={block.author}
+            role={block.role}
+            avatar={block.avatar}
+            className={marginClass}
+          />
         );
 
       case "icon":

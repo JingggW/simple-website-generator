@@ -3,7 +3,7 @@ import path from "path";
 import { callLLM } from "../llmClient";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { PageSchema } from "../../lib/schema";
-import { getSchemaSection } from "../storage/schema_utils";
+import { getSchemaSection, getUICapabilities } from "../storage/schema_utils";
 import { repair_icons_recursive } from "../repair/icon_repairer";
 
 /**
@@ -148,11 +148,11 @@ ${uiPrompt}
     }
 
     const schema = getSchemaSection(Array.from(requiredTags));
+    const capabilities = getUICapabilities();
 
-    const assemblerPrompt = loadPrompt("page-assembler").replace(
-      /{{SCHEMA}}/g,
-      schema,
-    );
+    const assemblerPrompt = loadPrompt("page-assembler")
+      .replace(/{{SCHEMA}}/g, schema)
+      .replace(/{{CAPABILITIES}}/g, capabilities);
 
     console.log("📄 Content Prompt (with replacements):\n", contentPrompt);
 

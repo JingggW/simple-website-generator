@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { WebsiteConfig } from "@/lib/schema";
-import { fontMap, hexToRgb, getLuminance } from "@/lib/theme-utils";
-import { radiusMap } from "@/lib/theme-utils";
+import { hexToRgb, getLuminance, radiusMap } from "@/lib/theme-utils";
+import { FONT_PAIRINGS } from "@/lib/fonts";
 
 export const ThemeProvider = ({
   theme,
@@ -41,7 +41,10 @@ export const ThemeProvider = ({
     root.style.setProperty("--on-secondary", getOnColor(theme.colors.secondary));
     root.style.setProperty("--on-accent", getOnColor(theme.colors.accent));
 
-    root.style.setProperty("--font-body", fontMap[theme.fontStyle]);
+    // Typography
+    const pairing = FONT_PAIRINGS[theme.fontStyle as keyof typeof FONT_PAIRINGS] || FONT_PAIRINGS.sans;
+    root.style.setProperty("--font-body", pairing.body);
+    root.style.setProperty("--font-heading", pairing.heading);
 
     root.style.setProperty("--border-radius", radiusMap[theme.borderRadius]);
 

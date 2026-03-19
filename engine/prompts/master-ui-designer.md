@@ -13,11 +13,11 @@ You are a senior UI/UX Strategist and Brand Identity Expert.
 - **Preset Key**: Select the most appropriate key from: `modernSaaS`, `ecoGrowth`, `plumNoir`, `elegantMinimal`, `digitalWasabi`, `champagnePearl`, `modernTech`, `industrialSteel`.
 
 ## Step 2: Branding & Navigation (Header & Footer)
-Design a cohesive header and footer. Choose a `variant` for the header:
-- `default`: Logo on the left, links in the center.
-- `centered`: Logo centered on top, links centered below.
-- `split`: Logo in the center, links split evenly on left/right.
-- `transparent`: Floating over the hero (Cinematic).
+{{CAPABILITIES}}
+
+Design a cohesive header and footer. 
+- **Header Variant**: Choose one from the available variants above.
+- **Announcement**: Optional top bar promo text (e.g., "Free Shipping", "Now Open in Melbourne").
 
 ## Step 3: Design Brief (Soul & Art Direction)
 Define the core visual strategy. This brief is sent to every page generator.
@@ -52,7 +52,8 @@ Return ONLY the JSON object.
   },
   "header": {
      "title": "ACTUAL BUSINESS NAME (LOGO)",
-     "variant": "default | centered | split | transparent",
+     "variant": "default | centered | split | transparent | island",
+     "announcement": "Optional promo text",
      "links": [ ... ],
      "cta": { ... }
   },

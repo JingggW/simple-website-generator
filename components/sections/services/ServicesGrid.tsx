@@ -1,5 +1,8 @@
+import React from "react";
+import Image from "next/image";
+import NextLink from "next/link";
 import { ServicesSection } from "@/lib/schema";
-import { IconMap, IconName } from "@/components/ui/IconMap";
+import { IconMap } from "@/components/ui/IconMap";
 
 // Extract the specific props type from the Zod Schema
 type ServicesProps = ServicesSection["props"];
@@ -23,8 +26,6 @@ export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
         {/* Services Grid */}
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((item, index) => {
-            const IconComponent = item.icon ? IconMap[item.icon as IconName] : null;
-
             return (
               <div key={index} className="group flex flex-col h-full">
                 {/* Image/Icon Box */}
@@ -38,8 +39,8 @@ export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
                     />
                   ) : (
                     <div className="w-full h-full bg-secondary/5 flex items-center justify-center">
-                      {IconComponent ? (
-                        <IconComponent className="h-12 w-12 text-primary" />
+                      {item.icon ? (
+                        <IconMap name={item.icon} className="h-12 w-12 text-primary" />
                       ) : (
                         <div className="h-12 w-12 bg-primary/20 rounded-full" />
                       )}

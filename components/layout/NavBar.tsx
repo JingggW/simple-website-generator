@@ -19,192 +19,231 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
 
 type NavbarProps = {
   config: WebsiteConfig["header"];
 };
 
+// --- SUB-COMPONENTS (Declared outside to prevent re-render errors) ---
+
+const Logo = ({ title }: { title: string }) => (
+  <Link href="/" className="flex items-center space-x-2 group">
+    <span className="font-black text-xl md:text-2xl text-foreground tracking-tighter uppercase transition-transform group-hover:scale-105">
+      {title}
+    </span>
+  </Link>
+);
+
+const NavItem = ({ item, index }: { item: any; index: number }) => {
+  if (item.type === "dropdown") {
+    return (
+      <NavigationMenuItem key={index}>
+        <NavigationMenuTrigger className="bg-transparent text-foreground/80 hover:text-primary transition-colors">
+          {item.label}
+        </NavigationMenuTrigger>
+        <NavigationMenuContent>
+          <ul className="grid w-50 gap-2 p-4 bg-background border border-secondary/10 rounded-xl shadow-2xl">
+            {item.items.map((subItem: any, subIndex: number) => (
+              <li key={subIndex}>
+                <NavigationMenuLink asChild>
+                  <Link
+                    href={subItem.href || "#"}
+                    className="block p-3 rounded-lg hover:bg-secondary/5 hover:text-primary transition-all"
+                  >
+                    <div className="text-sm font-bold uppercase tracking-wider">
+                      {subItem.label}
+                    </div>
+                  </Link>
+                </NavigationMenuLink>
+              </li>
+            ))}
+          </ul>
+        </NavigationMenuContent>
+      </NavigationMenuItem>
+    );
+  }
+
+  return (
+    <NavigationMenuItem key={index}>
+      <NavigationMenuLink asChild>
+        <Link
+          href={item.href || "#"}
+          className={cn(
+            navigationMenuTriggerStyle(),
+            "bg-transparent text-foreground/80 hover:text-primary font-bold uppercase tracking-widest text-[11px] transition-colors",
+          )}
+        >
+          {item.label}
+        </Link>
+      </NavigationMenuLink>
+    </NavigationMenuItem>
+  );
+};
+
+// --- MAIN COMPONENT ---
+
 export const Navbar = ({ config }: NavbarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const variant = config.variant || "default";
+  const [isScrolled, setIsScrolled] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const variant = config.variant || "default";
   const isTransparent = variant === "transparent";
+  const isIsland = variant === "island";
   const isCentered = variant === "centered";
   const isSplit = variant === "split";
 
+  // Header Base Classes
   const headerClasses = cn(
-    "fixed top-0 z-50 w-full transition-all duration-300",
-    isTransparent
-      ? "bg-transparent border-none py-4"
-      : "sticky border-b border-secondary/10 bg-background/80 backdrop-blur supports-backdrop-filter:bg-background/60 h-16"
+    "z-50 w-full transition-all duration-500 ease-in-out",
+    isIsland
+      ? "fixed top-4 px-4 pointer-events-none"
+      : isTransparent
+        ? "fixed top-0"
+        : "sticky top-0",
+    isTransparent && !isScrolled
+      ? "bg-transparent border-transparent py-4"
+      : "bg-background/80 backdrop-blur-lg border-b border-secondary/10 shadow-sm py-0",
+    isScrolled ? "h-16" : "h-20",
   );
 
-  const containerClasses = cn(
-    "container mx-auto flex items-center px-4 h-full",
-    isCentered || isSplit ? "justify-between" : "justify-between"
+  // Inner Container Classes (The actual bar)
+  const navContainerClasses = cn(
+    "mx-auto transition-all duration-500 h-full",
+    isIsland
+      ? "container max-w-5xl bg-background/90 backdrop-blur-xl border border-secondary/20 rounded-full px-8 shadow-2xl pointer-events-auto flex items-center"
+      : "container flex items-center px-4",
   );
 
-  // For Split Layout: Divide links into two groups
   const midPoint = Math.ceil(config.links.length / 2);
   const leftLinks = isSplit ? config.links.slice(0, midPoint) : [];
   const rightLinks = isSplit ? config.links.slice(midPoint) : [];
 
-  const NavItem = ({ item, index }: { item: any; index: number }) => {
-    if (item.type === "dropdown") {
-      return (
-        <NavigationMenuItem key={index}>
-          <NavigationMenuTrigger className="bg-transparent text-foreground hover:bg-secondary/10 focus:bg-secondary/10">
-            {item.label}
-          </NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-20 gap-3 p-4 md:w-40 md:grid-cols-1 lg:w-60 bg-background border border-secondary/10 rounded-md shadow-lg">
-              {item.items.map((subItem: any, subIndex: number) => (
-                <li key={subIndex}>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      href={subItem.href || "#"}
-                      className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-secondary/10 hover:text-primary focus:bg-secondary/10 focus:text-primary"
-                    >
-                      <div className="text-sm font-medium leading-none text-foreground">
-                        {subItem.label}
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                </li>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-      );
-    }
-
-    return (
-      <NavigationMenuItem key={index}>
-        <NavigationMenuLink asChild>
-          <Link
-            href={item.href || "#"}
-            className={cn(
-              navigationMenuTriggerStyle(),
-              "bg-transparent text-foreground hover:bg-secondary/10 focus:bg-secondary/10"
-            )}
-          >
-            {item.label}
-          </Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-    );
-  };
-
   return (
-    <header className={headerClasses}>
-      <div className={containerClasses}>
-        {/* LEFT SECTION (Split Links or Logo) */}
-        <div className="flex flex-1 items-center justify-start">
-          {isSplit ? (
-            <div className="hidden md:flex items-center space-x-2">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {leftLinks.map((item, index) => (
-                    <NavItem item={item} key={index} index={index} />
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
-          ) : !isCentered ? (
-            <Link href="/" className="mr-6 flex items-center space-x-2">
-              <span className="font-bold inline-block text-xl text-foreground">
-                {config.title}
-              </span>
-            </Link>
-          ) : null}
-        </div>
-
-        {/* CENTER SECTION (Logo for Split/Centered or Main Nav for Default) */}
-        <div className="flex flex-1 items-center justify-center">
-          {isSplit || isCentered ? (
-            <Link href="/" className="flex items-center space-x-2">
-              <span className="font-bold inline-block text-2xl text-foreground tracking-tighter uppercase">
-                {config.title}
-              </span>
-            </Link>
-          ) : (
-            <div className="hidden md:flex items-center">
-              <NavigationMenu>
-                <NavigationMenuList>
-                  {config.links.map((item, index) => (
-                    <NavItem item={item} key={index} index={index} />
-                  ))}
-                </NavigationMenuList>
-              </NavigationMenu>
-            </div>
+    <>
+      {/* 1. Announcement Bar */}
+      {config.announcement && (
+        <div
+          className={cn(
+            "z-60 w-full bg-primary py-2 text-center",
+            isIsland || isTransparent ? "fixed top-0" : "relative",
           )}
+        >
+          <p className="text-[10px] font-black uppercase tracking-[0.3em] text-on-primary">
+            {config.announcement}
+          </p>
         </div>
+      )}
 
-        {/* RIGHT SECTION (Split Links + CTA or just CTA) */}
-        <div className="flex flex-1 items-center justify-end space-x-4">
-          {isSplit && (
-            <div className="hidden md:flex items-center space-x-2">
-              <NavigationMenu>
+      <header
+        className={cn(
+          headerClasses,
+          config.announcement && isTransparent && "mt-8",
+        )}
+      >
+        <div className={navContainerClasses}>
+          {/* LEFT SECTION */}
+          <div className="flex flex-1 items-center justify-start">
+            {isSplit ? (
+              <NavigationMenu className="hidden md:block">
                 <NavigationMenuList>
-                  {rightLinks.map((item, index) => (
-                    <NavItem item={item} key={index} index={index} />
+                  {leftLinks.map((item, idx) => (
+                    <NavItem item={item} key={idx} index={idx} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
-            </div>
-          )}
-          
-          <div className="hidden md:flex items-center">
+            ) : !isCentered ? (
+              <Logo title={config.title} />
+            ) : null}
+          </div>
+
+          {/* CENTER SECTION */}
+          <div className="flex items-center justify-center px-8">
+            {isSplit || isCentered ? (
+              <Logo title={config.title} />
+            ) : (
+              <NavigationMenu className="hidden md:block">
+                <NavigationMenuList className="gap-2">
+                  {config.links.map((item, idx) => (
+                    <NavItem item={item} key={idx} index={idx} />
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            )}
+          </div>
+
+          {/* RIGHT SECTION */}
+          <div className="flex flex-1 items-center justify-end space-x-6">
+            {isSplit && (
+              <NavigationMenu className="hidden md:block">
+                <NavigationMenuList>
+                  {rightLinks.map((item, idx) => (
+                    <NavItem item={item} key={idx} index={idx} />
+                  ))}
+                </NavigationMenuList>
+              </NavigationMenu>
+            )}
+
             {config.cta && (
               <Link
                 href={config.cta.href || "#"}
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring bg-primary text-background hover:bg-primary/90 h-10 px-6 py-2 shadow-lg"
+                className="hidden md:inline-flex items-center justify-center rounded-full bg-primary px-6 py-2 text-[10px] font-black uppercase tracking-widest text-on-primary shadow-xl hover:scale-105 transition-transform"
               >
                 {config.cta.label}
               </Link>
             )}
-          </div>
 
-          {/* Mobile Toggle */}
-          <div className="md:hidden">
-            <Sheet open={isOpen} onOpenChange={setIsOpen}>
-              <SheetTrigger asChild>
-                <button className="p-2 text-foreground hover:bg-secondary/10 rounded-md">
-                  <Menu className="h-6 w-6" />
-                </button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <SheetHeader>
-                  <SheetTitle>{config.title}</SheetTitle>
-                </SheetHeader>
-                <div className="flex flex-col gap-4 mt-8">
-                  {config.links.map((item, index) => (
-                    <Link
-                      key={index}
-                      href={item.href || (item as any).items?.[0]?.href || "#"}
-                      className="text-lg font-medium border-b border-secondary/10 pb-2"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                  {config.cta && (
-                    <Link
-                      href={config.cta.href || "#"}
-                      className="mt-4 bg-primary text-background p-3 text-center rounded-md font-bold"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {config.cta.label}
-                    </Link>
-                  )}
-                </div>
-              </SheetContent>
-            </Sheet>
+            {/* Mobile Menu */}
+            <div className="md:hidden">
+              <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                <SheetTrigger asChild>
+                  <button className="p-2 text-foreground hover:bg-secondary/10 rounded-full transition-colors">
+                    <Menu className="h-6 w-6" />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full sm:max-w-sm">
+                  <SheetHeader className="mb-12">
+                    <SheetTitle className="text-2xl font-black uppercase tracking-tighter">
+                      {config.title}
+                    </SheetTitle>
+                  </SheetHeader>
+                  <nav className="flex flex-col gap-6">
+                    {config.links.map((item, idx) => {
+                      const href = item.type === "link" ? item.href : "#";
+                      return (
+                        <Link
+                          key={idx}
+                          href={href || "#"}
+                          className="text-2xl font-bold uppercase tracking-widest hover:text-primary transition-colors"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      );
+                    })}
+                    {config.cta && (
+                      <Link
+                        href={config.cta.href || "#"}
+                        className="mt-8 bg-primary text-on-primary text-center p-4 rounded-full font-black uppercase tracking-[0.2em] shadow-2xl"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {config.cta.label}
+                      </Link>
+                    )}
+                  </nav>
+                </SheetContent>
+              </Sheet>
+            </div>
           </div>
         </div>
-      </div>
-    </header>
+      </header>
+    </>
   );
 };

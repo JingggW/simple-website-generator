@@ -25,3 +25,33 @@ export function getSchemaSection(tags: string | string[]): string {
 
   return extracted || "// No schema section found for tags: " + tagList.join(", ");
 }
+
+/**
+ * UI CAPABILITY EXTRACTOR
+ * 
+ * Programmatically finds all section types and their variants from schema.ts
+ * to keep prompts perfectly in sync with the actual codebase.
+ */
+export function getUICapabilities(): string {
+  const schemaPath = path.join(process.cwd(), "lib/schema.ts");
+  const content = fs.readFileSync(schemaPath, "utf-8");
+  
+  // Find all Section schemas (e.g., HeroSchema, ServicesSchema)
+  // Modified to handle both single z.literal and enum patterns
+  const schemaRegex = /export const (\w+)Schema = z\.object\(\{[\s\S]*?type: z\.literal\("(\w+)"\)[\s\S]*?variant: z\.enum\(\[([\s\S]*?)\]\)/g;
+  
+  let capabilities = "AVAILABLE UI COMPONENTS & VARIANTS:\n";
+  let match;
+  
+  while ((match = schemaRegex.exec(content)) !== null) {
+    const type = match[2];
+    const variants = match[3]
+      .replace(/["'\s]/g, "")
+      .split(",")
+      .filter(v => v.length > 0);
+      
+    capabilities += `- ${type.toUpperCase()}: variants [${variants.join(", ")}]\n`;
+  }
+
+  return capabilities;
+}

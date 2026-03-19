@@ -1,15 +1,28 @@
 import { ContentSection } from "@/lib/schema";
+import { cn } from "@/lib/utils";
 
 type ContentProps = ContentSection["props"];
 
-export const ContentSimple = ({ title, body }: ContentProps) => {
+export const ContentSimple = ({ title, body, variant = "simple" }: any) => {
+  const isMulti = variant === "multi-column";
+
   return (
-    <section className="px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl">
-        <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl mb-10">
+    <section>
+      <div className={cn(
+        "mx-auto",
+        isMulti ? "max-w-7xl px-6 lg:px-8" : "max-w-3xl px-6"
+      )}>
+        <h2 className={cn(
+          "font-black text-foreground mb-12 uppercase tracking-tighter leading-none",
+          isMulti ? "text-5xl md:text-8xl border-b-4 border-primary pb-8" : "text-3xl md:text-4xl"
+        )}>
           {title}
         </h2>
-        <div className="mt-6 text-lg leading-8 text-secondary whitespace-pre-line">
+        
+        <div className={cn(
+          "text-lg leading-relaxed text-secondary whitespace-pre-wrap font-medium",
+          isMulti ? "md:columns-2 lg:columns-3 gap-12 [column-fill:balance]" : ""
+        )}>
           {body}
         </div>
       </div>

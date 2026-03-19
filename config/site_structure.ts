@@ -3,47 +3,65 @@ export const siteStructure = {
     "/": [
       "hero",
       "testimonials",
-      "process",
-      "features"
+      "storytelling",
+      "gallery"
+    ],
+    "/about": [
+      "hero",
+      "form",
+      "blocks",
+      "map",
+      "testimonials"
+    ],
+    "/collections": [
+      "hero",
+      "portfolio",
+      "inspiration"
     ],
     "/services": [
       "hero",
       "services",
-      "pricing",
-      "story"
-    ],
-    "/booking": [
-      "hero",
-      "form",
-      "blocks"
-    ],
-    "/about": [
-      "hero",
-      "features",
-      "process"
+      "process",
+      "caseStudy"
     ],
     "/contact": [
-      "hero_contact",
-      "map_service_area",
-      "blocks_contact_info"
+      "hero",
+      "map",
+      "form",
+      "testimonials"
+    ],
+    "/services/process": [
+      "hero",
+      "blocks"
+    ],
+    "/contact/consultation": [
+      "hero",
+      "blocks_1",
+      "blocks_2",
+      "blocks_3",
+      "blocks_4",
+      "blocks_5"
     ]
   },
   "navigation": {
     "header": [
       "/",
-      null,
-      "/booking",
       "/about",
+      "/collections",
+      "/services",
       "/contact"
     ],
     "footer": [
-      "/services#services",
-      "/services#services",
-      "/services#services",
+      "/collections",
+      "/collections",
+      "/collections",
+      "/services",
+      "/about",
+      "/services/process",
       "/about",
       "/contact",
-      "/contact#blocks_contact_info",
-      "/about"
+      "/contact#form",
+      "/collections"
     ]
   }
 };
