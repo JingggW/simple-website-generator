@@ -485,9 +485,9 @@ export class PropSiteEngine {
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "The Oak & Ember Atelier",
-    "A boutique studio specializing in hand-crafted, bespoke timber furniture and artisanal lighting. We blend traditional woodworking techniques with modern minimalist aesthetics to create timeless heirloom pieces for contemporary homes.",
-    "Use the 'island' header variant and add a top-bar announcement about a new Summer collection."
+    "Chris Cafetaria",
+    "A premier cafe in Point Cook Melbourne, serving artisanal coffee and gourmet pastries in a cozy atmosphere.",
+    "",
   );
 }
 

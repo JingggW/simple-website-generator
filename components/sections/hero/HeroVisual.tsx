@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "@/lib/schema";
-import { cn } from "@/lib/utils";
 
 type HeroVisualProps = HeroSection["props"];
 
@@ -15,12 +14,16 @@ export const HeroVisual = ({
   imageName,
 }: HeroVisualProps) => {
   return (
-    <section className="relative w-full h-[80vh] min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 md:py-16">
       {/* Background Image with Overlay */}
       {imageName && (
         <div className="absolute inset-0 z-0">
           <Image
-            src={imageName.startsWith('http') ? imageName : `/${imageName.replace(/^\//, '')}`}
+            src={
+              imageName.startsWith("http")
+                ? imageName
+                : `/${imageName.replace(/^\//, "")}`
+            }
             alt={headline}
             fill
             className="object-cover"
@@ -31,12 +34,12 @@ export const HeroVisual = ({
       )}
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-6 text-center">
+      <div className="container relative z-10 mx-auto px-6 text-center pb-6 md:pb-8">
         <div className="max-w-4xl mx-auto space-y-8">
           <h1 className="text-5xl md:text-8xl font-black text-white leading-tight tracking-tighter uppercase drop-shadow-2xl">
             {headline}
           </h1>
-          
+
           {subheadline && (
             <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
               {subheadline}

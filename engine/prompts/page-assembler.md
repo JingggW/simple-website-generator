@@ -30,6 +30,7 @@ Regardless of the page path, if the content describes a specific functional goal
 ### 2. General Storytelling & Dynamic Content
 Use the **blocks** schema for ALL OTHER CONTENT, including:
 - **Headings**: Use `decoration: "line-left"` for a modern editorial look, `"line-bottom"` for centered classic impact, or `"underline"` for a subtle punchy feel.
+  - **NEW**: Use the `eyebrow` field for high-end editorial labels above the main title (e.g., "01 / HERITAGE" or "COLLECTION").
 - **Service/Feature Grids**: Use `columns` (3-col or 4-col) with `container` (background: "surface", padding: "md") to create cards.
 - **Business Showcases & Portfolios (NEW)**: Use `image-grid` for galleries, completed projects, or product showcases. 
   - Use `columns: "3"` or `"4"` for high-density visual grids. 
@@ -56,7 +57,12 @@ Use the **blocks** schema for ALL OTHER CONTENT, including:
 ## Constraints
 1. **Schema Strict**: Strictly follow the provided Zod schema:
 {{SCHEMA}}
-2. **Icon Mapping**: Use ONLY Lucide icon names (e.g., 'Check', 'Star', 'Activity', 'Zap', 'MapPin', 'Wrench').
+2. **Icon Usage (THE MINIMALIST RULE)**:
+   - **CRITICAL**: Use icons sparingly. High-end designs rely on typography and imagery, not symbols.
+   - **LIMIT**: Do NOT include more than **3 icons** in total for the entire page. 
+   - **PLACEMENT**: Only use icons if they are essential for clarifying a list of services or features. 
+   - If you use an icon, provide a descriptive name (e.g., 'wellness', 'delivery') and the engine will repair it.
+   - **VISUAL UNITY**: When an `icon` block is used, you MUST set its `spacing` to `"none"`.
 3. **Visual Variety & Safety (THE SPACING RULE)**:
    - **LUXURY MANDATE**: For 'luxury' or 'boutique' vibes, whitespace is critical. **NEVER** use `padding: "none"` for sections containing text, heroes, or maps. Use `padding: "md"` or `"lg"` to create an editorial feel.
    - **Sections**: Use `width: "wide"` or `"full"` for high-end layouts. Use `background: "surface"` or `"muted"` to create sophisticated depth between sections.

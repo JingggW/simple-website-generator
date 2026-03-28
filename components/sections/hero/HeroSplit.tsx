@@ -20,10 +20,12 @@ export const HeroSplit = ({
   return (
     <section>
       <div className="container mx-auto px-4">
-        <div className={cn(
-          "flex flex-col md:flex-row items-center gap-12 lg:gap-20",
-          isImageLeft ? "md:flex-row-reverse" : "md:flex-row"
-        )}>
+        <div
+          className={cn(
+            "flex flex-col md:flex-row items-center gap-12 lg:gap-20",
+            isImageLeft ? "md:flex-row-reverse" : "md:flex-row",
+          )}
+        >
           {/* Text Column */}
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-4xl md:text-6xl font-black text-foreground leading-[1.1] mb-6 tracking-tight">
@@ -50,9 +52,13 @@ export const HeroSplit = ({
           {/* Image Column */}
           <div className="flex-1 w-full">
             {imageName ? (
-              <div className="relative aspect-[4/5] md:aspect-square rounded-3xl overflow-hidden shadow-2xl">
+              <div className="relative aspect-4/5 md:aspect-square rounded-3xl overflow-hidden shadow-2xl">
                 <Image
-                  src={imageName.startsWith('http') ? imageName : `/${imageName.replace(/^\//, '')}`}
+                  src={
+                    imageName.startsWith("http")
+                      ? imageName
+                      : `/${imageName.replace(/^\//, "")}`
+                  }
                   alt={headline}
                   fill
                   className="object-cover"

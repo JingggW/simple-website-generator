@@ -2,11 +2,20 @@ import fs from "fs";
 import path from "path";
 import { z } from "zod";
 import { callLLM } from "../llmClient";
-import { WebsiteConfig, ThemeSchema, HeaderSchema, FooterSchema } from "../../lib/schema";
+import {
+  WebsiteConfig,
+  ThemeSchema,
+  HeaderSchema,
+  FooterSchema,
+} from "../../lib/schema";
 import { getSchemaSection, getUICapabilities } from "../storage/schema_utils";
 import { validate_and_repair } from "../repair/schema_fixer";
 import { THEME_PRESETS } from "../../lib/theme-presets";
-import { getOnBrandContrastColor, hexToRgbObj, rgbToHsl } from "../../lib/theme-utils";
+import {
+  getOnBrandContrastColor,
+  hexToRgbObj,
+  rgbToHsl,
+} from "../../lib/theme-utils";
 
 function loadPrompt(name: string): string {
   const promptPath = path.join(process.cwd(), `engine/prompts/${name}.md`);
@@ -53,7 +62,9 @@ export async function generate_full_site_blueprint(
     (sections as any[]).forEach((s) => {
       if (globalSections.includes(s.type)) {
         if (seenGlobals.has(s.type)) {
-          console.warn(`⚠️ Blueprint Warning: Duplicate global section '${s.type}' detected on ${path}. Content Strategist will be forced to fallback to 'blocks'.`);
+          console.warn(
+            `⚠️ Blueprint Warning: Duplicate global section '${s.type}' detected on ${path}. Content Strategist will be forced to fallback to 'blocks'.`,
+          );
         }
         seenGlobals.add(s.type);
       }
@@ -65,24 +76,33 @@ export async function generate_full_site_blueprint(
   // 2. Get UI Strategy (Preset & Soul)
   const schema = getSchemaSection(["THEME", "NAV", "HEADER", "FOOTER", "PAGE"]);
   const capabilities = getUICapabilities();
-  
+
   const uiPrompt = loadPrompt("master-ui-designer")
     .replace(/{{BUSINESS}}/g, `${businessName}: ${description}`)
     .replace(/{{SITEMAP}}/g, JSON.stringify(structure.sitemap))
     .replace(/{{SCHEMA}}/g, schema)
     .replace(/{{CAPABILITIES}}/g, capabilities);
 
+  console.log("📝 Raw UI Strategy Response:", uiPrompt);
   const uiResponse = await callLLM(
     uiPrompt,
     "You are a senior UI/UX designer. Output ONLY the valid JSON branding (theme, header, footer).",
   );
-  
+
   let uiRaw: any = null;
   try {
     uiRaw = JSON.parse(uiResponse.replace(/```json|```/g, "").trim());
   } catch (error) {
-    console.warn("⚠️ Initial JSON parse failed for Brand config. Retrying with LLM repair...", error);
-    uiRaw = JSON.parse(uiResponse.replace(/[\s\S]*?```json/i, "").replace(/```[\s\S]*/i, "").trim());
+    console.warn(
+      "⚠️ Initial JSON parse failed for Brand config. Retrying with LLM repair...",
+      error,
+    );
+    uiRaw = JSON.parse(
+      uiResponse
+        .replace(/[\s\S]*?```json/i, "")
+        .replace(/```[\s\S]*/i, "")
+        .trim(),
+    );
   }
 
   // FORCE BUSINESS NAME (The Logo Fix)
@@ -90,13 +110,33 @@ export async function generate_full_site_blueprint(
   if (uiRaw.footer?.brand) uiRaw.footer.brand.title = businessName;
 
   // 3. ENFORCE PRESET (The "Boutique" Fix)
-  const chosenKey = uiRaw.theme?.preset || "modernSaaS";
+  let chosenKey = uiRaw.theme?.preset || "modernSaaS";
+
+  // Handle common LLM generic choices by mapping them to our best palettes
+  const fallbackMapping: Record<string, string> = {
+    luxury: "plumNoir",
+    minimal: "elegantMinimal",
+    modern: "modernSaaS",
+    brutalist: "digitalWasabi",
+    boutique: "plumNoir",
+    wellness: "ecoGrowth",
+  };
+
+  if (fallbackMapping[chosenKey.toLowerCase()]) {
+    console.log(
+      `🔄 Mapping generic preset "${chosenKey}" to high-end palette "${fallbackMapping[chosenKey.toLowerCase()]}"`,
+    );
+    chosenKey = fallbackMapping[chosenKey.toLowerCase()];
+  }
+
   const baseTheme = (THEME_PRESETS as any)[chosenKey];
-  
+
   if (baseTheme) {
-    console.log(`🎯 Preset Matched: "${chosenKey}". Injecting source colors...`);
+    console.log(`✨ THEME WINNER: "${chosenKey}" (Injecting official colors)`);
   } else {
-    console.warn(`⚠️ Preset "${chosenKey}" not found in library. Falling back to modernSaaS.`);
+    console.warn(
+      `⚠️ Preset "${chosenKey}" not found. Falling back to modernSaaS.`,
+    );
   }
 
   const baseThemeToUse = baseTheme || THEME_PRESETS["modernSaaS"];
@@ -107,7 +147,9 @@ export async function generate_full_site_blueprint(
   const bgHsl = rgbToHsl(bgRgb.r, bgRgb.g, bgRgb.b);
 
   if (isLightMode && bgHsl.l < 90) {
-    console.warn(`⚠️ Background brightness (${bgHsl.l.toFixed(1)}%) is too low for Light Mode. Enforcing > 90% rule.`);
+    console.warn(
+      `⚠️ Background brightness (${bgHsl.l.toFixed(1)}%) is too low for Light Mode. Enforcing > 90% rule.`,
+    );
     // We don't force it to white, but we nudge it up to a safe level if it's too dark
   }
 
@@ -119,14 +161,16 @@ export async function generate_full_site_blueprint(
       ...baseThemeToUse.colors,
       // Refine text color based on Golden Rules (Contrast & Brand-alignment)
       text: getOnBrandContrastColor(
-        baseThemeToUse.colors.primary, 
+        baseThemeToUse.colors.primary,
         baseThemeToUse.colors.background,
-        !isLightMode
+        !isLightMode,
       ),
     },
   };
 
-  console.log(`🎨 Final Theme Strategy: ${finalTheme.preset} | Mode: ${finalTheme.mode} | BG Brightness: ${bgHsl.l.toFixed(1)}% | Text: ${finalTheme.colors.text}`);
+  console.log(
+    `🎨 Final Theme Strategy: ${finalTheme.preset} | Mode: ${finalTheme.mode} | BG Brightness: ${bgHsl.l.toFixed(1)}% | Text: ${finalTheme.colors.text}`,
+  );
 
   const BrandSchema = z.object({
     theme: ThemeSchema,
@@ -141,14 +185,14 @@ export async function generate_full_site_blueprint(
       footer: uiRaw.footer,
     },
     BrandSchema,
-    "Global Branding (Theme, Header, Footer)"
+    "Global Branding (Theme, Header, Footer)",
   );
 
   return {
     ...validatedUi,
     sitemap: structure.sitemap,
     sitePlan: structure.sitePlan,
-    soul: uiRaw.soul || "Professional and modern."
+    soul: uiRaw.soul || "Professional and modern.",
   };
 }
 

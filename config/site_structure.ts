@@ -1,67 +1,46 @@
 export const siteStructure = {
   "pages": {
     "/": [
+      "hero-section",
+      "testimonials-section",
+      "signature-brews",
+      "point-cook-story"
+    ],
+    "/menu": [
       "hero",
-      "testimonials",
-      "storytelling",
-      "gallery"
+      "coffee",
+      "pastries",
+      "meals"
     ],
     "/about": [
       "hero",
-      "form",
-      "blocks",
-      "map",
-      "testimonials"
-    ],
-    "/collections": [
-      "hero",
-      "portfolio",
-      "inspiration"
-    ],
-    "/services": [
-      "hero",
-      "services",
-      "process",
-      "caseStudy"
+      "coffee-features",
+      "pastry-craft",
+      "team-testimonials"
     ],
     "/contact": [
       "hero",
       "map",
-      "form",
-      "testimonials"
-    ],
-    "/services/process": [
-      "hero",
-      "blocks"
-    ],
-    "/contact/consultation": [
-      "hero",
-      "blocks_1",
-      "blocks_2",
-      "blocks_3",
-      "blocks_4",
-      "blocks_5"
+      "contact-form",
+      "contact-info"
     ]
   },
   "navigation": {
     "header": [
-      "/",
+      "/menu",
       "/about",
-      "/collections",
-      "/services",
       "/contact"
     ],
     "footer": [
-      "/collections",
-      "/collections",
-      "/collections",
-      "/services",
-      "/about",
-      "/services/process",
-      "/about",
-      "/contact",
-      "/contact#form",
-      "/collections"
+      "/menu#coffee",
+      "/menu#pastries",
+      "/menu#specials",
+      "/about#story",
+      "/about#team",
+      "/about#sustainability",
+      "/contact#location",
+      "/contact#hours",
+      "mailto:info@chriscafetaria.com"
     ]
   }
 };

@@ -165,7 +165,7 @@ export const NavItemSchema = z.discriminatedUnion("type", [
 
 export const HeaderSchema = z.object({
   title: z.string().default("Brand"),
-  variant: z.enum(["default", "centered", "split", "transparent", "island"]).default("default"),
+  variant: z.enum(["default", "centered", "split", "transparent", "island", "minimal-center", "side-drawer", "glass-floating"]).default("default"),
   announcement: z.string().optional().describe("Top bar promo text"),
   links: z.array(NavItemSchema).default([]),
   cta: LinkSchema.optional(),
@@ -218,6 +218,7 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("heading"),
     text: z.string(),
+    eyebrow: z.string().optional().describe("Small label above main title"),
     level: z.enum(["h1", "h2", "h3", "display", "editorial"]).default("h2"),
     align: z.enum(["left", "center", "right"]).default("left"),
     decoration: z.enum(["none", "underline", "line-left", "line-bottom"]).default("none"),
@@ -277,7 +278,7 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     size: z.enum(["sm", "md", "lg"]).default("md"),
     color: z.enum(["primary", "secondary", "accent", "muted"]).default("primary"),
     align: z.enum(["left", "center", "right"]).default("left"),
-    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("none"),
   }),
   z.object({
     type: z.literal("button"),
@@ -357,6 +358,7 @@ export const PageSchema = z.object({
     z.discriminatedUnion("type", [
       HeroSchema,
       ServicesSchema,
+      PricingSchema,
       FormSchema,
       MapSchema,
       ContactSchema,
@@ -391,6 +393,7 @@ export type BlockSection = z.infer<typeof BlockSectionSchema>;
 export type AnySection =
   | HeroSection
   | ServicesSection
+  | PricingSection
   | FormSection
   | MapSection
   | ContactSection

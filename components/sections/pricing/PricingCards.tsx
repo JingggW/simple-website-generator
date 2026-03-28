@@ -1,10 +1,11 @@
 import React from "react";
 import { PricingSection } from "@/lib/schema";
 import { cn } from "@/lib/utils";
+import { Check } from "lucide-react";
 
 type PricingProps = PricingSection["props"];
 
-export const PricingList = ({
+export const PricingCards = ({
   title,
   description,
   categories,
@@ -23,37 +24,44 @@ export const PricingList = ({
           )}
         </div>
 
-        <div className="grid grid-cols-1 max-w-4xl mx-auto gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {categories.map((category, idx) => (
             <div
               key={idx}
-              className="bg-secondary/5 rounded-3xl p-8 md:p-12 mb-8 transition-all duration-500"
+              className="bg-surface border border-secondary/10 rounded-4xl p-8 hover:shadow-2xl hover:-translate-y-2 flex flex-col h-full transition-all duration-500"
             >
               <div className="mb-8">
-                <h3 className="text-2xl text-on-primary bg-primary rounded-xl px-6 py-2 inline-block shadow-lg font-black uppercase tracking-widest">
+                <h3 className="font-black uppercase tracking-widest text-xl mb-2 text-primary">
                   {category.name}
                 </h3>
+                <div className="h-1 w-12 bg-primary/20 mt-4 rounded-full" />
               </div>
 
               <div className="space-y-6 flex-1">
                 {category.items.map((item, itemIdx) => (
                   <div key={itemIdx} className="group">
                     <div className="flex justify-between items-baseline mb-1">
-                      <span className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
+                      <span className="text-lg font-bold text-foreground group-hover:text-primary transition-colors flex items-center gap-2">
+                        <Check className="w-4 h-4 text-primary shrink-0" />
                         {item.label}
                       </span>
-                      <div className="mx-4 flex-1 border-b border-dotted border-secondary/20 h-0" />
-                      <span className="font-black text-foreground text-xl">
+                      <span className="font-black text-foreground text-lg">
                         {item.price}
                       </span>
                     </div>
                     {item.details && (
-                      <p className="text-sm text-secondary/60 leading-relaxed">
+                      <p className="text-sm text-secondary/60 leading-relaxed pl-6">
                         {item.details}
                       </p>
                     )}
                   </div>
                 ))}
+              </div>
+
+              <div className="mt-12">
+                <button className="w-full py-4 rounded-2xl bg-primary text-on-primary font-black uppercase tracking-widest text-[10px] shadow-xl hover:scale-[1.02] active:scale-95 transition-all">
+                  Choose Plan
+                </button>
               </div>
             </div>
           ))}

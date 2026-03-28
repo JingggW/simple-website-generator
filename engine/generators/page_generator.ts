@@ -154,8 +154,6 @@ ${uiPrompt}
       .replace(/{{SCHEMA}}/g, schema)
       .replace(/{{CAPABILITIES}}/g, capabilities);
 
-    console.log("📄 Content Prompt (with replacements):\n", contentPrompt);
-
     let parsed: any = null;
     let retries = 3;
     let lastError = null;
@@ -186,8 +184,13 @@ ${lastError ? `### PREVIOUS ERROR\nThe last JSON you generated was malformed: ${
       } catch (e: any) {
         lastError = e.message;
         retries--;
-        console.warn(`⚠️ JSON Parse Failed. Retries left: ${retries}. Error: ${lastError}`);
-        if (retries === 0) throw new Error(`Failed to parse JSON after 3 attempts: ${lastError}`);
+        console.warn(
+          `⚠️ JSON Parse Failed. Retries left: ${retries}. Error: ${lastError}`,
+        );
+        if (retries === 0)
+          throw new Error(
+            `Failed to parse JSON after 3 attempts: ${lastError}`,
+          );
       }
     }
 

@@ -4,14 +4,19 @@ import React from "react";
 import { AnySection } from "@/lib/schema";
 import { motion, HTMLMotionProps } from "framer-motion";
 
-import { HeroSimple, HeroSplit, HeroVisual, HeroEditorial } from "@/components/sections/hero";
+import {
+  HeroSimple,
+  HeroSplit,
+  HeroVisual,
+  HeroEditorial,
+} from "@/components/sections/hero";
 import { ServicesGrid, ServicesList } from "@/components/sections/services";
 import { ContentSimple } from "@/components/sections/content";
 import { ContactSimple } from "@/components/sections/contact";
 import { TestimonialsGrid } from "@/components/sections/testimonials";
 import { BlockSection } from "@/components/sections/blocks";
-import { PricingList } from "@/components/sections/pricing";
-import { RequestForm } from "@/components/sections/form";
+import { PricingList, PricingCards } from "@/components/sections/pricing";
+import { RequestForm, RequestFormSplit } from "@/components/sections/form";
 import { MapEmbedded } from "@/components/sections/map";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
@@ -28,10 +33,12 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   pricing: {
     simple: PricingList,
     detailed: PricingList,
+    cards: PricingCards,
   },
   form: {
     contact: RequestForm,
     request: RequestForm,
+    split: RequestFormSplit,
   },
   map: {
     embedded: MapEmbedded,
@@ -126,11 +133,17 @@ export const SectionRenderer = ({
 
   const paddingClasses: Record<string, string> = {
     none: "py-0",
-    sm: "py-6 md:py-8",
-    md: "py-12 md:py-16",
-    lg: "py-20 md:py-32",
+    sm: "py-3 md:py-4",
+    md: "py-6 md:py-8",
+    lg: "py-10 md:py-16",
   };
-  const paddingClass = paddingClasses[section.props.padding || "md"];
+  let paddingClass = paddingClasses[section.props.padding || "md"];
+
+  // SPECIAL FIX: If it's a hero section, we want zero top padding 
+  // to avoid gaps with the navbar, but keep bottom padding.
+  if (section.type === "hero") {
+    paddingClass = paddingClass.replace("py-", "pb-").replace("py-0", "pt-0 pb-0");
+  }
 
   return (
     <motion.div
@@ -138,7 +151,9 @@ export const SectionRenderer = ({
       className={`${bgClass} ${paddingClass}`}
       {...animationProps}
     >
-      <div className={`${containerClass} ${textInheritClasses[section.props.background || "default"]}`}>
+      <div
+        className={`${containerClass} ${textInheritClasses[section.props.background || "default"]}`}
+      >
         <Component {...section.props} />
       </div>
     </motion.div>

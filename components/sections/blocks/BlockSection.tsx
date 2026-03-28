@@ -55,22 +55,19 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           >
             {block.icon && (
               <div className={isHorizontal ? "mt-1" : "mb-4"}>
-                <IconMap
-                  name={block.icon}
-                  className="w-10 h-10 text-primary"
-                />
+                <IconMap name={block.icon} className="w-10 h-10 text-primary" />
               </div>
             )}
             <div className="flex-1">
               {block.title && (
                 <h4
-                  className={`${isCompact ? "text-lg" : "text-xl"} font-bold text-foreground mb-2 break-words`}
+                  className={`${isCompact ? "text-lg" : "text-xl"} font-bold text-foreground mb-2 wrap-break-word`}
                 >
                   {block.title}
                 </h4>
               )}
               <div
-                className={`${isCompact ? "text-sm" : "text-base"} text-foreground/70 leading-relaxed break-words`}
+                className={`${isCompact ? "text-sm" : "text-base"} text-foreground/70 leading-relaxed wrap-break-word`}
               >
                 {block.description}
               </div>
@@ -90,8 +87,8 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
       case "container":
         const bgClasses = {
           none: "",
-          muted: "bg-muted",
-          surface: "bg-surface shadow-sm",
+          muted: "bg-muted text-foreground",
+          surface: "bg-surface shadow-sm text-foreground",
           primary: "bg-primary text-on-primary",
           secondary: "bg-secondary text-on-secondary",
         };
@@ -106,7 +103,8 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           card: "rounded-[var(--border-radius)] shadow-xl border border-white/10",
           glass:
             "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
-          outline: "rounded-[var(--border-radius)] border-2 border-primary/20 bg-transparent",
+          outline:
+            "rounded-[var(--border-radius)] border-2 border-primary/20 bg-transparent",
         };
         const positionClasses = {
           relative: "relative",
@@ -181,7 +179,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
 
       case "testimonial-card":
         return (
-          <TestimonialCard 
+          <TestimonialCard
             quote={block.quote}
             author={block.author}
             role={block.role}
@@ -224,8 +222,10 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
             : block.level || "h2"
         ) as React.ElementType;
         const fontSizes: Record<string, string> = {
-          display: "text-5xl md:text-7xl font-black tracking-tighter uppercase break-words",
-          editorial: "text-4xl md:text-6xl font-serif italic tracking-tight break-words",
+          display:
+            "text-5xl md:text-7xl font-black tracking-tighter uppercase break-words",
+          editorial:
+            "text-4xl md:text-6xl font-serif italic tracking-tight break-words",
           h1: "text-4xl md:text-5xl font-black tracking-tight break-words",
           h2: "text-3xl md:text-4xl font-extrabold tracking-tight break-words",
           h3: "text-xl md:text-2xl font-bold break-words",
@@ -240,13 +240,17 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           none: "",
           underline: "border-b-2 border-primary pb-2 inline-block",
           "line-left": "border-l-4 border-primary pl-6 py-2",
-          "line-bottom": "after:content-[''] after:block after:w-24 after:h-1 after:bg-primary after:mt-4",
+          "line-bottom":
+            "after:content-[''] after:block after:w-24 after:h-1 after:bg-primary after:mt-4",
         }[block.decoration || "none"];
 
         return (
-          <div
-            className={`${alignClasses} ${marginClass}`}
-          >
+          <div className={`${alignClasses} ${marginClass}`}>
+            {block.eyebrow && (
+              <span className="block text-[10px] md:text-xs font-black uppercase tracking-[0.3em] text-primary mb-4">
+                {block.eyebrow}
+              </span>
+            )}
             <Tag
               className={`${fontSizes[block.level || "h2"]} leading-[1.1] ${decorationClasses}`}
             >
@@ -264,7 +268,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
         }[block.align || "left"];
         return (
           <div
-            className={`text-base md:text-lg opacity-80 leading-relaxed font-medium ${alignClasses} ${marginClass} break-words whitespace-pre-wrap`}
+            className={`text-base md:text-lg opacity-80 leading-relaxed font-medium ${alignClasses} ${marginClass} wrap-break-word whitespace-pre-wrap`}
           >
             {block.content}
           </div>
@@ -285,7 +289,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
         return (
           <figure className={`group relative ${marginClass} w-full`}>
             <div
-              className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-[var(--border-radius)]"} overflow-hidden shadow-2xl`}
+              className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-(--border-radius)"} overflow-hidden shadow-2xl`}
             >
               <Image
                 src={
@@ -332,7 +336,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
             {block.images.map((img, idx) => (
               <figure key={idx} className="group relative w-full">
                 <div
-                  className={`relative ${gridAspect[block.aspect || "square"]} rounded-[var(--border-radius)] overflow-hidden shadow-md`}
+                  className={`relative ${gridAspect[block.aspect || "square"]} rounded-(--border-radius) overflow-hidden shadow-md`}
                 >
                   <Image
                     src={
@@ -373,7 +377,7 @@ export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
           <div className={`flex w-full ${alignClasses} pt-4 ${marginClass}`}>
             <Link
               href={block.href || "#"}
-              className={`inline-flex items-center px-10 py-4 rounded-[var(--border-radius)] font-bold text-lg transition-all duration-300 ${buttonVariants[block.variant || "primary"]}`}
+              className={`inline-flex items-center px-10 py-4 rounded-(--border-radius) font-bold text-lg transition-all duration-300 ${buttonVariants[block.variant || "primary"]}`}
             >
               {block.label}
             </Link>
