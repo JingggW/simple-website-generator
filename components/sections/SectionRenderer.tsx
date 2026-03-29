@@ -129,7 +129,7 @@ export const SectionRenderer = ({
   const bgClass = backgroundClasses[section.props.background || "default"];
   const animationProps = animations[section.props.animation || "slide-up"];
   const containerClass = widthClasses[section.props.width || "default"];
-  const isBleed = section.props.width === "bleed";
+  // const isBleed = section.props.width === "bleed";
 
   const paddingClasses: Record<string, string> = {
     none: "py-0",
@@ -139,10 +139,12 @@ export const SectionRenderer = ({
   };
   let paddingClass = paddingClasses[section.props.padding || "md"];
 
-  // SPECIAL FIX: If it's a hero section, we want zero top padding 
+  // SPECIAL FIX: If it's a hero section, we want zero top padding
   // to avoid gaps with the navbar, but keep bottom padding.
   if (section.type === "hero") {
-    paddingClass = paddingClass.replace("py-", "pb-").replace("py-0", "pt-0 pb-0");
+    paddingClass = paddingClass
+      .replace("py-", "pb-")
+      .replace("py-0", "pt-0 pb-0");
   }
 
   return (

@@ -22,6 +22,7 @@ You MUST select exactly ONE of these Preset Keys. This controls the entire color
 - `champagnePearl`
 - `modernTech`
 - `industrialSteel`
+- `corporateTrust` (Strong Blue/White for high-trust services like plumbers and lawyers)
 
 ## Step 2: Branding & Navigation (Header & Footer)
 
@@ -46,6 +47,7 @@ Define the core visual strategy. This brief is sent to every page generator.
 1. **Background vs Surface**: In Light Mode, `background` MUST be > 92% brightness. `surface` is for cards.
 2. **Text is King**: `text` MUST have 4.5:1 contrast. Light bg = Dark text. Dark bg = White text.
 3. **Primary Only for "Hooks"**: Use `primary` for buttons, icons, and accents ONLY.
+4. **TRADES & TRUST RULE**: For high-trust "essential" services (Plumbers, Lawyers, Clinics), ALWAYS prefer **Light Mode** and `corporateTrust` or `modernSaaS`. Do NOT use dark mode or neon colors unless specifically requested for an "edgy" brand.
 
 ## Input
 

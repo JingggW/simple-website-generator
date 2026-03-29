@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { generate_full_site_blueprint } from "../engine/generators/site_architect";
+import { generate_full_site_blueprint } from "@/engine/generators/site_architect";
 
 async function main() {
   const business =

@@ -1,4 +1,4 @@
-import { PropSiteEngine } from "../engine/index";
+import { PropSiteEngine } from "@/engine/index";
 
 async function testNewBlocks() {
   const engine = new PropSiteEngine();

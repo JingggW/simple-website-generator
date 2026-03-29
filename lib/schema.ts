@@ -6,7 +6,7 @@ export const ThemeSchema = z.object({
   preset: z.enum([
     "modern", "luxury", "brutalist", "minimal",
     "modernSaaS", "ecoGrowth", "plumNoir", "elegantMinimal",
-    "digitalWasabi", "champagnePearl", "modernTech", "industrialSteel"
+    "digitalWasabi", "champagnePearl", "modernTech", "industrialSteel", "corporateTrust"
   ]).default("modern").describe("Global aesthetic direction"),
   colors: z.object({
     primary: z.string().default("#1D4ED8").describe("Main brand color (hex)"),

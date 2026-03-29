@@ -9,31 +9,6 @@ import { repair_icons_recursive } from "../repair/icon_repairer";
 /**
  * PAGE GENERATOR ENGINE
  */
-
-function getSystemContext(): {
-  structure: string;
-  navigation: string;
-} {
-  const structurePath = path.join(process.cwd(), "config/site_structure.ts");
-  const sitePath = path.join(process.cwd(), "config/site.json");
-
-  const structure = fs.existsSync(structurePath)
-    ? fs.readFileSync(structurePath, "utf-8")
-    : "";
-
-  let navigation = "No navigation defined.";
-  if (fs.existsSync(sitePath)) {
-    const site = JSON.parse(fs.readFileSync(sitePath, "utf-8"));
-    navigation = JSON.stringify(
-      { header: site.header, footer: site.footer },
-      null,
-      2,
-    );
-  }
-
-  return { structure, navigation };
-}
-
 function loadPrompt(name: string): string {
   const promptPath = path.join(process.cwd(), `engine/prompts/${name}.md`);
   return fs.readFileSync(promptPath, "utf-8");

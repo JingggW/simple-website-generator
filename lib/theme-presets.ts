@@ -155,6 +155,25 @@ export const THEME_PRESETS: Record<string, Theme> = {
     borderRadius: "none",
     containerStyle: "outline",
   },
+
+  // 9. 企业信托：专业、稳重、高信任感 (适合水管工、律师)
+  corporateTrust: {
+    mode: "light",
+    preset: "modern",
+    colors: {
+      primary: "#1E40AF",    // Blue-800
+      secondary: "#64748B",  // Slate-500
+      background: "#FFFFFF",
+      surface: "#F8FAFC",
+      muted: "#F1F5F9",
+      accent: "#3B82F6",     // Blue-500
+      text: "#0F172A",
+    },
+    fontStyle: "sans",
+    typographyScale: "standard",
+    borderRadius: "md",
+    containerStyle: "default",
+  },
 };
 
 export const PRESET_KEYS = Object.keys(
