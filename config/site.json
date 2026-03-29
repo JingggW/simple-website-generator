@@ -310,12 +310,7 @@
         "title": "Chris Cafetaria Menu",
         "description": "Discover our menu at Chris Cafetaria, featuring expertly roasted coffees, house-baked pastries, and seasonal specials made with fresh, local ingredients."
       },
-      "sectionOrder": [
-        "hero",
-        "coffee",
-        "pastries",
-        "meals"
-      ],
+      "sectionOrder": ["hero", "coffee", "pastries", "meals"],
       "sections": {
         "hero": {
           "type": "hero",
@@ -375,12 +370,6 @@
                   {
                     "blocks": [
                       {
-                        "type": "text",
-                        "content": "Single-Origin Beans",
-                        "align": "left",
-                        "spacing": "md"
-                      },
-                      {
                         "type": "heading",
                         "text": "Single-Origin Beans",
                         "level": "h3",
@@ -398,12 +387,6 @@
                   },
                   {
                     "blocks": [
-                      {
-                        "type": "text",
-                        "content": "Pour-Over Methods",
-                        "align": "left",
-                        "spacing": "md"
-                      },
                       {
                         "type": "heading",
                         "text": "Pour-Over Methods",
@@ -467,12 +450,6 @@
                   {
                     "blocks": [
                       {
-                        "type": "text",
-                        "content": "Seasonal Bakes",
-                        "align": "left",
-                        "spacing": "md"
-                      },
-                      {
                         "type": "heading",
                         "text": "Seasonal Bakes",
                         "level": "h3",
@@ -490,12 +467,6 @@
                   },
                   {
                     "blocks": [
-                      {
-                        "type": "text",
-                        "content": "Gourmet Fillings",
-                        "align": "left",
-                        "spacing": "md"
-                      },
                       {
                         "type": "heading",
                         "text": "Gourmet Fillings",
@@ -753,12 +724,7 @@
         "title": "Chris Cafetaria | Contact",
         "description": "Reach out to Chris Cafetaria for catering, general inquiries, or feedback. Located in Point Cook with parking details."
       },
-      "sectionOrder": [
-        "hero",
-        "map",
-        "contact-form",
-        "contact-info"
-      ],
+      "sectionOrder": ["hero", "map", "contact-form", "contact-info"],
       "sections": {
         "hero": {
           "type": "hero",
@@ -869,5 +835,7 @@
         }
       }
     }
-  }
+  },
+  "crmUrl": "https://script.google.com/macros/s/AKfycbzUc2iqQWJ_FxRE24RdJ800AH1yMA0Jk--0JkhHZYy2LxQXyQYuX9eGND42rkfoi3Zq/exec",
+  "crmSecret": "ps_secret_12345"
 }

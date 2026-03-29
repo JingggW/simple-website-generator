@@ -376,6 +376,8 @@ export const WebsiteConfigSchema = z.object({
   footer: FooterSchema,
   theme: ThemeSchema,
   pages: z.record(z.string(), PageSchema),
+  crmUrl: z.string().optional().describe("Google Apps Script URL for form submissions"),
+  crmSecret: z.string().optional().describe("Secret key to authorize submissions"),
 });
 // --- END WEBSITE ---
 

@@ -487,7 +487,7 @@ async function runPoC() {
   await engine.generateFullWebsite(
     "Chris Cafetaria",
     "A premier cafe in Point Cook Melbourne, serving artisanal coffee and gourmet pastries in a cozy atmosphere.",
-    "",
+    "Use the 'centered' header variant and add an announcement bar about our new brunch specials."
   );
 }
 

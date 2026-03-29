@@ -38,7 +38,7 @@ export const ServicesList = ({ title, description, items }: ServicesProps) => {
               {/* Image Column */}
               <div className="flex-1 w-full group overflow-hidden shadow-2xl">
                 {item.image ? (
-                  <div className="relative aspect-[16/10] overflow-hidden">
+                  <div className="relative aspect-16/10 overflow-hidden">
                     <Image
                       src={
                         item.image.startsWith("http")
@@ -52,9 +52,12 @@ export const ServicesList = ({ title, description, items }: ServicesProps) => {
                     />
                   </div>
                 ) : (
-                  <div className="aspect-[16/10] bg-secondary/5 flex items-center justify-center">
+                  <div className="aspect-16/10 bg-secondary/5 flex items-center justify-center">
                     {item.icon ? (
-                      <IconMap name={item.icon} className="w-20 h-20 text-secondary/20" />
+                      <IconMap
+                        name={item.icon}
+                        className="w-20 h-20 text-secondary/20"
+                      />
                     ) : (
                       <div className="w-20 h-20 bg-secondary/10 rounded-full" />
                     )}
@@ -68,7 +71,7 @@ export const ServicesList = ({ title, description, items }: ServicesProps) => {
                   <h3 className="text-2xl md:text-3xl font-black uppercase tracking-[0.15em] text-foreground leading-tight">
                     <b>{item.title}</b>
                   </h3>
-                  
+
                   <div className="text-[13px] leading-relaxed text-foreground/70 font-medium tracking-wide whitespace-pre-wrap max-w-md">
                     {item.description}
                   </div>
