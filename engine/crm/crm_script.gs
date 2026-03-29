@@ -55,7 +55,28 @@ function doPost(e) {
     
     sheet.appendRow(row);
     
-    // 4. Success Response
+    // 4. NEW: Google Calendar Sync (Tentative Appointment)
+    if (data.proposed_datetime) {
+      try {
+        var startTime = new Date(data.proposed_datetime);
+        var endTime = new Date(startTime.getTime() + (60 * 60 * 1000)); // Default 1 hour
+        
+        var calendar = CalendarApp.getDefaultCalendar();
+        calendar.createEvent(
+          "[PENDING] " + (data.requested_service || "Appointment") + ": " + (data.client_name || "New Client"),
+          startTime,
+          endTime,
+          {
+            description: "Lead Email: " + data.client_email + "\nNotes: " + (data.notes || "None"),
+            location: "At Business / To Be Confirmed"
+          }
+        );
+      } catch (calErr) {
+        Logger.log("Calendar sync failed: " + calErr.toString());
+      }
+    }
+    
+    // 5. Success Response
     return ContentService.createTextOutput(JSON.stringify({"result":"success"}))
       .setMimeType(ContentService.MimeType.JSON);
       

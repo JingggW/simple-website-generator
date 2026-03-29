@@ -62,7 +62,7 @@ export class PropSiteEngine {
         props.imageName = auto_fill_placeholders(props);
       }
 
-      // Form image fill (for split variant)
+      // Form image fill (for split or appointment variants)
       if (section.type === "form" && isPlaceholder(props.imageName)) {
         props.imageName = auto_fill_placeholders(props);
       }
@@ -485,9 +485,9 @@ export class PropSiteEngine {
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Chris Cafetaria",
-    "A premier cafe in Point Cook Melbourne, serving artisanal coffee and gourmet pastries in a cozy atmosphere.",
-    "Use the 'centered' header variant and add an announcement bar about our new brunch specials."
+    "Serene Cuts & Styling",
+    "A boutique hair salon in Armadale specializing in luxury color and precision cuts. We pride ourselves on a calm, one-on-one experience.",
+    "Use the 'plumNoir' preset and a 'glass-floating' header. Create a dedicated 'Book' page using the 'appointment' form variant. Available services should include: 'Signature Cut & Style', 'Balayage Artistry', and 'Deep Conditioning Treatment'."
   );
 }
 

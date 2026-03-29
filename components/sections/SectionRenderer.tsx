@@ -16,7 +16,7 @@ import { ContactSimple } from "@/components/sections/contact";
 import { TestimonialsGrid } from "@/components/sections/testimonials";
 import { BlockSection } from "@/components/sections/blocks";
 import { PricingList, PricingCards } from "@/components/sections/pricing";
-import { RequestForm, RequestFormSplit } from "@/components/sections/form";
+import { RequestForm, RequestFormSplit, AppointmentForm } from "@/components/sections/form";
 import { MapEmbedded } from "@/components/sections/map";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
@@ -39,6 +39,7 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
     contact: RequestForm,
     request: RequestForm,
     split: RequestFormSplit,
+    appointment: AppointmentForm,
   },
   map: {
     embedded: MapEmbedded,

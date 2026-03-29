@@ -91,19 +91,21 @@ export const PricingSchema = z.object({
 // --- START FORM ---
 export const FormSchema = z.object({
   type: z.literal("form"),
-  variant: z.enum(["contact", "request", "split"]),
+  variant: z.enum(["contact", "request", "split", "appointment"]),
   props: BaseSectionSchema.extend({
     title: z.string(),
     description: z.string().optional(),
     imageName: z.string().optional(),
+    submitLabel: z.string().default("Submit"),
     fields: z.array(z.object({
       name: z.string(),
       label: z.string(),
-      type: z.enum(["text", "email", "textarea", "select"]),
-      options: z.array(z.string()).optional().describe("For select type"),
+      type: z.enum(["text", "email", "textarea", "select", "date", "datetime"]),
+      options: z.array(z.string()).optional(),
       required: z.boolean().default(true),
     })),
-    submitLabel: z.string().default("Submit"),
+    // For appointment variant
+    availableServices: z.array(z.string()).optional().describe("List of services to choose from"),
   })
 });
 // --- END FORM ---
