@@ -68,43 +68,50 @@ const FormInner = ({
 
   return (
     <form className="grid gap-8" onSubmit={handleSubmit}>
-      {fields.map((field, idx) => (
-        <div key={idx} className="grid gap-3">
-          <label className="text-xs font-black uppercase tracking-[0.2em] text-primary ml-1">
-            {field.label}{" "}
-            {field.required && <span className="text-red-500">*</span>}
-          </label>
+      {fields.map((field, idx) => {
+        // Map common field names to our standard CRM keys for email logic
+        let inputName = field.name;
+        if (field.type === "email") inputName = "client_email";
+        if (field.name.toLowerCase() === "name") inputName = "client_name";
 
-          {field.type === "textarea" ? (
-            <textarea
-              name={field.name}
-              required={field.required}
-              rows={4}
-              className="w-full bg-background border-2 border-secondary/10 rounded-2xl p-4 focus:border-primary outline-none transition-colors text-lg"
-            />
-          ) : field.type === "select" ? (
-            <select
-              name={field.name}
-              required={field.required}
-              className="w-full bg-background border-2 border-secondary/10 rounded-2xl p-4 focus:border-primary outline-none transition-colors text-lg appearance-none"
-            >
-              <option value="">Select an option...</option>
-              {field.options?.map((opt: string, oIdx: number) => (
-                <option key={oIdx} value={opt}>
-                  {opt}
-                </option>
-              ))}
-            </select>
-          ) : (
-            <input
-              name={field.name}
-              type={field.type}
-              required={field.required}
-              className="w-full bg-background border-2 border-secondary/10 rounded-2xl p-4 focus:border-primary outline-none transition-colors text-lg"
-            />
-          )}
-        </div>
-      ))}
+        return (
+          <div key={idx} className="grid gap-3">
+            <label className="text-xs font-black uppercase tracking-[0.2em] text-primary ml-1">
+              {field.label}{" "}
+              {field.required && <span className="text-red-500">*</span>}
+            </label>
+
+            {field.type === "textarea" ? (
+              <textarea
+                name={inputName}
+                required={field.required}
+                rows={4}
+                className="w-full bg-background border-2 border-secondary/10 rounded-2xl p-4 focus:border-primary outline-none transition-colors text-lg"
+              />
+            ) : field.type === "select" ? (
+              <select
+                name={inputName}
+                required={field.required}
+                className="w-full bg-background border-2 border-secondary/10 rounded-2xl p-4 focus:border-primary outline-none transition-colors text-lg appearance-none"
+              >
+                <option value="">Select an option...</option>
+                {field.options?.map((opt: string, oIdx: number) => (
+                  <option key={oIdx} value={opt}>
+                    {opt}
+                  </option>
+                ))}
+              </select>
+            ) : (
+              <input
+                name={inputName}
+                type={field.type}
+                required={field.required}
+                className="w-full bg-background border-2 border-secondary/10 rounded-2xl p-4 focus:border-primary outline-none transition-colors text-lg"
+              />
+            )}
+          </div>
+        );
+      })}
 
       <button
         type="submit"

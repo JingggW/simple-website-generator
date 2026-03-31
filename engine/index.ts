@@ -316,6 +316,7 @@ export class PropSiteEngine {
           blueprint.sitemap,
           globalDesignBrief,
           pagePlan,
+          blueprint.theme?.preset, // Pass preset from blueprint
         );
       } catch (e: any) {
         this.recordFailure(pagePath, e);
@@ -361,6 +362,7 @@ export class PropSiteEngine {
             blueprint.sitemap,
             globalDesignBrief,
             pagePlan,
+            blueprint.theme?.preset,
           );
         } catch (e: any) {
           this.recordFailure(p, e);
@@ -417,6 +419,7 @@ export class PropSiteEngine {
       designBrief,
       pagePlan,
       this.config.pages, // Pass current in-memory pages
+      this.config.theme?.preset, // NEW: Pass the preset to refinery
     );
     this.autoSearchImages(pageConfig);
     this.config.pages[pagePath] = pageConfig;

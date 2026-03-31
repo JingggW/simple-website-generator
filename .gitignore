@@ -44,6 +44,6 @@ next-env.d.ts
 todo-list.md
 
 # PropSite Credentials & Generated Content
-config/site.json
-config/site.ts
+config/
 generated/
+

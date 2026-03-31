@@ -1,46 +1,52 @@
 export const siteStructure = {
   "pages": {
     "/": [
-      "hero-section",
-      "testimonials-section",
-      "signature-brews",
-      "point-cook-story"
+      "hero_main",
+      "testimonials_grid",
+      "philosophy_deep"
     ],
-    "/menu": [
-      "hero",
-      "coffee",
-      "pastries",
-      "meals"
+    "/services": [
+      "the-hook",
+      "the-philosophy",
+      "the-offerings",
+      "the-investment"
     ],
-    "/about": [
+    "/team": [
+      "s_hero",
+      "s_collective",
+      "s_ritual",
+      "s_standard"
+    ],
+    "/book": [
       "hero",
-      "coffee-features",
-      "pastry-craft",
-      "team-testimonials"
+      "blocks",
+      "form"
     ],
     "/contact": [
-      "hero",
-      "map",
-      "contact-form",
-      "contact-info"
+      "hero_introduction",
+      "visit_us",
+      "services_grid",
+      "location_map",
+      "cta_band"
     ]
   },
   "navigation": {
     "header": [
-      "/menu",
-      "/about",
+      "/",
+      "/services",
+      "/team",
       "/contact"
     ],
     "footer": [
-      "/menu#coffee",
-      "/menu#pastries",
-      "/menu#specials",
-      "/about#story",
-      "/about#team",
-      "/about#sustainability",
-      "/contact#location",
-      "/contact#hours",
-      "mailto:info@chriscafetaria.com"
+      "/services",
+      "/services",
+      "/services",
+      "/team",
+      "/contact",
+      "/contact",
+      "/contact",
+      "/contact",
+      "/contact"
     ]
   }
 };

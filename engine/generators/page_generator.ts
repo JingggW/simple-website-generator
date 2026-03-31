@@ -2,9 +2,10 @@ import fs from "fs";
 import path from "path";
 import { callLLM } from "../llmClient";
 import { validate_and_repair } from "../repair/schema_fixer";
-import { PageSchema } from "../../lib/schema";
+import { PageSchema, WebsiteConfig } from "../../lib/schema";
 import { getSchemaSection, getUICapabilities } from "../storage/schema_utils";
 import { repair_icons_recursive } from "../repair/icon_repairer";
+import { refine_page } from "../repair/sanitizer";
 
 /**
  * PAGE GENERATOR ENGINE
@@ -23,6 +24,7 @@ export async function generate_single_page(
   providedDesignBrief?: string,
   pagePlan?: { type: string; goal: string }[],
   existingPages: Record<string, any> = {}, // NEW: Pass existing pages directly
+  themePreset?: string, // NEW: Pass theme preset for refining
 ) {
   console.log(`🚀 Generating Page: ${targetPath}`);
 
@@ -39,7 +41,7 @@ export async function generate_single_page(
           (s: any) => s.type,
         );
         sections.forEach((type) => {
-          if (["form", "map", "testimonials"].includes(type)) {
+          if (["form", "map", "testimonials", "price-list"].includes(type)) {
             usedGlobalSections.push(`${type} (on ${path})`);
           }
         });
@@ -104,7 +106,7 @@ ${uiPrompt}
     );
 
     // Surgically select schema tags based on page plan
-    const requiredTags = new Set(["PAGE", "BLOCKS", "HERO"]);
+    const requiredTags = new Set(["PAGE", "BLOCKS", "HERO", "DIVIDER"]);
     if (pagePlan) {
       pagePlan.forEach((p) => {
         const tag = p.type.toUpperCase();
@@ -155,7 +157,11 @@ ${lastError ? `### PREVIOUS ERROR\nThe last JSON you generated was malformed: ${
         );
 
         const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
-        parsed = JSON.parse(rawJson);
+        const rawParsed = JSON.parse(rawJson);
+        
+        // --- REFINERY STAGE (Post-Hoc Structural Fixes) ---
+        parsed = refine_page(rawParsed, themePreset);
+        
       } catch (e: any) {
         lastError = e.message;
         retries--;

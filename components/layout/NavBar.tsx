@@ -118,12 +118,12 @@ export const Navbar = ({ config }: NavbarProps) => {
       : isTransparent
         ? "fixed top-0"
         : "sticky top-0",
-    isTransparent && !isScrolled && mounted
+    isTransparent && (!mounted || !isScrolled)
       ? "bg-transparent border-transparent py-4"
       : isMinimalCenter || isCentered
         ? "bg-background border-b border-secondary/10 pt-2"
         : "bg-background/80 backdrop-blur-lg border-b border-secondary/10 shadow-sm py-0",
-    isScrolled && mounted && !isMinimalCenter && !isCentered
+    mounted && isScrolled && !isMinimalCenter && !isCentered
       ? "h-16"
       : isMinimalCenter || isCentered
         ? "h-auto"
@@ -233,44 +233,46 @@ export const Navbar = ({ config }: NavbarProps) => {
 
             {/* Mobile Menu (And Desktop SideDrawer) */}
             <div className={cn(isSideDrawer ? "block" : "md:hidden")}>
-              <Sheet open={isOpen} onOpenChange={setIsOpen}>
-                <SheetTrigger asChild>
-                  <button className="p-2 text-foreground hover:bg-secondary/10 rounded-full transition-colors">
-                    <Menu className="h-6 w-6" />
-                  </button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full sm:max-w-sm">
-                  <SheetHeader className="mb-12 text-left">
-                    <SheetTitle className="text-2xl font-black uppercase tracking-tighter">
-                      {config.title}
-                    </SheetTitle>
-                  </SheetHeader>
-                  <nav className="flex flex-col gap-6">
-                    {config.links.map((item, idx) => {
-                      const href = item.type === "link" ? item.href : "#";
-                      return (
+              {mounted && (
+                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                  <SheetTrigger asChild>
+                    <button className="p-2 text-foreground hover:bg-secondary/10 rounded-full transition-colors">
+                      <Menu className="h-6 w-6" />
+                    </button>
+                  </SheetTrigger>
+                  <SheetContent side="right" className="w-full sm:max-w-sm">
+                    <SheetHeader className="mb-12 text-left">
+                      <SheetTitle className="text-2xl font-black uppercase tracking-tighter">
+                        {config.title}
+                      </SheetTitle>
+                    </SheetHeader>
+                    <nav className="flex flex-col gap-6">
+                      {config.links.map((item, idx) => {
+                        const href = item.type === "link" ? item.href : "#";
+                        return (
+                          <Link
+                            key={idx}
+                            href={href || "#"}
+                            className="text-3xl font-black uppercase tracking-tighter hover:text-primary transition-all hover:pl-2"
+                            onClick={() => setIsOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        );
+                      })}
+                      {config.cta && (
                         <Link
-                          key={idx}
-                          href={href || "#"}
-                          className="text-3xl font-black uppercase tracking-tighter hover:text-primary transition-all hover:pl-2"
+                          href={config.cta.href || "#"}
+                          className="mt-8 bg-primary text-on-primary text-center p-5 rounded-full font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform"
                           onClick={() => setIsOpen(false)}
                         >
-                          {item.label}
+                          {config.cta.label}
                         </Link>
-                      );
-                    })}
-                    {config.cta && (
-                      <Link
-                        href={config.cta.href || "#"}
-                        className="mt-8 bg-primary text-on-primary text-center p-5 rounded-full font-black uppercase tracking-[0.2em] shadow-2xl hover:scale-105 transition-transform"
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {config.cta.label}
-                      </Link>
-                    )}
-                  </nav>
-                </SheetContent>
-              </Sheet>
+                      )}
+                    </nav>
+                  </SheetContent>
+                </Sheet>
+              )}
             </div>
           </div>
         </div>

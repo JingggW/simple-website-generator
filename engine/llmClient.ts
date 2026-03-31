@@ -6,7 +6,7 @@ import "dotenv/config";
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const FREE_MODEL = "openrouter/free";
-const MODEL = "deepseek/deepseek-v3.2";
+const MODEL = "z-ai/glm-4.7-flash";
 
 async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -33,7 +33,7 @@ export async function callLLM(
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            model: FREE_MODEL,
+            model: MODEL,
             messages: [
               ...(systemPrompt
                 ? [{ role: "system", content: systemPrompt }]

@@ -26,5 +26,14 @@ Create a second tab in the sheet called **"Insights"** that uses pivot tables to
 *   **Mailing List Tab**: Every new email address is automatically copied to a clean "Mailing List" tab. 
 *   **One-Click Export**: The owner can download this tab as a CSV to upload into Mailchimp or send a personalized "Season Special" email to everyone at once.
 
+## Appendix: Handling the Google Security Warning
+When you (or your client) first deploy the CRM script, Google will show a "This app isn't verified" warning because it's a private script using the Gmail/Calendar service.
+
+### How to authorize:
+1.  On the warning screen, click **"Advanced"** (bottom left).
+2.  Click **"Go to [Your Script Name] (unsafe)"** at the bottom.
+3.  Click **"Allow"** on the next screen.
+*This is 100% safe because the client is giving themselves permission to use their own script on their own account.*
+
 ---
 *Note: This is a low-code approach that keeps the business owner in a tool they already understand (Google Sheets) while providing the power of a custom CRM.*

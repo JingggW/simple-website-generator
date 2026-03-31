@@ -1,6 +1,7 @@
 # PropSite Engine Todo List
 
 ## 🔥 High Priority
+- [ ] **CRM / Apps Script Fixes**: Resolve reported issues with Google Apps Script (Email/Calendar/Security).
 - [x] **In-Memory State**: Standardized `site.json` as source of truth (Completed).
 - [x] **Link Integrity**: Recursive scanning for nav and CTA buttons (Completed).
 - [x] **Self-Healing**: 3-retry loop with specific Zod error feedback (Completed).
@@ -10,6 +11,7 @@
 - [x] **Luxury Layouts**: Implemented Victor Churchill style alternating split list (Completed).
 - [x] **Preset-Driven UI**: Site Architect now enforces exact colors from presets (Completed).
 - [x] **Design Auto-Repair**: Programmatic enforcement of "Golden Rules" (padding, brightness) (Completed).
+- [x] **Spreadsheet CRM**: Secure lead capture with Calendar sync and Email alerts (Completed).
 
 ## 🛠️ Core Engine Features
 - [x] **Site Architect**: Structural Blueprinting (Sitemap + Page Plans) (Completed).
@@ -17,7 +19,8 @@
 - [x] **Master UI Designer**: Centralized branding and navigation planning (Completed).
 - [ ] **Site Factory (Scaffolder)**: Project cloning and package management.
 - [x] **Heading Decorations**: Added line-left, line-bottom, and underline for blocks (Completed).
-- [ ] **Section Dividers**: Artistic SVG transitions between sections (Waves, Slants).
+- [x] **Section Dividers**: Artistic SVG transitions between sections (Waves, Slants) (Completed).
+- [ ] **CRM Multi-Sheet Management**: Automate creation of "Marketing List," "Revenue," and "Analytics" tabs.
 
 ## 🎨 UI/UX & Design
 - [x] **Layout Versatility**: Section Widths and Block Spacing (Completed).

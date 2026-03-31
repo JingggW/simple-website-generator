@@ -48,6 +48,10 @@ Define the core visual strategy. This brief is sent to every page generator.
 2. **Text is King**: `text` MUST have 4.5:1 contrast. Light bg = Dark text. Dark bg = White text.
 3. **Primary Only for "Hooks"**: Use `primary` for buttons, icons, and accents ONLY.
 4. **TRADES & TRUST RULE**: For high-trust "essential" services (Plumbers, Lawyers, Clinics), ALWAYS prefer **Light Mode** and `corporateTrust` or `modernSaaS`. Do NOT use dark mode or neon colors unless specifically requested for an "edgy" brand.
+5. **DIVIDER POLICY**: 
+   - Choose `dividerStyle: "artistic"` for organic, creative, or modern B2C brands (cafes, salons, boutiques).
+   - Choose `dividerStyle: "subtle"` for professional services (tech, consulting, health).
+   - Choose `dividerStyle: "none"` for high-end luxury, corporate, or minimalist brands.
 
 ## Input
 
@@ -68,7 +72,8 @@ Return ONLY the JSON object.
      "fontStyle": "sans | serif | mono | display",
      "typographyScale": "standard | editorial | bold",
      "borderRadius": "none | sm | md | lg | full",
-     "containerStyle": "default | glass | outline"
+     "containerStyle": "default | glass | outline",
+     "dividerStyle": "none | subtle | artistic"
   },
   "header": {
      "title": "ACTUAL BUSINESS NAME (LOGO)",

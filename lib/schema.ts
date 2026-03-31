@@ -22,8 +22,19 @@ export const ThemeSchema = z.object({
   typographyScale: z.enum(["standard", "editorial", "bold"]).default("standard"),
   borderRadius: z.enum(["none", "sm", "md", "lg", "full"]).default("md"),
   containerStyle: z.enum(["default", "glass", "outline"]).default("default"),
+  dividerStyle: z.enum(["none", "subtle", "artistic"]).default("none").describe("Global policy for section transitions"),
 });
 // --- END THEME ---
+
+// --- START DIVIDER ---
+export const DividerSchema = z.object({
+  type: z.enum(["none", "wave", "slant", "curve", "step", "tilt", "triangle", "book", "fan"]).default("none"),
+  color: z.enum(["default", "muted", "surface", "primary", "secondary", "accent"]).default("default"),
+  height: z.enum(["sm", "md", "lg"]).default("md"),
+  flip: z.boolean().default(false).describe("Flip horizontally"),
+  invert: z.boolean().default(false).describe("Invert the SVG shape"),
+});
+// --- END DIVIDER ---
 
 // Common props for all sections
 const BaseSectionSchema = z.object({
@@ -31,6 +42,8 @@ const BaseSectionSchema = z.object({
   animation: z.enum(["none", "fade", "slide-up", "zoom-in"]).default("slide-up"),
   width: z.enum(["prose", "default", "wide", "full", "bleed"]).default("default"),
   padding: z.enum(["none", "sm", "md", "lg"]).default("md"),
+  topDivider: DividerSchema.optional(),
+  bottomDivider: DividerSchema.optional(),
 });
 
 // --- START HERO ---
@@ -40,7 +53,7 @@ export const HeroSchema = z.object({
   props: BaseSectionSchema.extend({
     headline: z.string(),
     subheadline: z.string().optional(),
-    ctaText: z.string().default("Get Started"),
+    ctaText: z.string().optional(),
     ctaLink: z.string().optional().describe("Internal path or anchor"),
     imageName: z.string().optional(),
     imagePosition: z.enum(["left", "right"]).default("right").optional(),

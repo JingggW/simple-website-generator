@@ -8,6 +8,8 @@ import { TestimonialCard } from "../testimonials/TestimonialCard";
 export const BlockSection = ({ blocks }: BlockSectionType["props"]) => {
   // RECURSIVE BLOCK RENDERER
   const RenderBlock = ({ block }: { block: Block }) => {
+    if (!block) return null;
+
     const spacingClasses = {
       none: "my-0",
       sm: "my-3",

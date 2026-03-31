@@ -56,11 +56,14 @@ export async function generate_full_site_blueprint(
   );
 
   // 1.5. Basic Blueprint Validation
-  const globalSections = ["form", "map", "testimonials", "services", "pricing"];
+  const globalSections = ["form", "map", "testimonials", "services", "pricing", "price-list"];
   const seenGlobals = new Set<string>();
   for (const [path, sections] of Object.entries(structure.sitePlan || {})) {
-    (sections as any[]).forEach((s) => {
-      if (globalSections.includes(s.type)) {
+    // LLM Safety: Ensure sections is actually an array
+    const sectionList = Array.isArray(sections) ? sections : [sections];
+
+    sectionList.forEach((s: any) => {
+      if (s && s.type && globalSections.includes(s.type)) {
         if (seenGlobals.has(s.type)) {
           console.warn(
             `⚠️ Blueprint Warning: Duplicate global section '${s.type}' detected on ${path}. Content Strategist will be forced to fallback to 'blocks'.`,
@@ -83,7 +86,7 @@ export async function generate_full_site_blueprint(
     .replace(/{{SCHEMA}}/g, schema)
     .replace(/{{CAPABILITIES}}/g, capabilities);
 
-  console.log("📝 Raw UI Strategy Response:", uiPrompt);
+  // console.log("📝 Raw UI Strategy Response:", uiPrompt);
   const uiResponse = await callLLM(
     uiPrompt,
     "You are a senior UI/UX designer. Output ONLY the valid JSON branding (theme, header, footer).",
@@ -157,6 +160,7 @@ export async function generate_full_site_blueprint(
   const finalTheme = {
     ...baseThemeToUse,
     ...uiRaw.theme,
+    dividerStyle: uiRaw.theme?.dividerStyle || "none", // Preserve LLM choice
     colors: {
       ...baseThemeToUse.colors,
       // Refine text color based on Golden Rules (Contrast & Brand-alignment)

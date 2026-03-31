@@ -18,6 +18,7 @@ import { BlockSection } from "@/components/sections/blocks";
 import { PricingList, PricingCards } from "@/components/sections/pricing";
 import { RequestForm, RequestFormSplit, AppointmentForm } from "@/components/sections/form";
 import { MapEmbedded } from "@/components/sections/map";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   hero: {
@@ -151,14 +152,22 @@ export const SectionRenderer = ({
   return (
     <motion.div
       id={sectionId}
-      className={`${bgClass} ${paddingClass}`}
+      className={`${bgClass} ${paddingClass} relative`}
       {...animationProps}
     >
+      {section.props.topDivider && (
+        <SectionDivider {...section.props.topDivider} position="top" />
+      )}
+
       <div
         className={`${containerClass} ${textInheritClasses[section.props.background || "default"]}`}
       >
         <Component {...section.props} />
       </div>
+
+      {section.props.bottomDivider && (
+        <SectionDivider {...section.props.bottomDivider} position="bottom" />
+      )}
     </motion.div>
   );
 };
