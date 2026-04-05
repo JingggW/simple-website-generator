@@ -26,6 +26,19 @@ The system operates on a **Research -> Strategy -> Execution -> Validation** cyc
 - Full site configurations are saved as `site_full.json`.
 - Individual pages are exported for static or dynamic consumption.
 
+### 5. Multi-tenancy Strategy (Single Engine, Multi-tenant)
+To efficiently manage multiple client websites from a single codebase, PropSite Engine employs a dynamic multi-tenancy model:
+-   **Single Next.js Deployment**: All client domains (e.g., `client-a.com`, `client-b.com`) point to a single Next.js application deployment.
+-   **Dynamic Hostname Recognition (`middleware.ts`)**: Next.js middleware extracts the incoming `hostname` to identify the current client.
+-   **Client Registry (Google Sheets)**: A structured Google Sheet acts as the primary "Client Registry," mapping hostnames to `client_id`s and containing structured, editable content fields for each client. This serves as a controlled CMS input.
+-   **Dynamic Site Configuration (`generated/[client_id]/site_full.json`)**: Each client's complete `siteConfig` (theme, pages, sections, etc.) is stored in a dedicated JSON file (`site_full.json`) within `generated/[client_id]/`.
+-   **Engine as Content Orchestrator**: The `PropSiteEngine` is responsible for:
+    1.  Fetching controlled content updates from Google Sheets for a specific `client_id`.
+    2.  Surgically merging and validating these updates into the client's `site_full.json` (acting as a "ContentUpdater").
+    3.  Persisting the updated `site_full.json` back to `generated/[client_id]/`.
+-   **Next.js Dynamic Page (`app/[client_id]/[[...slug]]/page.tsx`)**: This route dynamically loads the `site_full.json` corresponding to the `client_id` (identified by middleware) and renders the appropriate page using the universal component library.
+-   **Benefits**: This approach ensures easy, controlled content updates for clients via Google Sheets, while maintaining a single, performant, and scalable codebase for the engine and rendering application.
+
 ## 🛠️ Engineering Standards
 
 ### TypeScript & Typing

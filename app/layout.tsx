@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import { 
@@ -10,17 +13,17 @@ import {
   outfit, 
   spectral 
 } from "@/lib/fonts";
-
-export const metadata: Metadata = {
-  title: "PropSite Engine",
-  description: "AI-Driven Website Architecture",
-};
+import { siteConfig } from "@/config/site"; // Import siteConfig
+import { ThemeProvider } from "@/components/providers/ThemeProvider"; // Import ThemeProvider
+import { ThemePicker } from "@/components/ui/ThemePicker"; // Import ThemePicker
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [currentTheme, setCurrentTheme] = useState(siteConfig.theme);
+
   const fontVariables = [
     inter.variable,
     playfair.variable,
@@ -37,7 +40,13 @@ export default function RootLayout({
       <body
         className={`${fontVariables} antialiased`}
       >
-        {children}
+        <ThemeProvider theme={currentTheme}>
+          {children}
+          <ThemePicker
+            currentTheme={currentTheme}
+            onThemeChange={setCurrentTheme}
+          />
+        </ThemeProvider>
       </body>
     </html>
   );

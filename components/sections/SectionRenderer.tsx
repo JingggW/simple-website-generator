@@ -98,6 +98,18 @@ const animations: Record<string, HTMLMotionProps<"div">> = {
     viewport: { once: true },
     transition: { duration: 0.6 },
   },
+  "slide-left": {
+    initial: { opacity: 0, x: -50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+  "slide-right": {
+    initial: { opacity: 0, x: 50 },
+    whileInView: { opacity: 1, x: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
 };
 
 const widthClasses: Record<string, string> = {

@@ -82,10 +82,16 @@ Use the **blocks** schema for ALL OTHER CONTENT, including:
    - **VISUAL UNITY**: When an `icon` block is used, you MUST set its `spacing` to `"none"`.
 3. **Visual Variety & Safety (THE SPACING RULE)**:
    - **LUXURY MANDATE**: For 'luxury' or 'boutique' vibes, whitespace is critical. **NEVER** use `padding: "none"` for sections containing text, heroes, or maps. Use `padding: "md"` or `"lg"` to create an editorial feel.
-   - **Sections**: Use `width: "wide"` or `"full"` for high-end layouts. Use `background: "surface"` or `"muted"` to create sophisticated depth between sections.
+   - **Sections**:
+     - Use `width: "wide"` or `"full"` for high-end layouts.
+     - Use `width: "bleed"` ONLY when a section contains a large, prominent image that should extend to the edges of the viewport (e.g., a full-width hero or an `image` block in `blocks`).
+     - Use `background: "surface"` or `"muted"` to create sophisticated depth between sections.
    - **Blocks**: Use the `spacing` property (`md`, `lg`) on individual blocks to ensure typography has room to breathe.
    - **Hero Layout**: For luxury brands, use `padding: "lg"` or `"md"`. Avoid `sm` as it feels cramped.
    - **Containers**: Use `background: "surface"` to create clear "card" divisions within columns. Always default to `position: "relative"`.
+   - **ANIMATIONS**:
+     - Use `animation: "slide-left"` or `"slide-right"` for visual sections (especially those with images) to create a dynamic entry effect.
+     - Reserve `slide-up` for text-heavy sections or features.
 4. **Artistic Transitions (THE DIVIDER RULE)**:
    - **STRICT COMPLIANCE**: Look at the `dividerStyle` in the DESIGN BRIEF.
      - If `none`: NEVER use `topDivider` or `bottomDivider`. Use flat backgrounds only.

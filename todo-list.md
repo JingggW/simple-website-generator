@@ -2,6 +2,11 @@
 
 ## 🔥 High Priority
 - [ ] **CRM / Apps Script Fixes**: Resolve reported issues with Google Apps Script (Email/Calendar/Security).
+- [ ] **Multi-tenant Routing**: Implement `middleware.ts` for dynamic hostname-based routing to client-specific sites.
+- [ ] **Dynamic Client Page**: Create `app/[client_id]/[[...slug]]/page.tsx` to load and render client-specific `site_full.json` configurations.
+- [ ] **Google Sheet Client Registry**: Define structure and implement fetching for a Google Sheet that maps hostnames to `client_id`s.
+- [ ] **Engine ContentUpdater**: Develop a new Engine capability to fetch, merge, and validate content updates from Google Sheets into `site_full.json`.
+- [ ] **CRM Multi-Sheet Management**: Automate creation of "Marketing List," "Revenue," and "Analytics" tabs for Google Sheets.
 - [x] **In-Memory State**: Standardized `site.json` as source of truth (Completed).
 - [x] **Link Integrity**: Recursive scanning for nav and CTA buttons (Completed).
 - [x] **Self-Healing**: 3-retry loop with specific Zod error feedback (Completed).
@@ -17,10 +22,8 @@
 - [x] **Site Architect**: Structural Blueprinting (Sitemap + Page Plans) (Completed).
 - [x] **Surgical Schema Extraction**: Generators only see relevant Zod rules (Completed).
 - [x] **Master UI Designer**: Centralized branding and navigation planning (Completed).
-- [ ] **Site Factory (Scaffolder)**: Project cloning and package management.
 - [x] **Heading Decorations**: Added line-left, line-bottom, and underline for blocks (Completed).
 - [x] **Section Dividers**: Artistic SVG transitions between sections (Waves, Slants) (Completed).
-- [ ] **CRM Multi-Sheet Management**: Automate creation of "Marketing List," "Revenue," and "Analytics" tabs.
 
 ## 🎨 UI/UX & Design
 - [x] **Layout Versatility**: Section Widths and Block Spacing (Completed).
@@ -29,6 +32,7 @@
 - [x] **Accessibility (A11y)**: Automated contrast ratio checker (Completed).
 - [x] **Unified Layout**: Standardized section padding and rhythmic spacing (Completed).
 - [x] **Modern Aesthetic Library**: Added `boutiqueAtelier` for high-end retail (Completed).
+- [x] **Theme Picker UI**: Simple UI to dynamically change color schemes and modes for demo (Completed).
 
 ## 🤖 Advanced AI Workflow
 - [x] **Agentic Failure Recovery**: Self-healing link repair system (Completed).

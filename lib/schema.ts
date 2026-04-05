@@ -39,7 +39,7 @@ export const DividerSchema = z.object({
 // Common props for all sections
 const BaseSectionSchema = z.object({
   background: z.enum(["default", "muted", "surface", "primary", "secondary"]).default("default"),
-  animation: z.enum(["none", "fade", "slide-up", "zoom-in"]).default("slide-up"),
+  animation: z.enum(["none", "fade", "slide-up", "zoom-in", "slide-left", "slide-right"]).default("slide-up"),
   width: z.enum(["prose", "default", "wide", "full", "bleed"]).default("default"),
   padding: z.enum(["none", "sm", "md", "lg"]).default("md"),
   topDivider: DividerSchema.optional(),
