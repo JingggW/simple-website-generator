@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { callLLM } from "../llmClient";
 import { validate_and_repair } from "../repair/schema_fixer";
-import { PageSchema, WebsiteConfig } from "../../lib/schema";
+import { PageSchema } from "../../lib/schema";
 import { getSchemaSection, getUICapabilities } from "../storage/schema_utils";
 import { repair_icons_recursive } from "../repair/icon_repairer";
 import { refine_page } from "../repair/sanitizer";
@@ -111,7 +111,7 @@ ${uiPrompt}
       pagePlan.forEach((p) => {
         const tag = p.type.toUpperCase();
         if (
-          ["FORM", "MAP", "CONTACT", "CONTENT", "TESTIMONIALS"].includes(tag)
+          ["FORM", "MAP", "CONTACT", "CONTENT", "TESTIMONIALS", "CAROUSEL"].includes(tag)
         ) {
           requiredTags.add(tag);
         }
@@ -158,10 +158,9 @@ ${lastError ? `### PREVIOUS ERROR\nThe last JSON you generated was malformed: ${
 
         const rawJson = finalJsonRaw.replace(/```json|```/g, "").trim();
         const rawParsed = JSON.parse(rawJson);
-        
+
         // --- REFINERY STAGE (Post-Hoc Structural Fixes) ---
-        parsed = refine_page(rawParsed, themePreset);
-        
+        parsed = refine_page(rawParsed, themePreset, targetPath);
       } catch (e: any) {
         lastError = e.message;
         retries--;

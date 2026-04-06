@@ -5,7 +5,7 @@
  * that are easier to fix with code than with prompting.
  */
 
-export function refine_page(page: any, themePreset?: string): any {
+export function refine_page(page: any, themePreset?: string, pagePath?: string): any {
   if (!page || typeof page !== "object") return page;
 
   // Deep clone to avoid mutation issues
@@ -52,7 +52,86 @@ export function refine_page(page: any, themePreset?: string): any {
         }
       }
 
-      // 3. LUXURY ICON STRIPPER
+      // 3. HERO CTA REFINERY (Convert self-referencing CTAs to intelligent anchor links)
+      if (val.type === "hero" && val.props && val.props.ctaLink && val.props.ctaText && pagePath && page.sectionOrder && page.sections) {
+        const ctaLink = val.props.ctaLink.toLowerCase();
+        
+        if (ctaLink === pagePath.toLowerCase() || ctaLink === `${pagePath.toLowerCase()}/`) {
+          const ctaText = val.props.ctaText.toLowerCase();
+          let bestMatchAnchor = "";
+          let bestMatchScore = -1;
+
+          // Iterate through all section IDs on the current page
+          for (const sectionId of page.sectionOrder) {
+            const section = page.sections[sectionId];
+            if (!section || !section.props) continue;
+
+            const sectionContent = [];
+            // Add sectionId to content for matching
+            sectionContent.push(sectionId.toLowerCase()); 
+
+            // Add relevant text from the section for matching
+            if (section.props.headline) sectionContent.push(section.props.headline.toLowerCase());
+            if (section.props.title) sectionContent.push(section.props.title.toLowerCase());
+            if (section.props.description) sectionContent.push(section.props.description.toLowerCase());
+            
+            // For blocks sections, check headings within blocks
+            if (section.type === "blocks" && section.props.blocks) {
+                const findHeadings = (blocks: any[]) => {
+                    for (const b of blocks) {
+                        if (!b) continue; // Defensive check for null/undefined blocks
+                        if (b.type === "heading" && b.text) sectionContent.push(b.text.toLowerCase());
+                        if (b.blocks) findHeadings(b.blocks);
+                        if (b.items) b.items.forEach((item: any) => item && item.blocks && findHeadings(item.blocks));
+                    }
+                };
+                findHeadings(section.props.blocks);
+            }
+            // For services sections, check service titles
+            if (section.type === "services" && section.props.items) {
+                section.props.items.forEach((item: any) => {
+                    if (item.title) sectionContent.push(item.title.toLowerCase());
+                });
+            }
+
+            // Calculate a score for how well the ctaText matches this section
+            let currentScore = 0;
+            for (const contentPart of sectionContent) {
+                if (ctaText.includes(contentPart)) {
+                    currentScore += 2; // Direct inclusion
+                }
+                // Check for partial keyword matches
+                const ctaKeywords = ctaText.split(/\s+/);
+                for (const keyword of ctaKeywords) {
+                    if (keyword.length > 2 && contentPart.includes(keyword)) {
+                        currentScore += 1;
+                    }
+                }
+            }
+            
+            // Prioritize more specific matches on sectionId
+            if (sectionId.toLowerCase().includes(ctaText)) currentScore += 3;
+
+            if (currentScore > bestMatchScore) {
+              bestMatchScore = currentScore;
+              bestMatchAnchor = sectionId;
+            }
+          }
+
+          if (bestMatchAnchor && bestMatchScore > 0) { // Only apply if there's a positive match
+            val.props.ctaLink = `${pagePath}#${bestMatchAnchor}`;
+            console.log(`🔗 Refinery: Converted self-referencing Hero CTA on ${pagePath} ('${val.props.ctaText}') to intelligent anchor: ${val.props.ctaLink}`);
+          } else {
+            // If no semantic match, remove the link as it's ineffective
+            delete val.props.ctaLink; 
+            delete val.props.ctaText; // Also remove text if link is gone
+            console.log(`🗑️ Refinery: Removed ineffective Hero CTA on ${pagePath} ('${ctaText}') - no clear semantic anchor match.`);
+          }
+        }
+      }
+
+
+      // Previous rule 3, now 4. LUXURY ICON STRIPPER
       if (isLuxury) {
         if (val && val.type === "icon") {
           console.log(`💎 Refinery (Luxury): Removing icon block '${val.name}'`);

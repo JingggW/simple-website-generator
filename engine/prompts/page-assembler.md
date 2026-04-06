@@ -21,18 +21,23 @@ You MUST choose the best section types based on the content blueprint:
 Regardless of the page path, if the content describes a specific functional goal, you MUST use the corresponding **Molecular Schema**:
 - **Contact/Forms**: Use `form`.
 - **Location/Address**: Use `map`.
-- **Social Proof**: Use `testimonials`.
-- **High-Impact Intro**: Use `hero`.
+  - **Social Proof**: Use `testimonials` for static grids. For dynamic sliders, use `carousel` with `variant: "testimonials"`.
+  - **High-Impact Intro**: Use `hero`.
   - **CTA STRATEGY**:
     - **PRIMARY PAGES (`/`)**: A CTA is usually essential to guide the user to the next step.
     - **SECONDARY PAGES (`/about`, `/services`)**: Use CTAs only if there's a clear, high-priority action for the user (e.g., "Book Now", "View Pricing"). If the primary goal is informational, omit the CTA for a cleaner look.
     - **INFORMATIONAL PAGES (`/contact`)**: A CTA is generally not needed if the page's purpose is to provide direct contact details.
+    - **CTA UTILITY RULE**: **NEVER** create a CTA button in a hero section that links back to the *same page* the user is currently on (e.g., a CTA on `/team` with `ctaLink: "/team"` is redundant). CTAs must always navigate to a *different, relevant page*.
   - **VARIANT SELECTION**:
     - Use `variant: "editorial"` for Boutique, Luxury, or High-End brands on the Home Page. It features massive typography and asymmetric layouts.
     - Use `variant: "split"` for service-heavy or story-driven pages where text and image need equal weight.
     - Use `variant: "visual"` for high-impact landing pages where a stunning background image is the priority.
     - Use `variant: "simple"` for clean, text-focused introductions on internal or utility pages.
   - **VARIETY RULE**: Look at the `GENERATED_MAP`. **DO NOT** use the same hero variant that has already been used on more than one other page. If the Home Page is `editorial`, make the Services page `split`.
+- **Carousel Section (NEW)**: Use `carousel` for dynamic sliders.
+    - Use `variant: "images"` for photo galleries.
+    - Use `variant: "testimonials"` for rotating customer quotes.
+    - Use `variant: "blocks"` to create a slider of custom content blocks for features or steps.
 
 - **Services (Boutique/Luxury)**: 
   - **MANDATE**: For brands with a 'luxury', 'boutique', or 'editorial' soul, **NEVER** use icons. 

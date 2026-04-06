@@ -19,6 +19,10 @@ import { PricingList, PricingCards } from "@/components/sections/pricing";
 import { RequestForm, RequestFormSplit, AppointmentForm } from "@/components/sections/form";
 import { MapEmbedded } from "@/components/sections/map";
 import { SectionDivider } from "@/components/ui/SectionDivider";
+import { CarouselSimple } from "@/components/sections/carousel/CarouselSimple";
+import { AccordionSimple } from "@/components/sections/accordion/AccordionSimple";
+import { TabsSimple } from "@/components/sections/tabs/TabsSimple";
+import { GalleryGrid } from "@/components/sections/gallery/GalleryGrid";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   hero: {
@@ -58,6 +62,26 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
     prose: BlockSection,
     wide: BlockSection,
     full: BlockSection,
+  },
+  carousel: {
+    images: CarouselSimple,
+    testimonials: CarouselSimple,
+    blocks: CarouselSimple,
+  },
+  accordion: {
+    simple: AccordionSimple,
+    split: AccordionSimple,
+    bordered: AccordionSimple,
+  },
+  tabs: {
+    simple: TabsSimple,
+    pills: TabsSimple,
+    vertical: TabsSimple,
+  },
+  gallery: {
+    grid: GalleryGrid,
+    masonry: GalleryGrid,
+    carousel: GalleryGrid,
   },
 };
 
@@ -174,7 +198,7 @@ export const SectionRenderer = ({
       <div
         className={`${containerClass} ${textInheritClasses[section.props.background || "default"]}`}
       >
-        <Component {...section.props} />
+        <Component {...section.props} variant={section.variant} />
       </div>
 
       {section.props.bottomDivider && (

@@ -53,6 +53,7 @@ To efficiently manage multiple client websites from a single codebase, PropSite 
 ### Development Workflow
 - **Empirical Reproduction:** Before fixing an engine bug, reproduce it with a test case or by mocking the LLM failure.
 - **Validation Mandate:** Any change to the engine must be validated by running a PoC generation (e.g., `npm run generate`).
+- **Syntax & Type Check Mandate**: After creating or modifying files (especially React components), you MUST run a syntax/type check (e.g., `npx tsc --noEmit` or `npm run lint`) to catch errors early.
 - **Component Consistency:** When adding new sections, ensure they follow the `props` pattern and are registered in `SectionRenderer.tsx`.
 
 ### Visual Guidelines (2026 Standards)
@@ -66,3 +67,7 @@ To efficiently manage multiple client websites from a single codebase, PropSite 
 
 ---
 *Note: This file is a foundational mandate for Gemini CLI and takes precedence over general defaults.*
+
+---
+### Gemini CLI Interaction Rules:
+- The user will run all scripts on their own. Do not execute commands unless explicitly asked.

@@ -22,23 +22,31 @@ export const HeroEditorial = ({
       <div className="container mx-auto px-6">
         <div className="space-y-16">
           {/* 1. Massive Editorial Headline */}
-          <h1 className="text-6xl md:text-[10vw] font-black text-foreground leading-[0.9] tracking-tighter uppercase break-words">
+          <h1 className="text-6xl md:text-[10vw] font-black text-foreground leading-[0.9] tracking-tighter uppercase wrap-break-word">
             {headline}
           </h1>
 
           {/* 2. Asymmetric Content Grid */}
-          <div className={cn(
-            "grid grid-cols-1 md:grid-cols-12 gap-12 items-end",
-            isImageLeft ? "md:flex-row-reverse" : ""
-          )}>
-            <div className={cn(
-              "md:col-span-7",
-              isImageLeft ? "md:order-2" : "md:order-1"
-            )}>
+          <div
+            className={cn(
+              "grid grid-cols-1 md:grid-cols-12 gap-12 items-end",
+              isImageLeft ? "md:flex-row-reverse" : "",
+            )}
+          >
+            <div
+              className={cn(
+                "md:col-span-7",
+                isImageLeft ? "md:order-2" : "md:order-1",
+              )}
+            >
               {imageName ? (
-                <div className="relative aspect-video md:aspect-[16/10] overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-1000">
+                <div className="relative aspect-video md:aspect-16/10 overflow-hidden rounded-sm grayscale hover:grayscale-0 transition-all duration-1000">
                   <Image
-                    src={imageName.startsWith('http') ? imageName : `/${imageName.replace(/^\//, '')}`}
+                    src={
+                      imageName.startsWith("http")
+                        ? imageName
+                        : `/${imageName.replace(/^\//, "")}`
+                    }
                     alt={headline}
                     fill
                     className="object-cover"
@@ -49,10 +57,12 @@ export const HeroEditorial = ({
               )}
             </div>
 
-            <div className={cn(
-              "md:col-span-5 space-y-8",
-              isImageLeft ? "md:order-1" : "md:order-2"
-            )}>
+            <div
+              className={cn(
+                "md:col-span-5 space-y-8",
+                isImageLeft ? "md:order-1" : "md:order-2",
+              )}
+            >
               {subheadline && (
                 <p className="text-xl md:text-2xl text-secondary font-serif italic leading-relaxed">
                   {subheadline}

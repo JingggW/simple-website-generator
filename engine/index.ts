@@ -40,6 +40,18 @@ export class PropSiteEngine {
     this.config = this.loadConfigFromDisk();
   }
 
+  public getSiteConfig(): WebsiteConfig {
+    return this.config;
+  }
+
+  public setSiteConfig(config: WebsiteConfig): void {
+    this.config = config;
+  }
+
+  public saveConfig(): void {
+    this.persist();
+  }
+
   autoSearchImages(page: PageConfig) {
     console.log("🖼️  Searching for image placeholders...");
     const isPlaceholder = (src: string | undefined) => {
@@ -167,7 +179,7 @@ export class PropSiteEngine {
     this.persist();
   }
 
-  private loadConfigFromDisk(): WebsiteConfig {
+  public loadConfigFromDisk(): WebsiteConfig {
     if (fs.existsSync(this.jsonPath)) {
       try {
         return JSON.parse(fs.readFileSync(this.jsonPath, "utf-8"));
@@ -182,7 +194,10 @@ export class PropSiteEngine {
           /siteConfig: WebsiteConfig = ([\s\S]*?);/,
         );
         if (jsonMatch) return eval(`(${jsonMatch[1]})`);
-      } catch (e) {}
+      } catch (e) {
+        console.error("❌ Failed to parse siteConfig from config/site.ts using eval.");
+        console.error("Eval Error:", e);
+      }
     }
     return {
       theme: {} as any,
@@ -202,12 +217,9 @@ export class PropSiteEngine {
     });
   }
 
-  private persist(businessName?: string) {
+  public persist(businessName?: string) {
     const targetName = businessName || this.currentBusinessName;
-    if (!targetName || targetName === "default") {
-      console.warn("⚠️ Skipping persist: No business name defined.");
-      return;
-    }
+
     const jsonContent = JSON.stringify(this.config, null, 2);
     fs.writeFileSync(this.jsonPath, jsonContent);
     fs.writeFileSync(
@@ -232,6 +244,12 @@ export class PropSiteEngine {
       this.structurePath,
       `export const siteStructure = ${JSON.stringify(structure, null, 2)};`,
     );
+
+    // Only save to generated/[businessName] if a specific businessName is provided
+    if (!targetName || targetName === "default") {
+        console.warn("⚠️ Skipping saving to generated/[businessName] directory: No specific business name defined.");
+        return;
+    }
 
     const sanitize = (s: string) =>
       s
@@ -406,6 +424,7 @@ export class PropSiteEngine {
     sitemap: string[] = [],
     designBrief?: string,
     pagePlan?: { type: string; goal: string }[],
+    themePreset?: string, // Added to accept theme from blueprint
   ) {
     this.currentBusinessName = bizName;
     console.log(`\n--- 🏗️  Building Page: ${pagePath} ---`);
@@ -419,7 +438,7 @@ export class PropSiteEngine {
       designBrief,
       pagePlan,
       this.config.pages, // Pass current in-memory pages
-      this.config.theme?.preset, // NEW: Pass the preset to refinery
+      themePreset, // Pass the preset to refinery
     );
     this.autoSearchImages(pageConfig);
     this.config.pages[pagePath] = pageConfig;

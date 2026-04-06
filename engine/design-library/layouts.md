@@ -381,25 +381,88 @@ A high-impact section with a full-bleed image and a centered floating text box.
 
 // --- END CINEMATIC_FOCUS ---
 
-// --- START EDITORIAL_STACK ---
+// --- START BOUTIQUE_FAQ ---
 
-## Pattern: Asymmetric Editorial
+## Pattern: Boutique FAQ
 
-Magazine-style layout with uneven columns (1/3 vs 2/3).
+A structured list of frequently asked questions using a collapsible accordion. Ideal for service details, policies, or general inquiries.
 
-### Visual Rule
-- Use `layout: 'split-right'` or `'split-left'`.
-- Use `typographyScale: 'editorial'` for the heading.
+### Required JSON (Component Type: 'accordion')
 
 ```json
 {
-  "type": "columns",
-  "layout": "split-right",
-  "items": [
-    { "blocks": [ { "type": "heading", "text": "Signature Style", "level": "display" } ] },
-    { "blocks": [ { "type": "image", "src": "...", "aspect": "video" }, { "type": "text", "content": "..." } ] }
-  ]
+  "type": "accordion",
+  "variant": "simple",
+  "props": {
+    "title": "Frequently Asked Questions",
+    "items": [
+      { "trigger": "How do I book?", "content": "..." },
+      { "trigger": "What is your cancellation policy?", "content": "..." }
+    ]
+  }
 }
 ```
 
-// --- END EDITORIAL_STACK ---
+// --- END BOUTIQUE_FAQ ---
+
+// --- START ORGANIZED_TABS ---
+
+## Pattern: Organized Content Tabs
+
+Categorized content sections that users can switch between. Perfect for detailed service menus, multi-topic information, or categorized products.
+
+### Required JSON (Component Type: 'tabs')
+
+```json
+{
+  "type": "tabs",
+  "variant": "simple",
+  "props": {
+    "title": "Our Services",
+    "items": [
+      { 
+        "label": "Haircuts", 
+        "content": [
+          { "type": "heading", "text": "Precision Cutting", "level": "h3" },
+          { "type": "text", "content": "..." }
+        ] 
+      },
+      { 
+        "label": "Color", 
+        "content": [
+          { "type": "heading", "text": "Luxury Color", "level": "h3" },
+          { "type": "text", "content": "..." }
+        ] 
+      }
+    ]
+  }
+}
+```
+
+// --- END ORGANIZED_TABS ---
+
+// --- START LUXURY_GALLERY ---
+
+## Pattern: Luxury Photo Gallery
+
+An advanced image showcase with built-in filtering and a lightbox. Use this for high-end portfolios or extensive project showcases.
+
+### Required JSON (Component Type: 'gallery')
+
+```json
+{
+  "type": "gallery",
+  "variant": "grid",
+  "props": {
+    "title": "Our Portfolio",
+    "images": [
+      { "src": "...", "caption": "Classic Look", "category": "Styling" },
+      { "src": "...", "caption": "Vibrant Red", "category": "Color" }
+    ],
+    "columns": "3",
+    "aspect": "square"
+  }
+}
+```
+
+// --- END LUXURY_GALLERY ---

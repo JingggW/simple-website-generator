@@ -1,52 +1,35 @@
 export const siteStructure = {
-  "pages": {
+  pages: {
     "/": [
-      "hero_main",
+      "new_hero_team",
       "testimonials_grid",
-      "philosophy_deep"
+      "portfolio",
+      "philosophy_deep",
+      "hero_main",
+      "faq",
     ],
     "/services": [
-      "the-hook",
       "the-philosophy",
       "the-offerings",
-      "the-investment"
+      "service_details",
+      "the-investment",
     ],
-    "/team": [
-      "s_hero",
-      "s_collective",
-      "s_ritual",
-      "s_standard"
-    ],
-    "/book": [
-      "hero",
-      "blocks",
-      "form"
-    ],
-    "/contact": [
-      "hero_introduction",
-      "visit_us",
-      "services_grid",
-      "location_map",
-      "cta_band"
-    ]
+    "/team": ["s_collective", "s_ritual", "s_standard"],
+    "/book": ["blocks", "form"],
+    "/contact": ["visit_us", "services_grid", "cta_band"],
   },
-  "navigation": {
-    "header": [
-      "/",
+  navigation: {
+    header: ["/", "/services", "/team", "/contact"],
+    footer: [
+      "/services",
+      "/services",
       "/services",
       "/team",
-      "/contact"
+      "/contact",
+      "/contact",
+      "/contact",
+      "/contact",
+      "/contact",
     ],
-    "footer": [
-      "/services",
-      "/services",
-      "/services",
-      "/team",
-      "/contact",
-      "/contact",
-      "/contact",
-      "/contact",
-      "/contact"
-    ]
-  }
+  },
 };

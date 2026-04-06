@@ -1,10 +1,6 @@
 // We import the Type only, not the config file itself
 import type { Theme } from "./schema";
 
-/**
- * 🎨 PropSite-Engine 官方预设主题
- * 每一个预设都经过了对比度校准，确保符合 WCAG AA 级易用性标准。
- */
 export const THEME_PRESETS: Record<string, Theme> = {
   // 1. 经典 SaaS 风格：专业、可信、现代
   modernSaaS: {
@@ -13,16 +9,17 @@ export const THEME_PRESETS: Record<string, Theme> = {
     colors: {
       primary: "#4F46E5", // Indigo-600
       secondary: "#0F172A", // Slate-900
-      background: "#F8FAFC", // 极淡冷灰背景
-      surface: "#FFFFFF", // 纯白卡片
-      muted: "#E2E8F0", // 边框和禁用态
-      accent: "#818CF8", // 辅助亮色
-      text: "#1E293B", // 深灰蓝文字
+      background: "#F8FAFC",
+      surface: "#FFFFFF",
+      muted: "#E2E8F0",
+      accent: "#818CF8",
+      text: "#1E293B",
     },
     fontStyle: "sans",
     typographyScale: "standard",
     borderRadius: "md",
     containerStyle: "default",
+    dividerStyle: "none",
   },
 
   ecoGrowth: {
@@ -41,16 +38,16 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "lg",
     containerStyle: "default",
+    dividerStyle: "none",
   },
 
-  // 3. 2026 流行色“深梅紫”：高奢、女性化、神秘
   plumNoir: {
     mode: "dark",
     preset: "luxury",
     colors: {
-      primary: "#EFC07B", // 哑光金
-      secondary: "#5C3E94", // 浓郁梅紫
-      background: "#1A1A2E", // 午夜蓝底
+      primary: "#EFC07B",
+      secondary: "#5C3E94",
+      background: "#1A1A2E",
       surface: "#16213E",
       muted: "#0F3460",
       accent: "#EFC07B",
@@ -60,6 +57,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "editorial",
     borderRadius: "sm",
     containerStyle: "glass",
+    dividerStyle: "none",
   },
 
   elegantMinimal: {
@@ -78,15 +76,15 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "none",
     containerStyle: "default",
+    dividerStyle: "none",
   },
 
-  // 5. 极客暗黑：赛博、高能、技术感
   digitalWasabi: {
     mode: "dark",
     preset: "brutalist",
     colors: {
-      primary: "#ADFF2F", // 芥末绿 (荧光感)
-      secondary: "#1A1A1D", // 深炭黑
+      primary: "#ADFF2F",
+      secondary: "#1A1A1D",
       background: "#080808",
       surface: "#121212",
       muted: "#2A2A2A",
@@ -97,16 +95,16 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "bold",
     borderRadius: "none",
     containerStyle: "outline",
+    dividerStyle: "none",
   },
 
-  // 6. 温暖香槟：柔和、母婴、高端护理
   champagnePearl: {
     mode: "light",
     preset: "minimal",
     colors: {
-      primary: "#9B8F84", // 灰褐
-      secondary: "#C8B7A6", // 亚麻
-      background: "#F7E7CE", // 香槟色
+      primary: "#9B8F84",
+      secondary: "#C8B7A6",
+      background: "#F7E7CE",
       surface: "#FFFFFF",
       muted: "#EAD9C3",
       accent: "#2C2A28",
@@ -116,17 +114,17 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "full",
     containerStyle: "default",
+    dividerStyle: "none",
   },
 
-  // 7. 现代科技（深蓝）：适合 AI、开发者工具
   modernTech: {
     mode: "dark",
     preset: "modern",
     colors: {
       primary: "#2DD4BF", // Teal-400
       secondary: "#6366F1", // Indigo-500
-      background: "#020617", // 极深蓝黑
-      surface: "#0F172A", // 深蓝灰
+      background: "#020617",
+      surface: "#0F172A",
       muted: "#1E293B",
       accent: "#5EEAD4",
       text: "#F1F5F9",
@@ -135,9 +133,9 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "lg",
     containerStyle: "glass",
+    dividerStyle: "none",
   },
 
-  // 8. 工业钢铁：硬核、建筑、工程
   industrialSteel: {
     mode: "light",
     preset: "modern",
@@ -154,25 +152,26 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "none",
     containerStyle: "outline",
+    dividerStyle: "none",
   },
 
-  // 9. 企业信托：专业、稳重、高信任感 (适合水管工、律师)
   corporateTrust: {
     mode: "light",
     preset: "modern",
     colors: {
-      primary: "#1E40AF",    // Blue-800
-      secondary: "#64748B",  // Slate-500
+      primary: "#1E40AF", // Blue-800
+      secondary: "#64748B", // Slate-500
       background: "#FFFFFF",
       surface: "#F8FAFC",
       muted: "#F1F5F9",
-      accent: "#3B82F6",     // Blue-500
+      accent: "#3B82F6", // Blue-500
       text: "#0F172A",
     },
     fontStyle: "sans",
     typographyScale: "standard",
     borderRadius: "md",
     containerStyle: "default",
+    dividerStyle: "none",
   },
 };
 

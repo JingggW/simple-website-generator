@@ -9,7 +9,8 @@ import { z } from "zod";
 import { 
   HeroSchema, ServicesSchema, ContactSchema, 
   ContentSchema, TestimonialsSectionSchema, BlockSectionSchema,
-  PricingSchema, FormSchema, MapSchema
+  PricingSchema, FormSchema, MapSchema, CarouselSchema,
+  AccordionSchema, TabsSchema, GallerySchema
 } from "../../lib/schema";
 
 /**
@@ -26,6 +27,10 @@ const AnySectionSchema = z.discriminatedUnion("type", [
   ContentSchema,
   TestimonialsSectionSchema,
   BlockSectionSchema,
+  CarouselSchema,
+  AccordionSchema,
+  TabsSchema,
+  GallerySchema,
 ]);
 
 function getSystemContext(): { iconMap: string } {

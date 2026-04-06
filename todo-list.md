@@ -19,6 +19,10 @@
 - [x] **Spreadsheet CRM**: Secure lead capture with Calendar sync and Email alerts (Completed).
 
 ## 🛠️ Core Engine Features
+- [ ] **Carousel/Slider Section**: Implement a new section type for dynamic content display (images, testimonials).
+- [ ] **Accordion/FAQ Section**: Implement a new section type for collapsible content.
+- [ ] **Tabbed Content Section**: Implement a new section type for organizing content into tabs.
+- [ ] **Gallery/Portfolio Section**: Implement a new section type for advanced image/portfolio display.
 - [x] **Site Architect**: Structural Blueprinting (Sitemap + Page Plans) (Completed).
 - [x] **Surgical Schema Extraction**: Generators only see relevant Zod rules (Completed).
 - [x] **Master UI Designer**: Centralized branding and navigation planning (Completed).

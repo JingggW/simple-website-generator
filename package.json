@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest run",
-    "generate": "npx tsx engine/index.ts"
+    "generate": "npx tsx engine/index.ts",
+    "refine": "npx tsx scripts/refine-site-config.ts",
+    "insert-node": "npx tsx scripts/insert-node.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

@@ -14,6 +14,9 @@ You must decide which UI component is best for the content goal:
 - **`form`**: MANDATORY for contact forms, booking requests, or detailed inquiries.
 - **`map`**: MANDATORY for showing physical location or service areas.
 - **`testimonials`**: For social proof, reviews, and customer quotes.
+- **`accordion`**: For collapsible content, FAQs, and detailed disclosures.
+- **`tabs`**: For organized content categories, detailed service breakdowns, or multi-topic information.
+- **`gallery`**: For image showcases, portfolios, and advanced photography grids.
 - **`blocks`**: For everything else: long-form text, "About Us" stories, detailed history, or mixed media.
 
 ## Input

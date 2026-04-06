@@ -20,7 +20,7 @@ ${prompt}
   `, "You are an intent classifier. Output ONLY the category name.");
 
   const category = response.trim().toUpperCase();
-  const valid = ["HERO", "SERVICES", "PRICING", "FORM", "MAP", "TESTIMONIALS", "BLOCKS"];
+  const valid = ["HERO", "SERVICES", "PRICING", "FORM", "MAP", "TESTIMONIALS", "BLOCKS", "CAROUSEL", "ACCORDION", "TABS", "GALLERY"];
   
   return valid.includes(category) ? category : "BLOCKS"; // Default to blocks
 }
