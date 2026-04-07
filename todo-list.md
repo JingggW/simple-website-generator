@@ -19,10 +19,10 @@
 - [x] **Spreadsheet CRM**: Secure lead capture with Calendar sync and Email alerts (Completed).
 
 ## 🛠️ Core Engine Features
-- [ ] **Carousel/Slider Section**: Implement a new section type for dynamic content display (images, testimonials).
-- [ ] **Accordion/FAQ Section**: Implement a new section type for collapsible content.
-- [ ] **Tabbed Content Section**: Implement a new section type for organizing content into tabs.
-- [ ] **Gallery/Portfolio Section**: Implement a new section type for advanced image/portfolio display.
+- [x] **Carousel/Slider Section**: Implement a new section type for dynamic content display (images, testimonials) (Completed).
+- [x] **Accordion/FAQ Section**: Implement a new section type for collapsible content (Completed).
+- [x] **Tabbed Content Section**: Implement a new section type for organizing content into tabs (Completed).
+- [x] **Gallery/Portfolio Section**: Implement a new section type for advanced image/portfolio display (Completed).
 - [x] **Site Architect**: Structural Blueprinting (Sitemap + Page Plans) (Completed).
 - [x] **Surgical Schema Extraction**: Generators only see relevant Zod rules (Completed).
 - [x] **Master UI Designer**: Centralized branding and navigation planning (Completed).
@@ -40,7 +40,7 @@
 
 ## 🤖 Advanced AI Workflow
 - [x] **Agentic Failure Recovery**: Self-healing link repair system (Completed).
-- [ ] **Natural Language CLI**: Translator for intent-based commands.
+- [x] **Natural Language CLI**: Translator for intent-based commands (Implemented via insert-node/remove-node) (Completed).
 - [x] **Content-First Strategy**: Copy generation before JSON assembly (Completed).
 - [x] **Context-Aware Assets**: Automated placeholder image search (Completed).
 - [x] **Single-Word Keywords**: Optimized image search for better relevance (Completed).
