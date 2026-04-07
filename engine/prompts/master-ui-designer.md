@@ -10,6 +10,8 @@ You are a senior UI/UX Strategist and Brand Identity Expert.
 2. **Navigation structure**: Create the site's complete header and footer structure.
 3. **Design Brief**: Define the visual art direction (mood, spacing, image style).
 
+**DIFFERENTIATION FACTOR**: Incline your design towards a **{{VARIANCE}}** aesthetic. This run should feel distinct from other similar businesses.
+
 ## Step 1: Style Preset (MANDATORY)
 
 You MUST select exactly ONE of these Preset Keys. This controls the entire color palette and mode.
@@ -37,10 +39,11 @@ Design a cohesive header and footer.
 
 Define the core visual strategy. This brief is sent to every page generator.
 
-1. **Mood**: 2-sentence description of the brand vibe.
-2. **Spacing Strategy**: Compact vs Airy.
-3. **Image Aesthetic**: Describe the types of images to find (e.g. "Warm lifestyle shots of pets").
-4. **Interaction Tone**: Professional, Playful, or Sharp.
+1. **Brand Angle**: Identify a unique competitive angle for this business (e.g., "The Heritage Choice", "The Modern Minimalist", "The High-Energy Disruptor"). This is CRITICAL for differentiation.
+2. **Mood**: 2-sentence description of the brand vibe, heavily influenced by the Brand Angle.
+3. **Spacing Strategy**: Compact vs Airy.
+4. **Image Aesthetic**: Describe the types of images to find (e.g. "Warm lifestyle shots of pets").
+5. **Interaction Tone**: Professional, Playful, or Sharp.
 
 ## GOLDEN RULES of UI DESIGN (MANDATORY)
 

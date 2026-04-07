@@ -64,7 +64,7 @@ export const CarouselSimple = ({
     switch (variant) {
       case "images":
         return (
-          <div className="relative w-full h-[400px] md:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative w-full h-100 md:h-150 rounded-3xl overflow-hidden shadow-2xl">
             {item.imageName && (
               <Image
                 src={
@@ -78,7 +78,7 @@ export const CarouselSimple = ({
               />
             )}
             {(item.title || item.description) && (
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-16 text-white">
+              <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-16 text-white">
                 {item.title && (
                   <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-4">
                     {item.title}
@@ -145,7 +145,7 @@ export const CarouselSimple = ({
 
       case "blocks":
         return (
-          <div className="w-full min-h-[300px] flex items-center justify-center p-8 bg-surface rounded-3xl border border-secondary/10 shadow-xl">
+          <div className="w-full min-h-75 flex items-center justify-center p-8 bg-surface rounded-3xl border border-secondary/10 shadow-xl">
             <div className="flex flex-col">
               {item.blocks &&
                 item.blocks.map((block: any, index: number) => (
@@ -162,7 +162,7 @@ export const CarouselSimple = ({
 
   return (
     <div className="relative w-full overflow-hidden group">
-      <div className="relative min-h-[400px] flex items-center justify-center">
+      <div className="relative min-h-100 flex items-center justify-center">
         <AnimatePresence initial={false} custom={direction}>
           <motion.div
             key={currentIndex}

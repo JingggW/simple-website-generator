@@ -38,9 +38,15 @@ export async function generate_full_site_blueprint(
 ): Promise<SiteBlueprint> {
   console.log("📐 Stage 1: Drafting Structural Blueprint...");
 
+  // Generate a random variance factor to nudge the LLM toward unique designs
+  const variances = ["minimalist", "bold", "elegant", "disruptive", "warm", "high-tech", "artisanal", "corporate", "playful", "sophisticated"];
+  const randomVariance = variances[Math.floor(Math.random() * variances.length)];
+  console.log(`🎲 Differentiation Factor: ${randomVariance}`);
+
   // 1. Get Structure (Sitemap & Page Plans)
   const architectPrompt = loadPrompt("site-architect")
     .replace(/{{BUSINESS}}/g, `${businessName}: ${description}`)
+    .replace(/{{VARIANCE}}/g, randomVariance)
     .replace(
       /{{INSTRUCTION}}/g,
       instruction || "Create a comprehensive website structure.",
@@ -82,6 +88,7 @@ export async function generate_full_site_blueprint(
 
   const uiPrompt = loadPrompt("master-ui-designer")
     .replace(/{{BUSINESS}}/g, `${businessName}: ${description}`)
+    .replace(/{{VARIANCE}}/g, randomVariance)
     .replace(/{{SITEMAP}}/g, JSON.stringify(structure.sitemap))
     .replace(/{{SCHEMA}}/g, schema)
     .replace(/{{CAPABILITIES}}/g, capabilities);

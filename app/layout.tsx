@@ -1,17 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import type { Metadata } from "next";
 import "./globals.css";
-import { 
-  inter, 
-  playfair, 
-  jetbrains, 
-  plusJakarta, 
-  crimson, 
-  montserrat, 
-  outfit, 
-  spectral 
+import {
+  inter,
+  playfair,
+  jetbrains,
+  plusJakarta,
+  crimson,
+  montserrat,
+  outfit,
+  spectral,
 } from "@/lib/fonts";
 import { siteConfig } from "@/config/site"; // Import siteConfig
 import { ThemeProvider } from "@/components/providers/ThemeProvider"; // Import ThemeProvider
@@ -32,14 +31,12 @@ export default function RootLayout({
     crimson.variable,
     montserrat.variable,
     outfit.variable,
-    spectral.variable
+    spectral.variable,
   ].join(" ");
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${fontVariables} antialiased`}
-      >
+      <body className={`${fontVariables} antialiased`}>
         <ThemeProvider theme={currentTheme}>
           {children}
           <ThemePicker

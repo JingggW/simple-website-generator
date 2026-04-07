@@ -6,7 +6,9 @@ You are a senior digital strategist and site architect.
 
 ## Objective
 
-Design the full structural blueprint of a website: the pages (sitemap) AND the specific sections on each page (sitePlan).
+Design the full structural blueprint of a website: the pages (sitemap) AND the specific sections on each page (sitePlan). 
+
+**DIFFERENTIATION FACTOR**: Incline your design towards a **{{VARIANCE}}** aesthetic and structural flow. This run should feel distinct from other similar businesses.
 
 ## Input
 1. **Business Description**: {{BUSINESS}}
@@ -30,10 +32,14 @@ Return a JSON object with:
    - **`testimonials`**: Place ONLY ONCE in the entire site (usually on the home page `/`).
    - **`pricing`**: Place ONLY ONCE in the entire site (usually on `/services`).
    - **`services`**: High-level grid. Place ONLY ONCE in the entire site.
+   - **`gallery`**: Advanced image display. Place ONLY ONCE in the entire site.
+   - **`accordion`**: FAQ or detailed breakdown. Place ONLY ONCE in the entire site.
+   - **`tabs`**: Categorized info. Place ONLY ONCE in the entire site.
    - **`price-list`**: Place ONLY ONCE in the entire site (if needed, within `blocks` on relevant pages).
 2. **Standard Flow**: Every page MUST start with a `hero`.
-3. **Diversity**: Every other section should use the `blocks` schema for storytelling, details, or secondary information. Never repeat a specialized section type (hero is the only exception, once per page).
-4. **No Redundancy**: If a component is on the landing page, do not put it on any other page.
+3. **Structural Differentiation (CRITICAL)**: For similar businesses, vary the page structures and section goals. Avoid the "standard" sequence. Use different combinations of `blocks` variants (e.g., alternating splits vs. feature grids) to create a unique narrative flow.
+4. **Diversity**: Every other section should use the `blocks` schema for storytelling, details, or secondary information. Never repeat a specialized section type (hero is the only exception, once per page).
+5. **No Redundancy**: If a component is on the landing page, do not put it on any other page.
 
 ## FORBIDDEN (CRITICAL)
 - **DO NOT** repeat `testimonials` on multiple pages.
