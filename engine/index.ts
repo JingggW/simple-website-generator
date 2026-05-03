@@ -180,6 +180,38 @@ export class PropSiteEngine {
   }
 
   public loadConfigFromDisk(): WebsiteConfig {
+    const configDir = path.join(process.cwd(), "config");
+    const pagesDir = path.join(configDir, "pages");
+
+    // 1. Try Modular Loading (The new standard)
+    if (fs.existsSync(path.join(configDir, "theme.json")) && fs.existsSync(pagesDir)) {
+      try {
+        console.log("📂 Loading modular configuration from config/...");
+        const theme = JSON.parse(fs.readFileSync(path.join(configDir, "theme.json"), "utf-8"));
+        const header = JSON.parse(fs.readFileSync(path.join(configDir, "header.json"), "utf-8"));
+        const footer = JSON.parse(fs.readFileSync(path.join(configDir, "footer.json"), "utf-8"));
+        const crm = fs.existsSync(path.join(configDir, "crm.json")) 
+                    ? JSON.parse(fs.readFileSync(path.join(configDir, "crm.json"), "utf-8"))
+                    : {};
+
+        const pages: Record<string, any> = {};
+        const pageFiles = fs.readdirSync(pagesDir).filter(f => f.endsWith(".json"));
+
+        for (const file of pageFiles) {
+          const pageData = JSON.parse(fs.readFileSync(path.join(pagesDir, file), "utf-8"));
+          let route = file.replace(".json", "");
+          if (route === "home") route = "/";
+          else route = `/${route.replace(/-/g, "/")}`;
+          pages[route] = pageData;
+        }
+
+        return { theme, header, footer, pages, ...crm };
+      } catch (e) {
+        console.warn("⚠️ Modular config loading failed, falling back to monolith.", e);
+      }
+    }
+
+    // 2. Fallback to Monolithic JSON
     if (fs.existsSync(this.jsonPath)) {
       try {
         return JSON.parse(fs.readFileSync(this.jsonPath, "utf-8"));
@@ -187,6 +219,8 @@ export class PropSiteEngine {
         console.warn("⚠️ site.json invalid.");
       }
     }
+
+    // 3. Last Resort: TypeScript Eval
     if (fs.existsSync(this.tsPath)) {
       try {
         const content = fs.readFileSync(this.tsPath, "utf-8");
@@ -199,6 +233,7 @@ export class PropSiteEngine {
         console.error("Eval Error:", e);
       }
     }
+
     return {
       theme: {} as any,
       header: {} as any,
@@ -219,7 +254,31 @@ export class PropSiteEngine {
 
   public persist(businessName?: string) {
     const targetName = businessName || this.currentBusinessName;
+    const configDir = path.join(process.cwd(), "config");
+    const pagesDir = path.join(configDir, "pages");
 
+    // Ensure modular directories exist
+    if (!fs.existsSync(pagesDir)) fs.mkdirSync(pagesDir, { recursive: true });
+
+    // 1. Save Modular Components (The new source of truth)
+    fs.writeFileSync(path.join(configDir, "theme.json"), JSON.stringify(this.config.theme, null, 2));
+    fs.writeFileSync(path.join(configDir, "header.json"), JSON.stringify(this.config.header, null, 2));
+    fs.writeFileSync(path.join(configDir, "footer.json"), JSON.stringify(this.config.footer, null, 2));
+    
+    if (this.config.crmUrl || this.config.crmSecret) {
+      fs.writeFileSync(path.join(configDir, "crm.json"), JSON.stringify({
+        crmUrl: this.config.crmUrl,
+        crmSecret: this.config.crmSecret
+      }, null, 2));
+    }
+
+    // Save individual pages
+    for (const [pagePath, pageData] of Object.entries(this.config.pages)) {
+      const fileName = pagePath === "/" ? "home.json" : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
+      fs.writeFileSync(path.join(pagesDir, fileName), JSON.stringify(pageData, null, 2));
+    }
+
+    // 2. Save Production Monoliths (For Next.js runtime)
     const jsonContent = JSON.stringify(this.config, null, 2);
     fs.writeFileSync(this.jsonPath, jsonContent);
     fs.writeFileSync(
@@ -245,7 +304,7 @@ export class PropSiteEngine {
       `export const siteStructure = ${JSON.stringify(structure, null, 2)};`,
     );
 
-    // Only save to generated/[businessName] if a specific businessName is provided
+    // 3. Archiving (Snapshots)
     if (!targetName || targetName === "default") {
         console.warn("⚠️ Skipping saving to generated/[businessName] directory: No specific business name defined.");
         return;
@@ -265,35 +324,14 @@ export class PropSiteEngine {
       JSON.stringify(this.failures, null, 2),
     );
 
-    // Save the full blueprint as site_plan.json
-    if (this.currentBlueprint) {
-      fs.writeFileSync(
-        path.join(dir, "site_plan.json"),
-        JSON.stringify(this.currentBlueprint, null, 2),
-      );
-    }
-
-    // Explicitly save sitemap
-    fs.writeFileSync(
-      path.join(dir, "sitemap.json"),
-      JSON.stringify(Object.keys(this.config.pages), null, 2),
-    );
-
-    // Save the original blueprint plan (sections)
-    fs.writeFileSync(
-      path.join(dir, "blueprint.json"),
-      JSON.stringify(this.sitePlan, null, 2),
-    );
-
+    // Save snapshots of modular files in the archive too
+    const genPagesDir = path.join(dir, "pages");
+    if (!fs.existsSync(genPagesDir)) fs.mkdirSync(genPagesDir);
     for (const [pagePath, pageData] of Object.entries(this.config.pages)) {
-      const fileName =
-        pagePath === "/" ? "home.json" : `${sanitize(pagePath)}.json`;
-      fs.writeFileSync(
-        path.join(dir, fileName),
-        JSON.stringify(pageData, null, 2),
-      );
+        const fileName = pagePath === "/" ? "home.json" : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
+        fs.writeFileSync(path.join(genPagesDir, fileName), JSON.stringify(pageData, null, 2));
     }
-  }
+
 
   async generateFullWebsite(
     businessName: string,
@@ -507,9 +545,9 @@ export class PropSiteEngine {
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Serene Cuts & Styling",
-    "A boutique hair salon in Armadale specializing in luxury color and precision cuts. We pride ourselves on a calm, one-on-one experience.",
-    "Use the 'plumNoir' preset and a 'glass-floating' header. Create a dedicated 'Book' page using the 'appointment' form variant. Available services should include: 'Signature Cut & Style', 'Balayage Artistry', and 'Deep Conditioning Treatment'."
+    "Growing Money Minds",
+    "A financial education platform for kids and teens (ages 7-17). We bridge the gap between childhood curiosity and professional entry through practical financial literacy and career readiness courses like 'Money Foundations' and 'Getting Your First Job'.",
+    "Use the 'ecoGrowth' preset with a 'centered' header. Create dedicated pages for 'Courses', 'Coaching', and 'Contact'. On the home page, include a 'Freebies' section using a 'tabs' or 'blocks' layout to show resources for three age groups: 7-9, 10-13, and 14-17 year olds. Emphasize trust, accessibility, and empowerment."
   );
 }
 

@@ -2,7 +2,6 @@
 import type { Theme } from "./schema";
 
 export const THEME_PRESETS: Record<string, Theme> = {
-  // 1. 经典 SaaS 风格：专业、可信、现代
   modernSaaS: {
     mode: "light",
     preset: "modern",
@@ -167,11 +166,29 @@ export const THEME_PRESETS: Record<string, Theme> = {
       accent: "#3B82F6", // Blue-500
       text: "#0F172A",
     },
-    fontStyle: "sans",
-    typographyScale: "standard",
-    borderRadius: "md",
+    fontStyle: "serif",
+    typographyScale: "editorial",
+    borderRadius: "full",
     containerStyle: "default",
-    dividerStyle: "none",
+    dividerStyle: "artistic",
+  },
+  moneyMindsPastel: {
+    mode: "light",
+    preset: "modern",
+    colors: {
+      primary: "#F4ACB7",
+      secondary: "#9D8189",
+      background: "#FFE5D9",
+      surface: "#D8E2DC",
+      muted: "#FFCAD4",
+      accent: "#FFCAD4",
+      text: "#2D2327",
+    },
+    fontStyle: "serif",
+    typographyScale: "editorial",
+    borderRadius: "full",
+    containerStyle: "default",
+    dividerStyle: "artistic",
   },
 };
 

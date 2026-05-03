@@ -120,7 +120,9 @@ export async function generate_full_site_blueprint(
   if (uiRaw.footer?.brand) uiRaw.footer.brand.title = businessName;
 
   // 3. ENFORCE PRESET (The "Boutique" Fix)
-  let chosenKey = uiRaw.theme?.preset || "modernSaaS";
+  // Check if a specific preset was requested in the instruction first
+  const presetMatch = instruction.match(/['"](\w+)['"] preset/i);
+  let chosenKey = presetMatch ? presetMatch[1] : (uiRaw.theme?.preset || "modernSaaS");
 
   // Handle common LLM generic choices by mapping them to our best palettes
   const fallbackMapping: Record<string, string> = {
@@ -149,18 +151,19 @@ export async function generate_full_site_blueprint(
     );
   }
 
-  const baseThemeToUse = baseTheme || THEME_PRESETS["modernSaaS"];
+  const baseThemeToUse = { ...(baseTheme || THEME_PRESETS["modernSaaS"]) };
 
-  // 3.1 Background Brightness Enforcement (The Golden Rule)
+  // 3.1 Background Brightness Enforcement (The Golden Rule - HARD FIX)
   const isLightMode = uiRaw.theme?.mode === "light";
   const bgRgb = hexToRgbObj(baseThemeToUse.colors.background);
   const bgHsl = rgbToHsl(bgRgb.r, bgRgb.g, bgRgb.b);
 
   if (isLightMode && bgHsl.l < 90) {
     console.warn(
-      `⚠️ Background brightness (${bgHsl.l.toFixed(1)}%) is too low for Light Mode. Enforcing > 90% rule.`,
+      `⚠️ Background brightness (${bgHsl.l.toFixed(1)}%) is too low for Light Mode. HARD FIX: Forcing white background.`,
     );
-    // We don't force it to white, but we nudge it up to a safe level if it's too dark
+    baseThemeToUse.colors.background = "#FFFFFF";
+    baseThemeToUse.colors.surface = "#F9FAFB";
   }
 
   // Merge LLM design with our Preset Source of Truth

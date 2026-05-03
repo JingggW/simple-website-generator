@@ -32,6 +32,8 @@ You MUST select exactly ONE of these Preset Keys. This controls the entire color
 
 Design a cohesive header and footer.
 
+**CRITICAL NAVIGATION RULE**: Your header `links` MUST reflect the provided **SITEMAP** exactly. If the sitemap contains `/courses`, you MUST have a link for it.
+
 - **Header Variant**: Choose one from the available variants above.
 - **Announcement**: Optional top bar promo text (e.g., "Free Shipping", "Now Open in Melbourne").
 

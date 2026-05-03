@@ -4,23 +4,11 @@ import { z } from "zod";
 export const ThemeSchema = z.object({
   mode: z.enum(["light", "dark", "auto"]).default("light"),
   preset: z
-    .enum([
-      "modern",
-      "luxury",
-      "brutalist",
-      "minimal",
-      "modernSaaS",
-      "ecoGrowth",
-      "plumNoir",
-      "elegantMinimal",
-      "digitalWasabi",
-      "champagnePearl",
-      "modernTech",
-      "industrialSteel",
-      "corporateTrust",
-    ])
+    .string()
     .default("modern")
-    .describe("Global aesthetic direction"),
+    .describe(
+      "Global aesthetic direction. Standard presets: modern, luxury, brutalist, minimal, modernSaaS, ecoGrowth, plumNoir, elegantMinimal, digitalWasabi, champagnePearl, modernTech, industrialSteel, corporateTrust",
+    ),
   colors: z.object({
     primary: z.string().default("#1D4ED8").describe("Main brand color (hex)"),
     secondary: z.string().default("#6B7280").describe("Accent color (hex)"),
@@ -609,6 +597,83 @@ export const WebsiteConfigSchema = z.object({
     .describe("Secret key to authorize submissions"),
 });
 // --- END WEBSITE ---
+
+// --- START INGESTION ---
+export const BusinessProfileSchema = z.object({
+  // --- 1. Identity & Branding ---
+  bizName: z.string().describe("Official name of the business"),
+  bizType: z
+    .string()
+    .describe("Industry (e.g., 'Residential Plumber', 'Dog Groomer')"),
+  tagline: z.string().optional().describe("A short brand promise or slogan"),
+
+  // --- 2. The 'Soul' & Competition ---
+  usp: z.string().describe("Unique Selling Point: Why choose them over others?"),
+  brandVibe: z
+    .enum([
+      "luxury",
+      "minimalist",
+      "warm-friendly",
+      "bold-modern",
+      "trust-corporate",
+      "playful",
+    ])
+    .default("minimalist"),
+  story: z
+    .string()
+    .optional()
+    .describe("Brief background or mission for the 'About' section"),
+
+  // --- 3. Services (Structured Content) ---
+  services: z
+    .array(
+      z.object({
+        title: z.string().describe("Name of the service"),
+        description: z.string().describe("What it includes and benefit to customer"),
+        price: z.string().optional().describe("Starting price or 'Contact for Quote'"),
+        isPrimary: z
+          .boolean()
+          .default(false)
+          .describe("If true, this will be highlighted in the Hero section"),
+      }),
+    )
+    .min(1)
+    .max(8),
+
+  // --- 4. Local SEO (The 'Point Cook' Weapon) ---
+  location: z.object({
+    primarySuburb: z.string().describe("The main focus suburb (e.g. 'Point Cook')"),
+    fullAddress: z.string().optional().describe("Physical shop address if any"),
+    serviceAreas: z
+      .array(z.string())
+      .optional()
+      .describe("Nearby suburbs covered (e.g. ['Werribee', 'Altona'])"),
+  }),
+
+  // --- 5. Contact & Trust ---
+  contact: z.object({
+    phone: z.string().optional(),
+    email: z.string().email(),
+    whatsapp: z.string().optional(),
+    instagram: z.string().optional(),
+    facebook: z.string().optional(),
+    googleMapsLink: z.string().optional(),
+  }),
+
+  // --- 6. Assets ---
+  assets: z
+    .object({
+      logoUrl: z.string().optional(),
+      driveFolderId: z
+        .string()
+        .optional()
+        .describe("Where to find customer-provided photos"),
+    })
+    .optional(),
+});
+
+export type BusinessProfile = z.infer<typeof BusinessProfileSchema>;
+// --- END INGESTION ---
 
 export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;

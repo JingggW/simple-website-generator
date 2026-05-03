@@ -1,35 +1,52 @@
 export const siteStructure = {
-  pages: {
-    "/": [
-      "new_hero_team",
-      "testimonials_grid",
-      "portfolio",
-      "philosophy_deep",
-      "hero_main",
+  "pages": {
+    "/coaching": [
+      "section_hero",
+      "section_methodology",
+      "section_testimonials",
+      "section_pricing",
+      "section_application",
+      "section_final_push"
+    ],
+    "/contact": [
+      "hero",
+      "map",
       "faq",
+      "channels",
+      "cta"
     ],
-    "/services": [
-      "the-philosophy",
-      "the-offerings",
-      "service_details",
-      "the-investment",
+    "/courses": [
+      "hero_1",
+      "experience_2",
+      "investment_3",
+      "toolkit_4",
+      "final_push_5"
     ],
-    "/team": ["s_collective", "s_ritual", "s_standard"],
-    "/book": ["blocks", "form"],
-    "/contact": ["visit_us", "services_grid", "cta_band"],
+    "/": [
+      "section_hero",
+      "section_testimonials",
+      "section_resources",
+      "section_philosophy",
+      "section_cta"
+    ]
   },
-  navigation: {
-    header: ["/", "/services", "/team", "/contact"],
-    footer: [
-      "/services",
-      "/services",
-      "/services",
-      "/team",
-      "/contact",
-      "/contact",
-      "/contact",
-      "/contact",
-      "/contact",
+  "navigation": {
+    "header": [
+      null,
+      "/coaching",
+      "/resources",
+      "/about"
     ],
-  },
+    "footer": [
+      "/courses",
+      "/coaching",
+      "/schools",
+      "/resources/glossary",
+      "/blog",
+      "/webinars",
+      "/about",
+      "/careers",
+      "/contact"
+    ]
+  }
 };
