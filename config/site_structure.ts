@@ -3,8 +3,6 @@ export const siteStructure = {
     "/coaching": [
       "section_hero",
       "section_methodology",
-      "section_testimonials",
-      "section_pricing",
       "section_application",
       "section_final_push"
     ],

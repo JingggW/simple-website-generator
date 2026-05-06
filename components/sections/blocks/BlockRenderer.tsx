@@ -127,33 +127,39 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       );
 
     case "price-list":
-      const isMinimal = block.variant === "minimal";
+      const { variant } = block;
+      const isMinimal = variant === "minimal";
+      const isCards = variant === "cards";
+
+      const cardBaseClasses = "bg-surface rounded-[var(--border-radius)] shadow-lg border border-primary/10 transition-all duration-300 hover:scale-[1.01]";
+      const cardHeaderClasses = "text-xl font-bold mb-4 text-center";
+      const cardItemClasses = "flex justify-between items-baseline group";
+
       return (
-        <div className={`grid gap-8 ${marginClass}`}>
+        <div className={`grid gap-8 ${isCards ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : ""} ${marginClass}`}>
           {block.categories.map((category, idx) => (
             <div
               key={idx}
-              className={
-                isMinimal
-                  ? ""
-                  : "bg-surface/50 rounded-3xl p-6 md:p-8 border border-secondary/10 shadow-sm"
-              }
+              className={cn(
+                "p-6 md:p-8",
+                isCards ? cardBaseClasses : isMinimal ? "" : "bg-surface/50 rounded-[var(--border-radius)] p-6 md:p-8 border border-secondary/10 shadow-sm"
+              )}
             >
               <h3
-                className={`text-xl font-bold mb-6 ${
+                className={cn(
+                  cardHeaderClasses,
                   isMinimal
                     ? "text-primary border-b-2 border-primary/10 pb-2 inline-block"
+                    : isCards
+                    ? "text-primary"
                     : "text-on-primary bg-primary rounded-xl px-4 py-2 inline-block shadow-md"
-                }`}
+                )}
               >
                 {category.name}
               </h3>
               <div className="grid gap-4">
                 {category.items.map((item, itemIdx) => (
-                  <div
-                    key={itemIdx}
-                    className="flex justify-between items-baseline group"
-                  >
+                  <div key={itemIdx} className={cardItemClasses}>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center">
                         <span className="text-lg font-bold text-foreground group-hover:text-primary transition-colors truncate">

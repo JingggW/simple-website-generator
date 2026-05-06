@@ -120,29 +120,6 @@ export const ServicesSchema = z.object({
 });
 // --- END SERVICES ---
 
-// --- START PRICING ---
-export const PricingSchema = z.object({
-  type: z.literal("pricing"),
-  variant: z.enum(["simple", "detailed", "cards"]),
-  props: BaseSectionSchema.extend({
-    title: z.string(),
-    description: z.string().optional(),
-    categories: z.array(
-      z.object({
-        name: z.string(),
-        items: z.array(
-          z.object({
-            label: z.string(),
-            price: z.string(),
-            details: z.string().optional(),
-          }),
-        ),
-      }),
-    ),
-  }),
-});
-// --- END PRICING ---
-
 // --- START FORM ---
 export const FormSchema = z.object({
   type: z.literal("form"),
@@ -345,7 +322,7 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
   }),
   z.object({
     type: z.literal("price-list"),
-    variant: z.enum(["default", "minimal"]).default("default"),
+    variant: z.enum(["default", "minimal", "cards"]).default("default"),
     categories: z.array(
       z.object({
         name: z.string(),
@@ -565,7 +542,6 @@ export const PageSchema = z.object({
     z.discriminatedUnion("type", [
       HeroSchema,
       ServicesSchema,
-      PricingSchema,
       FormSchema,
       MapSchema,
       ContactSchema,
@@ -678,7 +654,6 @@ export type BusinessProfile = z.infer<typeof BusinessProfileSchema>;
 export type Theme = z.infer<typeof ThemeSchema>;
 export type HeroSection = z.infer<typeof HeroSchema>;
 export type ServicesSection = z.infer<typeof ServicesSchema>;
-export type PricingSection = z.infer<typeof PricingSchema>;
 export type FormSection = z.infer<typeof FormSchema>;
 export type MapSection = z.infer<typeof MapSchema>;
 export type ContactSection = z.infer<typeof ContactSchema>;
@@ -693,7 +668,6 @@ export type GallerySection = z.infer<typeof GallerySchema>;
 export type AnySection =
   | HeroSection
   | ServicesSection
-  | PricingSection
   | FormSection
   | MapSection
   | ContactSection

@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { WebsiteConfig } from "../lib/schema";
+import { refine_site_config } from "../engine/repair/sanitizer";
 
 /**
  * SITE ASSEMBLER
@@ -48,13 +49,17 @@ async function main() {
   }
 
   // 3. Construct Full Config
-  const fullConfig: WebsiteConfig = {
+  let fullConfig: WebsiteConfig = {
     theme,
     header,
     footer,
     pages,
     ...crm
   };
+
+  // 3.1 Run Final Refinery Check
+  console.log("🧹 Running final refinery (cleaning up empty items)...");
+  fullConfig = refine_site_config(fullConfig);
 
   // 4. Persist to Production Files
   const jsonContent = JSON.stringify(fullConfig, null, 2);

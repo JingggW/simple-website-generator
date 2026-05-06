@@ -23,6 +23,8 @@ import { run_visual_check } from "./operations/visual_check";
 // Types
 import { PageConfig, WebsiteConfig, Theme } from "../lib/schema";
 
+import { refine_site_config } from "../engine/repair/sanitizer";
+
 /**
  * PROPSITE ENGINE: ORCHESTRATOR
  */
@@ -184,21 +186,36 @@ export class PropSiteEngine {
     const pagesDir = path.join(configDir, "pages");
 
     // 1. Try Modular Loading (The new standard)
-    if (fs.existsSync(path.join(configDir, "theme.json")) && fs.existsSync(pagesDir)) {
+    if (
+      fs.existsSync(path.join(configDir, "theme.json")) &&
+      fs.existsSync(pagesDir)
+    ) {
       try {
         console.log("📂 Loading modular configuration from config/...");
-        const theme = JSON.parse(fs.readFileSync(path.join(configDir, "theme.json"), "utf-8"));
-        const header = JSON.parse(fs.readFileSync(path.join(configDir, "header.json"), "utf-8"));
-        const footer = JSON.parse(fs.readFileSync(path.join(configDir, "footer.json"), "utf-8"));
-        const crm = fs.existsSync(path.join(configDir, "crm.json")) 
-                    ? JSON.parse(fs.readFileSync(path.join(configDir, "crm.json"), "utf-8"))
-                    : {};
+        const theme = JSON.parse(
+          fs.readFileSync(path.join(configDir, "theme.json"), "utf-8"),
+        );
+        const header = JSON.parse(
+          fs.readFileSync(path.join(configDir, "header.json"), "utf-8"),
+        );
+        const footer = JSON.parse(
+          fs.readFileSync(path.join(configDir, "footer.json"), "utf-8"),
+        );
+        const crm = fs.existsSync(path.join(configDir, "crm.json"))
+          ? JSON.parse(
+              fs.readFileSync(path.join(configDir, "crm.json"), "utf-8"),
+            )
+          : {};
 
         const pages: Record<string, any> = {};
-        const pageFiles = fs.readdirSync(pagesDir).filter(f => f.endsWith(".json"));
+        const pageFiles = fs
+          .readdirSync(pagesDir)
+          .filter((f) => f.endsWith(".json"));
 
         for (const file of pageFiles) {
-          const pageData = JSON.parse(fs.readFileSync(path.join(pagesDir, file), "utf-8"));
+          const pageData = JSON.parse(
+            fs.readFileSync(path.join(pagesDir, file), "utf-8"),
+          );
           let route = file.replace(".json", "");
           if (route === "home") route = "/";
           else route = `/${route.replace(/-/g, "/")}`;
@@ -207,7 +224,10 @@ export class PropSiteEngine {
 
         return { theme, header, footer, pages, ...crm };
       } catch (e) {
-        console.warn("⚠️ Modular config loading failed, falling back to monolith.", e);
+        console.warn(
+          "⚠️ Modular config loading failed, falling back to monolith.",
+          e,
+        );
       }
     }
 
@@ -229,7 +249,9 @@ export class PropSiteEngine {
         );
         if (jsonMatch) return eval(`(${jsonMatch[1]})`);
       } catch (e) {
-        console.error("❌ Failed to parse siteConfig from config/site.ts using eval.");
+        console.error(
+          "❌ Failed to parse siteConfig from config/site.ts using eval.",
+        );
         console.error("Eval Error:", e);
       }
     }
@@ -253,6 +275,9 @@ export class PropSiteEngine {
   }
 
   public persist(businessName?: string) {
+    // RUN FINAL REFINERY CHECK (Prune empty items, ghost blocks, etc.)
+    this.config = refine_site_config(this.config);
+
     const targetName = businessName || this.currentBusinessName;
     const configDir = path.join(process.cwd(), "config");
     const pagesDir = path.join(configDir, "pages");
@@ -261,21 +286,43 @@ export class PropSiteEngine {
     if (!fs.existsSync(pagesDir)) fs.mkdirSync(pagesDir, { recursive: true });
 
     // 1. Save Modular Components (The new source of truth)
-    fs.writeFileSync(path.join(configDir, "theme.json"), JSON.stringify(this.config.theme, null, 2));
-    fs.writeFileSync(path.join(configDir, "header.json"), JSON.stringify(this.config.header, null, 2));
-    fs.writeFileSync(path.join(configDir, "footer.json"), JSON.stringify(this.config.footer, null, 2));
-    
+    fs.writeFileSync(
+      path.join(configDir, "theme.json"),
+      JSON.stringify(this.config.theme, null, 2),
+    );
+    fs.writeFileSync(
+      path.join(configDir, "header.json"),
+      JSON.stringify(this.config.header, null, 2),
+    );
+    fs.writeFileSync(
+      path.join(configDir, "footer.json"),
+      JSON.stringify(this.config.footer, null, 2),
+    );
+
     if (this.config.crmUrl || this.config.crmSecret) {
-      fs.writeFileSync(path.join(configDir, "crm.json"), JSON.stringify({
-        crmUrl: this.config.crmUrl,
-        crmSecret: this.config.crmSecret
-      }, null, 2));
+      fs.writeFileSync(
+        path.join(configDir, "crm.json"),
+        JSON.stringify(
+          {
+            crmUrl: this.config.crmUrl,
+            crmSecret: this.config.crmSecret,
+          },
+          null,
+          2,
+        ),
+      );
     }
 
     // Save individual pages
     for (const [pagePath, pageData] of Object.entries(this.config.pages)) {
-      const fileName = pagePath === "/" ? "home.json" : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
-      fs.writeFileSync(path.join(pagesDir, fileName), JSON.stringify(pageData, null, 2));
+      const fileName =
+        pagePath === "/"
+          ? "home.json"
+          : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
+      fs.writeFileSync(
+        path.join(pagesDir, fileName),
+        JSON.stringify(pageData, null, 2),
+      );
     }
 
     // 2. Save Production Monoliths (For Next.js runtime)
@@ -306,8 +353,10 @@ export class PropSiteEngine {
 
     // 3. Archiving (Snapshots)
     if (!targetName || targetName === "default") {
-        console.warn("⚠️ Skipping saving to generated/[businessName] directory: No specific business name defined.");
-        return;
+      console.warn(
+        "⚠️ Skipping saving to generated/[businessName] directory: No specific business name defined.",
+      );
+      return;
     }
 
     const sanitize = (s: string) =>
@@ -328,11 +377,16 @@ export class PropSiteEngine {
     const genPagesDir = path.join(dir, "pages");
     if (!fs.existsSync(genPagesDir)) fs.mkdirSync(genPagesDir);
     for (const [pagePath, pageData] of Object.entries(this.config.pages)) {
-        const fileName = pagePath === "/" ? "home.json" : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
-        fs.writeFileSync(path.join(genPagesDir, fileName), JSON.stringify(pageData, null, 2));
+      const fileName =
+        pagePath === "/"
+          ? "home.json"
+          : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
+      fs.writeFileSync(
+        path.join(genPagesDir, fileName),
+        JSON.stringify(pageData, null, 2),
+      );
     }
-
-
+  }
   async generateFullWebsite(
     businessName: string,
     description: string,
@@ -547,7 +601,7 @@ async function runPoC() {
   await engine.generateFullWebsite(
     "Growing Money Minds",
     "A financial education platform for kids and teens (ages 7-17). We bridge the gap between childhood curiosity and professional entry through practical financial literacy and career readiness courses like 'Money Foundations' and 'Getting Your First Job'.",
-    "Use the 'ecoGrowth' preset with a 'centered' header. Create dedicated pages for 'Courses', 'Coaching', and 'Contact'. On the home page, include a 'Freebies' section using a 'tabs' or 'blocks' layout to show resources for three age groups: 7-9, 10-13, and 14-17 year olds. Emphasize trust, accessibility, and empowerment."
+    "Use the 'ecoGrowth' preset with a 'centered' header. Create dedicated pages for 'Courses', 'Coaching', and 'Contact'. On the home page, include a 'Freebies' section using a 'tabs' or 'blocks' layout to show resources for three age groups: 7-9, 10-13, and 14-17 year olds. Emphasize trust, accessibility, and empowerment.",
   );
 }
 

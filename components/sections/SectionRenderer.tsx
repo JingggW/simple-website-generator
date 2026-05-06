@@ -15,7 +15,6 @@ import { ContentSimple } from "@/components/sections/content";
 import { ContactSimple } from "@/components/sections/contact";
 import { TestimonialsGrid } from "@/components/sections/testimonials";
 import { BlockSection } from "@/components/sections/blocks";
-import { PricingList, PricingCards } from "@/components/sections/pricing";
 import { RequestForm, RequestFormSplit, AppointmentForm } from "@/components/sections/form";
 import { MapEmbedded } from "@/components/sections/map";
 import { SectionDivider } from "@/components/ui/SectionDivider";
@@ -34,11 +33,6 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   services: {
     grid: ServicesGrid,
     list: ServicesList,
-  },
-  pricing: {
-    simple: PricingList,
-    detailed: PricingList,
-    cards: PricingCards,
   },
   form: {
     contact: RequestForm,

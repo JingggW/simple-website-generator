@@ -10,14 +10,13 @@ Generate a detailed content blueprint for a SINGLE section of a webpage.
 You must decide which UI component is best for the content goal:
 - **`hero`**: For high-impact introductions, announcements, or top-of-page CTAs.
 - **`services`**: For high-level grids showing 3-6 core offerings with icons.
-- **`pricing`**: MANDATORY if the goal involves a list of prices, services with costs, or tiered packages.
 - **`form`**: MANDATORY for contact forms, booking requests, or detailed inquiries.
 - **`map`**: MANDATORY for showing physical location or service areas.
 - **`testimonials`**: For social proof, reviews, and customer quotes.
 - **`accordion`**: For collapsible content, FAQs, and detailed disclosures.
 - **`tabs`**: For organized content categories, detailed service breakdowns, or multi-topic information.
 - **`gallery`**: For image showcases, portfolios, and advanced photography grids.
-- **`blocks`**: For everything else: long-form text, "About Us" stories, detailed history, or mixed media.
+- **`blocks`**: For everything else: long-form text, "About Us" stories, detailed history, or mixed media, **including pricing lists and packages**.
 
 ## Input
 1. **Business**: {{BUSINESS}}

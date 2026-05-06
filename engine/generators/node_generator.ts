@@ -9,7 +9,7 @@ import { z } from "zod";
 import { 
   HeroSchema, ServicesSchema, ContactSchema, 
   ContentSchema, TestimonialsSectionSchema, BlockSectionSchema,
-  PricingSchema, FormSchema, MapSchema, CarouselSchema,
+  FormSchema, MapSchema, CarouselSchema,
   AccordionSchema, TabsSchema, GallerySchema
 } from "../../lib/schema";
 
@@ -20,7 +20,6 @@ import {
 const AnySectionSchema = z.discriminatedUnion("type", [
   HeroSchema,
   ServicesSchema,
-  PricingSchema,
   FormSchema,
   MapSchema,
   ContactSchema,
