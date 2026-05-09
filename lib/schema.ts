@@ -37,6 +37,7 @@ export const ThemeSchema = z.object({
     .default("standard"),
   borderRadius: z.enum(["none", "sm", "md", "lg", "full"]).default("md"),
   containerStyle: z.enum(["default", "glass", "outline"]).default("default"),
+  equalHeightColumns: z.boolean().default(true).describe("Enforce equal heights for columns in grid layouts"),
   dividerStyle: z
     .enum(["none", "subtle", "artistic"])
     .default("none")

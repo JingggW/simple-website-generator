@@ -38,7 +38,7 @@ async function main() {
   }
 
   // 1. Generate the Page
-  const bizDesc = siteConfig.footer.brand.description || pageDesc;
+  const bizDesc = pageDesc || siteConfig.footer.brand.description;
 
   await engine.createFullPage(
     siteConfig.header.title || "Business",

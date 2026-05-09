@@ -18,6 +18,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "md",
     containerStyle: "default",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -37,6 +38,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "lg",
     containerStyle: "default",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -56,6 +58,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "editorial",
     borderRadius: "sm",
     containerStyle: "glass",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -75,6 +78,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "none",
     containerStyle: "default",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -94,6 +98,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "bold",
     borderRadius: "none",
     containerStyle: "outline",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -113,6 +118,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "full",
     containerStyle: "default",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -132,6 +138,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "lg",
     containerStyle: "glass",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -151,6 +158,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "standard",
     borderRadius: "none",
     containerStyle: "outline",
+    equalHeightColumns: true,
     dividerStyle: "none",
   },
 
@@ -170,6 +178,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "editorial",
     borderRadius: "full",
     containerStyle: "default",
+    equalHeightColumns: true,
     dividerStyle: "artistic",
   },
   moneyMindsPastel: {
@@ -188,6 +197,7 @@ export const THEME_PRESETS: Record<string, Theme> = {
     typographyScale: "editorial",
     borderRadius: "full",
     containerStyle: "default",
+    equalHeightColumns: true,
     dividerStyle: "artistic",
   },
 };

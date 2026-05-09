@@ -78,6 +78,19 @@ const SEMANTIC_MAP: Record<string, string> = {
   "fast": "Zap",
   "reliable": "Shield",
   
+  // Finance & Growth
+  "arrowup": "ArrowUp",
+  "trendingup": "TrendingUp",
+  "barchart": "BarChart3",
+  "piechart": "PieChart",
+  "shieldcheck": "ShieldCheck",
+  "checkcircle": "CheckCircle",
+  "money": "DollarSign",
+  "finance": "Landmark",
+  "growth": "Sprout",
+  "target": "Target",
+  "goal": "Target",
+  
   // Contact & Social
   "phone": "Phone",
   "email": "Mail",
@@ -108,7 +121,7 @@ function toPascalCase(str: string): string {
   return str
     .replace(/[^a-zA-Z0-9]/g, " ")
     .split(/\s+/)
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join("");
 }
 

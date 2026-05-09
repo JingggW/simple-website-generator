@@ -65,6 +65,7 @@ async function main() {
     typographyScale: "${themeData.typographyScale || "standard"}",
     borderRadius: "${themeData.borderRadius || "md"}",
     containerStyle: "${themeData.containerStyle || "default"}",
+    equalHeightColumns: themeData.equalHeightColumns !== false,
     dividerStyle: "${themeData.dividerStyle || "none"}",
   },`;
 

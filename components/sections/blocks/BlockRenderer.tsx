@@ -117,6 +117,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       return (
         <div
           className={`transition-all duration-300 ${positionClasses[block.position || "relative"]} ${variantClasses[block.variant || "default"]} ${bgClasses[block.background || "none"]} ${paddingClasses[block.padding || "sm"]} ${marginClass}`}
+          style={{ flexGrow: "var(--col-flex-grow, 1)" }}
         >
           <div className="flex flex-col h-full">
             {block.blocks.map((b, bIdx) => (

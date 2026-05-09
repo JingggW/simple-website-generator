@@ -8,6 +8,10 @@
 - [ ] **Prompt Engineering (Data-Injection)**: Update `site-architect.md` and `master-ui-designer.md` to surgically use fields from the Profile (e.g., specific service names).
 - [ ] **Sample Onboarding Generator**: Create a script to generate a "Gold Standard" site using a structured JSON input.
 
+### 🎨 UI/UX & Design Polish
+- [ ] **Dynamic Padding Controls**: Embed global padding/spacing adjustments into the frontend `ThemePicker.tsx` so users can dynamically scale white space (e.g., scale from `sm` to `lg` padding globally).
+- [ ] **Transition Animation Polish**: Debug `SectionDivider` animations (resolve the glitch between framer-motion slide-up and absolute positioned dividers).
+
 ### 🔥 High Priority: Infrastructure & Deployment
 - [ ] **Deployment Automation**: Refine and finalize the deployment script for automated Vercel/Cloudflare pushes.
 - [ ] **Multi-tenant Routing**: Implement `middleware.ts` for dynamic hostname-based routing.
@@ -20,6 +24,12 @@
     - [ ] **Dynamic Meta Formula**: Implement formulaic `generateMetadata`.
 - [ ] **Admin Dashboard (Lite)**: Build a simple UI for users to trigger "Natural Language" edits.
 - [ ] **Visual Differentiation Testing**: Verify the "Brand Angle" rules across similar businesses.
+
+### 🏗️ Architecture & Technical Debt
+- [ ] **Refactor Icon Management System**:
+    *   **Current State**: We use a "Fuzzy String" approach. AI picks a name -> `icon_repairer.ts` semantically maps it (e.g., "money" -> "DollarSign") and normalizes it to PascalCase -> `IconMap.tsx` tries to find it in `lucide-react`. 
+    *   **Pain Points**: The `SEMANTIC_MAP` in `icon_repairer.ts` requires constant manual updates for each new industry, and string-based mapping is fragile (case-sensitivity issues).
+    *   **Goal**: Move to a more rigid, automated system (e.g., a verified icon manifest for the AI to choose from, or a dedicated icon-selection sub-agent).
 
 ---
 

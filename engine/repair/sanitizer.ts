@@ -1,3 +1,5 @@
+import { repair_icons_recursive } from "./icon_repairer";
+
 /**
  * PROPSITE REFINERY: Programmatic Structural Repair
  * 
@@ -163,6 +165,9 @@ export function refine_page(
 /** Global Refinery for the entire WebsiteConfig */
 export function refine_site_config(config: any): any {
   if (!config || typeof config !== "object") return config;
+
+  // Run the icon repairer globally before other checks
+  config = repair_icons_recursive(config);
 
   const globalSingletons = [
     "testimonials",

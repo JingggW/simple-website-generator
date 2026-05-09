@@ -33,11 +33,19 @@ export const siteStructure = {
       "curriculum",
       "proof"
     ],
+    "/courses/money/foundations": [
+      "handshake",
+      "money_gap",
+      "methodology",
+      "curriculum",
+      "proof"
+    ],
     "/": [
       "section_hero",
-      "section_testimonials",
-      "section_resources",
-      "section_philosophy",
+      "section_core_framework",
+      "section_transformation",
+      "section_outcomes",
+      "section_toolkit",
       "section_cta"
     ]
   },

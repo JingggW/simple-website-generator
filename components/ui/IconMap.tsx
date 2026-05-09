@@ -9,7 +9,13 @@ interface IconProps {
 export const IconMap: React.FC<IconProps> = ({ name, className }) => {
   if (!name) return <LucideIcons.HelpCircle className={className} />;
 
-  // Normalize name to PascalCase (e.g., 'check' -> 'Check', 'map-pin' -> 'MapPin')
+  // 1. Try exact match first (in case AI provided correct PascalCase)
+  if ((LucideIcons as any)[name]) {
+    const ExactIcon = (LucideIcons as any)[name];
+    return <ExactIcon className={className} />;
+  }
+
+  // 2. Try normalized match (e.g., 'check-circle' -> 'CheckCircle')
   const pascalName = name
     .split(/[-_ ]/)
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
@@ -17,7 +23,6 @@ export const IconMap: React.FC<IconProps> = ({ name, className }) => {
 
   const IconComponent =
     (LucideIcons as any)[pascalName] ||
-    (LucideIcons as any)[name] ||
     LucideIcons.HelpCircle;
 
   return <IconComponent className={className} />;

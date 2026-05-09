@@ -56,6 +56,7 @@ export const DynamicThemeProvider = ({
     };
     root.style.setProperty("--scale-factor", scales[theme.typographyScale || "standard"]);
     root.style.setProperty("--preset", theme.preset || "modern");
+    root.style.setProperty("--col-flex-grow", (theme as any).equalHeightColumns !== false ? "1" : "0");
   }, [theme]);
   return <>{children}</>;
 };
