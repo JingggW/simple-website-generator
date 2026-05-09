@@ -57,7 +57,7 @@ async function main() {
   // 4. Split Pages
   if (siteConfig.pages) {
     for (const [route, pageData] of Object.entries(siteConfig.pages)) {
-      const fileName = route === "/" ? "home.json" : `${route.replace(/^\//, "").replace(/\//g, "-")}.json`;
+      const fileName = route === "/" ? "home.json" : `${route.replace(/^\//, "").replace(/\//g, "_")}.json`;
       fs.writeFileSync(
         path.join(pagesDir, fileName),
         JSON.stringify(pageData, null, 2)

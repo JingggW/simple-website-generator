@@ -47,10 +47,7 @@ async function main() {
     false, // useImages
     Object.keys(siteConfig.pages), // sitemap context
     "Professional and modern.", // design brief
-    [
-      { type: "hero", goal: `Introduction to ${pageName}` },
-      { type: "blocks", goal: pageDesc },
-    ],
+    undefined, // Pass undefined to let the AI determine the optimal page structure
     siteConfig.theme?.preset,
   );
 

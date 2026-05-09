@@ -294,6 +294,8 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
   z.object({
     type: z.literal("text"),
     content: z.string(),
+    label: z.string().optional().describe("Optional emphasis text before the content"),
+    layout: z.enum(["inline", "stacked"]).default("stacked").optional(),
     align: z.enum(["left", "center", "right"]).default("left"),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),

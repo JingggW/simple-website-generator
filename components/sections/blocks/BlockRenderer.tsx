@@ -270,10 +270,23 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         center: "text-center",
         right: "text-right",
       }[block.align || "left"];
+      
+      const isInline = block.layout === "inline";
+      
       return (
         <div
           className={`text-base md:text-lg opacity-80 leading-relaxed font-medium ${alignClasses} ${marginClass} wrap-break-word whitespace-pre-wrap`}
         >
+          {block.label && (
+            <span
+              className={cn(
+                "font-bold text-primary",
+                isInline ? "mr-2 inline" : "block mb-2 text-xl md:text-2xl"
+              )}
+            >
+              {block.label}
+            </span>
+          )}
           {block.content}
         </div>
       );

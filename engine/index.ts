@@ -318,7 +318,7 @@ export class PropSiteEngine {
       const fileName =
         pagePath === "/"
           ? "home.json"
-          : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
+          : `${pagePath.replace(/^\//, "").replace(/\//g, "_")}.json`;
       fs.writeFileSync(
         path.join(pagesDir, fileName),
         JSON.stringify(pageData, null, 2),
@@ -380,7 +380,7 @@ export class PropSiteEngine {
       const fileName =
         pagePath === "/"
           ? "home.json"
-          : `${pagePath.replace(/^\//, "").replace(/\//g, "-")}.json`;
+          : `${pagePath.replace(/^\//, "").replace(/\//g, "_")}.json`;
       fs.writeFileSync(
         path.join(genPagesDir, fileName),
         JSON.stringify(pageData, null, 2),

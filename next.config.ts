@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "fastly.picsum.photos",
       },
+      {
+        protocol: "https",
+        hostname: "via.placeholder.com",
+      },
+      {
+        protocol: "https",
+        hostname: "d1yei2z3i6k35z.cloudfront.net",
+      },
     ],
   },
 };

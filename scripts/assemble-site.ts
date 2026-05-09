@@ -42,7 +42,7 @@ async function main() {
     // Map filename back to route
     let route = file.replace(".json", "");
     if (route === "home") route = "/";
-    else route = `/${route.replace(/-/g, "/")}`;
+    else route = `/${route.replace(/_/g, "/")}`;
     
     pages[route] = pageData;
     console.log(` 📄 Included page: ${route}`);
