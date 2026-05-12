@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Check } from "lucide-react";
 import { Block } from "@/lib/schema";
 import { IconMap } from "@/components/ui/IconMap";
 import { TestimonialCard } from "../testimonials/TestimonialCard";
@@ -388,6 +389,53 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
             {block.label}
           </Link>
         </div>
+      );
+    }
+
+    case "list": {
+      const { items, marker = "bullets", variant = "simple" } = block;
+      const alignClasses = {
+        left: "text-left",
+        center: "text-center mx-auto",
+        right: "text-right ml-auto",
+      }[block.align || "left"];
+
+      const isCards = variant === "cards";
+
+      return (
+        <ul className={cn("grid gap-4 w-full", alignClasses, marginClass)}>
+          {items.map((item, idx) => (
+            <li
+              key={idx}
+              className={cn(
+                "flex items-start gap-4 transition-all duration-300",
+                isCards
+                  ? "bg-surface p-6 rounded-2xl border border-secondary/5 shadow-sm hover:shadow-md hover:scale-[1.01]"
+                  : "py-1"
+              )}
+            >
+              {/* Marker Logic */}
+              {marker !== "none" && (
+                <div className="mt-1 flex-shrink-0">
+                  {marker === "checkmarks" ? (
+                    <div className="bg-primary/10 p-1 rounded-full">
+                      <Check className="w-4 h-4 text-primary" />
+                    </div>
+                  ) : marker === "ordered" ? (
+                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-primary text-on-primary text-xs font-bold">
+                      {idx + 1}
+                    </span>
+                  ) : (
+                    <div className="w-2 h-2 rounded-full bg-primary mt-2" />
+                  )}
+                </div>
+              )}
+              <span className={cn("text-base md:text-lg opacity-90 leading-relaxed font-medium", isCards ? "text-foreground" : "")}>
+                {item}
+              </span>
+            </li>
+          ))}
+        </ul>
       );
     }
 

@@ -9,8 +9,10 @@
 - [ ] **Sample Onboarding Generator**: Create a script to generate a "Gold Standard" site using a structured JSON input.
 
 ### 🎨 UI/UX & Design Polish
-- [ ] **Dynamic Padding Controls**: Embed global padding/spacing adjustments into the frontend `ThemePicker.tsx` so users can dynamically scale white space (e.g., scale from `sm` to `lg` padding globally).
-- [ ] **Transition Animation Polish**: Debug `SectionDivider` animations (resolve the glitch between framer-motion slide-up and absolute positioned dividers).
+- [ ] **Dynamic Padding Controls**: Embed global padding/spacing adjustments into the frontend `ThemePicker.tsx`.
+- [ ] **Global Shadow Controls**: Implement a systematic way to control shadow depth and intensity (e.g., none, soft, deep, neon) across buttons and containers, with potential frontend picker integration.
+- [ ] **Configurable Hero Corners**: Add support for toggling border-radius on Hero sections (e.g., bleed vs contained with rounded corners).
+- [ ] **Transition Animation Polish**: Debug `SectionDivider` animations.
 
 ### 🔥 High Priority: Infrastructure & Deployment
 - [ ] **Deployment Automation**: Refine and finalize the deployment script for automated Vercel/Cloudflare pushes.

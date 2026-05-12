@@ -14,8 +14,10 @@ export const HeroSplit = ({
   ctaLink,
   imageName,
   imagePosition = "right",
-}: HeroSplitProps) => {
+  background = "default", // Get the background prop
+}: HeroSplitProps & { background?: string }) => {
   const isImageLeft = imagePosition === "left";
+  const isDarkBg = background === "primary" || background === "secondary";
 
   return (
     <section>
@@ -28,12 +30,22 @@ export const HeroSplit = ({
         >
           {/* Text Column */}
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-4xl md:text-6xl font-black text-foreground leading-[1.1] mb-6 tracking-tight">
+            <h1
+              className={cn(
+                "text-4xl md:text-6xl font-black leading-[1.1] mb-6 tracking-tight",
+                isDarkBg ? "text-current" : "text-foreground",
+              )}
+            >
               {headline}
             </h1>
 
             {subheadline && (
-              <p className="text-lg md:text-xl text-secondary mb-8 leading-relaxed max-w-xl">
+              <p
+                className={cn(
+                  "text-lg md:text-xl mb-8 leading-relaxed max-w-xl",
+                  isDarkBg ? "text-current/90" : "text-secondary",
+                )}
+              >
                 {subheadline}
               </p>
             )}
@@ -41,7 +53,12 @@ export const HeroSplit = ({
             {ctaText && (
               <Link
                 href={ctaLink || "#"}
-                className="inline-flex items-center px-10 py-4 text-base font-black uppercase tracking-[0.2em] text-on-primary bg-primary rounded-full hover:scale-105 transition-all shadow-xl shadow-primary/20"
+                className={cn(
+                  "inline-flex items-center px-10 py-4 text-base font-black uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all shadow-2xl",
+                  isDarkBg
+                    ? "bg-foreground text-background shadow-black/40"
+                    : "bg-primary text-on-primary shadow-primary/30",
+                )}
               >
                 {ctaText}
                 <ArrowRight className="ml-2 w-5 h-5" />

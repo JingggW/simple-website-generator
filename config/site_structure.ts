@@ -4,7 +4,6 @@ export const siteStructure = {
       "about_hero",
       "about_founder_new",
       "about_proof",
-      "about_workshops",
       "section_application"
     ],
     "/coaching": [
@@ -19,21 +18,7 @@ export const siteStructure = {
       "channels",
       "cta"
     ],
-    "/courses": [
-      "hero_1",
-      "experience_2",
-      "investment_3",
-      "toolkit_4",
-      "final_push_5"
-    ],
     "/courses/money-foundations": [
-      "handshake",
-      "money_gap",
-      "methodology",
-      "curriculum",
-      "proof"
-    ],
-    "/courses/money/foundations": [
       "handshake",
       "money_gap",
       "methodology",
@@ -47,6 +32,12 @@ export const siteStructure = {
       "section_outcomes",
       "section_toolkit",
       "section_cta"
+    ],
+    "/resources": [
+      "hero_1",
+      "experience_2",
+      "toolkit_4",
+      "final_push_5"
     ]
   },
   "navigation": {

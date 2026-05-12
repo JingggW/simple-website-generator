@@ -202,6 +202,7 @@ export const LinkSchema = z.object({
 export const DropdownSchema = z.object({
   type: z.literal("dropdown"),
   label: z.string(),
+  href: z.string().optional().describe("Optional link for the top-level label"),
   items: z.array(LinkSchema),
 });
 
@@ -380,6 +381,14 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     columns: z.enum(["2", "3", "4"]).default("3"),
     gap: z.enum(["none", "sm", "md", "lg"]).default("md"),
     aspect: z.enum(["square", "video", "portrait", "auto"]).default("square"),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+  }),
+  z.object({
+    type: z.literal("list"),
+    items: z.array(z.string()).min(1),
+    marker: z.enum(["bullets", "ordered", "checkmarks", "none"]).default("bullets"),
+    variant: z.enum(["simple", "cards"]).default("simple"),
+    align: z.enum(["left", "center", "right"]).default("left"),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
 ]);

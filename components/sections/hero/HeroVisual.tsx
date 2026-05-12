@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { HeroSection } from "@/lib/schema";
+import { cn } from "@/lib/utils";
 
 type HeroVisualProps = HeroSection["props"];
 
@@ -12,9 +13,15 @@ export const HeroVisual = ({
   ctaText,
   ctaLink,
   imageName,
-}: HeroVisualProps) => {
+  width = "bleed",
+}: HeroVisualProps & { width?: string }) => {
+  const isBleed = width === "bleed";
+
   return (
-    <section className="relative w-full min-h-[80vh] flex items-center justify-center overflow-hidden py-12 md:py-16">
+    <section className={cn(
+      "relative w-full overflow-hidden transition-all duration-500",
+      isBleed ? "min-h-[80vh]" : "container mx-auto px-0 min-h-[70vh]" // Removed rounded-3xl and margins
+    )}>
       {/* Background Image with Overlay */}
       {imageName && (
         <div className="absolute inset-0 z-0">
@@ -34,8 +41,11 @@ export const HeroVisual = ({
       )}
 
       {/* Content */}
-      <div className="container relative z-10 mx-auto px-6 text-center pb-6 md:pb-8">
-        <div className="max-w-4xl mx-auto space-y-8">
+      <div className={cn(
+        "container relative z-10 mx-auto px-6 text-center pb-6 md:pb-8 flex flex-col items-center justify-center min-h-inherit",
+        isBleed ? "min-h-[80vh]" : "min-h-[70vh]"
+      )}>
+        <div className="max-w-4xl mx-auto space-y-8 py-12 md:py-20">
           <h1 className="text-5xl md:text-8xl font-black text-white leading-tight tracking-tighter uppercase drop-shadow-2xl">
             {headline}
           </h1>

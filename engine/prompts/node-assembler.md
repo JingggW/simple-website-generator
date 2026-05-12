@@ -26,6 +26,10 @@ Convert a single node's content blueprint into a strictly valid, schema-complian
 - **`gallery`**: Must use the images -> src/alt/caption structure. (Note: `gallery` is a full section, while `image-grid` is a block type).
 - **`blocks`**: Use the `spacing` property (`sm`, `md`, `lg`) on individual blocks to create visual breathing room. Large gaps between headings and text are encouraged for a modern look.
 - **`price-list`**: Must follow the categories -> items structure exactly.
+- **`list`**: Use for simple or structured lists. 
+  - `items`: An array of strings. 
+  - `marker`: Choose `bullets`, `ordered` (1, 2, 3), or `checkmarks`. 
+  - `variant`: Use `cards` for a more premium, structured look.
 - **Multi-Column Layouts (CRITICAL)**: When using `type: "columns"`, the `items` array represents the COLUMNS themselves.
   - For a `3-col` layout, the `items` array MUST contain exactly THREE objects.
   - For a `4-col` layout, the `items` array MUST contain exactly FOUR objects.

@@ -36,11 +36,16 @@ const Logo = ({ title }: { title: string }) => (
   </Link>
 );
 
-const NavItem = ({ item, index }: { item: any; index: number }) => {
+const NavItem = ({ item, index, mounted }: { item: any; index: number; mounted: boolean }) => {
   if (item.type === "dropdown") {
     return (
       <NavigationMenuItem key={index}>
-        <NavigationMenuTrigger className="bg-transparent text-foreground/80 hover:text-primary transition-colors font-bold uppercase tracking-widest text-[11px]">
+        <NavigationMenuTrigger 
+          onClick={() => {
+            if (mounted && item.href) window.location.href = item.href;
+          }}
+          className="bg-transparent text-foreground/80 hover:text-primary transition-colors font-bold uppercase tracking-widest text-[11px]"
+        >
           {item.label}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
@@ -175,7 +180,7 @@ export const Navbar = ({ config }: NavbarProps) => {
               <NavigationMenu className="hidden md:block">
                 <NavigationMenuList>
                   {leftLinks.map((item, idx) => (
-                    <NavItem item={item} key={idx} index={idx} />
+                    <NavItem item={item} key={idx} index={idx} mounted={mounted} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -193,7 +198,7 @@ export const Navbar = ({ config }: NavbarProps) => {
                   <NavigationMenu className="hidden md:block pt-2">
                     <NavigationMenuList className="gap-6">
                       {config.links.map((item, idx) => (
-                        <NavItem item={item} key={idx} index={idx} />
+                        <NavItem item={item} key={idx} index={idx} mounted={mounted} />
                       ))}
                     </NavigationMenuList>
                   </NavigationMenu>
@@ -203,7 +208,7 @@ export const Navbar = ({ config }: NavbarProps) => {
               <NavigationMenu className="hidden md:block">
                 <NavigationMenuList className="gap-2">
                   {config.links.map((item, idx) => (
-                    <NavItem item={item} key={idx} index={idx} />
+                    <NavItem item={item} key={idx} index={idx} mounted={mounted} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -216,7 +221,7 @@ export const Navbar = ({ config }: NavbarProps) => {
               <NavigationMenu className="hidden md:block">
                 <NavigationMenuList>
                   {rightLinks.map((item, idx) => (
-                    <NavItem item={item} key={idx} index={idx} />
+                    <NavItem item={item} key={idx} index={idx} mounted={mounted} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -225,7 +230,7 @@ export const Navbar = ({ config }: NavbarProps) => {
             {!isSideDrawer && config.cta && (
               <Link
                 href={config.cta.href || "#"}
-                className="hidden md:inline-flex items-center justify-center rounded-full bg-primary px-6 py-2 text-[10px] font-black uppercase tracking-widest text-on-primary shadow-xl hover:scale-105 transition-transform"
+                className="hidden md:inline-flex items-center justify-center rounded-full bg-primary border border-primary/10 px-6 py-3 text-[10px] font-black uppercase tracking-widest text-on-primary shadow-xl hover:shadow-primary/20 hover:scale-105 transition-all duration-300"
               >
                 {config.cta.label}
               </Link>
@@ -248,11 +253,37 @@ export const Navbar = ({ config }: NavbarProps) => {
                     </SheetHeader>
                     <nav className="flex flex-col gap-6">
                       {config.links.map((item, idx) => {
-                        const href = item.type === "link" ? item.href : "#";
+                        if (item.type === "dropdown") {
+                          return (
+                            <div key={idx} className="flex flex-col gap-4">
+                              {/* Dropdown Label as a link if href exists */}
+                              <Link
+                                href={item.href || "#"}
+                                className="text-3xl font-black uppercase tracking-tighter text-foreground hover:text-primary transition-all"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                {item.label}
+                              </Link>
+                              {/* Sub-links */}
+                              <div className="flex flex-col gap-3 pl-4 border-l-2 border-primary/20">
+                                {item.items.map((sub: any, subIdx: number) => (
+                                  <Link
+                                    key={subIdx}
+                                    href={sub.href || "#"}
+                                    className="text-xl font-bold uppercase tracking-tight text-secondary hover:text-primary transition-all"
+                                    onClick={() => setIsOpen(false)}
+                                  >
+                                    {sub.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            </div>
+                          );
+                        }
                         return (
                           <Link
                             key={idx}
-                            href={href || "#"}
+                            href={item.href || "#"}
                             className="text-3xl font-black uppercase tracking-tighter hover:text-primary transition-all hover:pl-2"
                             onClick={() => setIsOpen(false)}
                           >
