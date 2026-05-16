@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import { FormSection } from "@/lib/schema";
-import { siteConfig } from "@/config/site";
+import { useFormSubmit } from "@/components/hooks/useFormSubmit";
 
 type FormProps = FormSection["props"];
 
@@ -14,41 +14,7 @@ const FormInner = ({
   fields: FormProps["fields"];
   submitLabel: string;
 }) => {
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!siteConfig.crmUrl) {
-      console.warn("⚠️ CRM URL not configured.");
-      alert("Form is in demo mode. No CRM URL found.");
-      return;
-    }
-
-    setStatus("loading");
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-
-    // Inject Metadata & Security
-    const payload = {
-      ...data,
-      ps_secret: siteConfig.crmSecret,
-      ps_source: window.location.pathname,
-      ps_type: "Split/Request"
-    };
-
-    try {
-      await fetch(siteConfig.crmUrl, {
-        method: "POST",
-        mode: "no-cors",
-        body: JSON.stringify(payload),
-        headers: { "Content-Type": "application/json" },
-      });
-      setStatus("success");
-    } catch (error) {
-      console.error("CRM Submission Error:", error);
-      setStatus("error");
-    }
-  };
+  const { status, setStatus, handleSubmit } = useFormSubmit();
 
   if (status === "success") {
     return (

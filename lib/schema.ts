@@ -579,6 +579,10 @@ export const WebsiteConfigSchema = z.object({
     .string()
     .optional()
     .describe("Google Apps Script URL for form submissions"),
+  crmSheetId: z
+    .string()
+    .optional()
+    .describe("Google Sheet ID for CRM storage"),
   crmSecret: z
     .string()
     .optional()

@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "rootDir": "../", /* Tell TS the root is the parent directory so we can import from ../lib */
+    "baseUrl": "../"
+  },
+  "include": ["src/**/*", "../lib/**/*"],
+  "exclude": ["node_modules", "../node_modules", "../app", "../components"]
+}
