@@ -47,3 +47,18 @@ todo-list.md
 config/
 generated/
 
+# Credentials & API Keys
+rymee-engine-*.json
+service-account*.json
+credentials.json
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Backend API (Cloud Run)
+rymee-api/node_modules/
+rymee-api/dist/
+rymee-api/.env
+rymee-api/.env.*
+
