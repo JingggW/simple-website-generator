@@ -599,9 +599,9 @@ export class PropSiteEngine {
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Growing Money Minds",
-    "A financial education platform for kids and teens (ages 7-17). We bridge the gap between childhood curiosity and professional entry through practical financial literacy and career readiness courses like 'Money Foundations' and 'Getting Your First Job'.",
-    "Use the 'ecoGrowth' preset with a 'centered' header. Create dedicated pages for 'Courses', 'Coaching', and 'Contact'. On the home page, include a 'Freebies' section using a 'tabs' or 'blocks' layout to show resources for three age groups: 7-9, 10-13, and 14-17 year olds. Emphasize trust, accessibility, and empowerment.",
+    "Rymee",
+    "A local tech team helping small businesses own their online presence with lightning-fast, zero-maintenance websites and CRM tools at radically low costs. We solve the problem of missed leads and outdated tech.",
+    "Use a modern, premium design. Create a Home page explaining our 3 services: 1) The Rapid Launch, 2) The Rymee Engine, 3) Concierge Edits. Create an About page for the team, and a Contact page. The primary CTA should be 'Get a Free Demo'."
   );
 }
 

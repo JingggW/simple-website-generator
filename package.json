@@ -10,7 +10,9 @@
     "test": "vitest run",
     "generate": "npx tsx engine/index.ts",
     "refine": "npx tsx scripts/refine-site-config.ts",
-    "insert-node": "npx tsx scripts/insert-node.ts"
+    "insert-node": "npx tsx scripts/insert-node.ts",
+    "screenshot": "npx tsx scripts/take-screenshots.ts",
+    "clean-shots": "npx tsx scripts/clear-screenshots.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -33,6 +35,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.1.5",
+    "playwright": "^1.60.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^3.2.4"

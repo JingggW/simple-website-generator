@@ -46,6 +46,7 @@ todo-list.md
 # PropSite Credentials & Generated Content
 config/
 generated/
+screenshots/
 
 # Credentials & API Keys
 rymee-engine-*.json

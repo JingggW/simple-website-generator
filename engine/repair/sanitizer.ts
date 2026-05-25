@@ -99,6 +99,46 @@ export function refine_page(
         }
       }
 
+      // 2.5 SMART ASPECT RATIO LOGIC FOR SPLIT COLUMNS
+      if (val && val.type === "columns" && val.layout === "split" && Array.isArray(val.items)) {
+        const calculateTextLength = (blocks: any[]): number => {
+          let length = 0;
+          for (const block of blocks) {
+            if (block.type === "text" && block.content) length += block.content.length;
+            else if (block.type === "heading" && block.text) length += block.text.length;
+            else if (block.type === "list" && block.items) length += block.items.join(" ").length;
+          }
+          return length;
+        };
+
+        const findImageBlock = (blocks: any[]) => blocks.find((b: any) => b.type === "image");
+
+        // Iterate through items in pairs (0 & 1, 2 & 3, etc.)
+        for (let i = 0; i < val.items.length; i += 2) {
+          if (i + 1 >= val.items.length) break; // Incomplete pair
+
+          const col1 = val.items[i]?.blocks || [];
+          const col2 = val.items[i + 1]?.blocks || [];
+
+          const col1TextLen = calculateTextLength(col1);
+          const col2TextLen = calculateTextLength(col2);
+          const col1Image = findImageBlock(col1);
+          const col2Image = findImageBlock(col2);
+
+          if (col1TextLen > 0 && col2Image && !findImageBlock(col1)) {
+            if (col1TextLen < 250) col2Image.aspect = "video";
+            else if (col1TextLen < 500) col2Image.aspect = "square";
+            else col2Image.aspect = "portrait";
+            console.log(`⚖️  Auto-balanced image aspect to '${col2Image.aspect}' based on text length (${col1TextLen} chars) in row ${i/2}`);
+          } else if (col2TextLen > 0 && col1Image && !findImageBlock(col2)) {
+            if (col2TextLen < 250) col1Image.aspect = "video";
+            else if (col2TextLen < 500) col1Image.aspect = "square";
+            else col1Image.aspect = "portrait";
+            console.log(`⚖️  Auto-balanced image aspect to '${col1Image.aspect}' based on text length (${col2TextLen} chars) in row ${i/2}`);
+          }
+        }
+      }
+
       // 3. HERO CTA REFINERY
       if (
         val.type === "hero" &&
