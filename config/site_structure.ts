@@ -6,7 +6,6 @@ export const siteStructure = {
       "local-ethos-section"
     ],
     "/contact": [
-      "hero",
       "process",
       "map",
       "form",
@@ -16,11 +15,9 @@ export const siteStructure = {
       "hero_01",
       "story_split_01",
       "features_01",
-      "testimonials_01",
-      "cta_01"
+      "testimonials_01"
     ],
     "/services": [
-      "hero-main",
       "rymee-engine",
       "pricing",
       "faq"

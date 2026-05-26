@@ -71,10 +71,14 @@ export async function generate_node(
   // 3. SURGICAL DESIGN TOKEN EXTRACTION
   // We look for which pattern the strategist chose (e.g. "SPLIT" or "FEATURE_GRID")
   let designGuidance = "";
-  if (nodeBlueprintRaw.toUpperCase().includes("SPLIT")) {
+  const blueprintText = nodeBlueprintRaw || "";
+  
+  if (blueprintText.toUpperCase().includes("SPLIT")) {
     designGuidance = getDesignToken("layouts", "SPLIT");
-  } else if (nodeBlueprintRaw.toUpperCase().includes("GRID")) {
+  } else if (blueprintText.toUpperCase().includes("GRID")) {
     designGuidance = getDesignToken("layouts", "FEATURE_GRID");
+  } else {
+    designGuidance = getDesignToken("layouts", "SIMPLE");
   }
 
   // 4. STAGE 2: ASSEMBLY
@@ -96,7 +100,12 @@ ${nodeBlueprintRaw}
 ${assemblerPrompt}
   `, "You are a senior developer. Use the provided Design Guidance to structure the JSON.");
 
+  if (!nodeJsonRaw) {
+    throw new Error("LLM returned null or empty response during Node Assembly.");
+  }
+
   try {
+    console.log("🛠️  Parsing Node JSON...");
     const rawJson = nodeJsonRaw.replace(/```json|```/g, "").trim();
     const parsed = JSON.parse(rawJson);
 
@@ -105,8 +114,9 @@ ${assemblerPrompt}
       AnySectionSchema,
       `Node: ${nodeId}`
     );
-  } catch (error) {
+  } catch (error: any) {
     console.error("❌ Node Generation Failed:", error);
-    throw error;
+    console.error("📄 Raw LLM Output was:", nodeJsonRaw);
+    throw new Error(`Failed to generate node '${nodeId}': ${error.message}`);
   }
 }

@@ -88,11 +88,12 @@ const BaseSectionSchema = z.object({
 // --- START HERO ---
 export const HeroSchema = z.object({
   type: z.literal("hero"),
-  variant: z.enum(["simple", "split", "visual", "editorial"]),
+  variant: z.enum(["simple", "split", "visual", "floating"]),
   props: BaseSectionSchema.extend({
-    headline: z.string(),
-    subheadline: z.string().optional(),
-    ctaText: z.string().optional(),
+    hookLine: z.string().describe("1. Catchy hook line or vision"),
+    coreValueProp: z.string().describe("2. Core value proposition in large text"),
+    subText: z.string().describe("3. Problem/Solution subtext"),
+    primaryCTA: z.string().describe("4. Action-oriented CTA button text"),
     ctaLink: z.string().optional().describe("Internal path or anchor"),
     imageName: z.string().optional(),
     imagePosition: z.enum(["left", "right"]).default("right").optional(),
