@@ -14,13 +14,13 @@ export const siteStructure = {
     "/": [
       "hero_01",
       "story_split_01",
-      "features_01",
-      "testimonials_01"
+      "demo_gallery",
+      "service_stack"
     ],
     "/services": [
-      "rymee-engine",
-      "pricing",
-      "faq"
+      "step_01_pick",
+      "step_02_preview",
+      "step_03_launch"
     ]
   },
   "navigation": {

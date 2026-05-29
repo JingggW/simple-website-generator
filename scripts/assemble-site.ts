@@ -17,6 +17,9 @@ import { refine_site_config } from "../engine/repair/sanitizer";
  */
 
 async function main() {
+  const args = process.argv.slice(2);
+  const noBalance = args.includes("--no-balance");
+
   const configDir = path.join(process.cwd(), "config");
   const pagesDir = path.join(configDir, "pages");
   const productionJsonPath = path.join(configDir, "site.json");
@@ -59,14 +62,14 @@ async function main() {
 
   // 3.1 Run Final Refinery Check
   console.log("🧹 Running final refinery (cleaning up empty items)...");
-  fullConfig = refine_site_config(fullConfig);
+  fullConfig = refine_site_config(fullConfig, { noBalance });
 
   // 4. Persist to Production Files
   const jsonContent = JSON.stringify(fullConfig, null, 2);
   fs.writeFileSync(productionJsonPath, jsonContent);
   fs.writeFileSync(
     productionTsPath,
-    `import { WebsiteConfig } from "@/lib/schema";\n\nexport const siteConfig: WebsiteConfig = ${jsonContent};`
+    `import { WebsiteConfig } from "@/lib/schema";\n\nexport const siteConfig: WebsiteConfig = ${jsonContent} as unknown as WebsiteConfig;`
   );
 
   // 5. Generate Structure (for AI context)

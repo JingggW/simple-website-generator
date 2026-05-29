@@ -330,7 +330,7 @@ export class PropSiteEngine {
     fs.writeFileSync(this.jsonPath, jsonContent);
     fs.writeFileSync(
       this.tsPath,
-      `import { WebsiteConfig } from "@/lib/schema";\n\nexport const siteConfig: WebsiteConfig = ${jsonContent};`,
+      `import { WebsiteConfig } from "@/lib/schema";\n\nexport const siteConfig: WebsiteConfig = ${jsonContent} as unknown as WebsiteConfig;`,
     );
 
     const pagesStructure: Record<string, string[]> = {};

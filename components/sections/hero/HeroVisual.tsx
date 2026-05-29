@@ -8,9 +8,10 @@ import { cn } from "@/lib/utils";
 type HeroVisualProps = HeroSection["props"];
 
 export const HeroVisual = ({
-  headline,
-  subheadline,
-  ctaText,
+  hookLine,
+  coreValueProp,
+  subText,
+  primaryCTA,
   ctaLink,
   imageName,
   width = "bleed",
@@ -31,7 +32,7 @@ export const HeroVisual = ({
                 ? imageName
                 : `/${imageName.replace(/^\//, "")}`
             }
-            alt={headline}
+            alt={coreValueProp}
             fill
             className="object-cover"
             priority
@@ -46,23 +47,29 @@ export const HeroVisual = ({
         isBleed ? "min-h-[80vh]" : "min-h-[70vh]"
       )}>
         <div className="max-w-4xl mx-auto space-y-8 py-12 md:py-20">
-          <h1 className="text-5xl md:text-8xl font-black text-white leading-tight tracking-tighter uppercase drop-shadow-2xl">
-            {headline}
-          </h1>
-
-          {subheadline && (
-            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
-              {subheadline}
+          {hookLine && (
+            <p className="text-xs font-black uppercase tracking-[0.3em] text-white/80">
+              {hookLine}
             </p>
           )}
 
-          {ctaText && (
+          <h1 className="text-5xl md:text-8xl font-black text-white leading-tight tracking-tighter uppercase drop-shadow-2xl">
+            {coreValueProp}
+          </h1>
+
+          {subText && (
+            <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
+              {subText}
+            </p>
+          )}
+
+          {primaryCTA && (
             <div className="pt-8">
               <Link
                 href={ctaLink || "#"}
                 className="inline-flex items-center px-12 py-5 text-sm font-black uppercase tracking-[0.3em] text-black bg-white rounded-full hover:bg-primary hover:text-on-primary transition-all duration-500 shadow-2xl hover:scale-105"
               >
-                {ctaText}
+                {primaryCTA}
                 <ArrowRight className="ml-3 w-5 h-5" />
               </Link>
             </div>

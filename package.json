@@ -10,6 +10,8 @@
     "test": "vitest run",
     "generate": "npx tsx engine/index.ts",
     "refine": "npx tsx scripts/refine-site-config.ts",
+    "assemble": "npx tsx scripts/assemble-site.ts",
+    "assemble:no-balance": "npx tsx scripts/assemble-site.ts --no-balance",
     "insert-node": "npx tsx scripts/insert-node.ts",
     "screenshot": "npx tsx scripts/take-screenshots.ts",
     "clean-shots": "npx tsx scripts/clear-screenshots.ts"

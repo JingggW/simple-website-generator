@@ -8,9 +8,10 @@ import { cn } from "@/lib/utils";
 type HeroEditorialProps = HeroSection["props"];
 
 export const HeroEditorial = ({
-  headline,
-  subheadline,
-  ctaText,
+  hookLine,
+  coreValueProp,
+  subText,
+  primaryCTA,
   ctaLink,
   imageName,
   imagePosition = "right",
@@ -23,7 +24,7 @@ export const HeroEditorial = ({
         <div className="space-y-16">
           {/* 1. Massive Editorial Headline */}
           <h1 className="text-6xl md:text-[10vw] font-black text-foreground leading-[0.9] tracking-tighter uppercase wrap-break-word">
-            {headline}
+            {coreValueProp}
           </h1>
 
           {/* 2. Asymmetric Content Grid */}
@@ -47,7 +48,7 @@ export const HeroEditorial = ({
                         ? imageName
                         : `/${imageName.replace(/^\//, "")}`
                     }
-                    alt={headline}
+                    alt={coreValueProp}
                     fill
                     className="object-cover"
                   />
@@ -63,18 +64,18 @@ export const HeroEditorial = ({
                 isImageLeft ? "md:order-1" : "md:order-2",
               )}
             >
-              {subheadline && (
+              {subText && (
                 <p className="text-xl md:text-2xl text-secondary font-serif italic leading-relaxed">
-                  {subheadline}
+                  {subText}
                 </p>
               )}
 
-              {ctaText && (
+              {primaryCTA && (
                 <Link
                   href={ctaLink || "#"}
                   className="group inline-flex items-center text-sm font-black uppercase tracking-[0.4em] text-foreground border-b-2 border-primary pb-2 hover:text-primary transition-all"
                 >
-                  {ctaText}
+                  {primaryCTA}
                   <ArrowRight className="ml-4 w-5 h-5 transition-transform group-hover:translate-x-2" />
                 </Link>
               )}

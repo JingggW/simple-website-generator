@@ -36,7 +36,7 @@ async function main() {
       siteTsPath,
       `import { WebsiteConfig } from "@/lib/schema";
 
-export const siteConfig: WebsiteConfig = ${jsonContent};`
+export const siteConfig: WebsiteConfig = ${jsonContent} as unknown as WebsiteConfig;`
     );
 
     console.log(`✅ Font switched to: "${chosenFont}"`);

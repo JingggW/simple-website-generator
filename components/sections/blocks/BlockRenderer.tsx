@@ -31,17 +31,27 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         "split-left": "grid-cols-1 md:grid-cols-[2fr_1fr]",
         "split-right": "grid-cols-1 md:grid-cols-[1fr_2fr]",
       };
+      const isSplit = ["split", "split-left", "split-right"].includes(block.layout || "split") && block.items?.length === 2;
+      const isImageFirst = isSplit &&
+        block.items[0]?.blocks?.some((b: any) => b.type === "image") &&
+        !block.items[1]?.blocks?.some((b: any) => b.type === "image");
+
       return (
         <div
           className={`grid gap-8 lg:gap-12 items-stretch ${layoutClasses[block.layout || "split"]} ${marginClass}`}
         >
-          {block.items.map((col, idx) => (
-            <div key={idx} className="flex flex-col h-full">
-              {col.blocks.map((b, bIdx) => (
-                <BlockRenderer key={bIdx} block={b} />
-              ))}
-            </div>
-          ))}
+          {block.items.map((col, idx) => {
+            const orderClass = isImageFirst
+              ? (idx === 0 ? "order-2 md:order-1" : "order-1 md:order-2")
+              : "";
+            return (
+              <div key={idx} className={`flex flex-col h-full ${orderClass}`}>
+                {col.blocks.map((b, bIdx) => (
+                  <BlockRenderer key={bIdx} block={b} />
+                ))}
+              </div>
+            );
+          })}
         </div>
       );
 
@@ -107,7 +117,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         default: "rounded-[var(--border-radius)]",
         card: "rounded-[var(--border-radius)] shadow-xl border border-white/10",
         glass: "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
-        outline: "rounded-[var(--border-radius)] border-2 border-primary/20 bg-transparent",
+        outline: "rounded-3xl border-2 border-primary/20 bg-background",
       };
       const positionClasses = {
         relative: "relative",
@@ -395,9 +405,9 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
     case "list": {
       const { items, marker = "bullets", variant = "simple" } = block;
       const alignClasses = {
-        left: "text-left",
-        center: "text-center mx-auto",
-        right: "text-right ml-auto",
+        left: "justify-items-start",
+        center: "justify-items-center",
+        right: "justify-items-end",
       }[block.align || "left"];
 
       const isCards = variant === "cards";
@@ -408,7 +418,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
             <li
               key={idx}
               className={cn(
-                "flex items-start gap-4 transition-all duration-300",
+                "flex items-start gap-4 transition-all duration-300 w-fit",
                 isCards
                   ? "bg-surface p-6 rounded-2xl border border-secondary/5 shadow-sm hover:shadow-md hover:scale-[1.01]"
                   : "py-1"

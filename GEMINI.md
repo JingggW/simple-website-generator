@@ -64,6 +64,8 @@ To efficiently manage multiple client websites from a single codebase, PropSite 
 - `npm run generate`: Triggers the `runPoC` in `engine/index.ts` to build a full site.
 - `npm run dev`: Starts the Next.js development server to preview generated sites.
 - `npm run lint`: Ensures code quality and schema alignment.
+- `npm run assemble`: Assembles modular config files into the production `site.ts`/`site.json` using the layout balancing refiner.
+- `npm run assemble:no-balance`: Assembles configs while bypassing the layout balancing refiner (preserves manually defined aspect ratios).
 
 ---
 *Note: This file is a foundational mandate for Gemini CLI and takes precedence over general defaults.*

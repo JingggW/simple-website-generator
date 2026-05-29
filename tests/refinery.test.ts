@@ -12,8 +12,10 @@ describe("Refine Page CTA Anchor Links", () => {
           type: "hero",
           variant: "visual",
           props: {
-            headline: "Meet Our Team",
-            ctaText: "Meet the Team",
+            hookLine: "Meet Our Team",
+            coreValueProp: "Meet Our Team",
+            subText: "Meet Our Team",
+            primaryCTA: "Meet the Team",
             ctaLink: "/team", // Self-referencing link
             imageName: "team.jpg",
             background: "default",
@@ -59,7 +61,7 @@ describe("Refine Page CTA Anchor Links", () => {
 
     const heroSection = refinedPage.sections.hero_section;
     expect(heroSection.props.ctaLink).toBe("/team#collective");
-    expect(heroSection.props.ctaText).toBe("Meet the Team"); // Text should remain
+    expect(heroSection.props.primaryCTA).toBe("Meet the Team"); // Text should remain
   });
 
   it("should remove hero CTA if self-referencing and no semantic match for anchor", () => {
@@ -71,8 +73,10 @@ describe("Refine Page CTA Anchor Links", () => {
           type: "hero",
           variant: "simple",
           props: {
-            headline: "About Our Company",
-            ctaText: "Learn More",
+            hookLine: "About Our Company",
+            coreValueProp: "About Our Company",
+            subText: "About Our Company",
+            primaryCTA: "Learn More",
             ctaLink: "/about", // Self-referencing link
             background: "default",
             animation: "slide-up",
@@ -107,7 +111,7 @@ describe("Refine Page CTA Anchor Links", () => {
 
     const heroSection = refinedPage.sections.hero_section;
     expect(heroSection.props.ctaLink).toBeUndefined(); // Link should be removed
-    expect(heroSection.props.ctaText).toBeUndefined(); // Text should also be removed if link is removed
+    expect(heroSection.props.primaryCTA).toBeUndefined(); // Text should also be removed if link is removed
   });
 
   it("should not modify CTA if it links to a different page", () => {
@@ -119,8 +123,10 @@ describe("Refine Page CTA Anchor Links", () => {
           type: "hero",
           variant: "simple",
           props: {
-            headline: "Welcome Home",
-            ctaText: "Go to Services",
+            hookLine: "Welcome Home",
+            coreValueProp: "Welcome Home",
+            subText: "Welcome Home",
+            primaryCTA: "Go to Services",
             ctaLink: "/services", // Different page
             background: "default",
             animation: "slide-up",
@@ -143,6 +149,6 @@ describe("Refine Page CTA Anchor Links", () => {
 
     const heroSection = refinedPage.sections.hero_section;
     expect(heroSection.props.ctaLink).toBe("/services"); // Should remain unchanged
-    expect(heroSection.props.ctaText).toBe("Go to Services"); // Should remain unchanged
+    expect(heroSection.props.primaryCTA).toBe("Go to Services"); // Should remain unchanged
   });
 });

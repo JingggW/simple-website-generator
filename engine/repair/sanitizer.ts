@@ -1,4 +1,5 @@
 import { repair_icons_recursive } from "./icon_repairer";
+import { THEME_PRESETS } from "../../lib/theme-presets";
 
 /**
  * PROPSITE REFINERY: Programmatic Structural Repair
@@ -11,11 +12,28 @@ export function refine_page(
   page: any,
   themePreset?: string,
   pagePath?: string,
+  options?: { noBalance?: boolean },
 ): any {
   if (!page || typeof page !== "object") return page;
 
   // Deep clone to avoid mutation issues
   const refined = JSON.parse(JSON.stringify(page));
+
+  let scaleFactor = 1.0;
+  if (themePreset) {
+    if (typeof themePreset === "object") {
+      const themeObj: any = themePreset;
+      const scaleStr = themeObj.typographyScale || "standard";
+      if (scaleStr === "editorial") scaleFactor = 1.2;
+      else if (scaleStr === "bold") scaleFactor = 1.4;
+    } else if (typeof themePreset === "string") {
+      const preset = THEME_PRESETS[themePreset];
+      if (preset && preset.typographyScale) {
+        if (preset.typographyScale === "editorial") scaleFactor = 1.2;
+        else if (preset.typographyScale === "bold") scaleFactor = 1.4;
+      }
+    }
+  }
 
   const isLuxury = [
     "plumNoir",
@@ -99,16 +117,143 @@ export function refine_page(
         }
       }
 
-      // 2.5 SMART ASPECT RATIO LOGIC FOR SPLIT COLUMNS
-      if (val && val.type === "columns" && val.layout === "split" && Array.isArray(val.items)) {
-        const calculateTextLength = (blocks: any[]): number => {
-          let length = 0;
+      // 2.5 SMART ASPECT RATIO LOGIC FOR SPLIT COLUMNS (HEIGHT-BASED)
+      if (!options?.noBalance && val && val.type === "columns" && val.layout === "split" && Array.isArray(val.items)) {
+        const estimateTextHeight = (blocks: any[], scale: number): number => {
+          let totalHeight = 0;
+          const colWidth = 550; // Reference column width on desktop
+
           for (const block of blocks) {
-            if (block.type === "text" && block.content) length += block.content.length;
-            else if (block.type === "heading" && block.text) length += block.text.length;
-            else if (block.type === "list" && block.items) length += block.items.join(" ").length;
+            if (!block) continue;
+
+            const getSpacingHeight = (spacing: string) => {
+              if (spacing === "none") return 0;
+              if (spacing === "sm") return 12;
+              if (spacing === "lg") return 36;
+              return 24; // "md" or default
+            };
+
+            switch (block.type) {
+              case "heading": {
+                let blockHeight = 0;
+                if (block.eyebrow) {
+                  const eyebrowFontSize = 14 * scale;
+                  const eyebrowLineHeight = eyebrowFontSize * 1.4;
+                  const charsPerLine = Math.floor(colWidth / (eyebrowFontSize * 0.55));
+                  const lines = Math.ceil(block.eyebrow.length / Math.max(1, charsPerLine));
+                  blockHeight += lines * eyebrowLineHeight + 8;
+                }
+
+                const level = block.level || "h2";
+                let fontSize = 30;
+                let lineHeightMult = 1.3;
+                if (level === "display") { fontSize = 48; lineHeightMult = 1.2; }
+                else if (level === "editorial" || level === "h1") { fontSize = 36; lineHeightMult = 1.3; }
+                else if (level === "h2") { fontSize = 30; lineHeightMult = 1.3; }
+                else if (level === "h3") { fontSize = 24; lineHeightMult = 1.4; }
+
+                const scaledFontSize = fontSize * scale;
+                const lineHeight = scaledFontSize * lineHeightMult;
+                const charsPerLine = Math.floor(colWidth / (scaledFontSize * 0.55));
+                const lines = Math.ceil((block.text || "").length / Math.max(1, charsPerLine));
+                blockHeight += lines * lineHeight;
+                blockHeight += getSpacingHeight(block.spacing);
+                totalHeight += blockHeight;
+                break;
+              }
+
+              case "text": {
+                let blockHeight = 0;
+                const bodyFontSize = 16 * scale;
+                const bodyLineHeight = bodyFontSize * 1.6;
+                const charsPerLine = Math.floor(colWidth / (bodyFontSize * 0.5));
+                
+                let textLen = (block.content || "").length;
+                if (block.label) {
+                  if (block.layout === "inline") {
+                    textLen += block.label.length;
+                  } else {
+                    const labelFontSize = 14 * scale;
+                    const labelLineHeight = labelFontSize * 1.4;
+                    const labelCharsPerLine = Math.floor(colWidth / (labelFontSize * 0.55));
+                    const labelLines = Math.ceil(block.label.length / Math.max(1, labelCharsPerLine));
+                    blockHeight += labelLines * labelLineHeight + 8;
+                  }
+                }
+                
+                const lines = Math.ceil(textLen / Math.max(1, charsPerLine));
+                blockHeight += lines * bodyLineHeight;
+                blockHeight += getSpacingHeight(block.spacing);
+                totalHeight += blockHeight;
+                break;
+              }
+
+              case "button": {
+                totalHeight += 48 + getSpacingHeight(block.spacing);
+                break;
+              }
+
+              case "list": {
+                let blockHeight = 0;
+                const bodyFontSize = 16 * scale;
+                const bodyLineHeight = bodyFontSize * 1.6;
+                const charsPerLine = Math.floor(colWidth / (bodyFontSize * 0.5)) - 4;
+                
+                const items = block.items || [];
+                for (const item of items) {
+                  const lines = Math.ceil(item.length / Math.max(1, charsPerLine));
+                  blockHeight += lines * bodyLineHeight + 8;
+                }
+                blockHeight += getSpacingHeight(block.spacing);
+                totalHeight += blockHeight;
+                break;
+              }
+
+              case "feature": {
+                let blockHeight = 0;
+                if (block.title) {
+                  const titleFontSize = 24 * scale;
+                  const titleLineHeight = titleFontSize * 1.4;
+                  const charsPerLine = Math.floor(colWidth / (titleFontSize * 0.55));
+                  const lines = Math.ceil(block.title.length / Math.max(1, charsPerLine));
+                  blockHeight += lines * titleLineHeight + 8;
+                }
+                if (block.description) {
+                  const descFontSize = 16 * scale;
+                  const descLineHeight = descFontSize * 1.6;
+                  const charsPerLine = Math.floor(colWidth / (descFontSize * 0.5));
+                  const lines = Math.ceil(block.description.length / Math.max(1, charsPerLine));
+                  blockHeight += lines * descLineHeight;
+                }
+                blockHeight += getSpacingHeight(block.spacing);
+                totalHeight += blockHeight;
+                break;
+              }
+
+              case "spacer": {
+                const size = block.size || "md";
+                if (size === "sm") totalHeight += 16;
+                else if (size === "lg") totalHeight += 64;
+                else if (size === "xl") totalHeight += 96;
+                else totalHeight += 32;
+                break;
+              }
+
+              case "icon": {
+                const size = block.size || "md";
+                if (size === "sm") totalHeight += 24;
+                else if (size === "lg") totalHeight += 48;
+                else totalHeight += 32;
+                totalHeight += getSpacingHeight(block.spacing);
+                break;
+              }
+
+              default:
+                break;
+            }
           }
-          return length;
+
+          return totalHeight;
         };
 
         const findImageBlock = (blocks: any[]) => blocks.find((b: any) => b.type === "image");
@@ -120,21 +265,21 @@ export function refine_page(
           const col1 = val.items[i]?.blocks || [];
           const col2 = val.items[i + 1]?.blocks || [];
 
-          const col1TextLen = calculateTextLength(col1);
-          const col2TextLen = calculateTextLength(col2);
+          const col1Height = estimateTextHeight(col1, scaleFactor);
+          const col2Height = estimateTextHeight(col2, scaleFactor);
           const col1Image = findImageBlock(col1);
           const col2Image = findImageBlock(col2);
 
-          if (col1TextLen > 0 && col2Image && !findImageBlock(col1)) {
-            if (col1TextLen < 250) col2Image.aspect = "video";
-            else if (col1TextLen < 500) col2Image.aspect = "square";
+          if (col1Height > 0 && col2Image && !findImageBlock(col1)) {
+            if (col1Height < 250) col2Image.aspect = "video";
+            else if (col1Height < 500) col2Image.aspect = "square";
             else col2Image.aspect = "portrait";
-            console.log(`⚖️  Auto-balanced image aspect to '${col2Image.aspect}' based on text length (${col1TextLen} chars) in row ${i/2}`);
-          } else if (col2TextLen > 0 && col1Image && !findImageBlock(col2)) {
-            if (col2TextLen < 250) col1Image.aspect = "video";
-            else if (col2TextLen < 500) col1Image.aspect = "square";
+            console.log(`⚖️  Auto-balanced image aspect to '${col2Image.aspect}' based on estimated text height (${Math.round(col1Height)}px) in row ${i/2}`);
+          } else if (col2Height > 0 && col1Image && !findImageBlock(col2)) {
+            if (col2Height < 250) col1Image.aspect = "video";
+            else if (col2Height < 500) col1Image.aspect = "square";
             else col1Image.aspect = "portrait";
-            console.log(`⚖️  Auto-balanced image aspect to '${col1Image.aspect}' based on text length (${col2TextLen} chars) in row ${i/2}`);
+            console.log(`⚖️  Auto-balanced image aspect to '${col1Image.aspect}' based on estimated text height (${Math.round(col2Height)}px) in row ${i/2}`);
           }
         }
       }
@@ -203,7 +348,7 @@ export function refine_page(
 }
 
 /** Global Refinery for the entire WebsiteConfig */
-export function refine_site_config(config: any): any {
+export function refine_site_config(config: any, options?: { noBalance?: boolean }): any {
   if (!config || typeof config !== "object") return config;
 
   // Run the icon repairer globally before other checks
@@ -265,7 +410,7 @@ export function refine_site_config(config: any): any {
           }
         }
       }
-      config.pages[path] = refine_page(config.pages[path], config.theme?.preset, path);
+      config.pages[path] = refine_page(config.pages[path], config.theme?.preset, path, options);
     }
   }
   return config;

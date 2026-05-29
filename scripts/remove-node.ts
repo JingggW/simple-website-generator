@@ -36,10 +36,10 @@ async function main() {
 
         // Attempt to extract title/description from common section types
         if ('props' in section) {
-            // Check for headline in Hero section
-            if (section.type === 'hero' && 'headline' in section.props) {
-                title = section.props.headline;
-                desc = section.props.subheadline;
+            // Check for headline/core value prop in Hero section
+            if (section.type === 'hero') {
+                title = (section.props as any).coreValueProp || (section.props as any).headline;
+                desc = (section.props as any).subText || (section.props as any).subheadline;
             }
             // Check for title/description in other sections
             if ('title' in section.props) {

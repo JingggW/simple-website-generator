@@ -48,7 +48,7 @@ async function main() {
   fs.writeFileSync(path.join(configDir, "site.json"), JSON.stringify(siteJson, null, 2));
 
   // 2. Regenerate config/site.ts
-  const siteTsContent = `import { WebsiteConfig } from "@/lib/schema";\n\nexport const siteConfig: WebsiteConfig = ${JSON.stringify(siteJson, null, 2)};`;
+  const siteTsContent = `import { WebsiteConfig } from "@/lib/schema";\n\nexport const siteConfig: WebsiteConfig = ${JSON.stringify(siteJson, null, 2)} as unknown as WebsiteConfig;`;
   fs.writeFileSync(path.join(configDir, "site.ts"), siteTsContent);
 
   // 3. Update site_structure.ts (Minimal version)
