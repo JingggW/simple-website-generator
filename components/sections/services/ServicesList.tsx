@@ -53,14 +53,9 @@ export const ServicesList = ({ title, description, items }: ServicesProps) => {
                   </div>
                 ) : (
                   <div className="aspect-16/10 bg-secondary/5 flex items-center justify-center">
-                    {item.icon ? (
-                      <IconMap
-                        name={item.icon}
-                        className="w-20 h-20 text-secondary/20"
-                      />
-                    ) : (
-                      <div className="w-20 h-20 bg-secondary/10 rounded-full" />
-                    )}
+                    <div className="text-5xl font-black text-secondary/35 uppercase">
+                      {item.title ? item.title.charAt(0) : ""}
+                    </div>
                   </div>
                 )}
               </div>

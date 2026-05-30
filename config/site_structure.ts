@@ -1,14 +1,13 @@
 export const siteStructure = {
   "pages": {
     "/about": [
-      "handshake-section",
-      "team-grid-section",
-      "local-ethos-section"
+      "founder-story",
+      "founder-intro",
+      "core-values"
     ],
     "/contact": [
       "process",
       "map",
-      "form",
       "assurance"
     ],
     "/": [

@@ -18,6 +18,7 @@ export function refine_page(
 
   // Deep clone to avoid mutation issues
   const refined = JSON.parse(JSON.stringify(page));
+  const splitColumnImages: { imageBlock: any; textHeight: number }[] = [];
 
   let scaleFactor = 1.0;
   if (themePreset) {
@@ -118,7 +119,7 @@ export function refine_page(
       }
 
       // 2.5 SMART ASPECT RATIO LOGIC FOR SPLIT COLUMNS (HEIGHT-BASED)
-      if (!options?.noBalance && val && val.type === "columns" && val.layout === "split" && Array.isArray(val.items)) {
+      if (!options?.noBalance && val && val.type === "columns" && typeof val.layout === "string" && val.layout.startsWith("split") && Array.isArray(val.items)) {
         const estimateTextHeight = (blocks: any[], scale: number): number => {
           let totalHeight = 0;
           const colWidth = 550; // Reference column width on desktop
@@ -271,15 +272,9 @@ export function refine_page(
           const col2Image = findImageBlock(col2);
 
           if (col1Height > 0 && col2Image && !findImageBlock(col1)) {
-            if (col1Height < 250) col2Image.aspect = "video";
-            else if (col1Height < 500) col2Image.aspect = "square";
-            else col2Image.aspect = "portrait";
-            console.log(`⚖️  Auto-balanced image aspect to '${col2Image.aspect}' based on estimated text height (${Math.round(col1Height)}px) in row ${i/2}`);
+            splitColumnImages.push({ imageBlock: col2Image, textHeight: col1Height });
           } else if (col2Height > 0 && col1Image && !findImageBlock(col2)) {
-            if (col2Height < 250) col1Image.aspect = "video";
-            else if (col2Height < 500) col1Image.aspect = "square";
-            else col1Image.aspect = "portrait";
-            console.log(`⚖️  Auto-balanced image aspect to '${col1Image.aspect}' based on estimated text height (${Math.round(col2Height)}px) in row ${i/2}`);
+            splitColumnImages.push({ imageBlock: col1Image, textHeight: col2Height });
           }
         }
       }
@@ -340,6 +335,40 @@ export function refine_page(
   };
 
   walk(refined);
+
+  // Apply page-level aspect ratio consistency for split column images
+  if (!options?.noBalance && splitColumnImages.length > 0) {
+    const totalHeight = splitColumnImages.reduce((sum, item) => sum + item.textHeight, 0);
+    const avgHeight = totalHeight / splitColumnImages.length;
+
+    let unifiedAspect = "portrait";
+    if (avgHeight < 180) unifiedAspect = "video";
+    else if (avgHeight < 500) unifiedAspect = "square";
+
+    // Exception: Upgrade portrait subjects from video to square to prevent weird cropping
+    if (unifiedAspect === "video") {
+      const hasPortraitSubject = splitColumnImages.some((item) => {
+        const textToTest = `${item.imageBlock.alt || ""} ${item.imageBlock.src || ""}`.toLowerCase();
+        return textToTest.includes("portrait") || 
+               textToTest.includes("jing") || 
+               textToTest.includes("avatar") || 
+               textToTest.includes("founder") || 
+               textToTest.includes("person") || 
+               textToTest.includes("team") ||
+               textToTest.includes("member") ||
+               textToTest.includes("profile");
+      });
+      if (hasPortraitSubject) {
+        unifiedAspect = "square";
+      }
+    }
+
+    console.log(`⚖️ Page-level Layout Balancing: Enforcing unified '${unifiedAspect}' aspect ratio for ${splitColumnImages.length} images based on average text height of ${Math.round(avgHeight)}px on page ${pagePath || "unknown"}`);
+
+    for (const item of splitColumnImages) {
+      item.imageBlock.aspect = unifiedAspect;
+    }
+  }
 
   // 2. Second pass: Catch sections that became empty after the walk
   pruneEmptySections(refined);

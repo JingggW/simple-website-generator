@@ -9,7 +9,7 @@ Generate a detailed content blueprint for a SINGLE section of a webpage.
 ## Component Selection Rules (IMPORTANT)
 You must decide which UI component is best for the content goal:
 - **`hero`**: For high-impact introductions, announcements, or top-of-page CTAs.
-- **`services`**: For high-level grids showing 3-6 core offerings with icons.
+- **`services`**: For high-level grids showing 3-6 core offerings (relying on images or typography, no icons).
 - **`form`**: MANDATORY for contact forms, booking requests, or detailed inquiries.
 - **`map`**: MANDATORY for showing physical location or service areas.
 - **`testimonials`**: For social proof, reviews, and customer quotes.

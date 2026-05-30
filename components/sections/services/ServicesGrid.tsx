@@ -39,11 +39,9 @@ export const ServicesGrid = ({ title, description, items }: ServicesProps) => {
                     />
                   ) : (
                     <div className="w-full h-full bg-secondary/5 flex items-center justify-center">
-                      {item.icon ? (
-                        <IconMap name={item.icon} className="h-12 w-12 text-primary" />
-                      ) : (
-                        <div className="h-12 w-12 bg-primary/20 rounded-full" />
-                      )}
+                      <div className="text-3xl font-black text-primary/40 uppercase">
+                        {item.title ? item.title.charAt(0) : ""}
+                      </div>
                     </div>
                   )}
                 </div>

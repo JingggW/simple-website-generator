@@ -68,11 +68,6 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         <div
           className={`flex ${isHorizontal ? "flex-row gap-6" : "flex-col"} ${alignClassesFeature} ${marginClass}`}
         >
-          {block.icon && (
-            <div className={isHorizontal ? "mt-1" : "mb-4"}>
-              <IconMap name={block.icon} className="w-10 h-10 text-primary" />
-            </div>
-          )}
           <div className="flex-1">
             {block.title && (
               <h4
@@ -225,14 +220,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         right: "justify-end",
       }[block.align || "left"];
 
-      return (
-        <div className={`flex w-full ${alignClasses} ${marginClass}`}>
-          <IconMap
-            name={block.name}
-            className={`${iconSizes[block.size || "md"]} ${iconColors[block.color || "primary"]}`}
-          />
-        </div>
-      );
+      return null;
 
     case "heading": {
       const Tag = (

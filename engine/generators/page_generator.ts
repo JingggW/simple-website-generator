@@ -61,6 +61,7 @@ ${usedGlobalSections.join("\n") || "None yet."}
     const contentPrompt = loadPrompt("content-strategist")
       .replace(/{{BUSINESS}}/g, businessName)
       .replace(/{{PATH}}/g, targetPath)
+      .replace(/{{DESCRIPTION}}/g, description)
       .replace(/{{SITEMAP}}/g, currentSitemap.join(", "))
       .replace(/{{GENERATED_MAP}}/g, generatedMap || "None yet.")
       .replace(

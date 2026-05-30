@@ -58,18 +58,20 @@ export const HeroSplit = ({
             </p>
 
             {primaryCTA && (
-              <Link
-                href={ctaLink || "#"}
-                className={cn(
-                  "inline-flex items-center px-10 py-4 text-base font-black uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all shadow-2xl",
-                  isDarkBg
-                    ? "bg-foreground text-background shadow-black/40"
-                    : "bg-primary text-on-primary shadow-primary/30",
-                )}
-              >
-                {primaryCTA}
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
+              <div className="pt-4">
+                <Link
+                  href={ctaLink || "#"}
+                  className={cn(
+                    "inline-flex items-center px-10 py-4 text-base font-black uppercase tracking-[0.2em] rounded-full hover:scale-105 transition-all shadow-2xl",
+                    isDarkBg
+                      ? "bg-foreground text-background shadow-black/40"
+                      : "bg-primary text-on-primary shadow-primary/30",
+                  )}
+                >
+                  {primaryCTA}
+                  <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
+              </div>
             )}
           </div>
 

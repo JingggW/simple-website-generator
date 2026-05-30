@@ -72,19 +72,15 @@ Use the **blocks** schema for ALL OTHER CONTENT, including:
 - **NO SINGLETON COLUMNS**: Never use `type: "columns"` if you only have one item of content.
 - **DO NOT** use `pricing` section types (it is deprecated). Use `blocks`.
 - **DO NOT** use `hero` more than once per page.
-- **NO ICONS FOR LUXURY**: Never use icons for boutique, luxury, or high-end professional brands. Typography and imagery are the only acceptable visual assets.
+- **NO ICONS ALLOWED**: NEVER use icons anywhere on any page. Icons are completely forbidden in our design system. Under no circumstances should you generate `feature` blocks that contain icons, nor specify an `icon` key in any blocks or sections. Instead, use clean typography, text blocks, containers, images, or buttons.
 - **NO OVERLAPS**: NEVER use `position: "absolute-..."` for containers unless you are explicitly creating a "text-on-image" overlay. Standard content MUST use `position: "relative"` to prevent ugly overlapping.
 - **NO FAT HEROS**: Keep `hero` subheadlines concise. Avoid excessive internal spacing in hero sections to ensure they don't push the main content too far down.
 
 ## Constraints
 1. **Schema Strict**: Strictly follow the provided Zod schema:
 {{SCHEMA}}
-2. **Icon Usage (THE MINIMALIST RULE)**:
-   - **CRITICAL**: For non-luxury brands (e.g., standard trade services), use icons sparingly. 
-   - **LIMIT**: Do NOT include more than **3 icons** in total for the entire page. 
-   - **PLACEMENT**: Only use icons if they are essential for clarifying a list of services or features. 
-   - If you use an icon, provide a descriptive name (e.g., 'wellness', 'delivery') and the engine will repair it.
-   - **VISUAL UNITY**: When an `icon` block is used, you MUST set its `spacing` to `"none"`.
+2. **Icon Usage (FORBIDDEN)**:
+   - **CRITICAL**: Do NOT use features with icons or specify any icon names. All sections must rely purely on clean layout, images, and typography.
 3. **Visual Variety & Safety (THE SPACING RULE)**:
    - **LUXURY MANDATE**: For 'luxury' or 'boutique' vibes, whitespace is critical. **NEVER** use `padding: "none"` for sections containing text, heroes, or maps. Use `padding: "md"` or `"lg"` to create an editorial feel.
    - **Sections**:

@@ -63,3 +63,5 @@ rymee-api/dist/
 rymee-api/.env
 rymee-api/.env.*
 
+# AI CLI Setup
+.antigravitycli

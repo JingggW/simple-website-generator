@@ -20,8 +20,8 @@ Design the content flow and component structure for a specific webpage.
 
 Inside a `blocks` section, you can request:
 
-- **Features & Highlights**: Use the `feature` block (combines icon + title + description). Choose from `vertical`, `horizontal`, or `compact` variants.
-- **Service/Feature Grids**: Request columns with card containers and icons.
+- **Features & Highlights**: Use clean text, headings, or columns blocks (do NOT use icons).
+- **Service/Feature Grids**: Request columns with card containers (do NOT use icons).
 - **Pricing Menus**: Request the specialized `price-list` block (can be 'minimal' or 'default').
 - **Storytelling**: Request "Alternating Split" layouts for processes.
 - **Client Spotlights**: Request individual `testimonial-card` blocks.
@@ -30,7 +30,7 @@ Inside a `blocks` section, you can request:
 You must create a logical, non-repetitive flow:
 1. **Variety**: Never use the same layout pattern twice on one page.
 2. **Breathability & Safety (CRITICAL)**:
-   - **No Mushing**: Do NOT dump multiple data points (like address, phone, and hours) into a single `text` block. Use separate `feature` blocks or a `price-list`.
+   - **No Mushing**: Do NOT dump multiple data points (like address, phone, and hours) into a single `text` block. Use separate text blocks or columns or a `price-list`.
    - **No Overlapping**: Do NOT plan for overlapping content. Ensure each piece of information has its own clear space.
    - **Column Logic**: If text is long or titles are complex (e.g. "Performance-First Activewear"), avoid `4-col` layouts. Use `3-col` or `split` to prevent ugly word breaking.
    - **Concise Hero**: The `hero` section should be a concise "handshake" with the visitor. Avoid massive subheadlines that make the section too tall.
@@ -44,9 +44,10 @@ You must create a logical, non-repetitive flow:
 
 1. **Business**: {{BUSINESS}}
 2. **Page Path**: {{PATH}}
-3. **Full Sitemap**: {{SITEMAP}}
-4. **Already Generated (CONTEXT)**: {{GENERATED_MAP}}
-5. **Master Page Plan**: {{PAGE_PLAN}} (MANDATORY: Follow these goals.)
+3. **Page Description / Content Brief**: {{DESCRIPTION}}
+4. **Full Sitemap**: {{SITEMAP}}
+5. **Already Generated (CONTEXT)**: {{GENERATED_MAP}}
+6. **Master Page Plan**: {{PAGE_PLAN}} (MANDATORY: Follow these goals.)
 
 ## Output Requirements
 For each section, provide:
@@ -54,7 +55,7 @@ For each section, provide:
 2. **Goal**: Describe the layout (e.g., "3-col feature grid with cards" or "Full-bleed cinematic image").
 3. **Title**: Impactful headline.
 4. **Copy**: The actual text content.
-5. **Visuals**: Description of images or icons needed.
+5. **Visuals**: Description of images needed. DO NOT request icons; icons are completely forbidden in our design.
 6. **Width**: `prose`, `default`, `wide`, `full`, or `bleed`.
 7. **Padding**: `none`, `sm`, `md`, or `lg`. (Use `sm` or `none` for Hero sections with colored backgrounds to keep them compact).
 8. **Background**: `default`, `muted`, `surface`, `primary`, or `secondary`.

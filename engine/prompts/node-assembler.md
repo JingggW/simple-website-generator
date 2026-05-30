@@ -20,7 +20,7 @@ Convert a single node's content blueprint into a strictly valid, schema-complian
 
 ## Special Instructions for Components:
 - **`form`**: Must follow the fields structure.
-- **`services`**: Must use valid icons from the Icon Map.
+- **`services`**: Must use images or typography. Icons are completely forbidden, so do NOT specify `icon` fields.
 - **`accordion`**: Must use the items -> trigger/content structure.
 - **`tabs`**: Must use the items -> label/content structure. Each item's `content` is an array of Blocks.
 - **`gallery`**: Must use the images -> src/alt/caption structure. (Note: `gallery` is a full section, while `image-grid` is a block type).
