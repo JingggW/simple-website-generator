@@ -409,7 +409,9 @@ export type Block =
         | "relative"
         | "absolute-bottom-left"
         | "absolute-top-right"
-        | "absolute-center";
+        | "absolute-center"
+        | "absolute-left"
+        | "absolute-right";
       background: "none" | "muted" | "surface" | "primary" | "secondary";
       padding: "none" | "sm" | "md" | "lg";
       blocks: Block[];
@@ -441,6 +443,8 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() =>
           "absolute-bottom-left",
           "absolute-top-right",
           "absolute-center",
+          "absolute-left",
+          "absolute-right",
         ])
         .default("relative"),
       background: z

@@ -108,24 +108,53 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         md: "p-6 md:p-8",
         lg: "p-10 md:p-12",
       };
-      const variantClasses = {
-        default: "rounded-[var(--border-radius)]",
-        card: "rounded-[var(--border-radius)] shadow-xl border border-white/10",
-        glass: "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
-        outline: "rounded-3xl border-2 border-primary/20 bg-background",
-      };
       const positionClasses = {
         relative: "relative",
         "absolute-bottom-left": "absolute bottom-8 left-8 z-10 max-w-[80%]",
         "absolute-top-right": "absolute top-8 right-8 z-10 max-w-[80%]",
         "absolute-center": "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-w-[80%]",
+        "absolute-left": "absolute inset-y-0 left-0 z-10 w-full md:w-3/4 flex flex-col justify-center",
+        "absolute-right": "absolute inset-y-0 right-0 z-10 w-full md:w-3/4 flex flex-col justify-center",
       };
+
+      const isGradient = block.position === "absolute-left" || block.position === "absolute-right";
+      let containerBgClass = bgClasses[block.background || "none"];
+      
+      if (isGradient) {
+        const isLeft = block.position === "absolute-left";
+        const direction = isLeft ? "bg-gradient-to-r" : "bg-gradient-to-l";
+        
+        let gradientColor = "from-background from-30% via-background/90 via-65%";
+        if (block.background === "primary") {
+          gradientColor = "from-primary from-30% via-primary/90 via-65% text-on-primary";
+        } else if (block.background === "secondary") {
+          gradientColor = "from-secondary from-30% via-secondary/90 via-65% text-on-secondary";
+        } else if (block.background === "surface") {
+          gradientColor = "from-surface from-30% via-surface/90 via-65%";
+        } else if (block.background === "muted") {
+          gradientColor = "from-secondary/15 from-30% via-secondary/5 via-65%";
+        }
+        
+        containerBgClass = `${direction} ${gradientColor} to-transparent`;
+      }
+
+      const variantClasses = {
+        default: isGradient ? "rounded-none" : "rounded-[var(--border-radius)]",
+        card: "rounded-[var(--border-radius)] shadow-xl border border-white/10",
+        glass: "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
+        outline: "rounded-3xl border-2 border-primary/20 bg-background",
+      };
+
+      const containerVariantClass = isGradient ? "rounded-none shadow-none border-none" : variantClasses[block.variant || "default"];
+
+      const containerMarginClass = isGradient ? "my-0" : marginClass;
+
       return (
         <div
-          className={`transition-all duration-300 ${positionClasses[block.position || "relative"]} ${variantClasses[block.variant || "default"]} ${bgClasses[block.background || "none"]} ${paddingClasses[block.padding || "sm"]} ${marginClass}`}
+          className={`transition-all duration-300 ${positionClasses[block.position || "relative"]} ${containerVariantClass} ${containerBgClass} ${paddingClasses[block.padding || (isGradient ? "lg" : "sm")]} ${containerMarginClass}`}
           style={{ flexGrow: "var(--col-flex-grow, 1)" }}
         >
-          <div className="flex flex-col h-full">
+          <div className={`flex flex-col h-full ${isGradient ? "justify-center max-w-2xl" : ""}`}>
             {block.blocks.map((b, bIdx) => (
               <BlockRenderer key={bIdx} block={b} />
             ))}
