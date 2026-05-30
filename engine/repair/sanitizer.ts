@@ -279,6 +279,17 @@ export function refine_page(
         }
       }
 
+      // 2.9 BLEED LAYOUT MARGIN CLEANUP
+      if (val && val.type === "blocks" && val.props && val.props.width === "bleed") {
+        if (val.props.padding === "none" && Array.isArray(val.props.blocks)) {
+          for (const block of val.props.blocks) {
+            if (block && block.type === "image") {
+              block.spacing = "none";
+            }
+          }
+        }
+      }
+
       // 3. HERO CTA REFINERY
       if (
         val.type === "hero" &&
