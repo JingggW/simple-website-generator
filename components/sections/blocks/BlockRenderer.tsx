@@ -305,7 +305,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       return (
         <figure className={`group relative ${marginClass} w-full`}>
           <div
-            className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-(--border-radius)"} overflow-hidden shadow-2xl`}
+            className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-(--border-radius) shadow-2xl"} overflow-hidden`}
           >
             <Image
               src={block.src.startsWith("http") ? block.src : `/${block.src.replace(/^\//, "")}`}

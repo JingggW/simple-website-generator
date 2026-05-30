@@ -1,6 +1,7 @@
 export const siteStructure = {
   "pages": {
     "/about": [
+      "hero",
       "founder-story",
       "founder-intro",
       "core-values"
