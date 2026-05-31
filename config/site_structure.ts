@@ -7,9 +7,10 @@ export const siteStructure = {
       "core-values"
     ],
     "/contact": [
-      "process",
-      "map",
-      "assurance"
+      "hero",
+      "reach-us",
+      "form",
+      "faq"
     ],
     "/": [
       "hero_01",

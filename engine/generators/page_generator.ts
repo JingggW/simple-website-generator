@@ -112,14 +112,32 @@ ${uiPrompt}
       pagePlan.forEach((p) => {
         const tag = p.type.toUpperCase();
         if (
-          ["FORM", "MAP", "CONTACT", "CONTENT", "TESTIMONIALS", "CAROUSEL"].includes(tag)
+          [
+            "FORM",
+            "MAP",
+            "CONTACT",
+            "CONTENT",
+            "TESTIMONIALS",
+            "CAROUSEL",
+            "ACCORDION",
+            "TABS",
+            "GALLERY",
+            "SERVICES",
+          ].includes(tag)
         ) {
           requiredTags.add(tag);
         }
       });
     } else {
       // Fallback/Inferred tags
-      ["CONTENT", "TESTIMONIALS"].forEach((t) => requiredTags.add(t));
+      [
+        "CONTENT",
+        "TESTIMONIALS",
+        "ACCORDION",
+        "TABS",
+        "GALLERY",
+        "SERVICES",
+      ].forEach((t) => requiredTags.add(t));
       if (targetPath.includes("contact")) {
         ["FORM", "MAP", "CONTACT"].forEach((t) => requiredTags.add(t));
       }

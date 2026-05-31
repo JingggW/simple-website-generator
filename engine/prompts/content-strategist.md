@@ -14,6 +14,8 @@ Design the content flow and component structure for a specific webpage.
 - `form`: Conversion points (Contact, Booking). (Constraint: Max ONCE per website).
 - `map`: Physical location. (Constraint: Max ONCE per website).
 - `testimonials`: High-level social proof grid. (Constraint: Max ONCE per website).
+- `accordion`: Collapsible question-and-answer lists or detailed disclosures (ideal for FAQs). (Constraint: Max ONCE per website).
+  - **MANDATE**: When designing a section for Frequently Asked Questions (FAQ) or common Q&A, you MUST specify the component type as `accordion`.
 - `blocks`: The primary storytelling engine. Use this for 90% of your content.
 
 ### The Power of `blocks`

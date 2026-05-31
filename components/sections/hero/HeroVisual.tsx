@@ -19,10 +19,12 @@ export const HeroVisual = ({
   const isBleed = width === "bleed";
 
   return (
-    <section className={cn(
-      "relative w-full overflow-hidden transition-all duration-500",
-      isBleed ? "min-h-[80vh]" : "container mx-auto px-0 min-h-[70vh]" // Removed rounded-3xl and margins
-    )}>
+    <section
+      className={cn(
+        "relative w-full overflow-hidden transition-all duration-500",
+        isBleed ? "min-h-[80vh]" : "container mx-auto px-0 min-h-[70vh]", // Removed rounded-3xl and margins
+      )}
+    >
       {/* Background Image with Overlay */}
       {imageName && (
         <div className="absolute inset-0 z-0">
@@ -42,10 +44,12 @@ export const HeroVisual = ({
       )}
 
       {/* Content */}
-      <div className={cn(
-        "container relative z-10 mx-auto px-6 text-center pb-6 md:pb-8 flex flex-col items-center justify-center min-h-inherit",
-        isBleed ? "min-h-[80vh]" : "min-h-[70vh]"
-      )}>
+      <div
+        className={cn(
+          "container relative z-10 mx-auto px-6 text-center pb-6 md:pb-8 flex flex-col items-center justify-center min-h-inherit",
+          isBleed ? "min-h-[80vh]" : "min-h-[70vh]",
+        )}
+      >
         <div className="max-w-4xl mx-auto space-y-8 py-12 md:py-20">
           {hookLine && (
             <p className="text-xs font-black uppercase tracking-[0.3em] text-white/80">

@@ -171,12 +171,11 @@ export const SectionRenderer = ({
   };
   let paddingClass = paddingClasses[section.props.padding || "md"];
 
-  // SPECIAL FIX: If it's a hero section, we want zero top padding
-  // to avoid gaps with the navbar, but keep bottom padding.
+  // SPECIAL FIX: If it's a hero section, we want zero padding
+  // to avoid gaps with the navbar. The hero components define
+  // their own internal padding and bounds.
   if (section.type === "hero") {
-    paddingClass = paddingClass
-      .replace("py-", "pb-")
-      .replace("py-0", "pt-0 pb-0");
+    paddingClass = "py-0";
   }
 
   return (

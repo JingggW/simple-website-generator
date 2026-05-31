@@ -6,7 +6,7 @@ import "dotenv/config";
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
 const FREE_MODEL = "openrouter/free";
-const MODEL = "z-ai/glm-4.7-flash";
+const MODEL = "deepseek/deepseek-v4-flash";
 
 async function sleep(ms: number) {
   return new Promise((resolve) => setTimeout(resolve, ms));

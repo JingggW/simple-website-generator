@@ -290,6 +290,11 @@ export function refine_page(
         }
       }
 
+      // 2.95 HERO VISUAL WIDTH ENFORCEMENT
+      if (val && val.type === "hero" && val.variant === "visual" && val.props) {
+        val.props.width = "bleed";
+      }
+
       // 3. HERO CTA REFINERY
       if (
         val.type === "hero" &&
@@ -400,7 +405,6 @@ export function refine_site_config(config: any, options?: { noBalance?: boolean 
     "form",
     "price-list",
   ];
-  const seenSingletons = new Set<string>();
 
   if (config.pages) {
     const paths = Object.keys(config.pages).sort((a, b) => {
@@ -411,6 +415,7 @@ export function refine_site_config(config: any, options?: { noBalance?: boolean 
 
     for (const path of paths) {
       const page = config.pages[path];
+      const seenSingletons = new Set<string>();
       if (page.sections && page.sectionOrder) {
         for (const sectionId of [...page.sectionOrder]) {
           const section = page.sections[sectionId];

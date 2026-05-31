@@ -21,6 +21,8 @@ You MUST choose the best section types based on the content blueprint:
 Regardless of the page path, if the content describes a specific functional goal, you MUST use the corresponding **Molecular Schema**:
 - **Contact/Forms**: Use `form`.
 - **Location/Address**: Use `map`.
+- **FAQs / Accordions**: Use `accordion` for collapsible question-and-answer lists or detailed text disclosures.
+  - **MANDATE**: When rendering FAQs, common questions, or Q&A sections, you MUST use the `accordion` component schema. DO NOT use `blocks` or `columns` for FAQs. The `accordion` props must contain `items` consisting of `trigger` (the question string) and `content` (the answer string) keys.
   - **Social Proof**: Use `testimonials` for static grids. For dynamic sliders, use `carousel` with `variant: "testimonials"`.
   - **High-Impact Intro**: Use `hero`.
   - **CTA STRATEGY**:

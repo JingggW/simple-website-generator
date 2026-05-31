@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { Block } from "@/lib/schema";
-import { IconMap } from "@/components/ui/IconMap";
 import { TestimonialCard } from "../testimonials/TestimonialCard";
 import { cn } from "@/lib/utils";
 
@@ -31,8 +30,12 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         "split-left": "grid-cols-1 md:grid-cols-[2fr_1fr]",
         "split-right": "grid-cols-1 md:grid-cols-[1fr_2fr]",
       };
-      const isSplit = ["split", "split-left", "split-right"].includes(block.layout || "split") && block.items?.length === 2;
-      const isImageFirst = isSplit &&
+      const isSplit =
+        ["split", "split-left", "split-right"].includes(
+          block.layout || "split",
+        ) && block.items?.length === 2;
+      const isImageFirst =
+        isSplit &&
         block.items[0]?.blocks?.some((b: any) => b.type === "image") &&
         !block.items[1]?.blocks?.some((b: any) => b.type === "image");
 
@@ -42,7 +45,9 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         >
           {block.items.map((col, idx) => {
             const orderClass = isImageFirst
-              ? (idx === 0 ? "order-2 md:order-1" : "order-1 md:order-2")
+              ? idx === 0
+                ? "order-2 md:order-1"
+                : "order-1 md:order-2"
               : "";
             return (
               <div key={idx} className={`flex flex-col h-full ${orderClass}`}>
@@ -112,40 +117,51 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         relative: "relative",
         "absolute-bottom-left": "absolute bottom-8 left-8 z-10 max-w-[80%]",
         "absolute-top-right": "absolute top-8 right-8 z-10 max-w-[80%]",
-        "absolute-center": "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-w-[80%]",
-        "absolute-left": "absolute inset-y-0 left-0 z-10 w-full md:w-3/4 flex flex-col justify-center",
-        "absolute-right": "absolute inset-y-0 right-0 z-10 w-full md:w-3/4 flex flex-col justify-center",
+        "absolute-center":
+          "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 max-w-[80%]",
+        "absolute-left":
+          "absolute inset-y-0 left-0 z-10 w-full md:w-3/4 flex flex-col justify-center",
+        "absolute-right":
+          "absolute inset-y-0 right-0 z-10 w-full md:w-3/4 flex flex-col justify-center",
       };
 
-      const isGradient = block.position === "absolute-left" || block.position === "absolute-right";
+      const isGradient =
+        block.position === "absolute-left" ||
+        block.position === "absolute-right";
       let containerBgClass = bgClasses[block.background || "none"];
-      
+
       if (isGradient) {
         const isLeft = block.position === "absolute-left";
         const direction = isLeft ? "bg-gradient-to-r" : "bg-gradient-to-l";
-        
-        let gradientColor = "from-background from-30% via-background/90 via-65%";
+
+        let gradientColor =
+          "from-background from-30% via-background/90 via-65%";
         if (block.background === "primary") {
-          gradientColor = "from-primary from-30% via-primary/90 via-65% text-on-primary";
+          gradientColor =
+            "from-primary from-30% via-primary/90 via-65% text-on-primary";
         } else if (block.background === "secondary") {
-          gradientColor = "from-secondary from-30% via-secondary/90 via-65% text-on-secondary";
+          gradientColor =
+            "from-secondary from-30% via-secondary/90 via-65% text-on-secondary";
         } else if (block.background === "surface") {
           gradientColor = "from-surface from-30% via-surface/90 via-65%";
         } else if (block.background === "muted") {
           gradientColor = "from-secondary/15 from-30% via-secondary/5 via-65%";
         }
-        
+
         containerBgClass = `${direction} ${gradientColor} to-transparent`;
       }
 
       const variantClasses = {
         default: isGradient ? "rounded-none" : "rounded-[var(--border-radius)]",
         card: "rounded-[var(--border-radius)] shadow-xl border border-white/10",
-        glass: "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
+        glass:
+          "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
         outline: "rounded-3xl border-2 border-primary/20 bg-background",
       };
 
-      const containerVariantClass = isGradient ? "rounded-none shadow-none border-none" : variantClasses[block.variant || "default"];
+      const containerVariantClass = isGradient
+        ? "rounded-none shadow-none border-none"
+        : variantClasses[block.variant || "default"];
 
       const containerMarginClass = isGradient ? "my-0" : marginClass;
 
@@ -154,7 +170,9 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
           className={`transition-all duration-300 ${positionClasses[block.position || "relative"]} ${containerVariantClass} ${containerBgClass} ${paddingClasses[block.padding || (isGradient ? "lg" : "sm")]} ${containerMarginClass}`}
           style={{ flexGrow: "var(--col-flex-grow, 1)" }}
         >
-          <div className={`flex flex-col h-full ${isGradient ? "justify-center max-w-2xl" : ""}`}>
+          <div
+            className={`flex flex-col h-full ${isGradient ? "justify-center max-w-2xl" : ""}`}
+          >
             {block.blocks.map((b, bIdx) => (
               <BlockRenderer key={bIdx} block={b} />
             ))}
@@ -167,18 +185,25 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       const isMinimal = variant === "minimal";
       const isCards = variant === "cards";
 
-      const cardBaseClasses = "bg-surface rounded-[var(--border-radius)] shadow-lg border border-primary/10 transition-all duration-300 hover:scale-[1.01]";
+      const cardBaseClasses =
+        "bg-surface rounded-[var(--border-radius)] shadow-lg border border-primary/10 transition-all duration-300 hover:scale-[1.01]";
       const cardHeaderClasses = "text-xl font-bold mb-4 text-center";
       const cardItemClasses = "flex justify-between items-baseline group";
 
       return (
-        <div className={`grid gap-8 ${isCards ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : ""} ${marginClass}`}>
+        <div
+          className={`grid gap-8 ${isCards ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-3" : ""} ${marginClass}`}
+        >
           {block.categories.map((category, idx) => (
             <div
               key={idx}
               className={cn(
                 "p-6 md:p-8",
-                isCards ? cardBaseClasses : isMinimal ? "" : "bg-surface/50 rounded-[var(--border-radius)] p-6 md:p-8 border border-secondary/10 shadow-sm"
+                isCards
+                  ? cardBaseClasses
+                  : isMinimal
+                    ? ""
+                    : "bg-surface/50 rounded-[var(--border-radius)] p-6 md:p-8 border border-secondary/10 shadow-sm",
               )}
             >
               <h3
@@ -187,8 +212,8 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
                   isMinimal
                     ? "text-primary border-b-2 border-primary/10 pb-2 inline-block"
                     : isCards
-                    ? "text-primary"
-                    : "text-on-primary bg-primary rounded-xl px-4 py-2 inline-block shadow-md"
+                      ? "text-primary"
+                      : "text-on-primary bg-primary rounded-xl px-4 py-2 inline-block shadow-md",
                 )}
               >
                 {category.name}
@@ -232,23 +257,6 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       );
 
     case "icon":
-      const iconSizes = {
-        sm: "w-6 h-6",
-        md: "w-10 h-10",
-        lg: "w-16 h-16",
-      };
-      const iconColors = {
-        primary: "text-primary",
-        secondary: "text-secondary",
-        accent: "text-accent",
-        muted: "text-foreground/40",
-      };
-      const alignClasses = {
-        left: "justify-start",
-        center: "justify-center",
-        right: "justify-end",
-      }[block.align || "left"];
-
       return null;
 
     case "heading": {
@@ -258,8 +266,10 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
           : block.level || "h2"
       ) as React.ElementType;
       const fontSizes: Record<string, string> = {
-        display: "text-5xl md:text-7xl font-black tracking-tighter uppercase break-words",
-        editorial: "text-4xl md:text-6xl font-serif italic tracking-tight break-words",
+        display:
+          "text-5xl md:text-7xl font-black tracking-tighter uppercase break-words",
+        editorial:
+          "text-4xl md:text-6xl font-serif italic tracking-tight break-words",
         h1: "text-4xl md:text-5xl font-black tracking-tight break-words",
         h2: "text-3xl md:text-4xl font-extrabold tracking-tight break-words",
         h3: "text-xl md:text-2xl font-bold break-words",
@@ -274,7 +284,8 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         none: "",
         underline: "border-b-2 border-primary pb-2 inline-block",
         "line-left": "border-l-4 border-primary pl-6 py-2",
-        "line-bottom": "after:content-[''] after:block after:w-24 after:h-1 after:bg-primary after:mt-4",
+        "line-bottom":
+          "after:content-[''] after:block after:w-24 after:h-1 after:bg-primary after:mt-4",
       };
 
       return (
@@ -296,21 +307,21 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
     case "text": {
       const alignClasses = {
         left: "text-left",
-        center: "text-center",
-        right: "text-right",
+        center: "text-center mx-auto",
+        right: "text-right ml-auto",
       }[block.align || "left"];
-      
+
       const isInline = block.layout === "inline";
-      
+
       return (
         <div
-          className={`text-base md:text-lg opacity-80 leading-relaxed font-medium ${alignClasses} ${marginClass} wrap-break-word whitespace-pre-wrap`}
+          className={`text-base md:text-lg opacity-80 leading-relaxed font-medium max-w-3xl ${alignClasses} ${marginClass} wrap-break-word whitespace-pre-wrap`}
         >
           {block.label && (
             <span
               className={cn(
                 "font-bold text-primary",
-                isInline ? "mr-2 inline" : "block mb-2 text-xl md:text-2xl"
+                isInline ? "mr-2 inline" : "block mb-2 text-xl md:text-2xl",
               )}
             >
               {block.label}
@@ -329,7 +340,8 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         portrait: "aspect-[3/4]",
         auto: "aspect-auto",
       };
-      const isEditorial = block.aspect === "cinematic" || block.aspect === "portrait";
+      const isEditorial =
+        block.aspect === "cinematic" || block.aspect === "portrait";
 
       return (
         <figure className={`group relative ${marginClass} w-full`}>
@@ -337,7 +349,11 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
             className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-(--border-radius) shadow-2xl"} overflow-hidden`}
           >
             <Image
-              src={block.src.startsWith("http") ? block.src : `/${block.src.replace(/^\//, "")}`}
+              src={
+                block.src.startsWith("http")
+                  ? block.src
+                  : `/${block.src.replace(/^\//, "")}`
+              }
               alt={block.alt || "Image"}
               fill
               className="object-cover transition-transform duration-1000 group-hover:scale-105"
@@ -371,14 +387,20 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       };
 
       return (
-        <div className={`grid ${gridCols[block.columns || "3"]} ${gridGap[block.gap || "md"]} ${marginClass}`}>
+        <div
+          className={`grid ${gridCols[block.columns || "3"]} ${gridGap[block.gap || "md"]} ${marginClass}`}
+        >
           {block.images.map((img, idx) => (
             <figure key={idx} className="group relative w-full">
               <div
                 className={`relative ${gridAspect[block.aspect || "square"]} rounded-(--border-radius) overflow-hidden shadow-md`}
               >
                 <Image
-                  src={img.src.startsWith("http") ? img.src : `/${img.src.replace(/^\//, "")}`}
+                  src={
+                    img.src.startsWith("http")
+                      ? img.src
+                      : `/${img.src.replace(/^\//, "")}`
+                  }
                   alt={img.alt || "Gallery Image"}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-110"
@@ -397,7 +419,8 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
 
     case "button": {
       const buttonVariants: Record<string, string> = {
-        primary: "bg-primary text-on-primary shadow-lg shadow-primary/30 hover:-translate-y-1",
+        primary:
+          "bg-primary text-on-primary shadow-lg shadow-primary/30 hover:-translate-y-1",
         secondary: "bg-secondary/10 text-foreground hover:bg-secondary/20",
         outline: "border-2 border-current hover:bg-foreground/5",
       };
@@ -438,7 +461,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
                 "flex items-start gap-4 transition-all duration-300 w-fit",
                 isCards
                   ? "bg-surface p-6 rounded-2xl border border-secondary/5 shadow-sm hover:shadow-md hover:scale-[1.01]"
-                  : "py-1"
+                  : "py-1",
               )}
             >
               {/* Marker Logic */}
@@ -457,7 +480,12 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
                   )}
                 </div>
               )}
-              <span className={cn("text-base md:text-lg opacity-90 leading-relaxed font-medium", isCards ? "text-foreground" : "")}>
+              <span
+                className={cn(
+                  "text-base md:text-lg opacity-90 leading-relaxed font-medium",
+                  isCards ? "text-foreground" : "",
+                )}
+              >
                 {item}
               </span>
             </li>
