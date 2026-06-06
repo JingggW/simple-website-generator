@@ -282,6 +282,11 @@ export class PropSiteEngine {
     const configDir = path.join(process.cwd(), "config");
     const pagesDir = path.join(configDir, "pages");
 
+    if (targetName && targetName !== "default") {
+      const sanitizedName = targetName.toLowerCase().replace(/[^a-z0-9-_]/g, "-");
+      fs.writeFileSync(path.join(configDir, ".current-project"), sanitizedName);
+    }
+
     // Ensure modular directories exist
     if (!fs.existsSync(pagesDir)) fs.mkdirSync(pagesDir, { recursive: true });
 
@@ -599,9 +604,9 @@ export class PropSiteEngine {
 async function runPoC() {
   const engine = new PropSiteEngine();
   await engine.generateFullWebsite(
-    "Rymee",
-    "A local tech team helping small businesses own their online presence with lightning-fast, zero-maintenance websites and CRM tools at radically low costs. We solve the problem of missed leads and outdated tech.",
-    "Use a modern, premium design. Create a Home page explaining our 3 services: 1) The Rapid Launch, 2) The Rymee Engine, 3) Concierge Edits. Create an About page for the team, and a Contact page. The primary CTA should be 'Get a Free Demo'."
+    "Corner Lane Espresso",
+    "A boutique specialty coffee shop and community hub in Point Cook, Melbourne. We solve the problem of rushed commercial coffee chains and long morning commuter queues by offering perfectly crafted Flat Whites in a cozy environment, alongside fresh house-baked pastries, and a Text-Ahead Express Pick-Up system designed to get premium coffee to morning commuters in under 60 seconds.",
+    "Use a warm, minimalist, artisanal layout style. Create a Home page detailing our seasonal specialty coffee, house-baked sourdough toasties, and the text-ahead express pick-up. Create an About page sharing our story (a CBD head barista for 6 years creating a community living room). Create a Contact page with our Point Cook location and text-ahead details. The primary CTA should be 'Text to Order'."
   );
 }
 

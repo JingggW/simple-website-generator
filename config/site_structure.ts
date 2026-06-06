@@ -1,45 +1,54 @@
 export const siteStructure = {
   "pages": {
     "/about": [
-      "hero",
-      "founder-story",
-      "founder-intro",
-      "core-values"
+      "hero-origin",
+      "blocks-journey",
+      "blocks-candid-gallery",
+      "blocks-philosophy"
     ],
     "/contact": [
-      "hero",
-      "reach-us",
-      "form",
-      "faq"
+      "text-ahead-steps",
+      "location-details",
+      "map"
     ],
     "/": [
-      "hero_01",
-      "story_split_01",
-      "demo_gallery",
-      "service_stack"
+      "hero",
+      "seasonal-coffee",
+      "core-offerings",
+      "testimonials",
+      "pastry-promo"
+    ],
+    "/menu": [
+      "coffee-menu",
+      "pastries",
+      "text-ahead"
     ],
     "/services": [
-      "step_01_pick",
-      "step_02_preview",
-      "step_03_launch"
+      "hero",
+      "core-services",
+      "process",
+      "pricing",
+      "community"
     ]
   },
   "navigation": {
     "header": [
       "/",
+      "/menu",
       "/services",
       "/about",
       "/contact"
     ],
     "footer": [
+      "/",
+      "/menu",
+      "/services",
       "/about",
-      "/careers",
-      "/blog",
-      "/services",
-      "/services",
-      "/services",
-      "/privacy",
-      "/terms"
+      "/contact",
+      "/contact",
+      "/contact#map",
+      "https://instagram.com/cornerlane",
+      "https://facebook.com/cornerlane"
     ]
   }
 };

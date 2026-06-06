@@ -8,6 +8,23 @@ import { Block } from "@/lib/schema";
 import { TestimonialCard } from "../testimonials/TestimonialCard";
 import { cn } from "@/lib/utils";
 
+const parseMarkdownInline = (text: string): React.ReactNode[] => {
+  if (!text) return [];
+  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|`.*?`)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={index} className="font-bold text-foreground">{part.slice(2, -2)}</strong>;
+    }
+    if (part.startsWith('*') && part.endsWith('*')) {
+      return <em key={index} className="italic text-foreground/95">{part.slice(1, -1)}</em>;
+    }
+    if (part.startsWith('`') && part.endsWith('`')) {
+      return <code key={index} className="bg-secondary/10 px-1.5 py-0.5 rounded text-sm font-mono">{part.slice(1, -1)}</code>;
+    }
+    return part;
+  });
+};
+
 // This is a recursive component for rendering any block
 export const BlockRenderer = ({ block }: { block: Block }) => {
   if (!block) return null;
@@ -29,9 +46,16 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         "4-col": "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
         "split-left": "grid-cols-1 md:grid-cols-[2fr_1fr]",
         "split-right": "grid-cols-1 md:grid-cols-[1fr_2fr]",
+        "split-divided": "grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 relative",
+        "overlap-left": "grid-cols-1 md:grid-cols-[1.25fr_0.75fr] items-center gap-0 relative",
+        "overlap-right": "grid-cols-1 md:grid-cols-[0.75fr_1.25fr] items-center gap-0 relative",
+        "split-accent": "grid-cols-1 md:grid-cols-2 gap-12 md:gap-24",
+        "collage-left": "grid-cols-1 md:grid-cols-[1.2fr_1fr] gap-12 md:gap-20 items-center",
+        "collage-right": "grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-12 md:gap-20 items-center",
+        "split-culture": "grid-cols-1 lg:grid-cols-12 gap-8 items-start pt-8",
       };
       const isSplit =
-        ["split", "split-left", "split-right"].includes(
+        ["split", "split-left", "split-right", "split-divided", "overlap-left", "overlap-right", "split-accent", "collage-left", "collage-right", "split-culture"].includes(
           block.layout || "split",
         ) && block.items?.length === 2;
       const isImageFirst =
@@ -39,9 +63,12 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         block.items[0]?.blocks?.some((b: any) => b.type === "image") &&
         !block.items[1]?.blocks?.some((b: any) => b.type === "image");
 
+      const isOverlap = block.layout === "overlap-left" || block.layout === "overlap-right";
+      const gapClass = isOverlap ? "gap-0" : "gap-8 lg:gap-12";
+
       return (
         <div
-          className={`grid gap-8 lg:gap-12 items-stretch ${layoutClasses[block.layout || "split"]} ${marginClass}`}
+          className={`grid items-stretch ${gapClass} ${layoutClasses[block.layout || "split"]} ${marginClass}`}
         >
           {block.items.map((col, idx) => {
             const orderClass = isImageFirst
@@ -49,11 +76,96 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
                 ? "order-2 md:order-1"
                 : "order-1 md:order-2"
               : "";
+            
+            let colClass = `flex flex-col h-full ${orderClass}`;
+
+            // Culture split specific column widths
+            if (block.layout === "split-culture") {
+              if (idx === 0) {
+                colClass = `lg:col-span-5 relative flex flex-row gap-6 bg-surface p-6 rounded-2xl border border-secondary/10 overflow-hidden items-center ${orderClass}`;
+              } else {
+                colClass = `lg:col-span-7 lg:pl-6 space-y-6 flex flex-col justify-center ${orderClass}`;
+              }
+            }
+
+            // Divider logic for split-divided
+            if (block.layout === "split-divided" && idx === 1) {
+              colClass = `${colClass} md:border-l border-secondary/15 md:pl-12 lg:pl-16`;
+            }
+
+            // Accent border logic for split-accent
+            if (block.layout === "split-accent") {
+              const hasImage = col.blocks.some((b: any) => b.type === "image");
+              if (!hasImage) {
+                colClass = `${colClass} md:border-l-4 border-primary md:pl-8 lg:pl-12`;
+              }
+            }
+
+            // Collage renderer override
+            const isCollageLeftCol = block.layout === "collage-left" && idx === 0;
+            const isCollageRightCol = block.layout === "collage-right" && idx === 1;
+
+            if (isCollageLeftCol || isCollageRightCol) {
+              return (
+                <div key={idx} className={cn("grid grid-cols-2 gap-4 lg:gap-6 items-start w-full", orderClass)}>
+                  {col.blocks.map((b, bIdx) => {
+                    const shiftClass = bIdx === 1 ? "mt-8 lg:mt-16" : "";
+                    return (
+                      <div key={bIdx} className={shiftClass}>
+                        <BlockRenderer block={b} />
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            }
+
+            // Detect if this column contains a container that should overlap the sibling column
+            // (Implements the nested "The Layered Overlap" design pattern)
+            let overlapContainerClass = "";
+            if (isSplit && !isOverlap && block.items.length === 2) {
+              const currentHasCard = col.blocks.some((b: any) => b.type === "container" && (b.variant === "card" || b.variant === "glass"));
+              const siblingIdx = idx === 0 ? 1 : 0;
+              const siblingHasImage = block.items[siblingIdx]?.blocks?.some((b: any) => b.type === "image");
+              
+              if (currentHasCard && siblingHasImage) {
+                overlapContainerClass = idx === 0 ? "md:-mr-16 md:z-10 relative" : "md:-ml-16 md:z-10 relative";
+              }
+            }
+            
+            colClass = `${colClass} ${overlapContainerClass}`;
+
+            // Overlap logic
+            const isOverlapTextCol = isOverlap && (
+              (block.layout === "overlap-left" && idx === 1) ||
+              (block.layout === "overlap-right" && idx === 0)
+            );
+
+            if (isOverlapTextCol) {
+              const overlapMargin = block.layout === "overlap-left" ? "md:-ml-20 md:mr-0" : "md:-mr-20 md:ml-0";
+              return (
+                <div key={idx} className={cn("z-10 w-full relative", orderClass)}>
+                  <div className={cn("bg-surface rounded-3xl p-8 md:p-12 shadow-2xl border border-secondary/10 flex flex-col justify-center", overlapMargin)}>
+                    {col.blocks.map((b, bIdx) => (
+                      <BlockRenderer key={bIdx} block={b} />
+                    ))}
+                  </div>
+                </div>
+              );
+            }
+
             return (
-              <div key={idx} className={`flex flex-col h-full ${orderClass}`}>
-                {col.blocks.map((b, bIdx) => (
-                  <BlockRenderer key={bIdx} block={b} />
-                ))}
+              <div key={idx} className={colClass}>
+                {col.label && block.layout === "split-culture" && idx === 0 && (
+                  <div className="text-[10px] font-bold tracking-[0.25em] uppercase [writing-mode:vertical-lr] rotate-180 text-secondary/40 border-l border-secondary/15 pl-3 select-none h-fit self-center">
+                    — {col.label}
+                  </div>
+                )}
+                <div className={cn("flex-grow flex flex-col justify-center w-full", block.layout === "split-culture" && idx === 0 && "h-full justify-center items-center")}>
+                  {col.blocks.map((b, bIdx) => (
+                    <BlockRenderer key={bIdx} block={b} />
+                  ))}
+                </div>
               </div>
             );
           })}
@@ -157,6 +269,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         glass:
           "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
         outline: "rounded-3xl border-2 border-primary/20 bg-background",
+        magazine: "bg-surface border border-secondary/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col h-full",
       };
 
       const containerVariantClass = isGradient
@@ -177,6 +290,14 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
               <BlockRenderer key={bIdx} block={b} />
             ))}
           </div>
+        </div>
+      );
+
+    case "post-meta":
+      return (
+        <div className={`p-4 flex justify-between items-center border-b border-secondary/10 text-[11px] font-bold text-secondary/40 tracking-wider w-full ${marginClass}`}>
+          <span>{block.date}</span>
+          <span className="bg-secondary/5 text-secondary px-2 py-0.5 rounded uppercase">{block.category}</span>
         </div>
       );
 
@@ -327,7 +448,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
               {block.label}
             </span>
           )}
-          {block.content}
+          {parseMarkdownInline(block.content)}
         </div>
       );
     }
@@ -356,7 +477,11 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
               }
               alt={block.alt || "Image"}
               fill
-              className="object-cover transition-transform duration-1000 group-hover:scale-105"
+              className={cn(
+                "object-cover transition-all duration-700",
+                ((block as any).hoverEffect === "zoom" || (block as any).hoverEffect === "grayscale-zoom") && "group-hover:scale-105",
+                ((block as any).hoverEffect === "grayscale" || (block as any).hoverEffect === "grayscale-zoom") && "filter grayscale contrast-125 group-hover:grayscale-0"
+              )}
             />
           </div>
           {block.caption && (

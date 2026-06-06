@@ -76,6 +76,99 @@ export function refine_page(
   // 1. First pass: Catch already empty sections
   pruneEmptySections(refined);
 
+  // --- PROGRAMMATIC LAYOUT & WIDTH SELF-HEALING ---
+  if (refined.sections && refined.sectionOrder) {
+    const isImageColumn = (col: any) => {
+      return col && Array.isArray(col.blocks) && col.blocks.length === 1 && col.blocks[0].type === "image";
+    };
+
+    const isTextColumn = (col: any) => {
+      return col && Array.isArray(col.blocks) && col.blocks.length > 0 && !col.blocks.some((b: any) => b.type === "image");
+    };
+
+    const hasOneImageAndOneText = (block: any) => {
+      if (block.type !== "columns" || !Array.isArray(block.items) || block.items.length !== 2) {
+        return false;
+      }
+      const col1 = block.items[0];
+      const col2 = block.items[1];
+      return (isImageColumn(col1) && isTextColumn(col2)) || (isTextColumn(col1) && isImageColumn(col2));
+    };
+
+    for (const sectionId of refined.sectionOrder) {
+      const section = refined.sections[sectionId];
+      if (!section || !section.props) continue;
+
+      // 1. Automatic width upgrade for sections containing price-list
+      let hasPriceList = false;
+      const checkHasPriceList = (blocks: any[]) => {
+        if (!blocks) return;
+        for (const b of blocks) {
+          if (b && b.type === "price-list") {
+            hasPriceList = true;
+            return;
+          }
+          if (b && b.blocks) checkHasPriceList(b.blocks);
+          if (b && b.items) b.items.forEach((item: any) => item && item.blocks && checkHasPriceList(item.blocks));
+        }
+      };
+      if (section.type === "blocks" && section.props.blocks) {
+        checkHasPriceList(section.props.blocks);
+      }
+      if (hasPriceList && section.props.width === "prose") {
+        console.log(`⚖️ Auto-Repair: Upgrading section '${sectionId}' width from 'prose' to 'default' on page ${pagePath || "unknown"} due to price-list content.`);
+        section.props.width = "default";
+        if (section.variant === "prose") {
+          section.variant = "wide";
+        }
+      }
+
+      // 2. Symmetrical alternating layouts for consecutive step blocks
+      if (section.type === "blocks" && Array.isArray(section.props.blocks)) {
+        const blocksList = section.props.blocks;
+        let consecutiveGroup: any[] = [];
+
+        const processGroup = (group: any[]) => {
+          if (group.length < 2) return;
+          console.log(`⚖️ Auto-Repair: Balancing ${group.length} alternating step columns in section '${sectionId}' on page ${pagePath || "unknown"}`);
+          group.forEach((block, idx) => {
+            const isEven = idx % 2 === 0;
+            const col1 = block.items[0];
+            const col2 = block.items[1];
+
+            const imageCol = isImageColumn(col1) ? col1 : col2;
+            const textCol = isImageColumn(col1) ? col2 : col1;
+
+            if (isEven) {
+              // Image Left (33%), Text Right (66%)
+              block.layout = "split-right";
+              block.items = [imageCol, textCol];
+            } else {
+              // Text Left (66%), Image Right (33%)
+              block.layout = "split-left";
+              block.items = [textCol, imageCol];
+            }
+
+            // Also ensure hoverEffect on these step images is "none" to keep them clean
+            if (imageCol.blocks[0]) {
+              imageCol.blocks[0].hoverEffect = "none";
+            }
+          });
+        };
+
+        for (const block of blocksList) {
+          if (hasOneImageAndOneText(block)) {
+            consecutiveGroup.push(block);
+          } else {
+            processGroup(consecutiveGroup);
+            consecutiveGroup = [];
+          }
+        }
+        processGroup(consecutiveGroup);
+      }
+    }
+  }
+
   const walk = (obj: any) => {
     if (!obj || typeof obj !== "object") return;
 

@@ -14,7 +14,10 @@
     "assemble:no-balance": "npx tsx scripts/assemble-site.ts --no-balance",
     "insert-node": "npx tsx scripts/insert-node.ts",
     "screenshot": "npx tsx scripts/take-screenshots.ts",
-    "clean-shots": "npx tsx scripts/clear-screenshots.ts"
+    "clean-shots": "npx tsx scripts/clear-screenshots.ts",
+    "project": "npx tsx scripts/project.ts",
+    "change-colors": "npx tsx scripts/change-colors.ts",
+    "remove-hero": "npx tsx scripts/remove-hero.ts"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",

@@ -21,16 +21,16 @@ export const HeroSplit = ({
   const isDarkBg = background === "primary" || background === "secondary";
 
   return (
-    <section>
+    <section className="py-12 md:py-20">
       <div className="container mx-auto px-4">
         <div
           className={cn(
-            "flex flex-col md:flex-row items-stretch gap-12 lg:gap-24",
+            "flex flex-col md:flex-row items-center gap-12 lg:gap-24",
             isImageLeft ? "md:flex-row-reverse" : "md:flex-row",
           )}
         >
           {/* Text Column */}
-          <div className="flex-[1.2] flex flex-col justify-center text-center md:text-left py-12 md:py-24">
+          <div className="flex-[1.2] flex flex-col justify-center text-center md:text-left py-4 md:py-8">
             <p className="text-xs font-black uppercase tracking-[0.3em] text-primary mb-4">
               {hookLine}
             </p>
@@ -76,7 +76,7 @@ export const HeroSplit = ({
           </div>
 
           {/* Image Column */}
-          <div className="flex-1 w-full flex items-center">
+          <div className="flex-1 w-full flex items-center py-4 md:py-8">
             {imageName ? (
               <div className="relative w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
                 <Image

@@ -320,6 +320,7 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
       .enum(["square", "video", "cinematic", "portrait", "auto"])
       .default("video"),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
+    hoverEffect: z.enum(["none", "zoom", "grayscale", "grayscale-zoom"]).default("zoom").optional(),
   }),
   z.object({
     type: z.literal("spacer"),
@@ -392,6 +393,12 @@ export const BaseBlockSchema = z.discriminatedUnion("type", [
     align: z.enum(["left", "center", "right"]).default("left"),
     spacing: z.enum(["none", "sm", "md", "lg"]).default("md"),
   }),
+  z.object({
+    type: z.literal("post-meta"),
+    date: z.string(),
+    category: z.string(),
+    spacing: z.enum(["none", "sm", "md", "lg"]).default("sm"),
+  }),
 ]);
 
 // Helper for Recursive Structures (Columns and Containers)
@@ -399,12 +406,12 @@ export type Block =
   | z.infer<typeof BaseBlockSchema>
   | {
       type: "columns";
-      layout: "split" | "3-col" | "4-col" | "split-left" | "split-right";
-      items: { blocks: Block[] }[];
+      layout: "split" | "3-col" | "4-col" | "split-left" | "split-right" | "split-divided" | "overlap-left" | "overlap-right" | "split-accent" | "collage-left" | "collage-right" | "split-culture";
+      items: { blocks: Block[]; label?: string }[];
     }
   | {
       type: "container";
-      variant: "default" | "card" | "glass" | "outline";
+      variant: "default" | "card" | "glass" | "outline" | "magazine";
       position:
         | "relative"
         | "absolute-bottom-left"
@@ -424,18 +431,19 @@ export const BlockSchema: z.ZodType<Block> = z.lazy(() =>
     z.object({
       type: z.literal("columns"),
       layout: z
-        .enum(["split", "3-col", "4-col", "split-left", "split-right"])
+        .enum(["split", "3-col", "4-col", "split-left", "split-right", "split-divided", "overlap-left", "overlap-right", "split-accent", "collage-left", "collage-right", "split-culture"])
         .default("split"),
       items: z.array(
         z.object({
           blocks: z.array(BlockSchema),
+          label: z.string().optional(),
         }),
       ),
     }),
     z.object({
       type: z.literal("container"),
       variant: z
-        .enum(["default", "card", "glass", "outline"])
+        .enum(["default", "card", "glass", "outline", "magazine"])
         .default("default"),
       position: z
         .enum([

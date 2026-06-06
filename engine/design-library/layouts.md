@@ -466,3 +466,68 @@ An advanced image showcase with built-in filtering and a lightbox. Use this for 
 ```
 
 // --- END LUXURY_GALLERY ---
+
+// --- START BOUTIQUE_DIVIDED ---
+
+## Pattern: Boutique Divided Split
+
+A 50/50 split layout with a vertical line dividing the two columns on desktop. Creates a clean, structured editorial layout.
+
+### Required JSON (Block Type: 'columns')
+
+```json
+{
+  "type": "columns",
+  "layout": "split-divided",
+  "items": [
+    {
+      "blocks": [
+        /* Text/Heading blocks */
+      ]
+    },
+    {
+      "blocks": [
+        /* Image or List blocks */
+      ]
+    }
+  ]
+}
+```
+
+// --- END BOUTIQUE_DIVIDED ---
+
+// --- START COLUMNS_OVERLAP ---
+
+## Pattern: Layered Columns Overlap
+
+A first-class layout option that places an image on one side, and a floating text card that overlaps it on the other side. Perfect for brand stories.
+
+### Visual Rule
+- Use `layout`: `overlap-left` (Image Left, Card Right) or `overlap-right` (Card Left, Image Right).
+- The column holding the text blocks will automatically be rendered as a floating shadow card overlapping the image.
+
+```json
+{
+  "type": "columns",
+  "layout": "overlap-left",
+  "items": [
+    {
+      "blocks": [
+        {
+          "type": "image",
+          "src": "...",
+          "aspect": "portrait"
+        }
+      ]
+    },
+    {
+      "blocks": [
+        { "type": "heading", "text": "Our Ethos", "level": "h3" },
+        { "type": "text", "content": "..." }
+      ]
+    }
+  ]
+}
+```
+
+// --- END COLUMNS_OVERLAP ---
