@@ -2,7 +2,6 @@ import React from "react";
 import Image from "next/image";
 import NextLink from "next/link";
 import { ServicesSection } from "@/lib/schema";
-import { IconMap } from "@/components/ui/IconMap";
 
 type ServicesProps = ServicesSection["props"];
 

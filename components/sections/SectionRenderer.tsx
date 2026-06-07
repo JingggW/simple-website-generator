@@ -22,6 +22,7 @@ import { CarouselSimple } from "@/components/sections/carousel/CarouselSimple";
 import { AccordionSimple } from "@/components/sections/accordion/AccordionSimple";
 import { TabsSimple } from "@/components/sections/tabs/TabsSimple";
 import { GalleryGrid } from "@/components/sections/gallery/GalleryGrid";
+import { CustomSection } from "./CustomSection";
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
   hero: {
@@ -147,6 +148,42 @@ export const SectionRenderer = ({
 }) => {
   // IGNORE SEO sections (they are for metadata only)
   if ((section.type as string) === "seo") return null;
+
+  if (section.type === "custom") {
+    const bgClass = backgroundClasses[section.props.background || "default"];
+    const animationProps = animations[section.props.animation || "slide-up"];
+    const containerClass = widthClasses[section.props.width || "default"];
+
+    const paddingClasses: Record<string, string> = {
+      none: "py-0",
+      sm: "py-3 md:py-4",
+      md: "py-6 md:py-8",
+      lg: "py-10 md:py-16",
+    };
+    const paddingClass = paddingClasses[section.props.padding || "md"];
+
+    return (
+      <motion.div
+        id={sectionId}
+        className={`${bgClass} ${paddingClass} relative`}
+        {...animationProps}
+      >
+        {section.props.topDivider && (
+          <SectionDivider {...section.props.topDivider} position="top" />
+        )}
+
+        <div
+          className={`${containerClass} ${textInheritClasses[section.props.background || "default"]}`}
+        >
+          <CustomSection variant={section.variant} props={section.props} />
+        </div>
+
+        {section.props.bottomDivider && (
+          <SectionDivider {...section.props.bottomDivider} position="bottom" />
+        )}
+      </motion.div>
+    );
+  }
 
   const group = sectionComponents[section.type];
 

@@ -255,6 +255,12 @@ function main() {
       fs.mkdirSync(pagesDir, { recursive: true });
     }
     fs.writeFileSync(path.join(pagesDir, "home.json"), JSON.stringify(defaultHome, null, 2));
+
+    const componentsDir = path.join(CONFIG_DIR, "components");
+    if (!fs.existsSync(componentsDir)) {
+      fs.mkdirSync(componentsDir, { recursive: true });
+    }
+
     fs.writeFileSync(CURRENT_PROJECT_FILE, sanitizedProjectName);
 
     // 4. Save this fresh state to projects/

@@ -28,15 +28,22 @@ type NavbarProps = {
 
 // --- SUB-COMPONENTS (Declared outside to prevent re-render errors) ---
 
-const Logo = ({ title }: { title: string }) => (
+const Logo = ({ title, isDarkBg }: { title: string; isDarkBg?: boolean }) => (
   <Link href="/" className="flex items-center space-x-2 group">
-    <span className="font-black text-xl md:text-2xl text-foreground tracking-tighter uppercase transition-transform group-hover:scale-105">
+    <span className={cn(
+      "font-black text-xl md:text-2xl tracking-tighter uppercase transition-transform group-hover:scale-105",
+      isDarkBg ? "text-current" : "text-foreground"
+    )}>
       {title}
     </span>
   </Link>
 );
 
-const NavItem = ({ item, index, mounted }: { item: any; index: number; mounted: boolean }) => {
+const NavItem = ({ item, index, mounted, isDarkBg }: { item: any; index: number; mounted: boolean; isDarkBg?: boolean }) => {
+  const textClass = isDarkBg 
+    ? "text-current/80 hover:text-current opacity-90 hover:opacity-100" 
+    : "text-foreground/80 hover:text-primary";
+
   if (item.type === "dropdown") {
     return (
       <NavigationMenuItem key={index}>
@@ -44,18 +51,21 @@ const NavItem = ({ item, index, mounted }: { item: any; index: number; mounted: 
           onClick={() => {
             if (mounted && item.href) window.location.href = item.href;
           }}
-          className="bg-transparent text-foreground/80 hover:text-primary transition-colors font-bold uppercase tracking-widest text-[11px]"
+          className={cn(
+            "bg-transparent transition-colors font-bold uppercase tracking-widest text-[11px]",
+            textClass
+          )}
         >
           {item.label}
         </NavigationMenuTrigger>
         <NavigationMenuContent>
-          <ul className="grid w-50 gap-2 p-4 bg-background border border-secondary/10 rounded-xl shadow-2xl">
+          <ul className="grid w-50 gap-2 p-4 bg-background border border-foreground/15 rounded-xl shadow-2xl">
             {item.items.map((subItem: any, subIndex: number) => (
               <li key={subIndex}>
                 <NavigationMenuLink asChild>
                   <Link
                     href={subItem.href || "#"}
-                    className="block p-3 rounded-lg hover:bg-secondary/5 hover:text-primary transition-all"
+                    className="block p-3 rounded-lg hover:bg-secondary/5 hover:text-primary transition-all text-foreground"
                   >
                     <div className="text-sm font-bold uppercase tracking-wider">
                       {subItem.label}
@@ -77,7 +87,8 @@ const NavItem = ({ item, index, mounted }: { item: any; index: number; mounted: 
           href={item.href || "#"}
           className={cn(
             navigationMenuTriggerStyle(),
-            "bg-transparent text-foreground/80 hover:text-primary font-bold uppercase tracking-widest text-[11px] transition-colors",
+            "bg-transparent font-bold uppercase tracking-widest text-[11px] transition-colors",
+            textClass
           )}
         >
           {item.label}
@@ -107,6 +118,8 @@ export const Navbar = ({ config }: NavbarProps) => {
   }, [mounted]);
 
   const variant = config.variant || "default";
+  const bgType = config.background || "default";
+  
   const isTransparent = variant === "transparent";
   const isIsland = variant === "island";
   const isCentered = variant === "centered";
@@ -114,6 +127,38 @@ export const Navbar = ({ config }: NavbarProps) => {
   const isMinimalCenter = variant === "minimal-center";
   const isSideDrawer = variant === "side-drawer";
   const isGlassFloating = variant === "glass-floating";
+
+  const isDarkBg = bgType === "primary" || bgType === "secondary";
+
+  const headerBgClasses: Record<string, string> = {
+    default: "bg-background border-b border-foreground/15",
+    muted: "bg-muted border-b border-foreground/15",
+    surface: "bg-surface border-b border-foreground/15",
+    primary: "bg-primary text-on-primary border-b border-primary/20",
+    secondary: "bg-secondary text-on-secondary border-b border-secondary/20",
+  };
+
+  const headerBgScrolledClasses: Record<string, string> = {
+    default: "bg-background/80 backdrop-blur-lg border-b border-foreground/15 shadow-sm",
+    muted: "bg-muted/80 backdrop-blur-lg border-b border-foreground/15 shadow-sm",
+    surface: "bg-surface/80 backdrop-blur-lg border-b border-foreground/15 shadow-sm",
+    primary: "bg-primary/95 backdrop-blur-lg text-on-primary border-b border-primary/20 shadow-sm",
+    secondary: "bg-secondary/95 backdrop-blur-lg text-on-secondary border-b border-secondary/20 shadow-sm",
+  };
+
+  const islandBgClasses: Record<string, string> = {
+    default: "bg-background/90 text-foreground border-secondary/20",
+    muted: "bg-muted/90 text-foreground border-secondary/20",
+    surface: "bg-surface/90 text-foreground border-secondary/20",
+    primary: "bg-primary/90 text-on-primary border-primary/20",
+    secondary: "bg-secondary/90 text-on-secondary border-secondary/20",
+  };
+
+  const headerBgClass = isTransparent && (!mounted || !isScrolled)
+    ? "bg-transparent border-transparent py-4"
+    : mounted && isScrolled && !isMinimalCenter && !isCentered
+      ? headerBgScrolledClasses[bgType]
+      : headerBgClasses[bgType];
 
   // Header Base Classes
   const headerClasses = cn(
@@ -123,11 +168,9 @@ export const Navbar = ({ config }: NavbarProps) => {
       : isTransparent
         ? "fixed top-0"
         : "sticky top-0",
-    isTransparent && (!mounted || !isScrolled)
-      ? "bg-transparent border-transparent py-4"
-      : isMinimalCenter || isCentered
-        ? "bg-background border-b border-secondary/10 pt-2"
-        : "bg-background/80 backdrop-blur-lg border-b border-secondary/10 shadow-sm py-0",
+    headerBgClass,
+    (isMinimalCenter || isCentered) && !isTransparent && "pt-2",
+    !(isMinimalCenter || isCentered) && !isTransparent && "py-0",
     mounted && isScrolled && !isMinimalCenter && !isCentered
       ? "h-16"
       : isMinimalCenter || isCentered
@@ -139,7 +182,7 @@ export const Navbar = ({ config }: NavbarProps) => {
   const navContainerClasses = cn(
     "mx-auto transition-all duration-500 h-full",
     isIsland
-      ? "container max-w-5xl bg-background/90 backdrop-blur-xl border border-secondary/20 rounded-full px-8 shadow-2xl pointer-events-auto flex items-center"
+      ? cn("container max-w-5xl backdrop-blur-xl border rounded-full px-8 shadow-2xl pointer-events-auto flex items-center", islandBgClasses[bgType])
       : isGlassFloating
         ? "container max-w-7xl bg-white/10 backdrop-blur-2xl border border-white/20 rounded-2xl px-10 shadow-2xl pointer-events-auto flex items-center"
         : "container flex items-center px-4",
@@ -180,12 +223,12 @@ export const Navbar = ({ config }: NavbarProps) => {
               <NavigationMenu className="hidden md:block">
                 <NavigationMenuList>
                   {leftLinks.map((item, idx) => (
-                    <NavItem item={item} key={idx} index={idx} mounted={mounted} />
+                    <NavItem item={item} key={idx} index={idx} mounted={mounted} isDarkBg={isDarkBg} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
             ) : !isCentered && !isMinimalCenter ? (
-              <Logo title={config.title} />
+              <Logo title={config.title} isDarkBg={isDarkBg} />
             ) : null}
           </div>
 
@@ -193,12 +236,12 @@ export const Navbar = ({ config }: NavbarProps) => {
           <div className="flex items-center justify-center px-8">
             {isSplit || isCentered || isMinimalCenter ? (
               <div className="flex flex-col items-center gap-2">
-                <Logo title={config.title} />
+                <Logo title={config.title} isDarkBg={isDarkBg} />
                 {(isMinimalCenter || isCentered) && (
                   <NavigationMenu className="hidden md:block pt-2">
                     <NavigationMenuList className="gap-6">
                       {config.links.map((item, idx) => (
-                        <NavItem item={item} key={idx} index={idx} mounted={mounted} />
+                        <NavItem item={item} key={idx} index={idx} mounted={mounted} isDarkBg={isDarkBg} />
                       ))}
                     </NavigationMenuList>
                   </NavigationMenu>
@@ -208,7 +251,7 @@ export const Navbar = ({ config }: NavbarProps) => {
               <NavigationMenu className="hidden md:block">
                 <NavigationMenuList className="gap-2">
                   {config.links.map((item, idx) => (
-                    <NavItem item={item} key={idx} index={idx} mounted={mounted} />
+                    <NavItem item={item} key={idx} index={idx} mounted={mounted} isDarkBg={isDarkBg} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -221,7 +264,7 @@ export const Navbar = ({ config }: NavbarProps) => {
               <NavigationMenu className="hidden md:block">
                 <NavigationMenuList>
                   {rightLinks.map((item, idx) => (
-                    <NavItem item={item} key={idx} index={idx} mounted={mounted} />
+                    <NavItem item={item} key={idx} index={idx} mounted={mounted} isDarkBg={isDarkBg} />
                   ))}
                 </NavigationMenuList>
               </NavigationMenu>
@@ -241,7 +284,10 @@ export const Navbar = ({ config }: NavbarProps) => {
               {mounted && (
                 <Sheet open={isOpen} onOpenChange={setIsOpen}>
                   <SheetTrigger asChild>
-                    <button className="p-2 text-foreground hover:bg-secondary/10 rounded-full transition-colors">
+                    <button className={cn(
+                      "p-2 rounded-full transition-colors",
+                      isDarkBg ? "text-current hover:bg-current/10" : "text-foreground hover:bg-secondary/10"
+                    )}>
                       <Menu className="h-6 w-6" />
                     </button>
                   </SheetTrigger>

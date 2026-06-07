@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils";
 type HeroEditorialProps = HeroSection["props"];
 
 export const HeroEditorial = ({
-  hookLine,
   coreValueProp,
   subText,
   primaryCTA,

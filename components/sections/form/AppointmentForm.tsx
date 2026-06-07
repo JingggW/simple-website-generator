@@ -1,6 +1,5 @@
 import React from "react";
 import { FormSection } from "@/lib/schema";
-import { cn } from "@/lib/utils";
 import { Calendar, Sparkles } from "lucide-react";
 import { useFormSubmit } from "@/components/hooks/useFormSubmit";
 

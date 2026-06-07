@@ -17,6 +17,7 @@
     "clean-shots": "npx tsx scripts/clear-screenshots.ts",
     "project": "npx tsx scripts/project.ts",
     "change-colors": "npx tsx scripts/change-colors.ts",
+    "change-bg-style": "npx tsx scripts/change-bg-style.ts",
     "remove-hero": "npx tsx scripts/remove-hero.ts"
   },
   "dependencies": {

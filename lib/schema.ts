@@ -50,6 +50,7 @@ export const DividerSchema = z.object({
   type: z
     .enum([
       "none",
+      "line",
       "wave",
       "slant",
       "curve",
@@ -226,6 +227,10 @@ export const HeaderSchema = z.object({
       "glass-floating",
     ])
     .default("default"),
+  background: z
+    .enum(["default", "muted", "surface", "primary", "secondary"])
+    .default("default")
+    .describe("Background color of the header"),
   announcement: z.string().optional().describe("Top bar promo text"),
   links: z.array(NavItemSchema).default([]),
   cta: LinkSchema.optional(),
@@ -243,6 +248,10 @@ export const FooterSchema = z.object({
     title: z.string().default("Brand"),
     description: z.string().optional(),
   }),
+  background: z
+    .enum(["default", "muted", "surface", "primary", "secondary"])
+    .default("default")
+    .describe("Background color of the footer"),
   columns: z.array(FooterColumnSchema).default([]),
   social: z
     .array(
@@ -555,6 +564,14 @@ export const CarouselSchema = z.object({
 });
 // --- END CAROUSEL ---
 
+// --- START CUSTOM ---
+export const CustomSectionSchema = z.object({
+  type: z.literal("custom"),
+  variant: z.string().describe("Filename of the custom React component inside config/components/"),
+  props: z.record(z.string(), z.any()).default({}),
+});
+// --- END CUSTOM ---
+
 // --- START PAGE ---
 export const PageSchema = z.object({
   seo: z.object({
@@ -577,6 +594,7 @@ export const PageSchema = z.object({
       AccordionSchema,
       TabsSchema,
       GallerySchema,
+      CustomSectionSchema,
     ]),
   ),
 });
@@ -693,6 +711,7 @@ export type CarouselSection = z.infer<typeof CarouselSchema>;
 export type AccordionSection = z.infer<typeof AccordionSchema>;
 export type TabsSection = z.infer<typeof TabsSchema>;
 export type GallerySection = z.infer<typeof GallerySchema>;
+export type CustomSection = z.infer<typeof CustomSectionSchema>;
 
 export type AnySection =
   | HeroSection
@@ -706,7 +725,8 @@ export type AnySection =
   | CarouselSection
   | AccordionSection
   | TabsSection
-  | GallerySection;
+  | GallerySection
+  | CustomSection;
 
 export type PageConfig = z.infer<typeof PageSchema>;
 export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;

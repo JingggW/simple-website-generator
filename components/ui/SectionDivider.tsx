@@ -3,7 +3,7 @@
 import React from "react";
 
 interface SectionDividerProps {
-  type: "none" | "wave" | "slant" | "curve" | "step" | "tilt" | "triangle" | "book" | "fan";
+  type: "none" | "line" | "wave" | "slant" | "curve" | "step" | "tilt" | "triangle" | "book" | "fan";
   color: "default" | "muted" | "surface" | "primary" | "secondary" | "accent";
   height: "sm" | "md" | "lg";
   flip?: boolean;
@@ -35,6 +35,27 @@ export const SectionDivider: React.FC<SectionDividerProps> = ({
   position,
 }) => {
   if (type === "none") return null;
+
+  if (type === "line") {
+    const borderThickness = {
+      sm: "h-[1px]",
+      md: "h-[2px]",
+      lg: "h-[4px]",
+    }[height] || "h-[1px]";
+
+    const bgClass = {
+      default: "bg-foreground/15",
+      muted: "bg-muted",
+      surface: "bg-surface",
+      primary: "bg-primary",
+      secondary: "bg-secondary",
+      accent: "bg-accent",
+    }[color] || "bg-foreground/15";
+
+    return (
+      <div className={`w-full ${borderThickness} ${bgClass}`} />
+    );
+  }
 
   const fillClass = colorClasses[color];
   const heightClass = heights[height];
