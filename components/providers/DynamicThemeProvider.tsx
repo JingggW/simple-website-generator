@@ -40,6 +40,8 @@ export const DynamicThemeProvider = ({
     root.style.setProperty("--on-primary", getOnColor(theme.colors.primary));
     root.style.setProperty("--on-secondary", getOnColor(theme.colors.secondary));
     root.style.setProperty("--on-accent", getOnColor(theme.colors.accent));
+    root.style.setProperty("--on-muted", getOnColor(theme.colors.muted || "#F3F4F6"));
+    root.style.setProperty("--on-surface", getOnColor(theme.colors.surface || "#F9FAFB"));
 
     // Typography
     const pairing = FONT_PAIRINGS[theme.fontStyle as keyof typeof FONT_PAIRINGS] || FONT_PAIRINGS.sans;

@@ -12,6 +12,8 @@
   --color-on-primary: rgb(var(--on-primary));
   --color-on-secondary: rgb(var(--on-secondary));
   --color-on-accent: rgb(var(--on-accent));
+  --color-on-muted: rgb(var(--on-muted));
+  --color-on-surface: rgb(var(--on-surface));
   --font-sans: var(--font-body);
   --font-heading: var(--font-heading);
 
@@ -30,6 +32,8 @@
   --muted: 241 245 249;
   --accent: 245 158 11;
   --text: 15 23 42;
+  --on-muted: 15 23 42;
+  --on-surface: 15 23 42;
   --font-body: ui-sans-serif, system-ui, sans-serif;
   --font-heading: ui-sans-serif, system-ui, sans-serif;
   --radius: 0.5rem;

@@ -82,8 +82,8 @@ const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
 
 const backgroundClasses: Record<string, string> = {
   default: "bg-background text-foreground",
-  muted: "bg-muted text-foreground",
-  surface: "bg-surface text-foreground",
+  muted: "bg-muted text-on-muted",
+  surface: "bg-surface text-on-surface",
   primary: "bg-primary text-on-primary",
   secondary: "bg-secondary text-on-secondary",
 };
@@ -91,8 +91,8 @@ const backgroundClasses: Record<string, string> = {
 // Map current background to text color to enforce inheritance
 const textInheritClasses: Record<string, string> = {
   default: "text-foreground",
-  muted: "text-foreground",
-  surface: "text-foreground",
+  muted: "text-on-muted",
+  surface: "text-on-surface",
   primary: "text-on-primary",
   secondary: "text-on-secondary",
 };
