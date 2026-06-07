@@ -602,12 +602,13 @@ export class PropSiteEngine {
 }
 
 async function runPoC() {
+  const args = process.argv.slice(2);
+  const name = args[0] || "Apex Strength & Coaching";
+  const desc = args[1] || "An evidence-based fitness coaching service by a certified PT helping busy professionals get strong, lean, and build sustainable habits through data-driven training and evidence-based nutrition rather than TikTok fads.";
+  const prompt = args[2] || "Create a clean 2-page conversion site. Page 1 (Home): Hero section with strong hook and CTA, a Contrast section comparing 'The Old Way' (generic fads) vs. 'The Coach Way' (science-backed systems), a 'No-Nonsense' Philosophy section (bio) under the contrast section, and a minimalist Credential Bar displaying key data points like '[ Certified PT ]', '[ 100% Data-Driven ]', and '[ Evidence-Based Nutrition ]'. Page 2 (Services): Offer 1 (Premium 1-on-1 Online Coaching), Offer 2 (8-week Strength Foundation Program), and a FAQ section with 3 common conversion-closing questions addressing client hesitations.";
+
   const engine = new PropSiteEngine();
-  await engine.generateFullWebsite(
-    "Corner Lane Espresso",
-    "A boutique specialty coffee shop and community hub in Point Cook, Melbourne. We solve the problem of rushed commercial coffee chains and long morning commuter queues by offering perfectly crafted Flat Whites in a cozy environment, alongside fresh house-baked pastries, and a Text-Ahead Express Pick-Up system designed to get premium coffee to morning commuters in under 60 seconds.",
-    "Use a warm, minimalist, artisanal layout style. Create a Home page detailing our seasonal specialty coffee, house-baked sourdough toasties, and the text-ahead express pick-up. Create an About page sharing our story (a CBD head barista for 6 years creating a community living room). Create a Contact page with our Point Cook location and text-ahead details. The primary CTA should be 'Text to Order'."
-  );
+  await engine.generateFullWebsite(name, desc, prompt);
 }
 
 if (require.main === module) {
