@@ -260,8 +260,8 @@ function main() {
     if (!fs.existsSync(componentsDir)) {
       fs.mkdirSync(componentsDir, { recursive: true });
     }
-    const placeholderContent = `import React from "react";\n\nexport default function Placeholder() {\n  return (\n    <div className="p-4 border border-dashed border-gray-300 rounded-lg text-center">\n      Custom Component Placeholder\n    </div>\n  );\n}\n`;
-    fs.writeFileSync(path.join(componentsDir, "Placeholder.tsx"), placeholderContent);
+    const registryContent = `import React from "react";\n\nexport const customComponents: Record<string, React.ComponentType<any>> = {};\n`;
+    fs.writeFileSync(path.join(componentsDir, "index.ts"), registryContent);
 
     fs.writeFileSync(CURRENT_PROJECT_FILE, sanitizedProjectName);
 
