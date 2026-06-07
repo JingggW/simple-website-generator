@@ -393,7 +393,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
                   ? cardBaseClasses
                   : isMinimal
                     ? ""
-                    : "bg-surface/50 rounded-(--border-radius) p-6 md:p-8 border border-secondary/10 shadow-sm",
+                    : "bg-surface/50 rounded-[var(--border-radius)] p-6 md:p-8 border border-secondary/10 shadow-sm",
               )}
             >
               <h3
@@ -536,7 +536,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       return (
         <figure className={`group relative ${marginClass} w-full`}>
           <div
-            className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-(--border-radius) shadow-2xl"} overflow-hidden`}
+            className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-[var(--border-radius)] shadow-2xl"} overflow-hidden`}
           >
             <Image
               src={
@@ -591,7 +591,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
           {block.images.map((img, idx) => (
             <figure key={idx} className="group relative w-full">
               <div
-                className={`relative ${gridAspect[block.aspect || "square"]} rounded-(--border-radius) overflow-hidden shadow-md`}
+                className={`relative ${gridAspect[block.aspect || "square"]} rounded-[var(--border-radius)] overflow-hidden shadow-md`}
               >
                 <Image
                   src={
@@ -632,7 +632,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
         <div className={`flex w-full ${alignClasses} pt-4 ${marginClass}`}>
           <Link
             href={block.href || "#"}
-            className={`inline-flex items-center px-10 py-4 rounded-(--border-radius) font-bold text-lg transition-all duration-300 ${buttonVariants[block.variant || "primary"]}`}
+            className={`inline-flex items-center px-10 py-4 rounded-[var(--border-radius)] font-bold text-lg transition-all duration-300 ${buttonVariants[block.variant || "primary"]}`}
           >
             {block.label}
           </Link>
