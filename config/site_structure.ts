@@ -1,16 +1,16 @@
 export const siteStructure = {
   "pages": {
     "/": [
-      "section-1",
-      "section-2",
-      "section-3",
-      "section-4",
-      "section-5"
+      "hero",
+      "comparison",
+      "testimonials",
+      "services"
     ],
     "/services": [
-      "hero",
-      "service-grid",
-      "faq"
+      "core-services",
+      "process",
+      "faq",
+      "book-quote"
     ]
   },
   "navigation": {
@@ -19,10 +19,13 @@ export const siteStructure = {
       "/services"
     ],
     "footer": [
-      "/",
       "/services",
-      "https://www.instagram.com/",
-      "https://www.linkedin.com"
+      "/services",
+      "/services",
+      "/services",
+      "/",
+      "/#testimonials",
+      "/services#book-quote"
     ]
   }
 };

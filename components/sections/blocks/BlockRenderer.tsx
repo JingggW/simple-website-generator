@@ -328,10 +328,10 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       }
 
       const variantClasses = {
-        default: isGradient ? "rounded-none" : "rounded-[var(--border-radius)]",
-        card: "rounded-[var(--border-radius)] shadow-xl border border-white/10",
+        default: isGradient ? "rounded-none" : "rounded-(--border-radius)",
+        card: "rounded-(--border-radius) shadow-xl border border-white/10",
         glass:
-          "rounded-[var(--border-radius)] backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
+          "rounded-(--border-radius) backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl",
         outline: "rounded-3xl border-2 border-primary/20 bg-background",
         magazine:
           "bg-surface border border-secondary/10 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition flex flex-col h-full",
@@ -376,7 +376,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       const isCards = variant === "cards";
 
       const cardBaseClasses =
-        "bg-surface rounded-[var(--border-radius)] shadow-lg border border-primary/10 transition-all duration-300 hover:scale-[1.01]";
+        "bg-surface rounded-(--border-radius) shadow-lg border border-primary/10 transition-all duration-300 hover:scale-[1.01]";
       const cardHeaderClasses = "text-xl font-bold mb-4 text-center";
       const cardItemClasses = "flex justify-between items-baseline group";
 
@@ -393,7 +393,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
                   ? cardBaseClasses
                   : isMinimal
                     ? ""
-                    : "bg-surface/50 rounded-[var(--border-radius)] p-6 md:p-8 border border-secondary/10 shadow-sm",
+                    : "bg-surface/50 rounded-(--border-radius) p-6 md:p-8 border border-secondary/10 shadow-sm",
               )}
             >
               <h3
@@ -536,7 +536,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       return (
         <figure className={`group relative ${marginClass} w-full`}>
           <div
-            className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-[var(--border-radius)] shadow-2xl"} overflow-hidden`}
+            className={`relative ${aspectClasses[block.aspect || "video"]} ${isEditorial ? "rounded-none" : "rounded-(--border-radius) shadow-2xl"} overflow-hidden`}
           >
             <Image
               src={
@@ -591,7 +591,7 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
           {block.images.map((img, idx) => (
             <figure key={idx} className="group relative w-full">
               <div
-                className={`relative ${gridAspect[block.aspect || "square"]} rounded-[var(--border-radius)] overflow-hidden shadow-md`}
+                className={`relative ${gridAspect[block.aspect || "square"]} rounded-(--border-radius) overflow-hidden shadow-md`}
               >
                 <Image
                   src={
@@ -629,10 +629,10 @@ export const BlockRenderer = ({ block }: { block: Block }) => {
       }[block.align || "left"];
 
       return (
-        <div className={`flex w-full ${alignClasses} pt-4 ${marginClass}`}>
+        <div className={`flex w-full mt-auto ${alignClasses} pt-4 ${marginClass}`}>
           <Link
             href={block.href || "#"}
-            className={`inline-flex items-center px-10 py-4 rounded-[var(--border-radius)] font-bold text-lg transition-all duration-300 ${buttonVariants[block.variant || "primary"]}`}
+            className={`inline-flex items-center px-10 py-4 rounded-(--border-radius) font-bold text-lg transition-all duration-300 ${buttonVariants[block.variant || "primary"]}`}
           >
             {block.label}
           </Link>

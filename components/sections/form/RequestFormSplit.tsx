@@ -97,7 +97,7 @@ export const RequestFormSplit = ({
     <section>
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-stretch">
-          <div className="relative aspect-[4/5] lg:aspect-auto rounded-[3rem] overflow-hidden shadow-2xl min-h-[500px]">
+          <div className="relative w-full aspect-[4/5] lg:aspect-auto rounded-[3rem] overflow-hidden shadow-2xl min-h-[350px] sm:min-h-[500px]">
             {imageName ? (
               <Image
                 src={

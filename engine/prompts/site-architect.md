@@ -36,7 +36,7 @@ Return a JSON object with:
    - **`accordion`**: FAQ or detailed breakdown. Place ONLY ONCE in the entire site.
    - **`tabs`**: Categorized info. Place ONLY ONCE in the entire site.
    - **`price-list`**: Place ONLY ONCE in the entire site (if needed, within `blocks` on relevant pages).
-2. **Standard Flow**: Every page MUST start with a `hero`.
+2. **Standard Flow**: Only the home page (`/`) MUST start with a `hero`. Subpages (such as `/services`, `/about`, etc.) MUST NOT use a `hero` section; they should start with a clean intro or header (e.g., using a simple `content` block or `blocks` type section acting as a page header).
 3. **Structural Differentiation (CRITICAL)**: For similar businesses, vary the page structures and section goals. Avoid the "standard" sequence. Use different combinations of `blocks` variants (e.g., alternating splits vs. feature grids) to create a unique narrative flow.
 4. **Diversity**: Every other section should use the `blocks` schema for storytelling, details, or secondary information. Never repeat a specialized section type (hero is the only exception, once per page).
 5. **No Redundancy**: If a component is on the landing page, do not put it on any other page.
@@ -60,7 +60,7 @@ Return a JSON object with:
       { "type": "...", "goal": "..." }
     ],
     "/...": [
-      { "type": "hero", "goal": "..." },
+      { "type": "content", "goal": "Clean page header introducing subpage content" },
       { "type": "...", "goal": "..." }
     ]
   }

@@ -29,7 +29,7 @@ Return a JSON object with the following structure:
    - **`form`**: Place ONLY on `/contact` or `/appointments`.
    - **`testimonials`**: Place ONLY on `/` or `/reviews`.
    - **`pricing`**: Place ONLY on `/services`, `/menu`, or `/pricing`.
-2. **Standard Flow**: Every page MUST start with a `hero`.
+2. **Standard Flow**: Only the home page (`/`) MUST start with a `hero`. Subpages (such as `/services`, `/about`, etc.) MUST NOT use a `hero` section; they should start with a clean intro or header (e.g., using a simple `content` block or `blocks` type section acting as a page header).
 3. **Diversity**: Mix `blocks` with specialized sections. Avoid having two specialized sections of the same type in the entire site.
 
 ## Expected Output Structure
@@ -76,7 +76,7 @@ Return a JSON object with the following structure:
       { "type": "services", "goal": "Key value propositions" }
     ],
     "/contact": [
-      { "type": "hero", "goal": "How to get in touch" },
+      { "type": "content", "goal": "Clean page header introducing contact options" },
       { "type": "form", "goal": "Contact inquiry form" }
     ]
   }

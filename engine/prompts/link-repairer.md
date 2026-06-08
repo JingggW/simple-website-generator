@@ -15,10 +15,10 @@ Analyze a broken or missing link and suggest the most appropriate destination fr
 {{STRUCTURE}}
 
 ## Rules
-1. **Best Match**: Choose the most relevant internal path (e.g., `/contact`) or anchor (e.g., `#services`) based on the label.
-2. **Contact Intent**: If the label is "Call Us", "Email", or "Contact", and no page exists, suggest `tel:XXX` or `mailto:XXX` placeholders.
-3. **External Guess**: If it looks like a social link (e.g., "Facebook"), suggest a plausible placeholder URL.
-4. **Anchor Matching**: If a page exists but the label suggests a specific section (e.g., "See Pricing" on the Home page), use an anchor if available (e.g., `/#pricing`).
+1. **Strict Mapping Constraint**: You MUST ONLY choose paths for pages that currently exist in the Site Structure (`pages` keys). Do NOT invent or output new page paths (like `/contact`, `/quote`, `/about`) if they are not present in the structure.
+2. **Anchor Matching**: If a section matching the link's intent exists on any page (e.g., `book-quote`, `faq`, or `contact-form`), append it as an anchor (e.g., `/services#book-quote`, `/services#faq`, or `/#contact-form`).
+3. **Contact/Action Intent fallback**: If the label is "Call Us" or "Email", suggest standard `tel:XXX` or `mailto:XXX` placeholders.
+4. **External Links**: If it is a social link (e.g., "Facebook"), suggest a plausible placeholder URL.
 
 ## Output
 Return ONLY the corrected `href` string.
