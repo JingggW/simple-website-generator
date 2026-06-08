@@ -530,6 +530,7 @@ export const GallerySchema = z.object({
         alt: z.string().optional(),
         caption: z.string().optional(),
         category: z.string().optional(),
+        href: z.string().optional(),
       }),
     ),
     columns: z.enum(["2", "3", "4", "5"]).default("3"),

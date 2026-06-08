@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { GallerySection } from "@/lib/schema";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
+import Link from "next/link";
 
-export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }> = ({
+export const GalleryGrid: React.FC<
+  GallerySection["props"] & { variant: string }
+> = ({
   title,
   description,
   images,
@@ -17,7 +20,6 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
   const [selectedIdx, setSelectedIdx] = useState<number | null>(null);
 
   const isMasonry = variant === "masonry";
-  const isCarousel = variant === "carousel";
 
   const gapClasses: Record<string, string> = {
     none: "gap-0",
@@ -41,7 +43,9 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
     "5": "grid-cols-2 md:grid-cols-3 lg:grid-cols-5",
   };
 
-  const categories = Array.from(new Set(images.map((img) => img.category).filter(Boolean)));
+  const categories = Array.from(
+    new Set(images.map((img) => img.category).filter(Boolean)),
+  );
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filteredImages = activeCategory
@@ -52,8 +56,14 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
     <div className="w-full">
       {(title || description) && (
         <div className="text-center mb-12">
-          {title && <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>}
-          {description && <p className="text-lg opacity-80 max-w-2xl mx-auto">{description}</p>}
+          {title && (
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{title}</h2>
+          )}
+          {description && (
+            <p className="text-lg opacity-80 max-w-2xl mx-auto">
+              {description}
+            </p>
+          )}
         </div>
       )}
 
@@ -63,7 +73,9 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
           <button
             onClick={() => setActiveCategory(null)}
             className={`px-4 py-2 rounded-full text-sm transition-colors ${
-              !activeCategory ? "bg-primary text-on-primary" : "bg-current/10 hover:bg-current/20"
+              !activeCategory
+                ? "bg-primary text-on-primary"
+                : "bg-current/10 hover:bg-current/20"
             }`}
           >
             All
@@ -73,7 +85,9 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
               key={cat}
               onClick={() => setActiveCategory(cat as string)}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                activeCategory === cat ? "bg-primary text-on-primary" : "bg-current/10 hover:bg-current/20"
+                activeCategory === cat
+                  ? "bg-primary text-on-primary"
+                  : "bg-current/10 hover:bg-current/20"
               }`}
             >
               {cat}
@@ -87,32 +101,67 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
         className={`grid ${colClasses[columns]} ${gapClasses[gap]} ${isMasonry ? "items-start" : ""}`}
       >
         <AnimatePresence mode="popLayout">
-          {filteredImages.map((image, index) => (
-            <motion.div
-              key={image.src + index}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.3 }}
-              className={`group relative cursor-pointer overflow-hidden rounded-lg bg-muted ${
-                !isMasonry ? aspectClasses[aspect] : ""
-              }`}
-              onClick={() => setSelectedIdx(index)}
-            >
-              <img
-                src={image.src}
-                alt={image.alt || title}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              {(image.caption || image.category) && (
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
-                  {image.category && <span className="text-xs uppercase tracking-widest mb-2 opacity-80">{image.category}</span>}
-                  {image.caption && <p className="text-sm font-medium">{image.caption}</p>}
-                </div>
-              )}
-            </motion.div>
-          ))}
+          {filteredImages.map((image, index) => {
+            const hasHref = !!image.href;
+            const content = (
+              <>
+                <img
+                  src={image.src}
+                  alt={image.alt || title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                {(image.caption || image.category) && (
+                  <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-6 text-white">
+                    {image.category && (
+                      <span className="text-xs uppercase tracking-widest mb-2 opacity-80">
+                        {image.category}
+                      </span>
+                    )}
+                    {image.caption && (
+                      <p className="text-sm font-medium">{image.caption}</p>
+                    )}
+                  </div>
+                )}
+              </>
+            );
+
+            if (hasHref) {
+              return (
+                <motion.div
+                  key={image.src + index}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.3 }}
+                  className={`group relative cursor-pointer overflow-hidden rounded-lg bg-muted ${
+                    !isMasonry ? aspectClasses[aspect] : ""
+                  }`}
+                >
+                  <Link href={image.href!} className="block w-full h-full">
+                    {content}
+                  </Link>
+                </motion.div>
+              );
+            }
+
+            return (
+              <motion.div
+                key={image.src + index}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.3 }}
+                className={`group relative cursor-pointer overflow-hidden rounded-lg bg-muted ${
+                  !isMasonry ? aspectClasses[aspect] : ""
+                }`}
+                onClick={() => setSelectedIdx(index)}
+              >
+                {content}
+              </motion.div>
+            );
+          })}
         </AnimatePresence>
       </div>
 
@@ -123,7 +172,7 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-8"
+            className="fixed inset-0 z-100 flex items-center justify-center bg-black/95 p-4 md:p-8"
           >
             <button
               className="absolute top-6 right-6 text-white hover:text-primary transition-colors z-[110]"
@@ -160,7 +209,9 @@ export const GalleryGrid: React.FC<GallerySection["props"] & { variant: string }
                 alt={filteredImages[selectedIdx].alt}
               />
               {filteredImages[selectedIdx].caption && (
-                <p className="text-white text-lg mt-6 text-center max-w-2xl">{filteredImages[selectedIdx].caption}</p>
+                <p className="text-white text-lg mt-6 text-center max-w-2xl">
+                  {filteredImages[selectedIdx].caption}
+                </p>
               )}
             </div>
           </motion.div>
