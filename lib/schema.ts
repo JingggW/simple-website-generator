@@ -652,6 +652,18 @@ export const WebsiteConfigSchema = z.object({
     .string()
     .optional()
     .describe("Secret key to authorize submissions"),
+  web3FormsAccessKey: z
+    .string()
+    .optional()
+    .describe("Web3Forms Access Key for form email notifications"),
+  whatsappNumber: z
+    .string()
+    .optional()
+    .describe("WhatsApp number for floating chat widget (e.g. '+61412345678')"),
+  whatsappMessage: z
+    .string()
+    .optional()
+    .describe("Pre-filled message for WhatsApp widget"),
 });
 // --- END WEBSITE ---
 

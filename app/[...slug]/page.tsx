@@ -3,6 +3,7 @@ import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import WhatsAppWidget from "@/components/integrations/whatsapp/WhatsAppWidget";
 import { notFound } from "next/navigation";
 import fs from "fs";
 import path from "path";
@@ -102,6 +103,7 @@ export default async function DynamicPage(props: {
           })}
         </main>
         <Footer config={projectConfig.footer} />
+        <WhatsAppWidget config={projectConfig} />
       </ThemeProvider>
     );
   }
@@ -126,6 +128,7 @@ export default async function DynamicPage(props: {
         })}
       </main>
       <Footer config={siteConfig.footer} />
+      <WhatsAppWidget config={siteConfig} />
     </ThemeProvider>
   );
 }

@@ -2,6 +2,7 @@ import { siteConfig } from "@/config/site";
 import { SectionRenderer } from "@/components/sections/SectionRenderer";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import WhatsAppWidget from "@/components/integrations/whatsapp/WhatsAppWidget";
 import { notFound } from "next/navigation";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         })}
       </main>
       <Footer config={siteConfig.footer} />
+      <WhatsAppWidget config={siteConfig} />
     </>
   );
 }
