@@ -42,7 +42,7 @@ next-env.d.ts
 
 # notes
 todo-list.md
- *.md
+*.md
 
 # PropSite Credentials & Generated Content
 config/
