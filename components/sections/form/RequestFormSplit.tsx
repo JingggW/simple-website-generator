@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { FormSection } from "@/lib/schema";
-import { useFormSubmit } from "@/components/hooks/useFormSubmit";
+import { useFormSubmit } from "@/components/integrations/google-sheets/useFormSubmit";
 
 type FormProps = FormSection["props"];
 
@@ -21,7 +21,7 @@ const FormInner = ({
       <div className="text-center py-12 space-y-4">
         <div className="text-4xl animate-bounce">✨</div>
         <h3 className="text-2xl font-black uppercase tracking-tighter">Thank You!</h3>
-        <p className="text-secondary/70 text-lg">We've received your inquiry.</p>
+        <p className="text-secondary/70 text-lg">We&apos;ve received your inquiry.</p>
         <button 
           onClick={() => setStatus("idle")}
           className="text-primary font-bold uppercase tracking-widest text-xs border-b-2 border-primary pt-4"

@@ -1,6 +1,6 @@
 import React from "react";
 import { FormSection } from "@/lib/schema";
-import { useFormSubmit } from "@/components/hooks/useFormSubmit";
+import { useFormSubmit } from "@/components/integrations/google-sheets/useFormSubmit";
 
 type FormProps = FormSection["props"];
 

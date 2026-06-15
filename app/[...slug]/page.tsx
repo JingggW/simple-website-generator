@@ -163,7 +163,7 @@ export async function generateStaticParams() {
               });
             }
           }
-        } catch (e) {}
+        } catch {}
       }
     }
   }
@@ -190,7 +190,7 @@ export async function generateStaticParams() {
             }
           }
         }
-      } catch (e) {}
+      } catch {}
     }
   }
 

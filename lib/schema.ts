@@ -573,6 +573,38 @@ export const CustomSectionSchema = z.object({
 });
 // --- END CUSTOM ---
 
+// --- START INTEGRATIONS ---
+export const IntegrationSchema = z.object({
+  type: z.literal("integration"),
+  variant: z.enum(["calcom", "google-sheets-form"]),
+  props: BaseSectionSchema.extend({
+    title: z.string().optional(),
+    description: z.string().optional(),
+    calLink: z.string().optional().describe("Cal.com link (e.g. 'growing-money-minds/intro')"),
+    displayType: z.enum(["inline", "popup"]).default("inline").optional(),
+    ctaLabel: z.string().optional().describe("Button label for popup mode"),
+    submitLabel: z.string().optional().describe("Form submit button label"),
+    fields: z.array(
+      z.object({
+        name: z.string(),
+        label: z.string(),
+        type: z.enum([
+          "text",
+          "email",
+          "textarea",
+          "select",
+          "date",
+          "datetime",
+        ]),
+        options: z.array(z.string()).optional(),
+        required: z.boolean().default(true),
+      }),
+    ).optional(),
+    availableServices: z.array(z.string()).optional(),
+  }),
+});
+// --- END INTEGRATIONS ---
+
 // --- START PAGE ---
 export const PageSchema = z.object({
   seo: z.object({
@@ -596,6 +628,7 @@ export const PageSchema = z.object({
       TabsSchema,
       GallerySchema,
       CustomSectionSchema,
+      IntegrationSchema,
     ]),
   ),
 });
@@ -713,6 +746,7 @@ export type AccordionSection = z.infer<typeof AccordionSchema>;
 export type TabsSection = z.infer<typeof TabsSchema>;
 export type GallerySection = z.infer<typeof GallerySchema>;
 export type CustomSection = z.infer<typeof CustomSectionSchema>;
+export type IntegrationSection = z.infer<typeof IntegrationSchema>;
 
 export type AnySection =
   | HeroSection
@@ -727,7 +761,8 @@ export type AnySection =
   | AccordionSection
   | TabsSection
   | GallerySection
-  | CustomSection;
+  | CustomSection
+  | IntegrationSection;
 
 export type PageConfig = z.infer<typeof PageSchema>;
 export type WebsiteConfig = z.infer<typeof WebsiteConfigSchema>;

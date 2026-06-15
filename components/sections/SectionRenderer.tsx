@@ -23,8 +23,17 @@ import { AccordionSimple } from "@/components/sections/accordion/AccordionSimple
 import { TabsSimple } from "@/components/sections/tabs/TabsSimple";
 import { GalleryGrid } from "@/components/sections/gallery/GalleryGrid";
 import { CustomSection } from "./CustomSection";
+import { IntegrationRenderer } from "@/components/integrations/IntegrationRenderer";
+
+const IntegrationComponent = ({ variant, ...props }: any) => (
+  <IntegrationRenderer variant={variant} props={props} />
+);
 
 const sectionComponents: Record<string, Record<string, React.FC<any>>> = {
+  integration: {
+    calcom: IntegrationComponent,
+    "google-sheets-form": IntegrationComponent,
+  },
   hero: {
     simple: HeroSimple,
     split: HeroSplit,
